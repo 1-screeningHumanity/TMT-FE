@@ -11,7 +11,6 @@ interface StockChartDataType {
   stck_lwpr: string
   acml_vol: string
   acml_tr_pbmn: string
-  _class: string
 }
 
 export type { StockChartDataType }
