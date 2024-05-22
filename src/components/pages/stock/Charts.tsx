@@ -27,8 +27,8 @@ export default function Charts() {
         parseFloat(rawData[i].stck_hgpr),
       ])
     }
-    console.log(categoryData)
-    console.log(values)
+    // console.log(categoryData)
+    // console.log(values)
     return {
       categoryData: categoryData,
       values: values,
