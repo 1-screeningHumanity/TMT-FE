@@ -37,7 +37,7 @@ export default function SearchBar() {
         className="m-3 p-3 w-full h-16 rounded-2xl bg-slate-300 font-bold text-xl flex justify-between"
         onChange={() => {}}
       >
-        검색어를 입력해주세요
+        {transcript}
         <button onClick={toggleListening}>
           <Image
             src="https://img.icons8.com/ios/50/search--v1.png"
