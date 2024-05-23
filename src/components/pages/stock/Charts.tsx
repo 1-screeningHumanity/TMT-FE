@@ -4,10 +4,12 @@ import DetailCharts from './DetailCharts'
 import SimpleCharts from './SimpleCharts'
 
 export default function Charts() {
+
   const [detail, setDetail] = useState(false)
   const handleChangeDetail = () => {
     if (detail === false) {
       setDetail(true)
+
     }
     if (detail === true) {
       setDetail(false)

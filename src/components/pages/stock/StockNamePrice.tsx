@@ -17,31 +17,36 @@ export default function StockNamePrice() {
     symbol = downPrice
   }
   return (
-    <div className="flex">
-      <div className="ml-3 mt-5 h-10 w-10">
-        <Image
-          src="https://img.icons8.com/color/20/star--v1.png"
-          alt="bookmark"
-          width={48}
-          height={48}
-          objectFit="contain"
-        />
-      </div>
-
-      <div className="ml-2 mt-3 flex justify-between items-center relative w-full">
-        <span className="mt-2 text-3xl font-bold">삼성전자</span>
+    <>
+      <div
+        className="m-3  w-full h-24 rounded-xl flex items-center relative"
+        style={{ backgroundColor: '#7D00D0' }}
+      >
+        <div className="p-2 ">
+          <Image
+            src="https://img.icons8.com/color/20/star--v1.png"
+            alt="bookmark"
+            width={48}
+            height={48}
+            objectFit="contain"
+            className="p-2"
+          />
+        </div>
+        <span className="text-3xl font-bold text-white ml-3 ">삼성전자</span>
         <div className="flex flex-col items-end absolute mr-8 right-0">
-          <span className="text-xl" style={{ color }}>
+          <span className="text-xl text-white">
             {data.price.toLocaleString()}
           </span>
-          <div className="flex items-center ">
-            <Image src={symbol || ''} alt="부호" />
-            <span className="text-lg ml-1" style={{ color }}>
-              {data.prdy_ctrt}%
-            </span>
-          </div>
         </div>
       </div>
-    </div>
+      <div>
+        <div className="flex items-center ">
+          <Image src={symbol || ''} alt="부호" />
+          <span className="text-lg ml-1" style={{ color }}>
+            {data.prdy_ctrt}%
+          </span>
+        </div>
+      </div>
+    </>
   )
 }
