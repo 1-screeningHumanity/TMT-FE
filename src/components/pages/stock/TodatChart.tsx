@@ -6,31 +6,15 @@ import { getSocketData } from '@/actions/stock/getSocketData'
 import { filter } from 'echarts/types/src/export/api/util.js'
 import * as echarts from 'echarts'
 import { lazy, useEffect, useRef, useState } from 'react'
-export default function DetailCharts() {
+export default function TodayChart() {
   const upColor = '#ff0000'
   const downColor = '#0000ff'
   const getTodayData = getSocketData('005930')
-  const data0 = splitData(StockYearData, getTodayData)
-  const volumes = splitVol(StockYearData)
-  const myChartDom = useRef(null)
+  const data0 = splitData(getTodayData)
 
-  function splitData(rawData: StockChartDataType[], socketData: any) {
-    const categoryData = []
-    const values = []
-
-    for (var i = 0; i < rawData.length; i++) {
-      var date = rawData[i].stck_bsop_date.replace(
-        /(\d{4})(\d{2})(\d{2})/,
-        '$1/$2/$3',
-      )
-      categoryData.push(date)
-      values.push([
-        parseFloat(rawData[i].stck_oprc),
-        parseFloat(rawData[i].stck_clpr),
-        parseFloat(rawData[i].stck_lwpr),
-        parseFloat(rawData[i].stck_hgpr),
-      ])
-    }
+  function splitData(socketData: any) {
+    const categoryData: any[] = []
+    const values: number[][] = []
     if (socketData.todayDate == categoryData[categoryData.length - 1]) {
       categoryData.pop()
       values.pop()
@@ -55,42 +39,8 @@ export default function DetailCharts() {
       values: values,
     }
   }
-  console.log(
-    '오늘 값',
-    data0.categoryData[data0.categoryData.length - 1],
-    data0.values[data0.values.length - 1],
-  )
-  function splitVol(Data: StockChartDataType[]) {
-    const vol = []
-    for (var i = 0; i < Data.length; i++) {
-      vol.push(Data[i].acml_vol)
-    }
-    return vol
-  }
-
-  function calculateMA(dayCount: number) {
-    var result = []
-    for (var i = 0, len = data0.values.length; i < len; i++) {
-      if (i < dayCount) {
-        result.push('-')
-        continue
-      }
-      var sum = 0
-      for (var j = 0; j < dayCount; j++) {
-        sum += +data0.values[i - j][1]
-      }
-      result.push(sum / dayCount)
-    }
-    return result
-  }
 
   var option = {
-    notMerge: false,
-
-    title: {
-      text: '',
-      left: 0,
-    },
     tooltip: {
       trigger: 'axis',
       axisPointer: {
@@ -101,32 +51,6 @@ export default function DetailCharts() {
         color: 'red',
       },
     },
-
-    legend: {
-      top: 0,
-      data0: ['차트', '5일선', '20일선', '60일선', '120일선'],
-    },
-    axisPointer: {
-      link: [
-        {
-          xAxisIndex: [0, 1],
-        },
-      ],
-    },
-    grid: [
-      {
-        left: '10%',
-        right: '8%',
-        height: '50%',
-      },
-      {
-        left: '10%',
-        right: '8%',
-        bottom: '20%',
-        top: '72%',
-        height: '30%',
-      },
-    ],
     xAxis: [
       {
         type: 'category',

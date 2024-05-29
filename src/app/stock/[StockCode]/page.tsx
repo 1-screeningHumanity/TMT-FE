@@ -1,16 +1,26 @@
 import Headers from '@/components/ui/Headers'
 import StockNamePrice from '@/components/pages/stock/StockNamePrice'
 import Charts from '@/components/pages/stock/Charts'
-import OptionButtons from '@/components/pages/stock/OptionButtons'
 import CompanyInfo from '@/components/pages/stock/CompanyInfo'
 import Trade from '@/components/pages/stock/Trade'
-export default function Page() {
+import { getStockName } from '@/actions/stock/stock'
+import { useEffect } from 'react'
+
+export default async function Page({
+  params,
+}: {
+  params: { StockCode: string }
+}) {
+  const stockNameResult = await getStockName(params.StockCode)
+  console.log(stockNameResult?.stockName)
   return (
     <main>
       <Headers />
-      <StockNamePrice />
+      <StockNamePrice
+        stockName={stockNameResult?.stockName}
+        stockCode={params.StockCode}
+      />
       <Charts />
-      <OptionButtons />
       <CompanyInfo />
       <Trade />
     </main>
