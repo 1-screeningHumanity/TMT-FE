@@ -1,4 +1,4 @@
-import { GetAPI } from '../FetchAPI'
+import { GetAPI, PostAPI } from '../FetchAPI'
 
 async function getStockName(stockCode: string) {
   const response = await GetAPI(`/stockitem/${stockCode}/name`)
@@ -21,4 +21,8 @@ async function getInvestors(stockCode: string) {
 
   return response.data
 }
+async function tradeStock(trade: string) {
+  const response = await PostAPI(`/trade/${trade}`)
+}
+
 export { getStockName, getChartData, getInvestors }

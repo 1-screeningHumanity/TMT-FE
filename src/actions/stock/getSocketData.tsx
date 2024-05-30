@@ -2,7 +2,7 @@
 import downPrice from '/public/assets/images/downPrice.png'
 import upPrice from '/public/assets/images/upPrice.png'
 
-import { SocketStockDataType } from '@/types/SocketStcokDataType'
+import { SocketStockDataType } from '@/types/Stock'
 import { useEffect, useState } from 'react'
 
 let red = '#ff0000'
@@ -26,7 +26,7 @@ export const getSocketData = (stockCode: string) => {
     }
     // 초기연결
     const eventSource = new EventSource(
-      'http://10.10.10.59:8080/api/stream/005930',
+      'http://10.10.10.73:8080/api/stream/005930',
     )
     // 연결되었을때
     eventSource.onopen = () => {
@@ -37,7 +37,7 @@ export const getSocketData = (stockCode: string) => {
       const data = event.data
       const parsedData = data.split(':')
       setParsedDate(parsedData)
-      console.log(parsedData)
+      // console.log(parsedData)
       if (parsedData[0] != 'keep-alive') {
         if (parsedData[3].includes('-')) {
           setColor(blue)
@@ -53,7 +53,7 @@ export const getSocketData = (stockCode: string) => {
       console.error('EventSource failed:', error)
       eventSource.close()
     }
-  }, [])
+  }, [parsedData])
   return {
     color,
     symbol,

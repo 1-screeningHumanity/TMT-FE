@@ -1,5 +1,5 @@
 import { getInvestors } from '@/actions/stock/stock'
-import { InvestorsDataType } from '@/types/InvestorsDataType'
+import { InvestorsDataType } from '@/types/Stock'
 
 export default async function Page({
   params,

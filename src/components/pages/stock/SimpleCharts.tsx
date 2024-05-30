@@ -1,7 +1,7 @@
 'use client'
 import { getSocketData } from '@/actions/stock/getSocketData'
 import { StockYearData } from '@/lib/stock/StockYearData'
-import { StockChartDataType } from '@/types/StockCharDataType'
+import { StockChartDataType } from '@/types/Stock'
 import ReactECharts from 'echarts-for-react'
 
 export default function SimpleCharts() {
