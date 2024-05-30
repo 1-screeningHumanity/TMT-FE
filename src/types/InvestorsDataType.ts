@@ -1,4 +1,5 @@
 interface InvestorsDataType {
+  stockCode: String
   stck_bsop_date: String
   prsn_ntby_qty: String
   frgn_ntby_qty: String
