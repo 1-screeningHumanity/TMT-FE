@@ -44,7 +44,8 @@ export default function SimpleCharts() {
     },
     dataZoom: {
       type: 'inside',
-      start: 70,
+
+      start: 90,
       end: 100,
     },
     tooltip: {
@@ -61,6 +62,7 @@ export default function SimpleCharts() {
       {
         data: data.values,
         type: 'line',
+        showSymbol: false,
         // areaStyle: {
         //   color: '#ff0000',
         // },
@@ -72,8 +74,6 @@ export default function SimpleCharts() {
       <div className="mt-10  w-full text-white">
         <ReactECharts option={option} />
       </div>
-      {/* 
-  <div className="mt-2 w-full h-32 bg-red-700"> 거래량</div> */}
     </div>
   )
 }

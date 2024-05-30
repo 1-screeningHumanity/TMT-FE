@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image'
 import { getSocketData } from '@/actions/stock/getSocketData'
+import { useState } from 'react'
 
 export default function StockNamePrice({
   stockName,
@@ -10,7 +11,32 @@ export default function StockNamePrice({
   stockCode: string
 }) {
   const data = getSocketData('005930')
-
+  const [socketFlag, setSocketFlag] = useState(false)
+  const socketStockCode = [
+    '005930',
+    '000660',
+    '373220',
+    '207940',
+    '005380',
+    '005935',
+    '000270',
+    '068270',
+    '005490',
+    '105560',
+    '035420',
+    '006400',
+    '051910',
+    '028260',
+    '055550',
+    '012330',
+    '003670',
+    '035720',
+    '247540',
+    '086790',
+  ]
+  if (stockCode in socketStockCode) {
+    setSocketFlag(true)
+  }
   return (
     <>
       <div className="backGroundLinear">
