@@ -54,10 +54,17 @@ interface StockPrice {
   prdy_ctrt: string //전일 대비율
 }
 
+interface TradeType {
+  stockCode: String
+  price: number
+  amount: number
+  stockName: string
+}
 export type {
   AskingPriceDataTypes,
   InvestorsDataType,
   SocketStockDataType,
   StockChartDataType,
   StockPrice,
+  TradeType,
 }

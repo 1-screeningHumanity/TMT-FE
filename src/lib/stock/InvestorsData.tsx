@@ -1,4 +1,4 @@
-import { InvestorsDataType } from '@/types/InvestorsDataType'
+import { InvestorsDataType } from '@/types/Stock'
 
 export const InvestorsData: InvestorsDataType[] = [
   {
