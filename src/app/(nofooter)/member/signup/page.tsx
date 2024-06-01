@@ -45,26 +45,31 @@ async function handleSignup(event: React.FormEvent) {
   let name = inputRefs.current[0]?.value;
   let phoneNumber = removeHyphens(inputRefs.current[1]?.value);
   let password = inputRefs.current[3]?.value;
-  let nickname = inputRefs.current[4]?.value;
+  let nickName = inputRefs.current[4]?.value;
 
-  const res = await postSignup(name, phoneNumber, password, nickname);
-  console.log("res :", res);
-  console.log("name :", name, "phoneNumber :",phoneNumber, "password :", password, "nickname :", nickname)
-  if(!res.isSuccess){
-    if(res.message === "중복된 전화번호"){
-      alert("중복된 전화번호입니다.")
-      inputRefs.current[1]?.focus();
-    }
-    if(res.message === "중복된 닉네임"){
-      alert("중복된 닉네임입니다.")
-      inputRefs.current[4]?.focus();
-    }
+  if(!name || !phoneNumber || !password || !nickName){
+    alert("모든 값을 채워주세요")
   }else{
-    if (typeof nickname !== 'undefined') {
-      localStorage.setItem("nickname", nickname);
+    const res = await postSignup(name, phoneNumber, password, nickName);
+    console.log("res :", res);
+    console.log("name :", name, "phoneNumber :",phoneNumber, "password :", password, "nickName :", nickName)
+    if(!res.isSuccess){
+      if(res.code === 1005){
+        alert("중복된 전화번호입니다.")
+        inputRefs.current[1]?.focus();
+      }
+      if(res.code === 1000){
+        alert("중복된 닉네임입니다.")
+        inputRefs.current[4]?.focus();
+      }
+    }else{
+      if (typeof nickName !== 'undefined') {
+        localStorage.setItem("nickName", nickName);
+      }
+      location.href="/member/signup/complete"
     }
-    location.href="/member/signup/complete"
   }
+
 }
 
 const passwordValidation = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -95,7 +100,7 @@ const parsingPhoneNumber = (num: string) => {
     <>
       <div className="flex mx-10 justify-between mt-10 mb-16">
         <h1 className="text-lg text-[#7d00d0] font-extrabold">회원가입</h1>
-        <Link className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5" href={"/signin"}>
+        <Link className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5" href={"/member/signin"}>
           <Image width="20" height="20" src="https://img.icons8.com/ios/20/000000/multiply.png" alt="cancel"/>
         </Link>
       </div>
@@ -128,8 +133,8 @@ const parsingPhoneNumber = (num: string) => {
           {password1 === password2 ? (password2 ? <p className="text-xs text-green-500">비밀번호가 일치합니다.</p> : "") : (password2 ? <p className="text-xs text-red-500">비밀번호가 일치하지 않습니다.</p> : "")}
         </div>
         <div className="w-80 mx-auto my-6">
-          <label htmlFor="nickname" className="text-sm my-1 block">닉네임 <span className="text-red-500">*</span></label>
-          <input name="nickname" id="nickname" type="text" required ref={(el) => {inputRefs.current[4] = el}} className="border-[2px] rounded-lg w-56 h-10 mx-auto px-4 text-sm placeholder-[#aea0e5] inline"/>
+          <label htmlFor="nickName" className="text-sm my-1 block">닉네임 <span className="text-red-500">*</span></label>
+          <input name="nickName" id="nickName" type="text" required ref={(el) => {inputRefs.current[4] = el}} className="border-[2px] rounded-lg w-56 h-10 mx-auto px-4 text-sm placeholder-[#aea0e5] inline"/>
           <input type="button" value={"자동생성"} onClick={handleRandomNickname} className="w-20 bg-[#7d00d0] font-bold text-white rounded-md ml-4 h-10 inline text-sm border-[1px] px-2" />
         </div>
 
