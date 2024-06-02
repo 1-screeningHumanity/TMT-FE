@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 
 export default function complete (){
@@ -10,7 +12,7 @@ export default function complete (){
         지급했습니다 !<br/>
         <span className="text-xs text-[#3a3f52] w-80 mx-auto">모의투자로 주식을 배워볼 수 있습니다.</span>
       </div>
-      <button className="bg-[#7d00d0] text-white text-md font-semibold rounded-lg w-80 h-10 mx-auto block my-20 font-[Pretendard-Regular]">
+      <button className="bg-[#7d00d0] text-white text-md font-semibold rounded-lg w-80 h-10 mx-auto block my-20 font-[Pretendard-Regular]" onClick={()=> location.href="/member/signin"} >
         로그인
       </button>
     </section>
