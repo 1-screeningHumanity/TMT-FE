@@ -3,7 +3,7 @@
 export async function getRandomNickname() {
 
   try {
-    const res = await fetch(`https://5046f576-7653-4317-afab-0c5606281af4.mock.pstmn.io/test/api/test`, {
+    const res = await fetch(`https://screeninghumanity.shop/api/v1/member/random-nickname`, {
       cache: "no-store",
       method: "GET",
       headers: {
@@ -14,7 +14,7 @@ export async function getRandomNickname() {
     if (res.ok) {
       const data = await res.json()
       console.log(data);
-      return data.result
+      return data
     }
   } catch (error) {
     return

@@ -15,6 +15,6 @@ export default function InputOfPassword({placeholder} : {placeholder : string}){
         <Image width="20" height="20" src="https://img.icons8.com/ios-glyphs/20/visible--v1.png" alt="visible--v1" className="absolute right-14 top-2" onClick={()=>{setShowPassword(false)}}/> :
         <Image width="20" height="20" src="https://img.icons8.com/material/20/closed-eye.png" alt="closed-eye" className="absolute right-14 top-2" onClick={()=>{setShowPassword(true)}}/>
       }
-  </div>
+    </div>
   )
 }
