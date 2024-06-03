@@ -1,12 +1,13 @@
 'use client'
+import { getSocketData } from '@/actions/stock/getSocketData'
 import { StockYearData } from '@/lib/stock/StockYearData'
-import { StockChartDataType } from '@/types/StockCharDataType'
+import { StockChartDataType } from '@/types/Stock'
 import ReactECharts from 'echarts-for-react'
 
 export default function SimpleCharts() {
-  const data = splitData(StockYearData)
-
-  function splitData(rawData: StockChartDataType[]) {
+  const today = getSocketData('005930')
+  const data = splitData(StockYearData, today)
+  function splitData(rawData: StockChartDataType[], socketData: any) {
     const categoryData = []
     const values = []
     const vol = []
@@ -17,6 +18,13 @@ export default function SimpleCharts() {
       )
       categoryData.push(date)
       values.push(parseFloat(rawData[i].stck_clpr))
+    }
+    if (socketData.todayDate == categoryData[categoryData.length - 1]) {
+      categoryData.pop()
+      values.pop()
+      values.push([parseFloat(socketData.now_price)])
+    } else {
+      values.push([parseFloat(socketData.now_price)])
     }
 
     return {
@@ -30,12 +38,14 @@ export default function SimpleCharts() {
       boundaryGap: false,
       data: data.categoryData,
     },
+    symbol: 'none',
     yAxis: {
       type: 'value',
     },
     dataZoom: {
       type: 'inside',
-      start: 70,
+
+      start: 90,
       end: 100,
     },
     tooltip: {
@@ -52,6 +62,7 @@ export default function SimpleCharts() {
       {
         data: data.values,
         type: 'line',
+        showSymbol: false,
         // areaStyle: {
         //   color: '#ff0000',
         // },
@@ -63,8 +74,6 @@ export default function SimpleCharts() {
       <div className="mt-10  w-full text-white">
         <ReactECharts option={option} />
       </div>
-      {/* 
-  <div className="mt-2 w-full h-32 bg-red-700"> 거래량</div> */}
     </div>
   )
 }

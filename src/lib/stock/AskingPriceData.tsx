@@ -1,4 +1,4 @@
-import { AskingPriceDataTypes } from '@/types/AskingPriceDataType'
+import { AskingPriceDataTypes } from '@/types/Stock'
 export const AskingPriceData: AskingPriceDataTypes = {
   askp1: '10100',
   askp2: '10200',
@@ -12,7 +12,7 @@ export const AskingPriceData: AskingPriceDataTypes = {
   bidp_rsqn1: '4323',
   bidp_rsqn2: '3534',
   bidp_rsqn3: '2342',
-  stck_prpr: '1000',
+
   total_askp_rsqn: 'dfs',
   total_bidp_rsqn: 'fdf',
 }

@@ -15,6 +15,7 @@
     "echarts-for-react": "^3.0.2",
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-prettier": "^9.1.0",
+    "eventsource": "^2.0.2",
     "next": "14.2.3",
     "next-auth": "^4.24.7",
     "prettier": "^3.2.5",

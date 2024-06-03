@@ -1,4 +1,4 @@
-import { StockPrice } from '@/types/StockPriceDataType'
+import { StockPrice } from '@/types/Stock'
 export const StockPriceData: StockPrice = {
   price: 72300,
   prdy_vrss: '2000', // 전일 대비
