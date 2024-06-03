@@ -29,8 +29,7 @@ export default function Headers() {
             scope: '/firebase-cloud-messaging-push-scope',
           })
           getToken(messaging, {
-            vapidKey:
-              'BEITJzBYJqxbe_p8ds4s_ZyS64YVcMfSVff0xOfPNTalQrMchPCSvtqvbdYh7E5TkcX1XOH0xMu7ZNPLTfSxjTY',
+            vapidKey: `${process.env.NEXT_PUBLIC_VAPID_KEY}`,
           })
             .then((currentToken) => {
               if (currentToken) {
