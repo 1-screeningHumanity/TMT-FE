@@ -1,10 +1,6 @@
-import { getInvestors } from '@/actions/stock/stock'
-import Investor from '@/components/pages/stock/Investor'
-import { InvestorsDataType } from '@/types/Stock'
-
 async function getInvestorsAPI(stockCode: string) {
   const response = await fetch(
-    'https://screeninghumanity.shop/api/v1/stockitem/005930/investors',
+    `${process.env.API_BASE_URL}/stockitem/${stockCode}/investors`,
     {
       method: 'GET',
       headers: {

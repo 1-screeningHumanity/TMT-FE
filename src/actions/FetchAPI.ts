@@ -25,10 +25,7 @@ async function fetchAPI(
       options.body = JSON.stringify(body)
     }
 
-    const response = await fetch(
-      `https://screeninghumanity.shop/api/v1${url}`,
-      options,
-    )
+    const response = await fetch(`${process.env.API_BASE_URL}${url}`, options)
 
     return response.json()
   } catch (error) {
