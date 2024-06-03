@@ -6,8 +6,7 @@
   background: linear-gradient(90deg, #7d00d0, #c3a0da);
 }
 
-/* w-1/3 h-9 rounded-xl flex items-center justify-center */
-
+/* 차트 자세히 보기 버튼 */
 #switch {
   /* hidden */
   appearance: none;
@@ -43,7 +42,6 @@
   background: #222222;
 }
 
-/* move */
 #switch:checked + .switch_label .onf_btn {
   left: 11px;
   background: #fff;

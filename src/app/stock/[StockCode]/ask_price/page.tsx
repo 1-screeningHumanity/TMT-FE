@@ -37,11 +37,10 @@ export default function page() {
   return (
     <main>
       호가
-      {data.askp_arr.map((askp: any) => (
-        <div className="flex my-3">
+      {data.askp_arr.map((askp: any, index: number) => (
+        <div className="flex my-3" key={index}>
           <div
             className="w-1/3 h-20 mx-3 relative"
-            key={askp + 'askp'}
             style={{ backgroundColor: '#D9D9D9' }}
           >
             <div
@@ -59,15 +58,15 @@ export default function page() {
           {askp[0]}원
         </div>
       ))}
-      {data.bidp_arr.map((bidp: any) => (
-        <div className="flex my-3">
+      {data.bidp_arr.map((bidp: any, index: number) => (
+        <div className="flex my-3" key={index}>
           <div
             className="w-1/3 h-20  mx-3 relative"
-            key={bidp + 'bidp'}
+            // key={bidp[0] + 'bidp'}
             style={{ backgroundColor: '#D9D9D9' }}
           >
             <div
-              className="h-28 absolute right-0 items-center flex justify-center text-2xl text-white"
+              className="h-20 absolute right-0 items-center flex justify-center text-2xl text-white"
               style={{
                 backgroundColor: '#ff0000',
                 opacity: 0.5,

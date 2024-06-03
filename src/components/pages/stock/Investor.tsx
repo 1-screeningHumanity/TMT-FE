@@ -1,29 +1,33 @@
 import { getInvestors } from '@/actions/stock/stock'
-import Investor from '@/components/pages/stock/Investor'
-import { InvestorsDataType } from '@/types/Stock'
+import { useEffect } from 'react'
 
-async function getInvestorsAPI(stockCode: string) {
-  const response = await fetch(
-    'https://screeninghumanity.shop/api/v1/stockitem/005930/investors',
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      cache: 'no-cache',
-    },
-  )
-
-  return response.json()
-}
-
-export default async function Page({
+export default function Investor({
   params,
 }: {
   params: { StockCode: string }
 }) {
-  const Investor = await getInvestorsAPI(params.StockCode)
-  const data = Investor.data
+  const fetchData = async () => {
+    const response = await fetch(
+      'https://screeninghumanity.shop/api/v1/stockitem/005930/investors',
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    )
+    console.log('response', response)
+
+    console.log('ㅇ라ㅣ너라ㅣㅇ너라ㅣ')
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  //   const data = getInvestorsAPI(params.StockCode)
+  //   console.log('data', data)
+
   const colorFormatting = (value: string) => {
     if (value.includes('-')) {
       return '#0000ff'
@@ -45,29 +49,28 @@ export default async function Page({
       .replace(/(\-{1,2})$/g, '')
   }
   return (
-    <div className="mt-5">
-      <table className="border-collapse border border-slate-400 w-full ">
-        <thead
-          className="h-20 border-black"
-          style={{ backgroundColor: '#E9C8FF' }}
-        >
-          <tr>
-            <th scope="col" className="border border-white text-xl">
-              날짜
-            </th>
-            <th scope="col" className="border border-white text-xl">
-              개인
-            </th>
-            <th scope="col" className="border border-white text-xl ">
-              외국인
-            </th>
-            <th scope="col" className="border border-white text-xl">
-              기관
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item: any) => (
+    <table className="border-collapse border border-slate-400 w-full ">
+      <thead
+        className="h-20 border-black"
+        style={{ backgroundColor: '#E9C8FF' }}
+      >
+        <tr>
+          <th scope="col" className="border border-white text-xl">
+            날짜
+          </th>
+          <th scope="col" className="border border-white text-xl">
+            개인
+          </th>
+          <th scope="col" className="border border-white text-xl ">
+            외국인
+          </th>
+          <th scope="col" className="border border-white text-xl">
+            기관
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {/* {data.map((item: any) => (
             <tr key={item.stck_bsop_date}>
               <th
                 scope="row"
@@ -95,9 +98,8 @@ export default async function Page({
                 {item.orgn_ntby_qty}
               </td>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          ))} */}
+      </tbody>
+    </table>
   )
 }

@@ -36,9 +36,9 @@ export const getSocketData = (stockCode: string) => {
     eventSource.onmessage = (event) => {
       const data = event.data
       const parsedData = data.split(':')
-      setParsedDate(parsedData)
-      // console.log(parsedData)
+
       if (parsedData[0] != 'keep-alive') {
+        setParsedDate(parsedData)
         if (parsedData[3].includes('-')) {
           setColor(blue)
           setSymbol(downPrice.src) // Convert StaticImageData to string
