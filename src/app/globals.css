@@ -17,8 +17,8 @@
 .switch_label {
   position: relative;
   display: inline-block;
-  width: 26px;
-  height: 16px;
+  width: 36px;
+  height: 26px;
   background: #d8d8d8;
   border-radius: 20px;
   transition: 0.2s;
@@ -28,11 +28,11 @@
 }
 .onf_btn {
   position: absolute;
-  top: 1px;
-  left: 1px;
+  top: 0px;
+  left: 0px;
   display: inline-block;
-  width: 14px;
-  height: 14px;
+  width: 26px;
+  height: 26px;
   border-radius: 020px;
   background: white;
   transition: 0.2s;
@@ -49,8 +49,8 @@
 
 @font-face {
   font-family: 'Pretendard-Regular';
-  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+    format('woff');
   font-weight: 400;
   font-style: normal;
 }
-
