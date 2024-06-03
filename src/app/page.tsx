@@ -1,13 +1,12 @@
+'use client'
 import 'regenerator-runtime/runtime'
 import SearchBar from '@/components/ui/SearchBar'
-import ButtonOfSignout from '@/components/ui/buttons/ButtonOfSignout'
-
+import Headers from '@/components/ui/Headers'
 export default function Home() {
   return (
     <div>
+      <Headers />
       <SearchBar />
-      <h1 className='text-xl'>메인페이지입니다.</h1>
-      <ButtonOfSignout />
     </div>
   )
 }
