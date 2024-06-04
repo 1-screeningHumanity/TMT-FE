@@ -14,6 +14,7 @@ export default function SearchBar() {
     useSpeechRecognition()
   const [text, setText] = useState('')
   const [searchData, setSearchData] = useState<SearchDataType[]>([])
+  const [selectValue, setSelectValue] = useState('')
   const toggleListening = () => {
     if (listening) {
       SpeechRecognition.stopListening()
@@ -30,7 +31,7 @@ export default function SearchBar() {
   }
   useEffect(() => {
     const fetchData = async () => {
-      const res = await searchNameAPI(text)
+      const res = await searchNameAPI(text, selectValue)
       console.log(res.data)
       setSearchData(res.data)
     }
@@ -39,9 +40,13 @@ export default function SearchBar() {
   return (
     <>
       <div className="flex">
-        <select className="border-2 w-24 h-14 my-4 ml-4 text-center font-bold text-xl">
-          <option value="주식">주식</option>
-          <option value="회원">회원</option>
+        <select
+          className="border-2 w-24 h-14 my-4 ml-4 text-center font-bold text-xl"
+          value={selectValue}
+          onChange={(e) => setSelectValue(e.target.value)}
+        >
+          <option value="stocks">주식</option>
+          <option value="members">회원</option>
         </select>
         <div
           className="m-3 w-full h-16 rounded-2xl border-black border-4 font-bold text-xl flex justify-between"
@@ -90,3 +95,5 @@ export default function SearchBar() {
 // 검색이 하나라도 없으면 무조건 bad request가 뜨는데 이걸 해결해야함
 // 검색어가 무조건 10개만 출력되는지
 // Lg 전자가 검색이 안된다
+
+// 멤버 검색시 닉네임만 검색? 이름 검색?
