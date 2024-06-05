@@ -6,6 +6,7 @@
   background: linear-gradient(90deg, #7d00d0, #c3a0da);
 }
 
+
 /* 차트 자세히 보기 버튼 */
 #switch {
   /* hidden */
@@ -47,6 +48,8 @@
   background: #fff;
 }
 
+
+/* 폰트 */
 @font-face {
   font-family: 'Pretendard-Regular';
   src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
