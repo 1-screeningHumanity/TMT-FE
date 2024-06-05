@@ -1,6 +1,6 @@
 'use client'
-import downPrice from '/public/assets/images/downPrice.png'
-import upPrice from '/public/assets/images/upPrice.png'
+import downPrice from '/public/assets/images/downPrice.svg'
+import upPrice from '/public/assets/images/upPrice.svg'
 
 import { SocketStockDataType } from '@/types/Stock'
 import { useEffect, useState } from 'react'
