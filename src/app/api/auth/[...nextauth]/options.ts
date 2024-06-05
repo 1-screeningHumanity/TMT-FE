@@ -56,6 +56,8 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, profile}) {
+      console.log("signIn user :", user);
+      console.log("signIn profile :", profile);
       // if(profile) {
       //   console.log(profile)
       //   // 회원인지 아닌지 확인
@@ -86,11 +88,21 @@ export const options: NextAuthOptions = {
     },
 
     async jwt({ token, user }) {
+      if(user){
+        console.log("jwt user :", user);
+      }else {
+        console.log("jwt user is null");
+      }
       return { ...token, ...user };
     },
 
     async session({ session, token }) {
       session.user = token as any;
+      if(session){
+        console.log("session :", session);
+      }else{
+        console.log("session is null");
+      }
       return session;
     },
 
