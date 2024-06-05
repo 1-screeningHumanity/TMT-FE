@@ -5,6 +5,7 @@ async function fetchAPI(
   url: string,
   body?: object,
   token?: string,
+  cache?: string,
 ) {
   try {
     let headers: { [key: string]: string } = {
@@ -14,10 +15,15 @@ async function fetchAPI(
       token = token.replace(/(?:\\[rn]|[\r\n]+)+/g, '')
       headers['Authorization'] = `Bearer ${token}`
     }
+    let cache = 'no-cache'
+    if (cache != null || cache !== undefined) {
+      cache = `${cache}`
+    }
 
     let options: RequestInit = {
       method: method,
       headers: headers,
+      cache: 'no-cache',
     }
 
     // GET 메서드가 아닌 경우에만 body를 추가합니다.
@@ -32,7 +38,7 @@ async function fetchAPI(
     throw error
   }
 }
-function GetAPI(url: string, params?: object, token?: string) {
+function GetAPI(url: string, params?: object, token?: string, cache?: string) {
   if (params != undefined) {
     const urlParams = new URLSearchParams().toString()
 
