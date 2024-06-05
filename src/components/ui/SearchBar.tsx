@@ -14,7 +14,7 @@ export default function SearchBar() {
     useSpeechRecognition()
   const [text, setText] = useState('')
   const [searchData, setSearchData] = useState<SearchDataType[]>([])
-  const [selectValue, setSelectValue] = useState('')
+  const [selectValue, setSelectValue] = useState('stocks')
   const toggleListening = () => {
     if (listening) {
       SpeechRecognition.stopListening()
@@ -25,17 +25,15 @@ export default function SearchBar() {
   if (!browserSupportsSpeechRecognition) {
     console.log('Browser does not support speech recognition.')
   }
+  console.log(transcript)
 
-  const handleSearch = (event: React.SetStateAction<string>) => {
-    setText(event)
+  const fetchData = async (event: string) => {
+    const res = await searchNameAPI(event, selectValue)
+    console.log(res.data)
+    setSearchData(res.data)
   }
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await searchNameAPI(text, selectValue)
-      console.log(res.data)
-      setSearchData(res.data)
-    }
-    fetchData()
+    fetchData(text)
   }, [text])
   return (
     <>
@@ -48,11 +46,7 @@ export default function SearchBar() {
           <option value="stocks">주식</option>
           <option value="members">회원</option>
         </select>
-        <div
-          className="m-3 w-full h-16 rounded-2xl border-black border-4 font-bold text-xl flex justify-between"
-          onChange={() => {}}
-        >
-          {transcript}{' '}
+        <div className="m-3 w-full h-16 rounded-2xl border-black border-4 font-bold text-xl flex justify-between">
           <Image
             src="https://img.icons8.com/ios/50/search--v1.png"
             alt="search--v1"
@@ -63,7 +57,7 @@ export default function SearchBar() {
           <input
             className="w-full focus:outline-none "
             // onChange={(e) => setText(e.target.value)}
-            onChange={(e) => handleSearch(e.target.value)}
+            onChange={(e) => fetchData(e.target.value)}
           />
           <button onClick={toggleListening}>
             <Image
