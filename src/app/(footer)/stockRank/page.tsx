@@ -1,7 +1,6 @@
 import { sortAPI } from '@/actions/stock/sort'
 import { dateFormmating } from '@/utils/time'
 import { StockSortType } from '@/types/StcokSortType'
-import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
 import SortButton from '@/components/pages/stock/SortButton'
 import SortRank from '@/components/pages/stock/SortRank'
 // import { searchParams } from 'next/navigation'
@@ -11,7 +10,7 @@ export default async function Page(props: any) {
   if (option == undefined) {
     option = 'soaring-stocks'
   }
-  const sortResult = await sortAPI(option)
+  const sortResult: StockSortType[] = await sortAPI(option)
 
   let date = dateFormmating(sortResult[0]?.dateTime)
 
