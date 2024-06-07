@@ -10,7 +10,6 @@ export default function PayPasswordChange ({setPassword} : {setPassword : Dispat
     const target = e.target as HTMLInputElement;
     if (target.value.length === target.maxLength) {
       const nextInput = inputRefs.current[index + 1];
-      console.log(target.value);
       if (nextInput) {
         nextInput.focus();
       }

@@ -36,7 +36,9 @@ async function handleChangeNickname(event: React.FormEvent) {
 
       alert("이미 존재하는 닉네임 입니다.")
       inputRefs.current[2]?.focus();
-
+      
+    }else{
+      alert("닉네임 변경이 완료되었습니다.")
       location.href="/change/nickname/complete"
     }
   }
@@ -61,7 +63,7 @@ const parsingPhoneNumber = (num: string) => {
       <form>
         <div className="w-80 mx-auto my-6">
           <label htmlFor="name" className="text-sm my-1 block">이름 <span className="text-red-500">*</span></label>
-          <input name="name" type="text" id="name" required minLength={2} ref={(el) => {inputRefs.current[0] = el}} className="border-[2px] rounded-lg w-80 h-10 mx-auto block px-4 text-sm placeholder-[#aea0e5]"/>
+          <input name="name" type="text" id="name" required minLength={2} ref={(el) => {inputRefs.current[0] = el}} placeholder="이름을 입력해주세요" className="border-[2px] rounded-lg w-80 h-10 mx-auto block px-4 text-sm placeholder-[#aea0e5]"/>
         </div>
         <div className="w-80 mx-auto my-6">
           <label htmlFor="phone" className="text-sm my-1 block">전화번호 <span className="text-red-500 ">*</span></label>

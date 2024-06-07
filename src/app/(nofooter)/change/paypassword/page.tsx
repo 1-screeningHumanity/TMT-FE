@@ -4,12 +4,14 @@ import PayPasswordCheck from "@/components/pages/password/PayPasswordCheck";
 import { useEffect, useState } from "react";
 import PayPasswordChange from "@/components/pages/password/PayPasswordChange";
 import patchPaypasswordChange from "@/actions/change/patchPaypasswordChange";
+import { Session } from "next-auth";
+import { getSession } from "next-auth/react";
 
 export default function paypassword (){
   const [password, setPassword] = useState<string>("");
   const [checkPassword, setCheckPassword] = useState<string>("");
   const [step, setStep] = useState<boolean>(true);
-
+  const [session, setSession] = useState<Session | null>(null);
 
   function handleStep(){
     if(password.length === 4){

@@ -5,11 +5,21 @@ import ButtonOfSignout from '@/components/ui/buttons/ButtonOfSignout'
 import { getSession } from 'next-auth/react'
 import ButtonToSignin from '@/components/ui/buttons/ButtonToSignin';
 import Headers from '@/components/ui/Headers'
+import { useEffect, useState } from 'react'
+import { Session } from 'next-auth'
 
-export default async function Home() {
+export default function Home() {
+  const [session, setSession] = useState<Session | null>(null);
 
-  const session = await getSession();
-  console.log("session :", session);
+  useEffect(() => {
+    async function fetchSession() {
+      const session = await getSession();
+      console.log("session:", session);
+      setSession(session);
+    }
+    fetchSession();
+  }, []);
+
   
   return (
     <div>

@@ -1,4 +1,3 @@
-import { throws } from "assert";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials"; 
 import KakaoProvider from "next-auth/providers/kakao";
@@ -10,9 +9,9 @@ export const options: NextAuthOptions = {
     CredentialsProvider({
       name : "Credentials",
       credentials : {
+        phoneNumber : { label : "phoneNumber", type : "text"},
         name : { label : "name", type :"text"},
         password : { label : "password", type :"password"},
-        phoneNumber : { label : "phoneNumber", type : "text"},
       },
       async authorize(credentials){
         if(!credentials?.phoneNumber || !credentials?.name || !credentials?.password){
@@ -54,6 +53,7 @@ export const options: NextAuthOptions = {
       },
     ),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async signIn({ user, profile}) {
       console.log("signIn user :", user);
