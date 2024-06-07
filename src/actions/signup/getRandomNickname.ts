@@ -3,7 +3,7 @@
 export async function getRandomNickname() {
 
   try {
-    const res = await fetch(`https://screeninghumanity.shop/api/v1/member/random-nickname`, {
+    const res = await fetch(`${process.env.API_BASE_URL}/member/random-nickname`, {
       cache: "no-store",
       method: "GET",
       headers: {

@@ -1,6 +1,9 @@
 "use server"
 
-export default async function postPayPassword(nickname : string | null, password : string | undefined) {
+import { getAccessToken } from "../tokens";
+
+
+export default async function postNicknameChange(nickname : string | null) {
 
   try {
     const res = await fetch(`${process.env.API_BASE_URL}/member/pay-password`, {
@@ -8,9 +11,9 @@ export default async function postPayPassword(nickname : string | null, password
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization" : await getAccessToken()
       },
       body : JSON.stringify({
-        payingPassword : password,
         nickname : nickname,
       })
       },
@@ -22,4 +25,3 @@ export default async function postPayPassword(nickname : string | null, password
     return
   }
 }
-

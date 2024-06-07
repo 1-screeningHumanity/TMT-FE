@@ -1,4 +1,3 @@
-import { throws } from "assert";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials"; 
 import KakaoProvider from "next-auth/providers/kakao";
@@ -10,9 +9,9 @@ export const options: NextAuthOptions = {
     CredentialsProvider({
       name : "Credentials",
       credentials : {
+        phoneNumber : { label : "phoneNumber", type : "text"},
         name : { label : "name", type :"text"},
         password : { label : "password", type :"password"},
-        phoneNumber : { label : "phoneNumber", type : "text"},
       },
       async authorize(credentials){
         if(!credentials?.phoneNumber || !credentials?.name || !credentials?.password){
@@ -54,8 +53,11 @@ export const options: NextAuthOptions = {
       },
     ),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async signIn({ user, profile}) {
+      console.log("signIn user :", user);
+      console.log("signIn profile :", profile);
       // if(profile) {
       //   console.log(profile)
       //   // 회원인지 아닌지 확인
@@ -86,11 +88,21 @@ export const options: NextAuthOptions = {
     },
 
     async jwt({ token, user }) {
+      if(user){
+        console.log("jwt user :", user);
+      }else {
+        console.log("jwt user is null");
+      }
       return { ...token, ...user };
     },
 
     async session({ session, token }) {
       session.user = token as any;
+      if(session){
+        console.log("session :", session);
+      }else{
+        console.log("session is null");
+      }
       return session;
     },
 

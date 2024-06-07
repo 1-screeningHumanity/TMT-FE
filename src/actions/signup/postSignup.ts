@@ -1,9 +1,11 @@
 "use server"
 
-export async function postSignup(name : string | undefined, phoneNumber : string | undefined, password : string | undefined, nickName : string | undefined) {
+import { PostAPI } from "../FetchAPI";
+
+export async function postSignup(name : string | undefined, phoneNumber : string | undefined, password : string | undefined, nickname : string | undefined) {
 
   try {
-    const res = await fetch(`process.env.API_BASE_URL/member/signup`, {
+    const res = await fetch(`${process.env.API_BASE_URL}/member/signup`, {
       cache: "no-store",
       method: "POST",
       headers: {
@@ -11,7 +13,7 @@ export async function postSignup(name : string | undefined, phoneNumber : string
       },
       body : JSON.stringify({
         name : name,
-        nickName : nickName,
+        nickname : nickname,
         password : password,
         phoneNumber : phoneNumber,
       })
@@ -24,4 +26,3 @@ export async function postSignup(name : string | undefined, phoneNumber : string
     return
   }
 }
-
