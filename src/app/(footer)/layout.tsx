@@ -1,5 +1,5 @@
 
-import Footer from '@/components/ui/Footers'
+import Footer from '@/components/ui/Footer'
 import Headers from '@/components/ui/Headers'
 
 export default function layout({
