@@ -1,6 +1,6 @@
 "use server"
 
-export default async function postPayPassword(nickName : string | null, password : string | undefined) {
+export default async function postPayPassword(nickname : string | null, password : string | undefined) {
 
   try {
     const res = await fetch(`${process.env.API_BASE_URL}/member/pay-password`, {
@@ -11,7 +11,7 @@ export default async function postPayPassword(nickName : string | null, password
       },
       body : JSON.stringify({
         payingPassword : password,
-        nickname : nickName,
+        nickname : nickname,
       })
       },
     )

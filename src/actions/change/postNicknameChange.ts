@@ -1,10 +1,9 @@
 "use server"
 
-import { PostAPI } from "../FetchAPI";
 import { getAccessToken } from "../tokens";
 
 
-export default async function postNicknameChange(nickName : string | null) {
+export default async function postNicknameChange(nickname : string | null) {
 
   try {
     const res = await fetch(`${process.env.API_BASE_URL}/member/pay-password`, {
@@ -15,7 +14,7 @@ export default async function postNicknameChange(nickName : string | null) {
         "Authorization" : await getAccessToken()
       },
       body : JSON.stringify({
-        nickname : nickName,
+        nickname : nickname,
       })
       },
     )
