@@ -1,4 +1,6 @@
-import Footer from "@/components/ui/Footers"
+
+import Footer from '@/components/ui/Footers'
+import Headers from '@/components/ui/Headers'
 
 export default function layout({
   children,
@@ -7,6 +9,7 @@ export default function layout({
 }>) {
   return (
     <>
+      <Headers />
       {children}
       <Footer />
     </>
