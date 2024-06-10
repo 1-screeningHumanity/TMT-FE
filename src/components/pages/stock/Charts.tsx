@@ -2,35 +2,13 @@
 import { useEffect, useState } from 'react'
 import DetailCharts from './DetailCharts'
 import SimpleCharts from './SimpleCharts'
-
+import { socketStockCode } from '@/utils/socketStockCode'
 export default function Charts({ params }: { params: { StockCode: string } }) {
   const [detail, setDetail] = useState(false)
   const [date, setDate] = useState('')
   const [socketFlag, setSocketFlag] = useState(false)
-  const socketStockCode = [
-    '005930',
-    '000660',
-    '373220',
-    '207940',
-    '005380',
-    '005935',
-    '000270',
-    '068270',
-    '005490',
-    '105560',
-    '035420',
-    '006400',
-    '051910',
-    '028260',
-    '055550',
-    '012330',
-    '003670',
-    '035720',
-    '247540',
-    '086790',
-  ]
   useEffect(() => {
-    if (socketStockCode.includes(params.StockCode)) {
+    if (socketStockCode.hasOwnProperty(params.StockCode)) {
       setSocketFlag(true)
     }
   }, [params.StockCode])
@@ -62,19 +40,19 @@ export default function Charts({ params }: { params: { StockCode: string } }) {
 
   return (
     <>
-      <label className="flex ">
-        <label className="m-5">
-          자세히 보기
+      <label className="flex items-center my-3 mx-10">
+        <span className="text-xl">자세히 보기</span>
+        <div className="relative flex items-center ml-2">
           <input
-            className="ml-2"
+            className="mt-0"
             type="checkbox"
             id="switch"
-            onChange={() => handleChangeDetail()}
+            onChange={handleChangeDetail}
           />
           <label htmlFor="switch" className="switch_label">
             <span className="onf_btn" />
           </label>
-        </label>
+        </div>
       </label>
 
       {detail ? <SimpleCharts /> : <DetailCharts />}
@@ -86,7 +64,7 @@ export default function Charts({ params }: { params: { StockCode: string } }) {
         {socketFlag && (
           <button
             className="w-1/4 h-8 text-white mr-1 rounded-2xl"
-            style={{ backgroundColor: '#7D00D0' }}
+            style={{ backgroundColor: '#D7D7D7' }}
             onClick={() => handleDate('day')}
           >
             실시간
@@ -94,21 +72,21 @@ export default function Charts({ params }: { params: { StockCode: string } }) {
         )}
         <button
           className="w-1/4 h-8 text-white mr-1 rounded-2xl"
-          style={{ backgroundColor: '#7D00D0' }}
+          style={{ backgroundColor: '#D7D7D7' }}
           onClick={() => handleDate('day')}
         >
           일
         </button>
         <button
           className="w-1/4 h-8 text-white rounded-2xl mr-1"
-          style={{ backgroundColor: '#7D00D0' }}
+          style={{ backgroundColor: '#D7D7D7' }}
           onClick={() => handleDate('week')}
         >
           주
         </button>
         <button
           className="w-1/4 h-8 text-white mr-1 rounded-2xl"
-          style={{ backgroundColor: '#7D00D0' }}
+          style={{ backgroundColor: '#D7D7D7' }}
           onClick={() => handleDate('month')}
         >
           월
@@ -116,7 +94,7 @@ export default function Charts({ params }: { params: { StockCode: string } }) {
 
         <button
           className="w-1/4 h-8 text-white rounded-2xl"
-          style={{ backgroundColor: '#7D00D0' }}
+          style={{ backgroundColor: '#D7D7D7' }}
           onClick={() => handleDate('year')}
         >
           년
