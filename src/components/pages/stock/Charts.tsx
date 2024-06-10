@@ -56,7 +56,7 @@ export default function Charts({ params }: { params: { StockCode: string } }) {
         </div>
       </label>
 
-      {detail ? <SimpleCharts /> : <DetailCharts />}
+      {detail ? <DetailCharts /> : <SimpleCharts />}
 
       <div
         className="flex justify-between bottom-0 items-center mt-5 w-full h-8 rounded-2xl"

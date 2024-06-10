@@ -45,7 +45,7 @@ export default function SimpleCharts() {
     grid: {
       left: '12%',
       right: '5%',
-      height: '65%',
+      height: '55%',
     },
     dataZoom: {
       type: 'inside',
@@ -76,7 +76,7 @@ export default function SimpleCharts() {
   }
   return (
     <div>
-      <div className="mt-10  w-full text-white">
+      <div className="  w-full text-white">
         <ReactECharts option={option} />
       </div>
     </div>
