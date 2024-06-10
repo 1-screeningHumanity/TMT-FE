@@ -7,9 +7,12 @@ import { StockChartDataType } from '@/types/Stock'
 export default async function Page(params: any) {
   console.log(params)
   const stockCode = params.params.StockCode
-  const nowLink = params.searchParams.when
+  let nowLink = params.searchParams.when
 
   const stockNameResult = await getStockName(stockCode)
+  if (nowLink === undefined) {
+    nowLink = 'day'
+  }
 
   const stockData: StockChartDataType[] = await getStockData(stockCode, nowLink)
 
