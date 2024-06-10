@@ -42,6 +42,11 @@ export default function SimpleCharts() {
     yAxis: {
       type: 'value',
     },
+    grid: {
+      left: '12%',
+      right: '5%',
+      height: '65%',
+    },
     dataZoom: {
       type: 'inside',
 

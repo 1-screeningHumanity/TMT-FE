@@ -18,7 +18,7 @@ export default async function RootLayout({
         stockName={stockNameResult?.stockName}
         stockCode={params.StockCode}
       />
-
+      <div className="bg-slate-100 mx-3 h-12"> </div>
       <SelectedTap params={params} />
       {children}
     </div>

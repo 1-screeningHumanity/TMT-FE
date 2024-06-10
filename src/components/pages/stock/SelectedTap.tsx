@@ -27,23 +27,25 @@ export default function SelectedTap({
   const router = usePathname()
 
   return (
-    <div className="flex justify-between items-center mt-10 w-full h-8 ">
-      {LinkedData.map((data) => (
-        <Link
-          key={data.id}
-          href={data.link}
-          className="w-1/3 flex items-center justify-center border rounded-t-lg"
-          style={{
-            backgroundColor: router === data.link ? '#FFFFFF' : '#D7D7D7',
-            color: router === data.link ? '#000000' : '#FFFFFF',
-            height: router === data.link ? '50px' : '40px',
-            borderColor: 'black',
-            transform: router === data.link ? 'translateY(-5px)' : 'none',
-          }}
-        >
-          {data.name}
-        </Link>
-      ))}
+    <div className="mx-3">
+      <div className="flex justify-between items-center h-8 ">
+        {LinkedData.map((data) => (
+          <Link
+            key={data.id}
+            href={data.link}
+            className="w-1/3 flex items-center justify-center border rounded-t-lg"
+            style={{
+              backgroundColor: router === data.link ? '#FFFFFF' : '#D7D7D7',
+              color: router === data.link ? '#000000' : '#FFFFFF',
+              height: router === data.link ? '50px' : '40px',
+              borderColor: 'black',
+              transform: router === data.link ? 'translateY(-5px)' : 'none',
+            }}
+          >
+            {data.name}
+          </Link>
+        ))}
+      </div>
     </div>
   )
 }

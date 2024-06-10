@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import DetailCharts from './DetailCharts'
 import SimpleCharts from './SimpleCharts'
 import { socketStockCode } from '@/utils/socketStockCode'
+
 export default function Charts({ params }: { params: { StockCode: string } }) {
   const [detail, setDetail] = useState(false)
   const [date, setDate] = useState('')
@@ -58,9 +59,11 @@ export default function Charts({ params }: { params: { StockCode: string } }) {
       {detail ? <SimpleCharts /> : <DetailCharts />}
 
       <div
-        className="flex justify-between items-center mt-5 w-full h-8 rounded-2xl"
+        className="flex justify-between bottom-0 items-center mt-5 w-full h-8 rounded-2xl"
         style={{ backgroundColor: '#f2f2f2' }}
       >
+        {/* Content here */}
+
         {socketFlag && (
           <button
             className="w-1/4 h-8 text-white mr-1 rounded-2xl"

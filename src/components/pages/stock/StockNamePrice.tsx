@@ -19,7 +19,10 @@ export default function StockNamePrice({
   }
   return (
     <>
-      <div className="m-3 rounded-lg" style={{ backgroundColor: '#ABABAB' }}>
+      <div
+        className="mx-3 mt-3 rounded-lg"
+        style={{ backgroundColor: '#ABABAB' }}
+      >
         <div className="w-full h-24 rounded-xl flex items-center relative">
           <div className="p-2 ">
             <Image
