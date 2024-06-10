@@ -15,17 +15,17 @@ export default function Trade({
 
   return (
     <>
-      <div className="flex absolute mx-5 mt-2 justify-between bottom-0 inset-x-0">
+      <div className="fixed bottom-0 left-0 right-0 flex justify-between mx-5 mb-20">
         <button
-          className="w-5/12 h-14 font-bold text-white rounded-2xl "
-          style={{ backgroundColor: '#0000ff' }}
+          className="w-5/12 h-14 font-bold text-white rounded-2xl"
+          style={{ backgroundColor: '#0B0B0B' }}
           onClick={() => setModalOpen(true)}
         >
           팔기
         </button>
         <button
           className="w-5/12 h-14 font-bold text-white rounded-2xl"
-          style={{ backgroundColor: '#ff0000' }}
+          style={{ backgroundColor: '#7D12FF' }}
           onClick={() => setModalOpen(true)}
         >
           사기
