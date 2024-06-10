@@ -26,4 +26,8 @@ async function tradeStock(trade: string, tradeMoney: TradeType) {
   return response.data
 }
 
-export { getStockName, getChartData, getInvestors, tradeStock }
+async function getStockData(stockCode: string, when: string) {
+  const response = await GetAPI(`/stockitem/chart/${stockCode}/${when}`)
+  return response.data
+}
+export { getStockName, getChartData, getInvestors, tradeStock, getStockData }

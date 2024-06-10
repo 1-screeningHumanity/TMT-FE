@@ -34,11 +34,8 @@ interface SocketStockDataType {
   todayDate: string
 }
 interface StockChartDataType {
-  _id: {
-    $oid: string
-  }
-  stock_code: string
-  prdy_vrss: string
+  id: string
+  stockCode: string
   stck_bsop_date: string
   stck_clpr: string
   stck_oprc: string
@@ -46,6 +43,8 @@ interface StockChartDataType {
   stck_lwpr: string
   acml_vol: string
   acml_tr_pbmn: string
+  prdy_vrss: string
+  prdy_vrss_sign: string
 }
 interface StockPrice {
   price: number
