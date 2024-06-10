@@ -25,8 +25,7 @@ export default function SelectedTap({
   ]
 
   const router = usePathname()
-  const parsedRouter = router.split('/')
-  // console.log(router, LinkedData[2].link)
+
   return (
     <div className="flex justify-between items-center mt-10 w-full h-8 ">
       {LinkedData.map((data) => (

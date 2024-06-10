@@ -15,11 +15,10 @@ export default function Trade({
 
   return (
     <>
-      <div className="flex mx-5 mt-2 justify-between">
+      <div className="flex absolute mx-5 mt-2 justify-between bottom-0 inset-x-0">
         <button
           className="w-5/12 h-14 font-bold text-white rounded-2xl "
           style={{ backgroundColor: '#0000ff' }}
-          // onClick={() => handleBuyButtonClick('sale')}
           onClick={() => setModalOpen(true)}
         >
           팔기

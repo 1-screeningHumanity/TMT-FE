@@ -15,7 +15,7 @@ export default async function Page({
   return (
     <main>
       <Charts params={{ StockCode: stockCode }} />
-      <CompanyInfo />
+      {/* <CompanyInfo /> */}
       <Trade
         stockCode={params.StockCode}
         stockName={stockNameResult.stockName}

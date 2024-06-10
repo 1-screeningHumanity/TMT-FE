@@ -14,8 +14,6 @@ export default async function RootLayout({
 
   return (
     <div>
-      <Headers />
-
       <StockNamePrice
         stockName={stockNameResult?.stockName}
         stockCode={params.StockCode}
