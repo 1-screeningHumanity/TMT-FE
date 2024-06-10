@@ -1,4 +1,3 @@
-
 import Footer from '@/components/ui/Footer'
 import Headers from '@/components/ui/Headers'
 
@@ -8,10 +7,10 @@ export default function layout({
   children: React.ReactNode
 }>) {
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Headers />
-      {children}
+      <main className="flex-grow pb-16">{children}</main>
       <Footer />
-    </>
+    </div>
   )
 }
