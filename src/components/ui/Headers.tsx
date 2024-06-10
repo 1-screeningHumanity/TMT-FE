@@ -54,18 +54,19 @@ export default function Headers() {
   }
 
   return (
-    <div className="ml-3 mt-3 relative flex">
+    <div className="mt-3 relative flex items-center border-b-[1px] pb-4">
       <Image
-        width="50"
-        height="50"
-        src="https://img.icons8.com/material-rounded/50/back--v1.png"
+        width="30"
+        height="30"
+        src="/assets/images/back.svg"
         alt="back--v1"
+        className='mt-1 ml-3'
       />
-      <div className="absolute right-0 top-0 flex">
+      <div className="absolute right-0 top-0 flex items-center">
         <Image
-          width="50"
-          height="50"
-          src="https://img.icons8.com/material-outlined/50/checked--v1.png"
+          width="40"
+          height="40"
+          src="/assets/images/check.svg"
           alt="checked--v1"
           className="mr-3"
         />
@@ -78,19 +79,20 @@ export default function Headers() {
         <span onClick={handleFcm}>
           <Link href={'/alarm'}>
             <Image
-              width="50"
-              height="50"
-              src="https://img.icons8.com/puffy/50/alarm.png"
+              width="30"
+              height="30"
+              src="/assets/images/alarm.svg"
               alt="alarm"
-              className="mr-3"
+              className="mr-4"
             />
           </Link>
         </span>
         <Image
-          width="50"
-          height="50"
-          src="https://img.icons8.com/small/50/user.png"
+          width="30"
+          height="30"
+          src="/assets/images/user.svg"
           alt="user"
+          className='mr-3'
         />
       </div>
     </div>
