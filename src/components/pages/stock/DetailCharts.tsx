@@ -5,12 +5,13 @@ import ReactECharts from 'echarts-for-react'
 import { getSocketData } from '@/actions/stock/getSocketData'
 import { useState } from 'react'
 
-export default function DetailCharts() {
+export default function DetailCharts({ data }: { data: any }) {
+  console.log('data', data)
   const upColor = '#ff0000'
   const downColor = '#0000ff'
   const getTodayData = getSocketData('005930')
-  const data0 = splitData(StockYearData, getTodayData)
-  const volumes = splitVol(StockYearData)
+  const data0 = splitData(data, getTodayData)
+  const volumes = splitVol(data)
 
   const onClick = (params: any) => {
     console.log('params', params.data)
