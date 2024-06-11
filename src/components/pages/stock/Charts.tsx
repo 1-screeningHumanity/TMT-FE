@@ -21,6 +21,7 @@ export default function Charts({
   if (socketStockCode.hasOwnProperty(params.stockCode)) {
     flag = true
   }
+  console.log(flag)
 
   return (
     <>
@@ -29,26 +30,29 @@ export default function Charts({
         className="flex justify-between bottom-0 items-center mt-5 w-full h-8 rounded-2xl"
         style={{ backgroundColor: '#f2f2f2' }}
       >
-        {/* {flag && (
-          <button
-            className="w-1/4 h-8 text-white mr-1 rounded-2xl"
-            style={{ backgroundColor: '#D7D7D7' }}
-            onClick={() => console.log('')}
+        {flag && (
+          <Link
+            href={`/stock/${stockCode}?when=real-time`}
+            className="w-1/4 h-8 text-white text-center flex justify-center items-center mr-1 rounded-2xl"
+            style={{
+              backgroundColor: nowlink === 'real-time' ? '#cccccc' : '#f2f2f2',
+              color: nowlink === 'real-time' ? '#ffffff' : '#000000',
+            }}
           >
-            실시간
-          </button>
-        )} */}
+            <span>실시간</span>
+          </Link>
+        )}
         {CallStockPrice.map((item) => (
           <Link
             key={item.id}
             href={`/stock/${stockCode}?when=${item.when}`}
-            className="w-1/4 h-8 text-white text-center   mr-1 rounded-2xl"
+            className="w-1/4 h-8 text-white text-center flex justify-center items-center mr-1 rounded-2xl"
             style={{
               backgroundColor: nowlink === item.when ? '#cccccc' : '#f2f2f2',
               color: nowlink === item.when ? '#ffffff' : '#000000',
             }}
           >
-            <span className="items-center justify-center">{item.name}</span>
+            <span>{item.name}</span>
           </Link>
         ))}
       </div>
