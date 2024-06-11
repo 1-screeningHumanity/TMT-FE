@@ -2,10 +2,12 @@
 import { getBidAskSocketData } from '@/actions/stock/getBidAskSocketData'
 import { AskingPriceData } from '@/lib/stock/AskingPriceData'
 import { AskingPriceDataTypes } from '@/types/Stock'
+import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
 
 export default function page() {
   const socketData = getBidAskSocketData('005930')
   const data = formattingData(socketData as any)
+  // const data = formattingData(AskingPriceData)
   // console.log('fmkdlsnfmkls', socketData)
   function formattingData(data: AskingPriceDataTypes): any {
     const askp_rsqn_arr = [
@@ -34,52 +36,77 @@ export default function page() {
     const max_bidp_rsqn = Math.max(...bidp_rsqn_arr)
     return { askp_arr, max_askp_rsqn, bidp_arr, max_bidp_rsqn }
   }
+
   return (
     <main>
-      호가
-      {data.askp_arr.map((askp: any, index: number) => (
-        <div className="flex my-3" key={index}>
-          <div
-            className="w-1/3 h-20 mx-3 relative"
-            style={{ backgroundColor: '#D9D9D9' }}
-          >
+      {data.askp_arr.map((askp: any, index: number) => {
+        const widthPercentage = (Number(askp[1]) / data.max_askp_rsqn) * 100
+        const textColor = widthPercentage >= 60 ? 'white' : 'black'
+        return (
+          <div className="flex my-3" key={index}>
             <div
-              className="h-20  absolute right-0 items-center flex justify-center text-2xl text-white"
+              className="h-16 mx-3 relative flex items-center rounded-2xl text-center"
               style={{
-                backgroundColor: '#0000ff',
-                opacity: 0.5,
-                // transform: 'rotate(180deg)',
-                width: `${(Number(askp[1]) / data.max_askp_rsqn) * 100}%`,
+                backgroundColor: '#F2F2F2',
+                width: 'calc(66.6667% - 12px)',
               }}
             >
-              {askp[1]}
+              <span
+                className="z-10 text-white ml-2 font-semibold"
+                style={{ color: textColor }}
+              >
+                {askp[1]}
+              </span>
+              <div
+                className="h-16 absolute right-0 bg-gradient-to-r from-sky-500 to-white rounded-2xl"
+                style={{
+                  // width: `${(Number(askp[1]) / data.max_askp_rsqn) * 100}%`,
+                  width: `${widthPercentage}%`,
+                }}
+              ></div>
+              <div className=" w-1/2 absolute right-0 text-center mx-1">
+                <span className="font-black">
+                  {formatNumberWithCommas(askp[0])}
+                </span>
+              </div>
             </div>
           </div>
-          {askp[0]}원
-        </div>
-      ))}
-      {data.bidp_arr.map((bidp: any, index: number) => (
-        <div className="flex my-3" key={index}>
-          <div
-            className="w-1/3 h-20  mx-3 relative"
-            // key={bidp[0] + 'bidp'}
-            style={{ backgroundColor: '#D9D9D9' }}
-          >
+        )
+      })}
+
+      {data.bidp_arr.map((bidp: any, index: number) => {
+        const widthPercentage = (Number(bidp[1]) / data.max_bidp_rsqn) * 100
+        const textColor = widthPercentage >= 80 ? 'white' : 'black'
+        return (
+          <div className="flex my-3 justify-end" key={index}>
             <div
-              className="h-20 absolute right-0 items-center flex justify-center text-2xl text-white"
+              className="h-16 mx-3 relative flex items-center rounded-2xl"
               style={{
-                backgroundColor: '#ff0000',
-                opacity: 0.5,
-                // transform: 'rotate(180deg)',
-                width: `${(Number(bidp[1]) / data.max_bidp_rsqn) * 100}%`,
+                backgroundColor: '#F2F2F2',
+                width: 'calc(66.6667% - 12px)',
               }}
             >
-              {bidp[1]}
+              <div
+                className="h-16 w-1/2 absolute left-0 bg-gradient-to-l from-red-500 to-white rounded-2xl"
+                style={{
+                  width: `${(Number(bidp[1]) / data.max_bidp_rsqn) * 100}%`,
+                }}
+              ></div>
+              <div className=" w-1/2 absolute text-center ">
+                <span className="font-black">
+                  {formatNumberWithCommas(bidp[0])}
+                </span>
+              </div>
+              <span
+                className="z-10 absolute right-0 text-white ml-2 font-semibold mr-2"
+                style={{ color: textColor }}
+              >
+                {bidp[1]}
+              </span>
             </div>
           </div>
-          {bidp[0]}원
-        </div>
-      ))}
+        )
+      })}
     </main>
   )
 }
