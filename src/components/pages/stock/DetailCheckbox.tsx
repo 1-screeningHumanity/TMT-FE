@@ -31,7 +31,7 @@ export default function DetalCheckbox({ data }: { data: any }) {
         </div>
       </label>
 
-      {detail ? <DetailCharts data={data} /> : <SimpleCharts />}
+      {detail ? <DetailCharts data={data} /> : <SimpleCharts data={data} />}
     </>
   )
 }
