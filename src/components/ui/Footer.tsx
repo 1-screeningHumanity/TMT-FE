@@ -1,13 +1,8 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { footer } from '@/lib/footer'
 
 export default function Footer() {
-  const router = usePathname()
-
   return (
     <div className="fixed bottom-0 w-full flex justify-around bg-white pt-2 z-10">
       {footer.map((data) => (
