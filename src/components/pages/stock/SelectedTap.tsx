@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import Router, { usePathname } from 'next/navigation'
+import Router, { usePathname, useRouter } from 'next/navigation'
 export default function SelectedTap({
   params,
 }: {
@@ -24,26 +24,28 @@ export default function SelectedTap({
     },
   ]
 
-  const router = usePathname()
-
+  const pathrouter = usePathname()
+  const router = useRouter()
   return (
     <div className="mx-3">
       <div className="flex justify-between items-center h-8 ">
         {LinkedData.map((data) => (
-          <Link
+          // <a href={`${data.link}`}>
+          <button
             key={data.id}
-            href={data.link}
+            onClick={() => router.push(data.link)}
             className="w-1/3 flex items-center justify-center border rounded-t-lg"
             style={{
-              backgroundColor: router === data.link ? '#FFFFFF' : '#D7D7D7',
-              color: router === data.link ? '#000000' : '#FFFFFF',
-              height: router === data.link ? '50px' : '40px',
+              backgroundColor: pathrouter === data.link ? '#FFFFFF' : '#D7D7D7',
+              color: pathrouter === data.link ? '#000000' : '#FFFFFF',
+              height: pathrouter === data.link ? '50px' : '40px',
               borderColor: 'black',
-              transform: router === data.link ? 'translateY(-5px)' : 'none',
+              transform: pathrouter === data.link ? 'translateY(-5px)' : 'none',
             }}
           >
             {data.name}
-          </Link>
+          </button>
+          // </a>
         ))}
       </div>
     </div>
