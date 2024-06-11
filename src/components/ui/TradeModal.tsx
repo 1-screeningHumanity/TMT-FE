@@ -86,14 +86,14 @@ export default function TradeModal({
               <div className="flex m-5 mt-2 justify-between absolute bottom-0 inset-x-0">
                 <button
                   className="w-5/12 h-14 font-bold text-white rounded-2xl "
-                  style={{ backgroundColor: '#0000ff' }}
+                  style={{ backgroundColor: '#0B0B0B' }}
                   onClick={() => handleBuyButtonClick('sale')}
                 >
                   팔기
                 </button>
                 <button
                   className="w-5/12 h-14 font-bold text-white rounded-2xl"
-                  style={{ backgroundColor: '#ff0000' }}
+                  style={{ backgroundColor: '#7D12FF' }}
                   onClick={() => handleBuyButtonClick('buy')}
                 >
                   사기

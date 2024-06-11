@@ -1,126 +1,60 @@
-'use client'
-import { useEffect, useState } from 'react'
-import DetailCharts from './DetailCharts'
-import SimpleCharts from './SimpleCharts'
+import { socketStockCode } from '@/utils/socketStockCode'
+import { getStockData } from '@/actions/stock/stock'
+import { StockChartDataType } from '@/types/Stock'
 
-export default function Charts({ params }: { params: { StockCode: string } }) {
-  const [detail, setDetail] = useState(false)
-  const [date, setDate] = useState('')
-  const [socketFlag, setSocketFlag] = useState(false)
-  const socketStockCode = [
-    '005930',
-    '000660',
-    '373220',
-    '207940',
-    '005380',
-    '005935',
-    '000270',
-    '068270',
-    '005490',
-    '105560',
-    '035420',
-    '006400',
-    '051910',
-    '028260',
-    '055550',
-    '012330',
-    '003670',
-    '035720',
-    '247540',
-    '086790',
-  ]
-  useEffect(() => {
-    if (socketStockCode.includes(params.StockCode)) {
-      setSocketFlag(true)
-    }
-  }, [params.StockCode])
+import { CallStockPrice } from '@/lib/stock/CallStockPrice'
+import Link from 'next/link'
+import DetailCheckbox from './DetailCheckbox'
 
-  const handleChangeDetail = () => {
-    if (detail === false) {
-      setDetail(true)
-    }
-
-    if (detail === true) {
-      setDetail(false)
-    }
+export default function Charts({
+  params,
+}: {
+  params: {
+    stockCode: string
+    stockData: StockChartDataType[]
+    nowLink: string
   }
-  const handleDate = (when: string) => {
-    if (when === 'day') {
-      setDate('day')
-    }
-    if (when === 'week') {
-      setDate('week')
-    }
-    if (when === 'month') {
-      setDate('month')
-    }
-
-    if (when === 'year') {
-      setDate('year')
-    }
+}) {
+  const stockCode = params.stockCode
+  const nowlink = params.nowLink
+  let flag = false
+  if (socketStockCode.hasOwnProperty(params.stockCode)) {
+    flag = true
   }
+  console.log(flag)
 
   return (
     <>
-      <label className="flex ">
-        <label className="m-5">
-          자세히 보기
-          <input
-            className="ml-2"
-            type="checkbox"
-            id="switch"
-            onChange={() => handleChangeDetail()}
-          />
-          <label htmlFor="switch" className="switch_label">
-            <span className="onf_btn" />
-          </label>
-        </label>
-      </label>
-
-      {detail ? <SimpleCharts /> : <DetailCharts />}
-
+      <DetailCheckbox data={params.stockData} />
       <div
-        className="flex justify-between items-center mt-5 w-full h-8 rounded-2xl"
+        className="flex justify-between bottom-0 items-center mt-5 w-full h-8 rounded-2xl"
         style={{ backgroundColor: '#f2f2f2' }}
       >
-        {socketFlag && (
-          <button
-            className="w-1/4 h-8 text-white mr-1 rounded-2xl"
-            style={{ backgroundColor: '#7D00D0' }}
-            onClick={() => handleDate('day')}
+        {flag && (
+          <Link
+            href={`/stock/${stockCode}?when=real-time`}
+            className="w-1/4 h-8 text-white text-center flex justify-center items-center mr-1 rounded-2xl"
+            style={{
+              backgroundColor: nowlink === 'real-time' ? '#cccccc' : '#f2f2f2',
+              color: nowlink === 'real-time' ? '#ffffff' : '#000000',
+            }}
           >
-            실시간
-          </button>
+            <span>실시간</span>
+          </Link>
         )}
-        <button
-          className="w-1/4 h-8 text-white mr-1 rounded-2xl"
-          style={{ backgroundColor: '#7D00D0' }}
-          onClick={() => handleDate('day')}
-        >
-          일
-        </button>
-        <button
-          className="w-1/4 h-8 text-white rounded-2xl mr-1"
-          style={{ backgroundColor: '#7D00D0' }}
-          onClick={() => handleDate('week')}
-        >
-          주
-        </button>
-        <button
-          className="w-1/4 h-8 text-white mr-1 rounded-2xl"
-          style={{ backgroundColor: '#7D00D0' }}
-          onClick={() => handleDate('month')}
-        >
-          월
-        </button>
-
-        <button
-          className="w-1/4 h-8 text-white rounded-2xl"
-          style={{ backgroundColor: '#7D00D0' }}
-          onClick={() => handleDate('year')}
-        >
-          년
-        </button>
+        {CallStockPrice.map((item) => (
+          <Link
+            key={item.id}
+            href={`/stock/${stockCode}?when=${item.when}`}
+            className="w-1/4 h-8 text-white text-center flex justify-center items-center mr-1 rounded-2xl"
+            style={{
+              backgroundColor: nowlink === item.when ? '#cccccc' : '#f2f2f2',
+              color: nowlink === item.when ? '#ffffff' : '#000000',
+            }}
+          >
+            <span>{item.name}</span>
+          </Link>
+        ))}
       </div>
     </>
   )
