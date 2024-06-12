@@ -35,7 +35,6 @@ export default function SigninForm() {
 
     const session = await getSession(options as any)
     if (session?.user.isSuccess == true) {
-      fcmIssued()
       router.push('/')
     } else {
       alert('아이디, 비밀번호, 이름을 다시 확인해주세요')
