@@ -8,6 +8,9 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { options } from '@/app/api/auth/[...nextauth]/options'
 import { useRouter } from 'next/navigation'
+import { initializeApp } from 'firebase/app'
+import { getMessaging, getToken, onMessage } from 'firebase/messaging'
+import { fcmIssued } from '@/actions/alarm/fcmIssued'
 
 export default function SigninForm() {
   const [payload, setPayload] = useState<signinFormType>({
@@ -15,6 +18,7 @@ export default function SigninForm() {
     name: '',
     password: '',
   })
+
   const [showPassword, setShowPassword] = useState(true)
   const router = useRouter()
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -31,6 +35,7 @@ export default function SigninForm() {
 
     const session = await getSession(options as any)
     if (session?.user.isSuccess == true) {
+      fcmIssued()
       router.push('/')
     } else {
       alert('아이디, 비밀번호, 이름을 다시 확인해주세요')
