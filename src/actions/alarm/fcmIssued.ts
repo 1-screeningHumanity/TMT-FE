@@ -27,10 +27,9 @@ export const fcmIssued = async () => {
         getToken(messaging, {
           vapidKey: `${process.env.NEXT_PUBLIC_VAPID_KEY}`,
         })
-          .then((currentToken) => {
+          .then(async (currentToken) => {
             if (currentToken) {
-              console.log('currentToken:', currentToken)
-              const res = fcmSendAPI(currentToken)
+              const res = await fcmSendAPI(currentToken)
               console.log(res)
             } else {
               console.log(
