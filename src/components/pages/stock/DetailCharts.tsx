@@ -3,14 +3,22 @@ import { StockYearData } from '@/lib/stock/StockYearData'
 import { StockChartDataType } from '@/types/Stock'
 import ReactECharts from 'echarts-for-react'
 import { getSocketData } from '@/actions/stock/getSocketData'
+import { useState } from 'react'
 
-export default function DetailCharts() {
+export default function DetailCharts({ data }: { data: any }) {
+  console.log('data', data)
   const upColor = '#ff0000'
   const downColor = '#0000ff'
   const getTodayData = getSocketData('005930')
-  const data0 = splitData(StockYearData, getTodayData)
-  const volumes = splitVol(StockYearData)
+  const data0 = splitData(data, getTodayData)
+  const volumes = splitVol(data)
 
+  const onClick = (params: any) => {
+    console.log('params', params.data)
+  }
+  const onEvents = {
+    click: onClick,
+  }
   function splitData(rawData: StockChartDataType[], socketData: any) {
     const categoryData = []
     const values = []
@@ -94,11 +102,11 @@ export default function DetailCharts() {
         color: 'red',
       },
     },
-
     legend: {
       top: 0,
-      data0: ['차트', '5일선', '20일선', '60일선', '120일선'],
+      data0: ['차트', '5일선', '20일선', '60일선'],
     },
+
     axisPointer: {
       link: [
         {
@@ -108,16 +116,15 @@ export default function DetailCharts() {
     },
     grid: [
       {
-        left: '10%',
-        right: '8%',
-        height: '50%',
+        left: '12%',
+        right: '5%',
+        height: '60%',
       },
       {
-        left: '10%',
+        left: '12%',
         right: '8%',
-        bottom: '20%',
-        top: '72%',
-        height: '30%',
+        bottom: '0%',
+        height: '10%',
       },
     ],
     xAxis: [
@@ -134,8 +141,6 @@ export default function DetailCharts() {
         axisPointer: {
           show: true,
         },
-        // min: 'dataMin',
-        // max: 'dataMax',
       },
       {
         type: 'category',
@@ -216,31 +221,6 @@ export default function DetailCharts() {
           borderColor: upColor,
           borderColor0: downColor,
         },
-        markPoint: {
-          label: {
-            formatter: function (param: any) {
-              return param != null ? param.name : ''
-            },
-            // color: 'black',
-          },
-          data: [
-            {
-              name: '최고',
-              type: 'max',
-              valueDim: 'highest',
-            },
-            {
-              name: '최저',
-              type: 'min',
-              valueDim: 'lowest',
-            },
-          ],
-          tooltip: {
-            formatter: function (param: any) {
-              return param.name + '<br>' + (param.data.coord || '')
-            },
-          },
-        },
       },
       {
         name: '5일선',
@@ -272,29 +252,13 @@ export default function DetailCharts() {
           width: 1,
         },
       },
-      {
-        name: '120일선',
-        type: 'line',
-        data: calculateMA(120),
-        smooth: true,
-        showSymbol: false,
-        lineStyle: {
-          width: 1,
-        },
-      },
     ],
   }
-
-  // option && myChart.setOption(option, true)
-
-  // window.addEventListener('resize', myChart.resize)
   return (
-    <div>
-      <div className="mt-10  w-full text-white">
-        <ReactECharts option={option} />
+    <>
+      <div className=" w-full text-white">
+        <ReactECharts option={option} onEvents={onEvents} />
       </div>
-      {/* 
-      <div className="mt-2 w-full h-32 bg-red-700"> 거래량</div> */}
-    </div>
+    </>
   )
 }
