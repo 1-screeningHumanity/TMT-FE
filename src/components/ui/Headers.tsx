@@ -1,9 +1,10 @@
 'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { initializeApp } from 'firebase/app'
 import { getMessaging, getToken, onMessage } from 'firebase/messaging'
-export default function Headers() {
+export default function Headers({title} : {title : string}) {
   const firebaseConfig = {
     apiKey: `${process.env.NEXT_PUBLIC_API_KEY}`,
     authDomain: `${process.env.NEXT_PUBLIC_AUTHDOMAIN}`,
@@ -54,15 +55,17 @@ export default function Headers() {
   }
 
   return (
-    <div className="mt-3 relative flex items-center border-b-[1px] pb-4">
+    <div className="mt-3 flex items-center justify-between border-b-[1px] pb-3">
       <Image
         width="30"
         height="30"
         src="/assets/images/back.svg"
         alt="back--v1"
         className='mt-1 ml-3'
+        onClick={() => history.back()}
       />
-      <div className="absolute right-0 top-0 flex items-center">
+      <h1 className='relative left-6 text-lg leading-10 font-[Pretendard-Regular]'>{title}</h1>
+      <div className="flex items-center">
         <Image
           width="40"
           height="40"
@@ -87,13 +90,6 @@ export default function Headers() {
             />
           </Link>
         </span>
-        <Image
-          width="30"
-          height="30"
-          src="/assets/images/user.svg"
-          alt="user"
-          className='mr-3'
-        />
       </div>
     </div>
   )
