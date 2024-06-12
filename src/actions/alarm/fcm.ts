@@ -4,11 +4,12 @@ import { getAccessToken } from '../tokens'
 const token = getAccessToken()
 async function fcmSendAPI(fcmToken: string) {
   const res = await PostAPI(
-    '/notification/fcm-token',
+    '/notification/notification/fcm-token',
     { fcmToken },
     await token,
   )
-  return res
+
+  return token
 }
 async function alarmListAPI() {
   const res = await GetAPI('/notification', undefined, await token)
