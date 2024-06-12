@@ -9,7 +9,6 @@ export default function layout({
 }>) {
   return (
     <>
-      <Headers />
       {children}
       <Footer />
     </>
