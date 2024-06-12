@@ -15,6 +15,7 @@ export default function SearchBar() {
   const [text, setText] = useState('')
   const [searchData, setSearchData] = useState<SearchDataType[]>([])
   const [selectValue, setSelectValue] = useState('stocks')
+
   const toggleListening = () => {
     if (listening) {
       SpeechRecognition.stopListening()
@@ -22,19 +23,29 @@ export default function SearchBar() {
       SpeechRecognition.startListening({ language: 'ko-KR' })
     }
   }
+
   if (!browserSupportsSpeechRecognition) {
     console.log('Browser does not support speech recognition.')
   }
-  console.log(transcript)
 
-  const fetchData = async (event: string) => {
-    const res = await searchNameAPI(event, selectValue)
-    console.log(res.data)
+  const fetchData = async (query: string) => {
+    const res = await searchNameAPI(query, selectValue)
     setSearchData(res.data)
   }
+
   useEffect(() => {
-    fetchData(text)
+    if (transcript) {
+      fetchData(transcript)
+      setText(transcript)
+    }
+  }, [transcript])
+
+  useEffect(() => {
+    if (text) {
+      fetchData(text)
+    }
   }, [text])
+
   return (
     <>
       <div className="flex">
@@ -55,9 +66,9 @@ export default function SearchBar() {
             height={40}
           />
           <input
-            className="w-full focus:outline-none "
-            // onChange={(e) => setText(e.target.value)}
-            onChange={(e) => fetchData(e.target.value)}
+            className="w-full focus:outline-none"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
           />
           <button onClick={toggleListening}>
             <Image
@@ -74,8 +85,8 @@ export default function SearchBar() {
           searchData.map((data) => (
             <Link href={`/stock/${data.stockCode}`}>
               <div
-                key={data.stockCode}
                 className="w-full h-20 text-2xl font-bold pl-10 flex items-center border"
+                key={data.stockCode}
               >
                 {data.name}
               </div>
@@ -85,9 +96,3 @@ export default function SearchBar() {
     </>
   )
 }
-
-// 검색이 하나라도 없으면 무조건 bad request가 뜨는데 이걸 해결해야함
-// 검색어가 무조건 10개만 출력되는지
-// Lg 전자가 검색이 안된다
-
-// 멤버 검색시 닉네임만 검색? 이름 검색?
