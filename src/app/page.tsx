@@ -7,6 +7,7 @@ import ButtonToSignin from '@/components/ui/buttons/ButtonToSignin';
 import Headers from '@/components/ui/Headers'
 import { useEffect, useState } from 'react'
 import { Session } from 'next-auth'
+import Footer from '@/components/ui/Footer'
 
 export default function Home() {
   const [session, setSession] = useState<Session | null>(null);
@@ -23,7 +24,7 @@ export default function Home() {
   
   return (
     <div>
-      <Headers />
+      <Headers title='홈'/>
       <SearchBarUI />
       <h1 className='text-xl'>메인페이지입니다.</h1>
       { session?.user == null ?
@@ -36,7 +37,7 @@ export default function Home() {
 
 
 
-
+      <Footer />
     </div>
   )
 }

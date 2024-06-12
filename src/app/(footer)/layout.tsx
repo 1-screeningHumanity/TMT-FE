@@ -8,7 +8,6 @@ export default function Layout({
 }>) {
   return (
     <div className="flex flex-col min-h-screen">
-      <Headers />
       <main className="flex-grow mb-16">{children}</main>
       <Footer />
     </div>
