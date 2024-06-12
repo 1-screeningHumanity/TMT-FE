@@ -6,6 +6,8 @@ import InputOfPassword from '../ui/InputOfPassword'
 import { signinFormType } from '@/types/signinFormType'
 import { useState } from 'react'
 import Image from 'next/image'
+import { options } from '@/app/api/auth/[...nextauth]/options'
+import { useRouter } from 'next/navigation'
 
 export default function SigninForm() {
   const [payload, setPayload] = useState<signinFormType>({
@@ -14,7 +16,7 @@ export default function SigninForm() {
     password: '',
   })
   const [showPassword, setShowPassword] = useState(true)
-
+  const router = useRouter()
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!payload.phoneNumber || !payload.name || !payload.password)
@@ -23,11 +25,16 @@ export default function SigninForm() {
       phoneNumber: payload.phoneNumber,
       name: payload.name,
       password: payload.password,
-      callbackUrl: '/stock/005930',
+      redirect: false,
+      // callbackUrl: '/stock/005930',
     })
 
-    const session = await getSession()
-    console.log(session)
+    const session = await getSession(options as any)
+    if (session?.user.isSuccess == true) {
+      router.push('/')
+    } else {
+      alert('아이디, 비밀번호, 이름을 다시 확인해주세요')
+    }
   }
 
   const onChangePayload = (e: React.ChangeEvent<HTMLInputElement>) => {
