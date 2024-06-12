@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { initializeApp } from 'firebase/app'
 import { getMessaging, getToken, onMessage } from 'firebase/messaging'
-export default function Headers({title} : {title : string}) {
+export default function Headers({title} : {title? : string}) {
   const firebaseConfig = {
     apiKey: `${process.env.NEXT_PUBLIC_API_KEY}`,
     authDomain: `${process.env.NEXT_PUBLIC_AUTHDOMAIN}`,
