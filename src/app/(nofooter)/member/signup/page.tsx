@@ -28,7 +28,6 @@ export default function signup() {
     try {
       const data = await getRandomNickname()
       setRandomNickname(data.data)
-      console.log('data:', data.data)
     } catch (error) {
       console.error('Failed to fetch random nickname:', error)
     }
@@ -51,16 +50,7 @@ export default function signup() {
     } else {
       const res = await postSignup(name, phoneNumber, password, nickName)
       console.log('res :', res)
-      console.log(
-        'name :',
-        name,
-        'phoneNumber :',
-        phoneNumber,
-        'password :',
-        password,
-        'nickName :',
-        nickName,
-      )
+
       if (!res.isSuccess) {
         if (res.code === 1005) {
           alert('중복된 전화번호입니다.')
