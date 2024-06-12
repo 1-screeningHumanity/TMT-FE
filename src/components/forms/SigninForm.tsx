@@ -1,6 +1,6 @@
 'use client'
 
-import { signIn } from 'next-auth/react'
+import { getSession, signIn } from 'next-auth/react'
 import ButtonOfSignin from '../ui/buttons/ButtonOfSignin'
 import InputOfPassword from '../ui/InputOfPassword'
 import { signinFormType } from '@/types/signinFormType'
@@ -15,18 +15,19 @@ export default function SigninForm() {
   })
   const [showPassword, setShowPassword] = useState(true)
 
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!payload.phoneNumber || !payload.name || !payload.password)
       return alert('빈칸을 채워주세요')
-    signIn('credentials', {
+    await signIn('credentials', {
       phoneNumber: payload.phoneNumber,
       name: payload.name,
       password: payload.password,
-      redirect: true,
-      callbackUrl:  '/stock/005930',
+      callbackUrl: '/stock/005930',
     })
+
+    const session = await getSession()
+    console.log(session)
   }
 
   const onChangePayload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,14 +35,14 @@ export default function SigninForm() {
       ...payload,
       [e.target.name]: e.target.value,
     })
-    console.log(payload);
+    console.log(payload)
   }
 
   return (
     <form onSubmit={onSubmit}>
       <input
         placeholder="전화번호"
-        type="text"
+        type="tel"
         name="phoneNumber"
         required
         className="border-[2px] rounded-lg w-80 h-10 mx-auto block my-4 px-4 text-sm placeholder-[#aea0e5]"
