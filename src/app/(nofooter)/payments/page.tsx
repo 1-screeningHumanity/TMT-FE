@@ -1,21 +1,39 @@
-import postKakaopayReady from "@/actions/payments/postKakaopayReady"
 
-export default function payments(){
+import {postKakaopayReady} from "@/actions/payments"
+import CashCard from "@/components/pages/payment/CashCard";
+import Headers from "@/components/ui/Headers";
+import PayMethod from "@/components/ui/PayMethod"
+import ButtonOfPayments from "@/components/ui/buttons/ButtonOfPayments";
+
+async function getCashInitalData() {
+  const res = await fetch(`${process.env.API_BASE_URL}/payments/cash`, {
+    cache: "no-store",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await res.json();
+  return data;
+
+}
+
+export default async function payments(){
+
+  const cashData = await getCashInitalData();
+
   return(
 
     // postKakaopayReady(itemName, quantity, totalAmount);
 
-    <>
-    <header className="text-center py-4 border-b-[1px]">결제하기</header>
-      <form className="flex flex-col w-full justify-center items-center mt-40 mb-20">
-        <input type="text" placeholder="상품명" id="itemName" className="w-60 h-10 text-start px-5 border-[1px]"/>
-        <input type="number" placeholder="수량" id="quantity" className="w-60 h-10 text-start px-5 border-[1px]"/>
-        <input type="number" placeholder="총액" id="totalAmount" className="w-60 h-10 text-start px-5 border-[1px]"/>
-      </form>
-      <button className="w-32 h-10 border-[1px]">1000원</button>
-      <button className="w-32 h-10 border-[1px]">5000원</button>
-      <button className="w-32 h-10 border-[1px]">10000원</button>
-      <button className="bg-yellow-400 w-full h-14 absolute bottom-0 right-0 left-0">결제하기</button>
-    </>
+
+    <section>
+
+      <Headers title="결제하기"/>
+      <CashCard />
+      <PayMethod/>
+      {/* <h1 className="mt-28 text-center text-xl font-bold mb-20">총 결제금액 : <span>{totalAmount.toLocaleString()}</span> 캐시(￦)</h1> */}
+
+      <ButtonOfPayments />
+    </section>
   )
 }
