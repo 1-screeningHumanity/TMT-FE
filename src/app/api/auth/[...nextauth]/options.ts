@@ -4,7 +4,9 @@ import KakaoProvider from 'next-auth/providers/kakao'
 import NaverProvider from 'next-auth/providers/naver'
 
 export const options: NextAuthOptions = {
-  providers: [
+
+  secret: process.env.NEXTAUTH_SECRET,
+  providers : [
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
