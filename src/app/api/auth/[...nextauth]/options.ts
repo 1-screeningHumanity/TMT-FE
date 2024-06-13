@@ -1,4 +1,4 @@
-import { NextAuthOptions } from 'next-auth'
+import NextAuth, { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import KakaoProvider from 'next-auth/providers/kakao'
 import NaverProvider from 'next-auth/providers/naver'
@@ -33,6 +33,7 @@ export const options: NextAuthOptions = {
             phoneNumber: credentials.phoneNumber,
           }),
         })
+
         if (res.ok) {
           const user = await res.json()
           console.log('user : ', user)
@@ -52,11 +53,11 @@ export const options: NextAuthOptions = {
       clientSecret: process.env.NAVER_CLIENT_SECRET || '',
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+
   callbacks: {
     async signIn({ user, profile }) {
-      console.log('signIn user :', user)
-      console.log('signIn profile :', profile)
+      // console.log('signIn user :', user)
+      // console.log('signIn profile :', profiㄴle)
       // if(profile) {
       //   console.log(profile)
       //   // 회원인지 아닌지 확인
@@ -87,21 +88,21 @@ export const options: NextAuthOptions = {
     },
 
     async jwt({ token, user }) {
-      if (user) {
-        console.log('jwt user :', user)
-      } else {
-        console.log('jwt user is null')
-      }
+      // if (user) {
+      //   console.log('jwt user :', user)
+      // } else {
+      //   console.log('jwt user is null')
+      // }
       return { ...token, ...user }
     },
 
     async session({ session, token }) {
       session.user = token as any
-      if (session) {
-        console.log('session :', session)
-      } else {
-        console.log('session is null')
-      }
+      // if (session) {
+      //   console.log('session :', session)
+      // } else {
+      //   console.log('session is null')
+      // }
       return session
     },
 
@@ -113,4 +114,7 @@ export const options: NextAuthOptions = {
     signIn: '/member/signin',
     error: '/member/signin',
   },
+  secret: process.env.NEXTAUTH_SECRET,
 }
+
+export default NextAuth(options)
