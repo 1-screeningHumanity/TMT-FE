@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app'
 import { getMessaging, getToken, onMessage } from 'firebase/messaging'
 import { fcmSendAPI } from './fcm'
+import { cookies } from 'next/headers'
+import { setCookie } from '@/utils/settingCookies'
 
 export const fcmIssued = async (accessToken: string) => {
   const firebaseConfig = {
@@ -33,7 +35,8 @@ export const fcmIssued = async (accessToken: string) => {
                 currentToken,
                 `Bearer ${accessToken}`,
               )
-              console.log(res)
+
+              setCookie('fcmToken', currentToken)
             } else {
               console.log(
                 'No registration token available. Request permission to generate one.',
