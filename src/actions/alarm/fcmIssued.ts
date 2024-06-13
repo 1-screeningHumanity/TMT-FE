@@ -31,11 +31,12 @@ export const fcmIssued = async (accessToken: string) => {
         })
           .then(async (currentToken) => {
             if (currentToken) {
+              console.log('currentToken :', currentToken)
               const res = await fcmSendAPI(
                 currentToken,
                 `Bearer ${accessToken}`,
               )
-
+              console.log('res :', res)
               setCookie('fcmToken', currentToken)
             } else {
               console.log(
