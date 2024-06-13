@@ -31,7 +31,6 @@ async function fetchAPI(
     if (method !== 'GET' || body !== undefined) {
       options.body = JSON.stringify(body)
     }
-    console.log('------------------------------------------', token)
 
     const response = await fetch(`${process.env.API_BASE_URL}${url}`, options)
 
