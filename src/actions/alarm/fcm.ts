@@ -16,12 +16,12 @@ async function alarmListAPI() {
   const res = await GetAPI('/notification/', undefined, await token)
   return res
 }
-async function alarmReadAPI(alarmId: string) {
-  const res = await PostAPI('/notification', { alarmId }, await token)
+async function alarmReadAPI(notificationIds: string[]) {
+  const res = await PostAPI('/notification', { notificationIds }, await token)
   return res
 }
-async function alarmDeleteAPI(alarmId: string[]) {
-  const res = await DeleteAPI('/notification', { alarmId }, await token)
+async function alarmDeleteAPI(notificationIds: string[]) {
+  const res = await DeleteAPI('/notification', { notificationIds }, await token)
   return res
 }
 
