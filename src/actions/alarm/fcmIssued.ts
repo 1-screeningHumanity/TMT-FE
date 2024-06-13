@@ -31,13 +31,12 @@ export const fcmIssued = async (accessToken: string) => {
         })
           .then(async (currentToken) => {
             if (currentToken) {
-              console.log('currentToken :', currentToken)
               const res = await fcmSendAPI(
                 currentToken,
                 `Bearer ${accessToken}`,
               )
               console.log('res :', res)
-              setCookie('fcmToken', currentToken)
+              localStorage.setItem('fcmToken', currentToken)
             } else {
               console.log(
                 'No registration token available. Request permission to generate one.',
