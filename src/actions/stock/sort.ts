@@ -1,4 +1,4 @@
-import { GetAPI } from '../FetchAPI'
+import { GetAPI } from '../fetchAPI'
 
 async function sortAPI(sortOption: string) {
   const res = await GetAPI(`/stockitem/mainpage/${sortOption}`)

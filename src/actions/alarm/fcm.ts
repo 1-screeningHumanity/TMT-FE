@@ -1,4 +1,4 @@
-import { DeleteAPI, GetAPI, PostAPI } from '../FetchAPI'
+import { DeleteAPI, GetAPI, PostAPI } from '../fetchAPI'
 import { getAccessToken } from '../tokens'
 
 const token = getAccessToken()
