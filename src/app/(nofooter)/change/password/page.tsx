@@ -63,7 +63,7 @@ const passwordConfirm = (event: React.ChangeEvent<HTMLInputElement>) => {
     <>
       <div className="flex mx-10 justify-between mt-10">
         <h1 className="text-lg text-[#7d00d0] font-extrabold">비밀번호 재설정</h1>
-        <Link className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5" href={"/"}>
+        <Link className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5" href={"/mypage"}>
           <Image width="20" height="20" src="https://img.icons8.com/ios/20/000000/multiply.png" alt="cancel"/>
         </Link>
       </div>

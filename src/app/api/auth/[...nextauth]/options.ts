@@ -4,7 +4,7 @@ import KakaoProvider from "next-auth/providers/kakao";
 import NaverProvider from "next-auth/providers/naver";
 
 export const options: NextAuthOptions = {
-
+  secret: process.env.NEXTAUTH_SECRET,
   providers : [
     CredentialsProvider({
       name : "Credentials",
@@ -53,7 +53,7 @@ export const options: NextAuthOptions = {
       },
     ),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+  
   callbacks: {
     async signIn({ user, profile}) {
       console.log("signIn user :", user);
