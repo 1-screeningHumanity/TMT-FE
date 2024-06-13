@@ -1,6 +1,9 @@
 'use client'
+import { alarmCountAPI } from '@/actions/alarm/fcm'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import AlarmCount from '../pages/alarm/AlarmCount'
 
 export default function Headers({ title = '' }: { title: string }) {
   return (
@@ -39,6 +42,8 @@ export default function Headers({ title = '' }: { title: string }) {
             alt="alarm"
             className="mr-4"
           />
+
+          <AlarmCount />
         </Link>
         {/* </span> */}
       </div>

@@ -27,4 +27,9 @@ async function alarmDeleteAPI(notificationIds: number[]) {
   return res
 }
 
-export { fcmSendAPI, alarmListAPI, alarmReadAPI, alarmDeleteAPI }
+async function alarmCountAPI() {
+  const token = await getAccessToken()
+  const res = await GetAPI('/notification/count', undefined, token)
+  return res
+}
+export { fcmSendAPI, alarmListAPI, alarmReadAPI, alarmDeleteAPI, alarmCountAPI }
