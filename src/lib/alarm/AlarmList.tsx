@@ -1,6 +1,6 @@
 import { AlarmListType } from '@/types/Alarm'
 
-export const AlarmListData: AlarmListType[] = [
+export const AlarmListData = [
   {
     id: 14,
     content: '시장마감 10분 전입니다.',
