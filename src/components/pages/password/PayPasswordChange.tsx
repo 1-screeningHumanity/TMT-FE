@@ -1,6 +1,7 @@
 'use client'
 
 import Image from "next/image";
+import Link from "next/link";
 import { Dispatch, SetStateAction, useRef } from "react";
 
 export default function PayPasswordChange ({setPassword} : {setPassword : Dispatch<SetStateAction<string>> }){
@@ -20,12 +21,16 @@ export default function PayPasswordChange ({setPassword} : {setPassword : Dispat
   return(
     <>
       <div className="flex mx-10 justify-between my-10 items-center">
-        <div className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-4 h-4" onClick={()=> history.back()}>
-          <Image width="20" height="20" src="https://img.icons8.com/ios-glyphs/20/back.png" alt="back" />
+        <div className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-4 h-4">
+          <Link href={"javascript:history.back()"}>
+            <Image width="20" height="20" src="https://img.icons8.com/ios-glyphs/20/back.png" alt="back" />
+          </Link>
         </div>
         <h1 className="text-lg text-[#7d00d0] font-extrabold">결제비밀번호 변경</h1>
-        <div className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5" onClick={()=> location.href="/mypage"}>
+        <div className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5">
+          <Link href={"/mypage"}>
             <Image width="20" height="20" src="https://img.icons8.com/ios/20/000000/multiply.png" alt="cancel" />
+          </Link>
         </div>
       </div>
       <div className="text-center mt-24 mb-20">
