@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app'
 import { getMessaging, getToken, onMessage } from 'firebase/messaging'
 import { fcmSendAPI } from './fcm'
 
-export const fcmIssued = async () => {
+export const fcmIssued = async (accessToken: string) => {
   const firebaseConfig = {
     apiKey: `${process.env.NEXT_PUBLIC_API_KEY}`,
     authDomain: `${process.env.NEXT_PUBLIC_AUTHDOMAIN}`,
@@ -29,7 +29,10 @@ export const fcmIssued = async () => {
         })
           .then(async (currentToken) => {
             if (currentToken) {
-              const res = await fcmSendAPI(currentToken)
+              const res = await fcmSendAPI(
+                currentToken,
+                `Bearer ${accessToken}`,
+              )
               console.log(res)
             } else {
               console.log(
