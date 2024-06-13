@@ -13,6 +13,7 @@ async function fetchAPI(
     }
     if (token != null || token !== undefined) {
       token = token.replace(/(?:\\[rn]|[\r\n]+)+/g, '')
+
       headers['Authorization'] = `${token}`
     }
     let cache = 'no-cache'
@@ -30,6 +31,7 @@ async function fetchAPI(
     if (method !== 'GET' || body !== undefined) {
       options.body = JSON.stringify(body)
     }
+    console.log('------------------------------------------', token)
 
     const response = await fetch(`${process.env.API_BASE_URL}${url}`, options)
 

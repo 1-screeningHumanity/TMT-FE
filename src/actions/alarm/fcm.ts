@@ -2,6 +2,7 @@ import { DeleteAPI, GetAPI, PostAPI } from '../FetchAPI'
 import { getAccessToken } from '../tokens'
 
 const token = getAccessToken()
+console.log('token in fcm.ts :', token)
 async function fcmSendAPI(fcmToken: string, accessToken: string) {
   const res = await PostAPI(
     '/notification/fcm-token',
@@ -12,7 +13,7 @@ async function fcmSendAPI(fcmToken: string, accessToken: string) {
   return res
 }
 async function alarmListAPI() {
-  const res = await GetAPI('/notification', undefined, await token)
+  const res = await GetAPI('/notification/', undefined, await token)
   return res
 }
 async function alarmReadAPI(alarmId: string) {
