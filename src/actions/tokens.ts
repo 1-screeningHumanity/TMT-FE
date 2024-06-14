@@ -1,16 +1,15 @@
-'use server'
+import { options } from "@/app/api/auth/[...nextauth]/options";
+import { getServerSession } from "next-auth";
 
-import { getSession } from "next-auth/react";
 
 export async function getAccessToken(){
-  const token = await getSession();
-  console.log("token in tokens.ts :", token);
-  
+  const token = await getServerSession(options);  
   const accessToken = `Bearer ${token?.user.data.accessToken}`;
   return accessToken;
 }
+
 export async function getRefreshToken(){
-  const token = await getSession();
+  const token = await getServerSession(options);
   const refreshToken = `Bearer ${token?.user.data.refreshToken}`;
   return refreshToken;
-}
+} 
