@@ -69,12 +69,29 @@ interface TradeType {
 
 interface staticStockType {
   stockCode: string
-  stck_cntg_hour: string
+  stockCreatAt: string
+  prdy_vrss: string
+  prdy_vrss_sign: string
+  prdy_ctrt: string
+
+  stck_prdy_clpr: string
+  acml_vol: string
+  acml_tr_pbmn: string
+  hts_kor_isnm: string
   stck_prpr: string
-  stck_hgpr: string
-  stck_lwpr: string
-  cntg_vol: string
 }
+// {
+//   stockCode: '005930',
+//   stockCreatAt: '20240614150300',
+//   prdy_vrss: '1300',
+//   prdy_vrss_sign: '2',
+//   prdy_ctrt: '1.65',
+//   stck_prdy_clpr: '78600',
+//   acml_vol: '20134802',
+//   acml_tr_pbmn: '1607684461000',
+//   hts_kor_isnm: '삼성전자',
+//   stck_prpr: '79900'
+// }
 export type {
   AskingPriceDataTypes,
   InvestorsDataType,
