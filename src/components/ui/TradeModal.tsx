@@ -7,14 +7,7 @@ import { TradeType, staticStockType } from '@/types/Stock'
 import { wonInfoAPI } from '@/actions/wallet'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
 import { set } from 'firebase/database'
-
-interface TradeModalProps {
-  modalOpen: boolean
-  setModalOpen: (value: boolean) => void
-  stockCode: string
-  stockNameResult: string
-  staticStockPrice: staticStockType
-}
+import { TradeModalProps } from '@/types/Trade'
 
 export default function TradeModal({
   modalOpen,
@@ -26,7 +19,7 @@ export default function TradeModal({
   const now_price = parseInt(staticStockPrice.stck_prpr)
   const [price, setPrice] = useState(now_price)
   const [amount, setAmount] = useState(1)
-  const [totalPrice, setTotalPrice] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(now_price)
 
   const [myMoney, setMyMoney] = useState(0)
   console.log(stockCode)

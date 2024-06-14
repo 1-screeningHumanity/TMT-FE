@@ -1,3 +1,4 @@
+import { staticStockType } from '@/types/Stock'
 interface TradeType {
   stockCode: string
   price: number
@@ -5,4 +6,12 @@ interface TradeType {
   stockName: string
 }
 
-export type { TradeType }
+interface TradeModalProps {
+  modalOpen: boolean
+  setModalOpen: (value: boolean) => void
+  stockCode: string
+  stockNameResult: string
+  staticStockPrice: staticStockType
+}
+
+export type { TradeType, TradeModalProps }
