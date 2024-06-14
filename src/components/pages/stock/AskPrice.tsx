@@ -41,7 +41,7 @@ export default function AskPrice() {
     <main>
       {data.askp_arr.map((askp: any, index: number) => {
         const widthPercentage = (Number(askp[1]) / data.max_askp_rsqn) * 100
-        const textColor = widthPercentage >= 80 ? 'white' : 'black'
+        const textColor = widthPercentage >= 95 ? 'white' : 'black'
         return (
           <div className="flex my-3" key={index}>
             <div
@@ -76,7 +76,7 @@ export default function AskPrice() {
 
       {data.bidp_arr.map((bidp: any, index: number) => {
         const widthPercentage = (Number(bidp[1]) / data.max_bidp_rsqn) * 100
-        const textColor = widthPercentage >= 80 ? 'white' : 'black'
+        const textColor = widthPercentage >= 95 ? 'white' : 'black'
         return (
           <div className="flex my-3 justify-end" key={index}>
             <div
@@ -87,7 +87,7 @@ export default function AskPrice() {
               }}
             >
               <div
-                className="h-16 w-1/2 absolute left-0 bg-gradient-to-l from-red-500 to-white rounded-2xl"
+                className="h-16 absolute left-0 bg-gradient-to-l from-red-500 to-white rounded-2xl"
                 style={{
                   width: `${(Number(bidp[1]) / data.max_bidp_rsqn) * 100}%`,
                 }}
