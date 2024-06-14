@@ -160,11 +160,19 @@ export default function IsReadCheck() {
               <input
                 type="checkbox"
                 className="mr-3"
+                style={{ display: 'none' }}
                 checked={checkedItems.includes(item.notificationLogId)}
                 onChange={() => handleCheckboxChange(item.notificationLogId)}
               />
             )}
-            <div className="flex-grow flex bg-slate-200 h-36 p-5 border-b rounded-2xl">
+            <div
+              className="flex-grow flex h-36 p-5 border-b rounded-2xl"
+              style={{
+                backgroundColor: checkedItems.includes(item.notificationLogId)
+                  ? '#c3dadb'
+                  : '#e6f4f5',
+              }}
+            >
               <div className="relative w-full">
                 <div className="flex justify-between">
                   <div className="text-2xl font-bold">{item.title}</div>
