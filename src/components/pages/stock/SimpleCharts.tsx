@@ -7,7 +7,7 @@ import ReactECharts from 'echarts-for-react'
 export default function SimpleCharts({ data }: { data: any }) {
   const today = getSocketData('005930')
   const data0 = splitData(data, today)
-  console.log('data0', data0)
+  // console.log('data0', data0)
   function splitData(rawData: StockChartDataType[], socketData: any) {
     const categoryData = []
     const values = []
