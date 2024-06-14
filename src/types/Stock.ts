@@ -59,6 +59,15 @@ interface TradeType {
   amount: number
   stockName: string
 }
+
+interface staticStockType {
+  stockCode: string
+  stck_cntg_hour: string
+  stck_prpr: string
+  stck_hgpr: string
+  stck_lwpr: string
+  cntg_vol: string
+}
 export type {
   AskingPriceDataTypes,
   InvestorsDataType,
@@ -66,4 +75,5 @@ export type {
   StockChartDataType,
   StockPrice,
   TradeType,
+  staticStockType,
 }

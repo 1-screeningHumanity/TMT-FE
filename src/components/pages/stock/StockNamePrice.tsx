@@ -1,10 +1,12 @@
 'use client'
 import Image from 'next/image'
 import { getSocketData } from '@/actions/stock/getSocketData'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { socketStockCode } from '@/utils/socketStockCode'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
-import { SocketStockDataType } from '@/types/Stock'
+import { SocketStockDataType, staticStockType } from '@/types/Stock'
+import { getStaticStockPrice } from '@/actions/stock/stock'
+import { set } from 'firebase/database'
 
 export default function StockNamePrice({
   stockName,
@@ -13,12 +15,29 @@ export default function StockNamePrice({
   stockName: string
   stockCode: string
 }) {
-  const data: any = getSocketData(stockCode)
+  const [Price, setPrice] = useState<staticStockType>()
   const [socketFlag, setSocketFlag] = useState(false)
-  // console.log(data)
-  if (socketStockCode.hasOwnProperty(stockCode) && !socketFlag) {
-    setSocketFlag(true)
+  const [socketData, setSocketdata] = useState<any>()
+  let data
+  useEffect(() => {
+    fetchPrice()
+  }, [])
+  // const data: any = getSocketData(stockCode)
+  const fetchPrice = async () => {
+    const data = await getStaticStockPrice(stockCode)
+    console.log('정적인 가격!!!!!', data)
+    setPrice(data)
   }
+
+  if (socketStockCode.hasOwnProperty(stockCode)) {
+    data = getSocketData(stockCode)
+
+    if (data.now_price != undefined) {
+      console.log('실시간 가격!!!!!', data)
+    }
+  }
+  console.log('비ㄴ데이터', data)
+  console.log(Price)
   return (
     <>
       <div
@@ -39,12 +58,40 @@ export default function StockNamePrice({
           <span className="text-3xl font-bold text-white ml-3 ">
             {stockName}
           </span>
-          <div className="flex flex-col items-end absolute mr-8 right-0">
-            <span className="text-xl text-white">
-              {formatNumberWithCommas(data.now_price)}
-            </span>
-            <div className="flex">
-              {data.color === '#ff0000' ? (
+          {data != undefined ? (
+            <div className="flex flex-col items-end absolute mr-8 right-0">
+              <span className="text-xl text-white">
+                {formatNumberWithCommas(Price?.stck_prpr)}
+              </span>
+              <div className="flex">
+                {data?.color === '#ff0000' ? (
+                  <Image
+                    src="/assets/images/upPrice.svg"
+                    alt="부호"
+                    width={20}
+                    height={10}
+                  />
+                ) : (
+                  <Image
+                    src="/assets/images/downPrice.svg"
+                    alt="부호"
+                    width={20}
+                    height={10}
+                  />
+                )}
+
+                <span className="text-lg ml-1" style={{ color: data?.color }}>
+                  {String(data?.prdy_ctrt)}%
+                </span>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col items-end absolute mr-8 right-0">
+              <span className="text-xl text-white">
+                {formatNumberWithCommas(Price?.stck_prpr)}
+              </span>
+              {/* <div className="flex">
+              {Price?.color === '#ff0000' ? (
                 <Image
                   src="/assets/images/upPrice.svg"
                   alt="부호"
@@ -60,11 +107,12 @@ export default function StockNamePrice({
                 />
               )}
 
-              <span className="text-lg ml-1" style={{ color: data.color }}>
-                {String(data.prdy_ctrt)}%
+              <span className="text-lg ml-1" style={{ color: Price?.color }}>
+                {String(Price?.prdy_ctrt)}%
               </span>
+            </div> */}
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>
