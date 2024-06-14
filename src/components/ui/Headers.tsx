@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import AlarmCount from '../pages/alarm/AlarmCount'
 
-export default function Headers({ title = '' }: { title: string }) {
+export default function Headers({ title }: { title? : string }) {
   return (
     <div className="mt-3 flex items-center justify-between border-b-[1px] pb-3">
       <Image
