@@ -24,14 +24,14 @@ interface InvestorsDataType {
   prdy_vrss_sign: String
 }
 interface SocketStockDataType {
-  color: string
-  symbol: string
-  now_price: string
-  prdy_ctrt: string
-  stck_oprc: string
-  stck_hgpr: string
-  stck_lwpr: string
-  todayDate: string
+  color?: string
+  symbol?: string
+  now_price?: string | undefined
+  prdy_ctrt?: string | undefined
+  stck_oprc?: string | undefined
+  stck_hgpr?: string | undefined
+  stck_lwpr?: string | undefined
+  todayDate?: string
 }
 interface StockChartDataType {
   id: string

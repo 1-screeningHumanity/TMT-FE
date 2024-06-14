@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { getSocketData } from '@/actions/stock/getSocketData'
 import { useState } from 'react'
 import { socketStockCode } from '@/utils/socketStockCode'
+import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
+import { SocketStockDataType } from '@/types/Stock'
 
 export default function StockNamePrice({
   stockName,
@@ -11,9 +13,9 @@ export default function StockNamePrice({
   stockName: string
   stockCode: string
 }) {
-  const data = getSocketData('005930')
+  const data: any = getSocketData(stockCode)
   const [socketFlag, setSocketFlag] = useState(false)
-
+  // console.log(data)
   if (socketStockCode.hasOwnProperty(stockCode) && !socketFlag) {
     setSocketFlag(true)
   }
@@ -38,14 +40,26 @@ export default function StockNamePrice({
             {stockName}
           </span>
           <div className="flex flex-col items-end absolute mr-8 right-0">
-            <span className="text-xl text-white">{String(data.now_price)}</span>
+            <span className="text-xl text-white">
+              {formatNumberWithCommas(data.now_price)}
+            </span>
             <div className="flex">
-              <Image
-                src={data.symbol || ''}
-                alt="부호"
-                width={20}
-                height={10}
-              />
+              {data.color === '#ff0000' ? (
+                <Image
+                  src="/assets/images/upPrice.svg"
+                  alt="부호"
+                  width={20}
+                  height={10}
+                />
+              ) : (
+                <Image
+                  src="/assets/images/downPrice.svg"
+                  alt="부호"
+                  width={20}
+                  height={10}
+                />
+              )}
+
               <span className="text-lg ml-1" style={{ color: data.color }}>
                 {String(data.prdy_ctrt)}%
               </span>
