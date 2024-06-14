@@ -1,8 +1,15 @@
+import { getReservationTradeList } from "@/actions/tradeList";
 import Headers from "@/components/ui/Headers";
 import { ReservationTradeLists } from "@/lib/trade/ReservationTradeLists";
 import { parseDate } from "@/utils/parseDate";
 
-export default function reservationTradeLists(){
+export default async function reservationTradeLists(){
+
+  const data = await getReservationTradeList();
+  const reservationTradeLists = data.data;
+
+  console.log("reservationTradeLists :", reservationTradeLists);
+  
   return (
     <section>
       <Headers title="예약 매수/매도 내역"/>
