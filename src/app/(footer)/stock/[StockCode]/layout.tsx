@@ -1,8 +1,9 @@
 import Headers from '@/components/ui/Headers'
 import StockNamePrice from '@/components/pages/stock/StockNamePrice'
 import { getStockName } from '@/actions/stock/stock'
-import Link from 'next/link'
+
 import SelectedTap from '@/components/pages/stock/SelectedTap'
+
 export default async function RootLayout({
   children,
   params,
