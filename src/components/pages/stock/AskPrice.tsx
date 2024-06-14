@@ -4,8 +4,8 @@ import { AskingPriceData } from '@/lib/stock/AskingPriceData'
 import { AskingPriceDataTypes } from '@/types/Stock'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
 
-export default function AskPrice() {
-  const socketData = getBidAskSocketData('005930')
+export default function AskPrice({ stockCode }: { stockCode: string }) {
+  const socketData = getBidAskSocketData(stockCode)
   const data = formattingData(socketData as any)
   // const data = formattingData(AskingPriceData)
   // console.log('fmkdlsnfmkls', socketData)
