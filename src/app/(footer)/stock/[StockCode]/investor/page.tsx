@@ -1,3 +1,7 @@
+'use server'
+
+import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
+
 async function getInvestorsAPI(stockCode: string) {
   const response = await fetch(
     `${process.env.API_BASE_URL}/stockitem/${stockCode}/investors`,
@@ -76,19 +80,19 @@ export default async function Page({
                 className="border border-slate-300 text-center"
                 style={{ color: colorFormatting(String(item.prsn_ntby_qty)) }}
               >
-                {item.prsn_ntby_qty}
+                {formatNumberWithCommas(item.prsn_ntby_qty)}
               </td>
               <td
                 className="border border-slate-300 text-center"
                 style={{ color: colorFormatting(String(item.frgn_ntby_qty)) }}
               >
-                {item.frgn_ntby_qty}
+                {formatNumberWithCommas(item.frgn_ntby_qty)}
               </td>
               <td
                 className="border border-slate-300 text-center"
                 style={{ color: colorFormatting(String(item.orgn_ntby_qty)) }}
               >
-                {item.orgn_ntby_qty}
+                {formatNumberWithCommas(item.orgn_ntby_qty)}
               </td>
             </tr>
           ))}

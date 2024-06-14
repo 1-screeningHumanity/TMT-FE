@@ -41,7 +41,7 @@ export default function AskPrice() {
     <main>
       {data.askp_arr.map((askp: any, index: number) => {
         const widthPercentage = (Number(askp[1]) / data.max_askp_rsqn) * 100
-        const textColor = widthPercentage >= 60 ? 'white' : 'black'
+        const textColor = widthPercentage >= 80 ? 'white' : 'black'
         return (
           <div className="flex my-3" key={index}>
             <div
@@ -55,7 +55,7 @@ export default function AskPrice() {
                 className="z-10 text-white ml-2 font-semibold"
                 style={{ color: textColor }}
               >
-                {askp[1]}
+                {formatNumberWithCommas(askp[1])}
               </span>
               <div
                 className="h-16 absolute right-0 bg-gradient-to-r from-sky-500 to-white rounded-2xl"
@@ -101,7 +101,7 @@ export default function AskPrice() {
                 className="z-10 absolute right-0 text-white ml-2 font-semibold mr-2"
                 style={{ color: textColor }}
               >
-                {bidp[1]}
+                {formatNumberWithCommas(bidp[1])}
               </span>
             </div>
           </div>
