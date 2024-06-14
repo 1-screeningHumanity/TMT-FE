@@ -1,21 +1,24 @@
 'use client'
 import { getInvestors, getStockName } from '@/actions/stock/stock'
 import TradeModal from '@/components/ui/TradeModal'
+import { staticStockType } from '@/types/Stock'
 import React, { use, useEffect } from 'react'
 import { useState } from 'react'
 
 export default function Trade({
   stockCode,
   stockName,
+  staticStockPrice,
 }: {
   stockCode: string
   stockName: string
+  staticStockPrice: staticStockType
 }) {
   const [modalOpen, setModalOpen] = useState(false)
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0 flex justify-between mx-5 mb-20">
+      <div className="mt-5 bottom-0 left-0 right-0 flex justify-between mx-5 mb-20">
         <button
           className="w-5/12 h-14 font-bold text-white rounded-2xl"
           style={{ backgroundColor: '#0B0B0B' }}
@@ -36,6 +39,7 @@ export default function Trade({
         setModalOpen={setModalOpen}
         stockCode={stockCode}
         stockNameResult={stockName}
+        staticStockPrice={staticStockPrice}
       />
     </>
   )

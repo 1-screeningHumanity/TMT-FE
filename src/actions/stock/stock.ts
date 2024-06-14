@@ -1,5 +1,6 @@
 import { GetAPI, PostAPI } from '../fetchAPI'
 import { TradeType } from '@/types/Stock'
+import { getAccessToken } from '../tokens'
 async function getStockName(stockCode: string) {
   const response = await GetAPI(`/stockitem/${stockCode}/name`)
 
@@ -31,8 +32,9 @@ async function getInvestors(stockCode: string) {
   return response.data
 }
 async function tradeStock(trade: string, tradeMoney: TradeType) {
-  const response = await PostAPI(`/trade/${trade}`, tradeMoney, 'token')
-  return response.data
+  const token = await getAccessToken()
+  const response = await PostAPI(`/trade/${trade}`, tradeMoney, token)
+  return response
 }
 
 async function getStockData(stockCode: string, when: string) {

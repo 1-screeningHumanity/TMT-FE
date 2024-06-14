@@ -18,10 +18,9 @@ export default async function Page(params: any) {
     nowLink = 'day'
   }
   const staticStockPrice = await getStaticStockPrice(stockCode)
-
   const stockData: StockChartDataType[] = await getStockData(stockCode, nowLink)
-  const stockPrice = await getStaticStockPrice(stockCode)
-  console.log(stockPrice)
+
+  console.log(params.StockCode)
   return (
     <main>
       <Charts
@@ -33,9 +32,9 @@ export default async function Page(params: any) {
       />
       {/* <CompanyInfo /> */}
       <Trade
-        stockCode={params.StockCode}
+        stockCode={stockCode}
         stockName={stockNameResult.stockName}
-        // staticStockPrice = {staticStockPrice}
+        staticStockPrice={staticStockPrice}
       />
     </main>
   )
