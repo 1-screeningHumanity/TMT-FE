@@ -13,7 +13,6 @@ async function fetchAPI(
     }
     if (token != null || token !== undefined) {
       token = token.replace(/(?:\\[rn]|[\r\n]+)+/g, '')
-
       headers['Authorization'] = `${token}`
     }
     let cache = 'no-cache'
