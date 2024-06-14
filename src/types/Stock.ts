@@ -1,5 +1,6 @@
 interface AskingPriceDataTypes {
   stockCode?: String
+  aspr_acpt_hour?: string
   askp1: String
   askp2: String
   askp3: String
@@ -14,6 +15,12 @@ interface AskingPriceDataTypes {
   bidp_rsqn3: String
   total_askp_rsqn: String
   total_bidp_rsqn: String
+}
+interface FormatAskinDataTypes {
+  askp_arr: string[][]
+  max_askp_rsqn: number
+  bidp_arr: string[][]
+  max_bidp_rsqn: number
 }
 interface InvestorsDataType {
   stockCode: String
@@ -76,4 +83,5 @@ export type {
   StockPrice,
   TradeType,
   staticStockType,
+  FormatAskinDataTypes,
 }
