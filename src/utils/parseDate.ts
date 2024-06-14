@@ -9,3 +9,19 @@ export function parseDate(date: string): string {
 
   return `${year}/${month}/${day}`;
 }
+
+export function parseDateTime(datetimeString : string) {
+  const date = new Date(datetimeString);
+
+  // Extract month and day
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const datePart = `${month}.${day}`;
+
+  // Extract hours and minutes
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const timePart = `${hours}:${minutes}`;
+
+  return { datePart, timePart };
+}
