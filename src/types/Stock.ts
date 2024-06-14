@@ -1,5 +1,6 @@
 interface AskingPriceDataTypes {
   stockCode?: String
+  aspr_acpt_hour?: string
   askp1: String
   askp2: String
   askp3: String
@@ -15,6 +16,12 @@ interface AskingPriceDataTypes {
   total_askp_rsqn: String
   total_bidp_rsqn: String
 }
+interface FormatAskinDataTypes {
+  askp_arr: string[][]
+  max_askp_rsqn: number
+  bidp_arr: string[][]
+  max_bidp_rsqn: number
+}
 interface InvestorsDataType {
   stockCode: String
   stck_bsop_date: String
@@ -24,14 +31,14 @@ interface InvestorsDataType {
   prdy_vrss_sign: String
 }
 interface SocketStockDataType {
-  color: string
-  symbol: string
-  now_price: string
-  prdy_ctrt: string
-  stck_oprc: string
-  stck_hgpr: string
-  stck_lwpr: string
-  todayDate: string
+  color?: string
+  symbol?: string
+  now_price?: string | undefined
+  prdy_ctrt?: string | undefined
+  stck_oprc?: string | undefined
+  stck_hgpr?: string | undefined
+  stck_lwpr?: string | undefined
+  todayDate?: string
 }
 interface StockChartDataType {
   id: string
@@ -59,6 +66,32 @@ interface TradeType {
   amount: number
   stockName: string
 }
+
+interface staticStockType {
+  stockCode: string
+  stockCreatAt: string
+  prdy_vrss: string
+  prdy_vrss_sign: string
+  prdy_ctrt: string
+
+  stck_prdy_clpr: string
+  acml_vol: string
+  acml_tr_pbmn: string
+  hts_kor_isnm: string
+  stck_prpr: string
+}
+// {
+//   stockCode: '005930',
+//   stockCreatAt: '20240614150300',
+//   prdy_vrss: '1300',
+//   prdy_vrss_sign: '2',
+//   prdy_ctrt: '1.65',
+//   stck_prdy_clpr: '78600',
+//   acml_vol: '20134802',
+//   acml_tr_pbmn: '1607684461000',
+//   hts_kor_isnm: '삼성전자',
+//   stck_prpr: '79900'
+// }
 export type {
   AskingPriceDataTypes,
   InvestorsDataType,
@@ -66,4 +99,6 @@ export type {
   StockChartDataType,
   StockPrice,
   TradeType,
+  staticStockType,
+  FormatAskinDataTypes,
 }

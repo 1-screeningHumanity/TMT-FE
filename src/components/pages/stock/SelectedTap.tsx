@@ -33,7 +33,7 @@ export default function SelectedTap({
           // <a href={`${data.link}`}>
           <button
             key={data.id}
-            onClick={() => router.push(data.link)}
+            onClick={() => (location.href = data.link)}
             className="w-1/3 flex items-center justify-center border rounded-t-lg"
             style={{
               backgroundColor: pathrouter === data.link ? '#FFFFFF' : '#D7D7D7',

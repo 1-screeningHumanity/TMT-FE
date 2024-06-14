@@ -1,4 +1,8 @@
-import { getStockData, getStockName } from '@/actions/stock/stock'
+import {
+  getStaticStockPrice,
+  getStockData,
+  getStockName,
+} from '@/actions/stock/stock'
 import Charts from '@/components/pages/stock/Charts'
 import CompanyInfo from '@/components/pages/stock/CompanyInfo'
 import Trade from '@/components/pages/stock/Trade'
@@ -13,9 +17,10 @@ export default async function Page(params: any) {
   if (nowLink === undefined) {
     nowLink = 'day'
   }
-
+  const staticStockPrice = await getStaticStockPrice(stockCode)
   const stockData: StockChartDataType[] = await getStockData(stockCode, nowLink)
 
+  console.log(params.StockCode)
   return (
     <main>
       <Charts
@@ -27,8 +32,9 @@ export default async function Page(params: any) {
       />
       {/* <CompanyInfo /> */}
       <Trade
-        stockCode={params.StockCode}
+        stockCode={stockCode}
         stockName={stockNameResult.stockName}
+        staticStockPrice={staticStockPrice}
       />
     </main>
   )
