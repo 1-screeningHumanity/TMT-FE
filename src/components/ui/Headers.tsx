@@ -1,61 +1,11 @@
 'use client'
-
+import { alarmCountAPI } from '@/actions/alarm/fcm'
 import Image from 'next/image'
 import Link from 'next/link'
-import { initializeApp } from 'firebase/app'
-import { getMessaging, getToken, onMessage } from 'firebase/messaging'
+import { useEffect, useState } from 'react'
+import AlarmCount from '../pages/alarm/AlarmCount'
 
-export default function Headers({title} : {title? : string}) {
-
-  const firebaseConfig = {
-    apiKey: `${process.env.NEXT_PUBLIC_API_KEY}`,
-    authDomain: `${process.env.NEXT_PUBLIC_AUTHDOMAIN}`,
-    projectId: `${process.env.NEXT_PUBLIC_PROJECTID}`,
-    storageBucket: `${process.env.NEXT_PUBLIC_STORAGE_BUCKET}`,
-    messagingSenderId: `${process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID}`,
-    appId: `${process.env.NEXT_PUBLIC_APP_ID}`,
-    measurementId: `${process.env.NEXT_PUBLIC_MEASUREMENT_ID}`,
-  }
-  const app = initializeApp(firebaseConfig)
-  const handleFcm = () => {
-    console.log('clicked')
-    Notification.requestPermission().then((permission) => {
-      if (permission === 'granted') {
-        console.log('Notification permission granted.')
-        if (
-          typeof window !== 'undefined' &&
-          typeof window.navigator !== 'undefined'
-        ) {
-          const messaging = getMessaging(app)
-          console.log(messaging)
-          navigator.serviceWorker.register('/firebase-messaging-sw.js', {
-            scope: '/firebase-cloud-messaging-push-scope',
-          })
-          getToken(messaging, {
-            vapidKey: `${process.env.NEXT_PUBLIC_VAPID_KEY}`,
-          })
-            .then((currentToken) => {
-              if (currentToken) {
-                console.log('currentToken:', currentToken)
-              } else {
-                console.log(
-                  'No registration token available. Request permission to generate one.',
-                )
-              }
-            })
-            .catch((err) => {
-              console.log('An error occurred while retrieving token. ', err)
-            })
-          onMessage(messaging, (payload) => {
-            console.log('Message received. ', payload)
-          })
-        }
-      } else {
-        console.log('Notification permission denied.')
-      }
-    })
-  }
-
+export default function Headers({ title }: { title? : string }) {
   return (
     <div className="mt-2.5 flex items-center justify-between border-b-[1px] pb-2.5 sticky top-0 bg-white z-50">
       <Image
@@ -63,7 +13,7 @@ export default function Headers({title} : {title? : string}) {
         height="30"
         src="/assets/images/back.svg"
         alt="back--v1"
-        className='mt-1 ml-3'
+        className="mt-1 ml-3"
         onClick={() => history.back()}
       />
       <h1 className='relative left-6 text-base leading-3 font-[Pretendard-Regular] font-semibold tracking-tight'>{title}</h1>
@@ -81,17 +31,19 @@ export default function Headers({title} : {title? : string}) {
           src="https://img.icons8.com/material-rounded/50/checked--v1.png"
           alt="checked--v1"
         /> */}
-        <span onClick={handleFcm}>
-          <Link href={'/alarm'}>
-            <Image
-              width="30"
-              height="30"
-              src="/assets/images/alarm.svg"
-              alt="alarm"
-              className="mr-4"
-            />
-          </Link>
-        </span>
+        {/* <span onClick={handleFcm}> */}
+        <Link href={'/alarm'}>
+          <Image
+            width="30"
+            height="30"
+            src="/assets/images/alarm.svg"
+            alt="alarm"
+            className="mr-4"
+          />
+
+          <AlarmCount />
+        </Link>
+        {/* </span> */}
       </div>
     </div>
   )

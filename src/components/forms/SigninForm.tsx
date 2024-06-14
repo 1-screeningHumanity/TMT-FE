@@ -1,11 +1,16 @@
 'use client'
 
-import { signIn } from 'next-auth/react'
+import { getSession, signIn } from 'next-auth/react'
 import ButtonOfSignin from '../ui/buttons/ButtonOfSignin'
 import InputOfPassword from '../ui/InputOfPassword'
 import { signinFormType } from '@/types/signinFormType'
 import { useState } from 'react'
 import Image from 'next/image'
+import { options } from '@/app/api/auth/[...nextauth]/options'
+import { useRouter } from 'next/navigation'
+import { initializeApp } from 'firebase/app'
+import { getMessaging, getToken, onMessage } from 'firebase/messaging'
+import { fcmIssued } from '@/actions/alarm/fcmIssued'
 
 export default function SigninForm() {
   const [payload, setPayload] = useState<signinFormType>({
@@ -13,20 +18,28 @@ export default function SigninForm() {
     name: '',
     password: '',
   })
+
   const [showPassword, setShowPassword] = useState(true)
-
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const router = useRouter()
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!payload.phoneNumber || !payload.name || !payload.password)
       return alert('빈칸을 채워주세요')
-    signIn('credentials', {
+    await signIn('credentials', {
       phoneNumber: payload.phoneNumber,
       name: payload.name,
       password: payload.password,
-      redirect: true,
-      callbackUrl:  '/stock/005930',
+      redirect: false,
+      // callbackUrl: '/stock/005930',
     })
+
+    const session = await getSession(options as any)
+    if (session?.user.isSuccess == true) {
+      fcmIssued(session?.user.data.accessToken)
+      router.push('/')
+    } else {
+      alert('아이디, 비밀번호, 이름을 다시 확인해주세요')
+    }
   }
 
   const onChangePayload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,14 +47,14 @@ export default function SigninForm() {
       ...payload,
       [e.target.name]: e.target.value,
     })
-    console.log(payload);
+    console.log(payload)
   }
 
   return (
     <form onSubmit={onSubmit}>
       <input
         placeholder="전화번호"
-        type="text"
+        type="tel"
         name="phoneNumber"
         required
         className="border-[2px] rounded-lg w-80 h-10 mx-auto block my-4 px-4 text-sm placeholder-[#aea0e5]"

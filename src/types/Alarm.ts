@@ -1,9 +1,10 @@
 interface AlarmListType {
-  id: number
+  notificationLogId: number
   content: string
-  status: string
-  time: string
-  isRead: string
+  title: string
+  notificationStatus: string
+  readStatus: number
+  notificationLogCreateAt: string
 }
 
 export type { AlarmListType }

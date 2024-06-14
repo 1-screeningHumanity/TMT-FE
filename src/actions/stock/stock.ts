@@ -1,4 +1,4 @@
-import { GetAPI, PostAPI } from '../FetchAPI'
+import { GetAPI, PostAPI } from '../fetchAPI'
 import { TradeType } from '@/types/Stock'
 async function getStockName(stockCode: string) {
   const response = await GetAPI(`/stockitem/${stockCode}/name`)
