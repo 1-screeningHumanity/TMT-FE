@@ -1,25 +1,16 @@
 
-import {postKakaopayReady} from "@/actions/payments"
+import {getCashInitalData, postKakaopayReady} from "@/actions/payments"
 import CashCard from "@/components/pages/payment/CashCard";
 import Headers from "@/components/ui/Headers";
 import PayMethod from "@/components/ui/PayMethod"
 import ButtonOfPayments from "@/components/ui/buttons/ButtonOfPayments";
 
-async function getCashInitalData() {
-  const res = await fetch(`${process.env.API_BASE_URL}/payments/cash`, {
-    cache: "no-store",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const data = await res.json();
-  return data;
-
-}
 
 export default async function payments(){
 
   const cashData = await getCashInitalData();
+  const currentCash = cashData.data.cash;
+  console.log("currentCash : ", currentCash);
 
   return(
 
