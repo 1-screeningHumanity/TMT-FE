@@ -46,22 +46,19 @@ export default async function Page({
   }
   return (
     <div className="mt-5">
-      <table className="border-collapse border border-slate-400 w-full ">
-        <thead
-          className="h-20 border-black"
-          style={{ backgroundColor: '#E9C8FF' }}
-        >
+      <table className="border-collapse w-full ">
+        <thead className="h-20  border-b-2">
           <tr>
-            <th scope="col" className="border border-white text-xl">
+            <th scope="col" className="font-[Pretendard-Regular] text-xl">
               날짜
             </th>
-            <th scope="col" className="border border-white text-xl">
+            <th scope="col" className="font-[Pretendard-Regular]  text-xl">
               개인
             </th>
-            <th scope="col" className="border border-white text-xl ">
+            <th scope="col" className=" font-[Pretendard-Regular]  text-xl ">
               외국인
             </th>
-            <th scope="col" className="border border-white text-xl">
+            <th scope="col" className=" font-[Pretendard-Regular]  text-xl">
               기관
             </th>
           </tr>
@@ -71,25 +68,25 @@ export default async function Page({
             <tr key={item.stck_bsop_date}>
               <th
                 scope="row"
-                className="border border-slate-300 h-12"
+                className=" h-12"
                 style={{ color: colorDate(String(item.prdy_vrss_sign)) }}
               >
                 {parsedDate(item.stck_bsop_date)}
               </th>
               <td
-                className="border border-slate-300 text-center"
+                className=" text-center"
                 style={{ color: colorFormatting(String(item.prsn_ntby_qty)) }}
               >
                 {formatNumberWithCommas(item.prsn_ntby_qty)}
               </td>
               <td
-                className="border border-slate-300 text-center"
+                className=" text-center"
                 style={{ color: colorFormatting(String(item.frgn_ntby_qty)) }}
               >
                 {formatNumberWithCommas(item.frgn_ntby_qty)}
               </td>
               <td
-                className="border border-slate-300 text-center"
+                className=" text-center"
                 style={{ color: colorFormatting(String(item.orgn_ntby_qty)) }}
               >
                 {formatNumberWithCommas(item.orgn_ntby_qty)}
