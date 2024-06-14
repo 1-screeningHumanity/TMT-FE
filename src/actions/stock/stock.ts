@@ -10,6 +10,10 @@ async function getStaticStockPrice(stockCode: string) {
   const response = await GetAPI(`/stockitem/chart/${stockCode}/price`)
   return response.data
 }
+async function getStaticStockAskPrice(stockCode: string) {
+  const response = await GetAPI(`/stockitem/${stockCode}/asking-price`)
+  return response.data
+}
 async function getChartData({
   stockCode,
   date,
@@ -35,6 +39,7 @@ async function getStockData(stockCode: string, when: string) {
   const response = await GetAPI(`/stockitem/chart/${stockCode}/${when}`)
   return response.data
 }
+
 export {
   getStockName,
   getChartData,
@@ -42,4 +47,5 @@ export {
   tradeStock,
   getStockData,
   getStaticStockPrice,
+  getStaticStockAskPrice,
 }
