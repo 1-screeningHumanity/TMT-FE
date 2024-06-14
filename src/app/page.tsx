@@ -34,9 +34,6 @@ export default function Home() {
       <div className='text-3xl'>
         {session?.user?.data?.name || "로그인이 필요합니다."}
       </div>
-
-
-
       <Footer />
     </div>
   )

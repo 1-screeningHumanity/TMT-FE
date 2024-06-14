@@ -31,7 +31,7 @@ export const options: NextAuthOptions = {
           })
         })
         if (res.ok) {
-          const user = await res.json()
+          const user = await res.json();
           console.log("user : ", user);
       
           return user;
@@ -55,7 +55,7 @@ export const options: NextAuthOptions = {
   ],
   
   callbacks: {
-    async signIn({ user, profile}) {
+    async signIn({ user, profile }) {
       console.log("signIn user :", user);
       console.log("signIn profile :", profile);
       // if(profile) {
@@ -86,7 +86,6 @@ export const options: NextAuthOptions = {
 
       return true;
     },
-
     async jwt({ token, user }) {
       if(user){
         console.log("jwt user :", user);
@@ -99,7 +98,7 @@ export const options: NextAuthOptions = {
     async session({ session, token }) {
       session.user = token as any;
       if(session){
-        console.log("session :", session);
+        console.log("session in options.ts :", session);
       }else{
         console.log("session is null");
       }
@@ -108,7 +107,7 @@ export const options: NextAuthOptions = {
 
     async redirect({url, baseUrl}) {
       return url.startsWith(baseUrl) ? url : baseUrl;
-    }
+    },
   },
   pages: {
     signIn: "/member/signin",
