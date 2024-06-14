@@ -1,11 +1,12 @@
 'use client'
-import { tradeStock } from '@/actions/stock/stock'
+import { tradeReservation, tradeStock } from '@/actions/stock/stock'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { staticStockType } from '@/types/Stock'
+import { TradeType, staticStockType } from '@/types/Stock'
 import { wonInfoAPI } from '@/actions/wallet'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
+import { set } from 'firebase/database'
 
 interface TradeModalProps {
   modalOpen: boolean
@@ -25,32 +26,52 @@ export default function TradeModal({
   const now_price = parseInt(staticStockPrice.stck_prpr)
   const [price, setPrice] = useState(now_price)
   const [amount, setAmount] = useState(1)
+  const [totalPrice, setTotalPrice] = useState(0)
 
   const [myMoney, setMyMoney] = useState(0)
   console.log(stockCode)
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(Number(e.target.value))
+    setTotalPrice(Number(e.target.value) * amount)
   }
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(Number(e.target.value))
+    setTotalPrice(price * Number(e.target.value))
   }
+
   const handleBuyButtonClick = async (trade: string) => {
-    const data = {
+    const data: TradeType = {
       stockCode: stockCode,
       price: price,
       amount: amount,
       stockName: stockNameResult,
     }
-
-    console.log('data', data)
-    try {
+    if (now_price != price) {
+      const response = await tradeReservation(trade, data)
+      const howToTrade = trade == 'buy' ? '매수' : '매도'
+      if (response.isSuccess == true) {
+        alert(
+          `${stockNameResult} ${[price]}원에 ${amount}주 예약 ${howToTrade} 성공`,
+        )
+      } else {
+        alert(response.message)
+      }
+    } else {
       const response = await tradeStock(trade, data)
-      console.log(response)
-    } catch (error) {
-      console.error('Error:', error)
+      const howToTrade = trade == 'buy' ? '매수' : '매도'
+      if (response.isSuccess == true) {
+        alert(
+          `${stockNameResult} ${[price]}원에 ${amount}주 ${howToTrade} 성공`,
+        )
+      } else {
+        alert(response.message)
+      }
     }
+
+    setModalOpen(false)
   }
+
   const wonInfo = async () => {
     const res = await wonInfoAPI()
     setMyMoney(res.data.won as number)
@@ -93,6 +114,9 @@ export default function TradeModal({
             </div>
             <span className="text-center mt-10 text-xl font-bold">
               현재 보유 금액 : {formatNumberWithCommas(myMoney)}
+            </span>
+            <span className="text-center mt-10 text-xl font-bold">
+              예상 금액 : {totalPrice}
             </span>
             <div className="items-center justify-center mt-5 h-screen">
               <div className="text-center">

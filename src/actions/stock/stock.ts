@@ -36,6 +36,15 @@ async function tradeStock(trade: string, tradeMoney: TradeType) {
   const response = await PostAPI(`/trade/${trade}`, tradeMoney, token)
   return response
 }
+async function tradeReservation(trade: string, tradeMoney: TradeType) {
+  const token = await getAccessToken()
+  const response = await PostAPI(
+    `/trade/reservation/${trade}`,
+    tradeMoney,
+    token,
+  )
+  return response
+}
 
 async function getStockData(stockCode: string, when: string) {
   const response = await GetAPI(`/stockitem/chart/${stockCode}/${when}`)
@@ -47,6 +56,7 @@ export {
   getChartData,
   getInvestors,
   tradeStock,
+  tradeReservation,
   getStockData,
   getStaticStockPrice,
   getStaticStockAskPrice,
