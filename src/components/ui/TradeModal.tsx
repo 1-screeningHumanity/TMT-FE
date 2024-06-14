@@ -42,7 +42,7 @@ export default function TradeModal({
     }
     if (now_price != price) {
       const response = await tradeReservation(trade, data)
-      const howToTrade = trade == 'buy' ? '매수' : '매도'
+      const howToTrade = trade == 'buy' ? '사기' : '팔기'
       if (response.isSuccess == true) {
         alert(
           `${stockNameResult} ${[price]}원에 ${amount}주 예약 ${howToTrade} 성공`,
@@ -52,7 +52,7 @@ export default function TradeModal({
       }
     } else {
       const response = await tradeStock(trade, data)
-      const howToTrade = trade == 'buy' ? '매수' : '매도'
+      const howToTrade = trade == 'buy' ? '사기' : '팔기'
       if (response.isSuccess == true) {
         alert(
           `${stockNameResult} ${[price]}원에 ${amount}주 ${howToTrade} 성공`,

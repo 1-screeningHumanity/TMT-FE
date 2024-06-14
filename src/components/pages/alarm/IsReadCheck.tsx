@@ -159,8 +159,7 @@ export default function IsReadCheck() {
             {checked && (
               <input
                 type="checkbox"
-                className="mr-3"
-                style={{ display: 'none' }}
+                className="mr-3 hidden"
                 checked={checkedItems.includes(item.notificationLogId)}
                 onChange={() => handleCheckboxChange(item.notificationLogId)}
               />
