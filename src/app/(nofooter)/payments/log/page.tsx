@@ -8,7 +8,7 @@ import React from 'react'
 async function paymentsLog() {
 
   const data = await getPaymentsLog();
-  const paymentsLogLists = data.data;
+  const paymentsLogLists = data?.data;
 
   return (
     <section>

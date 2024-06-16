@@ -9,7 +9,7 @@ import ButtonOfPayments from "@/components/ui/buttons/ButtonOfPayments";
 export default async function payments(){
 
   const cashData = await getCashInitalData();
-  const currentCash = cashData.data.cash;
+  const currentCash = cashData?.data.cash;
   console.log("currentCash : ", currentCash);
 
   return(

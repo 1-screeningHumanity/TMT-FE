@@ -1,5 +1,3 @@
-"use server"
-
 import { getAccessToken } from "./tokens";
 
 export async function getTradeList() {
@@ -26,9 +24,10 @@ export async function getTradeList() {
 }
 
 export async function getReservationTradeList() {
-
+  
   try {
-    const TOKEN = await getAccessToken();
+    const TOKEN = await getAccessToken()
+    console.log("TOKEN :", TOKEN);
     const res = await fetch(`${process.env.API_BASE_URL}/trade/reservation/trade-lists`, {
       cache: "no-store",
       method: "GET",
