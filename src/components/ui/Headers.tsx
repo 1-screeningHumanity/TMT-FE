@@ -7,7 +7,7 @@ import AlarmCount from '../pages/alarm/AlarmCount'
 
 export default function Headers({ title }: { title? : string }) {
   return (
-    <div className="mt-3 flex items-center justify-between border-b-[1px] pb-3">
+    <div className="mt-2.5 flex items-center justify-between border-b-[1px] pb-2.5 sticky top-0 bg-white z-50">
       <Image
         width="30"
         height="30"
@@ -16,9 +16,7 @@ export default function Headers({ title }: { title? : string }) {
         className="mt-1 ml-3"
         onClick={() => history.back()}
       />
-      <h1 className="relative left-6 text-lg leading-10 font-[Pretendard-Regular]">
-        {title}
-      </h1>
+      <h1 className='relative left-6 text-base leading-3 font-[Pretendard-Regular] font-semibold tracking-tight'>{title}</h1>
       <div className="flex items-center">
         <Image
           width="40"

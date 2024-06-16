@@ -13,11 +13,12 @@ export default function ContentsOfMyPage(){
     {id : 8, name : "구독자 조회", path : "/subscribe/following"},
     {id : 9, name : "나를 구독한 사람 조회", path : "/subscribe/follower"},
     {id : 10, name : "즐겨찾기 목록 조회", path : "/bookmark"},
+    {id : 11, name : "충전 내역 조회", path : "/payments/log"},
   ]
 
 
   return (
-    <div className="w-80 mx-auto mt-40">
+    <div className="w-80 mx-auto mt-20">
       {contents.map((content) => (
         <Link key={content.id} href={content.path} className="border-[1px] w-80 h-12 block text-center leading-10">{content.name}</Link>
       ))}

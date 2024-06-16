@@ -1,12 +1,10 @@
 'use client'
 
-import { getRandomNickname } from "@/actions/signup/getRandomNickname";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
-import { postSignup } from "@/actions/signup/postSignup";
 import patchPasswordChange from "@/actions/change/patchPasswordChange";
-import { getSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 
 export default function password(){
@@ -17,6 +15,7 @@ export default function password(){
   const [password1, setPassword1] = useState<string>("");
   const [password2, setPassword2] = useState<string>("");
 
+  const router = useRouter();
 
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
@@ -36,7 +35,7 @@ async function handleSubmit(event: React.FormEvent) {
     if(!res.isSuccess){
       alert("비밀번호 변경에 실패하였습니다.")
     }else{
-      location.href="/member/signup/complete"
+      router.push("/change/password/complete")
     }
   }
 

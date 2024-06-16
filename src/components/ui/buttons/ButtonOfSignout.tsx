@@ -1,7 +1,9 @@
 'use client'
 
+
 import { deleteTokenAPI } from '@/actions/alarm/fcm'
 import { signOut } from 'next-auth/react'
+import { postSignOut } from "@/actions/member";
 
 export default function ButtonOfSignout() {
   const signOutButton = async () => {
@@ -10,7 +12,8 @@ export default function ButtonOfSignout() {
     if (fcmToken !== null) {
       await deleteTokenAPI(fcmToken as string)
     }
-    signOut()
+    const res = await postSignOut();
+    await signOut()
   }
   return (
     <button

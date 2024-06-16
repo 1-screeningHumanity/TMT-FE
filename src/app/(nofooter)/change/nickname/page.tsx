@@ -6,12 +6,14 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { postSignup } from "@/actions/signup/postSignup";
 import postNicknameChange from "@/actions/change/postNicknameChange";
+import { useRouter } from "next/navigation";
 
 
 export default function changeNickname(){
 
   const [phoneNumberString, setPhoneNumberString] = useState<string>('')
 
+  const router = useRouter();
 
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
@@ -39,7 +41,7 @@ async function handleChangeNickname(event: React.FormEvent) {
       
     }else{
       alert("닉네임 변경이 완료되었습니다.")
-      location.href="/change/nickname/complete"
+      router.push("/change/nickname/complete")
     }
   }
 

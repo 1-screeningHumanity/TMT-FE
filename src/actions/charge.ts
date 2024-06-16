@@ -1,20 +1,18 @@
-'use server'
+import { getAccessToken } from "./tokens";
 
-import { getAccessToken } from "../tokens";
+export async function postCharge(cash : number) {
 
-export default async function patchPaypasswordChange(payingPassword : string | undefined) {
-
-  try {    
+  try {
     const TOKEN = await getAccessToken();
-    const res = await fetch(`${process.env.API_BASE_URL}/member/pay-password`, {
+    const res = await fetch(`${process.env.API_BASE_URL}/payments/charge/won`, {
       cache: "no-store",
-      method: "PATCH",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Authorization" : TOKEN
       },
       body : JSON.stringify({
-        payingPassword : payingPassword
+        cash : cash,
       })
       },
     )

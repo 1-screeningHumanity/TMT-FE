@@ -31,9 +31,9 @@ export default function charge(){
       </div> */}
 
       <h1 className="mt-14 text-center text-xl font-bold mb-10">차감될 캐시 : {totalCash.toLocaleString()} 캐시</h1>
-      <h1 className="mt-10 text-center text-xl font-bold mb-16">교환 금액 : {totalAmount.toLocaleString()} 원</h1>
+      <h1 className="mt-10 text-center text-xl font-bold mb-36">교환 금액 : {totalAmount.toLocaleString()} 원</h1>
       <div className="relative" onClick={() => location.href="/payments"}>
-        <div className="absolute right-6 flex flex-col items-center ">
+        <div className="absolute right-6 flex flex-col items-center">
           <div className="w-14 h-14 rounded-full bg-yellow-300 flex items-center justify-center ">
             <Image src="/assets/images/nextPageIcon.svg" alt="nextPage" width={30} height={30}/>
           </div>

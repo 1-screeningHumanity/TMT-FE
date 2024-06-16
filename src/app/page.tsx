@@ -31,6 +31,8 @@ export default function Home() {
         {session?.user?.data?.name || '로그인이 필요합니다.'}
       </div>
 
+
+
       <Footer />
     </div>
   )
