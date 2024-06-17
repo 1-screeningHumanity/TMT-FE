@@ -16,7 +16,7 @@ export default function StockNamePrice({
   stockPrice: staticStockType
 }) {
   let data
-  if (socketStockCode.hasOwnProperty(stockCode)) {
+  if (socketStockCode.includes(stockCode)) {
     data = getSocketData(stockCode)
   }
   let color = ''
@@ -30,8 +30,6 @@ export default function StockNamePrice({
     color = '#0000ff'
   }
   const date = new Date()
-  console.log(date)
-
   console.log(data)
   return (
     <>
@@ -56,7 +54,7 @@ export default function StockNamePrice({
           {data != undefined ? (
             <div className="flex flex-col items-end absolute mr-8 right-0">
               <span className="text-xl text-white">
-                {formatNumberWithCommas(stockPrice?.stck_prpr)}
+                {formatNumberWithCommas(data?.now_price as any)}
               </span>
               <div className="flex">
                 {data?.color === '#ff0000' ? (
@@ -76,7 +74,8 @@ export default function StockNamePrice({
                 )}
 
                 <span className="text-lg ml-1" style={{ color: data?.color }}>
-                  {String(data?.prdy_ctrt)}%
+                  {/* {String(data?.prdy_ctrt)}% */}
+                  {data?.prdy_ctrt != undefined ? String(data?.prdy_ctrt) : 0}%
                 </span>
               </div>
             </div>

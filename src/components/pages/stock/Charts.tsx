@@ -18,7 +18,7 @@ export default function Charts({
   const stockCode = params.stockCode
   const nowlink = params.nowLink
   let flag = false
-  if (socketStockCode.hasOwnProperty(params.stockCode)) {
+  if (socketStockCode.includes(params.stockCode)) {
     flag = true
   }
   console.log(flag)
