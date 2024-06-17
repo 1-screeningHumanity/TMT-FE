@@ -4,7 +4,7 @@ export async function postCharge(cash : number) {
 
   try {
     const TOKEN = await getAccessToken();
-    const res = await fetch(`${process.env.API_BASE_URL}/payments/charge/won`, {
+    const res = await fetch(`${process.env.API_BASE_URL}/payment/charge/won`, {
       cache: "no-store",
       method: "POST",
       headers: {

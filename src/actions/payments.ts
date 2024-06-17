@@ -1,10 +1,11 @@
+import { GetAPI } from "./fetchAPI";
 import { getAccessToken } from "./tokens";
 
 export async function postKakaopayReady(itemName : string | null, quantity : number | null, totalAmount : number | null) {
   
   try {
     const TOKEN = await getAccessToken();
-    const res = await fetch(`${process.env.API_BASE_URL}/payments/kakaopay`, {
+    const res = await fetch(`${process.env.API_BASE_URL}/payment/kakaopay`, {
       cache: "no-store",
       method: "POST",
       headers: {
@@ -30,7 +31,7 @@ export async function postKakaopayApprove(tid : string | null, partner_order_id 
   
   try {
     const TOKEN = await getAccessToken();
-    const res = await fetch(`${process.env.API_BASE_URL}/payments/kakaopay/approve`, {
+    const res = await fetch(`${process.env.API_BASE_URL}/payment/kakaopay/approve`, {
       cache: "no-store",
       method: "POST",
       headers: {
@@ -54,46 +55,9 @@ export async function postKakaopayApprove(tid : string | null, partner_order_id 
 
 export async function getPaymentsLog() {
 
-  try {
-    const TOKEN = await getAccessToken();
-    const res = await fetch(`${process.env.API_BASE_URL}/payment/log/info`, {
-      cache: "no-store",
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization" : TOKEN
-      },
-      },
-    )
-    if (res.ok) {
-      const data = await res.json()
-      console.log(data);
-      return data
-    }
-  } catch (error) {
-    return
-  }
+  const token = await getAccessToken()
+  const res = await GetAPI('/payment/log/info', undefined, token)
+  return res
 }
 
-export async function getCashInitalData() {
-  
-  try {
-    const TOKEN = await getAccessToken();
-    const res = await fetch(`${process.env.API_BASE_URL}/payment/cash`, {
-      cache: "no-store",
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization" : TOKEN
-      },
-      },
-    )
-    if (res.ok) {
-      const data = await res.json()
-      console.log(data);
-      return data
-    }
-  } catch (error) {
-    return
-  }
-} 
+
