@@ -31,7 +31,6 @@ export default function SigninForm() {
           toast({
             title: '※ 빈칸을 모두 채워주세요',
             variant : "destructive",
-            id: '1',
           })
       return
       }
@@ -45,15 +44,15 @@ export default function SigninForm() {
       toast({
         title: '※ 전화번호 또는 이름 또는 비밀번호를 다시 확인해주세요',
         variant : "destructive",
-        id: '1',
       })
       router.refresh()
     }else{
+      const session = await getSession(options as any)
+      fcmIssued(session?.user.data.accessToken)
       router.push('/')
     }
-    // const session = await getSession(options as any)
+    
     // if (session?.user.isSuccess == true) {
-    //   fcmIssued(session?.user.data.accessToken)
     //   router.push('/')
     // } else {
     //   alert('아이디, 비밀번호, 이름을 다시 확인해주세요')
