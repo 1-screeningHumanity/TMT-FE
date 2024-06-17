@@ -3,11 +3,13 @@ import { tradeReservation, tradeStock } from '@/actions/stock/stock'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { TradeType, staticStockType } from '@/types/Stock'
+import { SocketStockDataType, TradeType, staticStockType } from '@/types/Stock'
 import { wonInfoAPI } from '@/actions/wallet'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
 import { set } from 'firebase/database'
 import { TradeModalProps } from '@/types/Trade'
+import { socketStockCode } from '@/utils/socketStockCode'
+import { getSocketData } from '@/actions/stock/getSocketData'
 
 export default function TradeModal({
   modalOpen,
@@ -23,6 +25,10 @@ export default function TradeModal({
 
   const [myMoney, setMyMoney] = useState(0)
   console.log(stockCode)
+  let socketPrice: SocketStockDataType
+  if (socketStockCode.includes(stockCode)) {
+    socketPrice = getSocketData(stockCode).now_price
+  }
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(Number(e.target.value))
@@ -34,6 +40,7 @@ export default function TradeModal({
   }
 
   const handleBuyButtonClick = async (trade: string) => {
+    console.log(now_price)
     const data: TradeType = {
       stockCode: stockCode,
       price: price,
@@ -41,6 +48,7 @@ export default function TradeModal({
       stockName: stockNameResult,
     }
     if (now_price != price) {
+      // console.log(socketPrsice)
       const response = await tradeReservation(trade, data)
       const howToTrade = trade == 'buy' ? '사기' : '팔기'
       if (response.isSuccess == true) {

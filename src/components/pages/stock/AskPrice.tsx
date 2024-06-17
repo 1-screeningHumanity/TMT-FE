@@ -20,7 +20,7 @@ export default function AskPrice({
   console.log('socketData', socketData)
   console.log('staticAskPrice', staticAskPrice)
 
-  if (socketStockCode.includes(stockCode)) {
+  if (socketStockCode.includes(stockCode) && socketData !== undefined) {
     const socketData = getBidAskSocketData(stockCode)
     data = formattingData(socketData as any)
   }

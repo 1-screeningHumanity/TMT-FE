@@ -1,10 +1,11 @@
 import { socketStockCode } from '@/utils/socketStockCode'
-import { getStockData } from '@/actions/stock/stock'
 import { StockChartDataType } from '@/types/Stock'
 
 import { CallStockPrice } from '@/lib/stock/CallStockPrice'
 import Link from 'next/link'
 import DetailCheckbox from './DetailCheckbox'
+import RealTimeChart from './RealTimeChart'
+import { getSocketData } from '@/actions/stock/getSocketData'
 
 export default function Charts({
   params,
@@ -13,6 +14,7 @@ export default function Charts({
     stockCode: string
     stockData: StockChartDataType[]
     nowLink: string
+    staticStockPrice: any
   }
 }) {
   const stockCode = params.stockCode
@@ -22,10 +24,20 @@ export default function Charts({
     flag = true
   }
   console.log(flag)
-
+  // let realTimedata
+  // if (socketStockCode.includes(stockCode)) {
+  //   realTimedata = getSocketData(stockCode)
+  //   console.log(realTimedata)
+  // }
+  console.log('charts.ts in stockData', params.stockData)
   return (
     <>
-      <DetailCheckbox data={params.stockData} />
+      <DetailCheckbox
+        data={params.stockData}
+        stockCode={stockCode}
+        link={nowlink}
+        staticStockPrice={params.staticStockPrice}
+      />
       <div
         className="flex justify-between bottom-0 items-center mt-5 w-full h-8 rounded-2xl"
         style={{ backgroundColor: '#f2f2f2' }}
@@ -41,6 +53,10 @@ export default function Charts({
           >
             <span>실시간</span>
           </Link>
+          // <RealTimeChart
+          //   chartData={params.stockData}
+          //   realTimedata={realTimedata}
+          // />
         )}
         {CallStockPrice.map((item) => (
           <Link
