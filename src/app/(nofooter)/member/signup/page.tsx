@@ -1,11 +1,10 @@
 'use client'
 
-import { getRandomNickname } from '@/actions/signup/getRandomNickname'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { postSignup } from '@/actions/signup/postSignup'
 import { useToast } from '@/components/ui/use-toast'
+import { getRandomNickname, postSignup } from '@/actions/member'
 
 export default function signup() {
   const [showPassword, setShowPassword] = useState<boolean>(true)
@@ -52,7 +51,6 @@ export default function signup() {
       toast({
         title: '※ 빈칸을 모두 채워주세요',
         variant : "destructive",
-        id: '1',
       })
     } else {
       const res = await postSignup(name, phoneNumber, password, nickName)
@@ -63,7 +61,6 @@ export default function signup() {
           toast({
             title: '※ 중복된 전화번호입니다.',
             variant : "destructive",
-            id: '1',
           })
           inputRefs.current[1]?.focus()
         }
@@ -71,7 +68,6 @@ export default function signup() {
           toast({
             title: '※ 중복된 닉네임입니다.',
             variant : "destructive",
-            id: '1',
           })
           inputRefs.current[4]?.focus()
         }

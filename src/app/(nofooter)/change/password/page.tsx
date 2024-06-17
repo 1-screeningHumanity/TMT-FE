@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import Link from "next/link";
-import patchPasswordChange from "@/actions/change/patchPasswordChange";
 import { useRouter } from "next/navigation";
+import { patchPasswordChange } from "@/actions/change";
 
 
 export default function password(){
