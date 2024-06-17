@@ -1,5 +1,6 @@
-import { options } from "@/app/api/auth/[...nextauth]/options";
-import { getServerSession } from "next-auth";
+'use server'
+import { options } from '@/app/api/auth/[...nextauth]/options'
+import { getServerSession } from 'next-auth'
 
 const getAccessToken = async () => {
   const session = await getServerSession(options)
