@@ -6,8 +6,8 @@ interface kakaoPayReady{
 
 interface kakaoPayApprove{
   tid : string | null
-  partner_order_id : number | null
-  pgToken : number | null
+  partner_order_id : string | null
+  pgToken : string | null
 }
 
 export type { kakaoPayReady, kakaoPayApprove }

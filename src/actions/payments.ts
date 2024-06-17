@@ -4,17 +4,19 @@ import { getAccessToken } from "./tokens";
 
 
 
-async function postKakaopayReady(kakaopayReady : kakaoPayReady) {
-  
+async function postKakaopayReady( itemName : string | null,
+                                  quantity : number | null,
+                                  totalAmount : number | null ) {
   const TOKEN = await getAccessToken();
-  const res = await PostAPI(`/payment/kakaopay`, kakaopayReady, TOKEN)
+  const res = await PostAPI(`/payment/kakaopay`, {itemName, quantity, totalAmount}, TOKEN)
   return res
 }
 
-async function postKakaopayApprove(kakaopayApprove : kakaoPayApprove) {
-  
+async function postKakaopayApprove(tid : string | null,
+                                    partner_order_id : string | null,
+                                    pgToken : string | null ) {
   const TOKEN = await getAccessToken();
-  const res = await PostAPI(`/payment/kakaopay/approve`, kakaopayApprove, TOKEN)
+  const res = await PostAPI(`/payment/kakaopay/approve`, {tid, partner_order_id, pgToken}, TOKEN)
   return res
 }
 
