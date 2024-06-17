@@ -1,11 +1,11 @@
 'use client'
 import { getBidAskSocketData } from '@/actions/stock/getBidAskSocketData'
-import { getStaticStockAskPrice } from '@/actions/stock/stock'
 import { AskingPriceData } from '@/lib/stock/AskingPriceData'
 import { AskingPriceDataTypes, FormatAskinDataTypes } from '@/types/Stock'
 import formattingData from '@/utils/formatAskPrice'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
 import { socketStockCode } from '@/utils/socketStockCode'
+import timeCheck from '@/utils/timeCheck'
 import { useEffect, useState } from 'react'
 
 export default function AskPrice({
@@ -15,14 +15,13 @@ export default function AskPrice({
   stockCode: string
   staticAskPrice: FormatAskinDataTypes
 }) {
-  const socketData = getBidAskSocketData(stockCode)
+  let socketData
   // let data = formattingData(socketData as any)
   let data: any
-  console.log('socketData', socketData)
-  console.log('staticAskPrice', staticAskPrice)
 
-  if (socketStockCode.hasOwnProperty(stockCode)) {
-    const socketData = getBidAskSocketData(stockCode)
+  const check = timeCheck()
+  if (socketStockCode.includes(stockCode) && check == true) {
+    socketData = getBidAskSocketData(stockCode)
     data = formattingData(socketData as any)
   }
   return (

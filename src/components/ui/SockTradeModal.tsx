@@ -6,23 +6,25 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { SocketStockDataType, TradeType, staticStockType } from '@/types/Stock'
 import { wonInfoAPI } from '@/actions/wallet'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
-
+import { set } from 'firebase/database'
 import { TradeModalProps } from '@/types/Trade'
+import { getSocketData } from '@/actions/stock/getSocketData'
 
-export default function TradeModal({
+export default function SocketTradeModal({
   modalOpen,
   setModalOpen,
   stockCode,
   stockNameResult,
   staticStockPrice,
 }: TradeModalProps) {
-  const now_price = parseInt(staticStockPrice.stck_prpr)
+  const sockData = getSocketData(stockCode)
+  const now_price = sockData.now_price as number
+
   const [price, setPrice] = useState(now_price)
   const [amount, setAmount] = useState(1)
   const [totalPrice, setTotalPrice] = useState(now_price)
-
   const [myMoney, setMyMoney] = useState(0)
-  console.log(stockCode)
+
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(Number(e.target.value))
     setTotalPrice(Number(e.target.value) * amount)

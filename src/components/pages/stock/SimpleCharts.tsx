@@ -1,12 +1,18 @@
 'use client'
 import { getSocketData } from '@/actions/stock/getSocketData'
 import { StockYearData } from '@/lib/stock/StockYearData'
-import { StockChartDataType } from '@/types/Stock'
+import { StockChartDataType, staticStockType } from '@/types/Stock'
 import ReactECharts from 'echarts-for-react'
 
-export default function SimpleCharts({ data }: { data: any }) {
-  const today = getSocketData('005930')
-  const data0 = splitData(data, today)
+export default function SimpleCharts({
+  data,
+  staticStockPrice,
+}: {
+  data: any
+  staticStockPrice: any
+}) {
+  console.log(staticStockPrice?.staticStockPrice)
+  const data0 = splitData(data, staticStockPrice?.staticStockPrice)
   // console.log('data0', data0)
   function splitData(rawData: StockChartDataType[], socketData: any) {
     const categoryData = []
@@ -19,14 +25,6 @@ export default function SimpleCharts({ data }: { data: any }) {
       categoryData.push(date)
       values.push(parseFloat(rawData[i].stck_clpr))
     }
-    if (socketData.todayDate == categoryData[categoryData.length - 1]) {
-      categoryData.pop()
-      values.pop()
-      values.push([parseFloat(socketData.now_price)])
-    } else {
-      values.push([parseFloat(socketData.now_price)])
-    }
-
     return {
       categoryData: categoryData,
       values: values,
@@ -52,7 +50,7 @@ export default function SimpleCharts({ data }: { data: any }) {
     dataZoom: {
       type: 'inside',
 
-      start: 90,
+      start: 50,
       end: 100,
     },
     tooltip: {
