@@ -1,5 +1,5 @@
 interface SearchDataType {
-  stockCode: string
+  id: string
   name: string
 }
 export type { SearchDataType }

@@ -45,7 +45,7 @@ export default function SearchBar() {
       fetchData(text)
     }
   }, [text])
-
+  console.log(searchData)
   return (
     <>
       <div className="flex">
@@ -83,10 +83,10 @@ export default function SearchBar() {
       <div>
         {searchData != null &&
           searchData.map((data) => (
-            <Link href={`/stock/${data.stockCode}`}>
+            <Link href={`/stock/${data.id}`}>
               <div
                 className="w-full h-20 text-2xl font-bold pl-10 flex items-center border"
-                key={data.stockCode}
+                key={data.id}
               >
                 {data.name}
               </div>
