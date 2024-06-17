@@ -1,3 +1,4 @@
+'use server'
 import { sortAPI } from '@/actions/stock/sort'
 import { dateFormmating } from '@/utils/time'
 import { StockSortType } from '@/types/StcokSortType'
@@ -17,7 +18,7 @@ export default async function Page(props: any) {
 
   return (
     <main>
-      <Headers title='급등 / 급락주'/>
+      <Headers title="주식 순위" />
       <SortButton />
       <span className="ml-2 text-center">{date} 기준입니다.</span>
       <SortRank sortResult={sortResult} />
