@@ -1,6 +1,6 @@
 'use client'
-import downPrice from '/public/assets/images/downPrice.png'
-import upPrice from '/public/assets/images/upPrice.png'
+import downPrice from '/public/assets/images/downPrice.svg'
+import upPrice from '/public/assets/images/upPrice.svg'
 
 import { SocketStockDataType } from '@/types/Stock'
 import { useEffect, useState } from 'react'
@@ -26,7 +26,8 @@ export const getSocketData = (stockCode: string) => {
     }
     // 초기연결
     const eventSource = new EventSource(
-      'http://10.10.10.73:8080/api/stream/005930',
+      `${process.env.SOCKET_URL}/stream/${stockCode}`,
+      // `http://43.200.120.99:9000/stream/${stockCode}`,
     )
     // 연결되었을때
     eventSource.onopen = () => {

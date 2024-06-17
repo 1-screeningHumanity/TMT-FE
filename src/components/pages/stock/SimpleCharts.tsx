@@ -4,13 +4,13 @@ import { StockYearData } from '@/lib/stock/StockYearData'
 import { StockChartDataType } from '@/types/Stock'
 import ReactECharts from 'echarts-for-react'
 
-export default function SimpleCharts() {
+export default function SimpleCharts({ data }: { data: any }) {
   const today = getSocketData('005930')
-  const data = splitData(StockYearData, today)
+  const data0 = splitData(data, today)
+  // console.log('data0', data0)
   function splitData(rawData: StockChartDataType[], socketData: any) {
     const categoryData = []
     const values = []
-    const vol = []
     for (var i = 0; i < rawData.length; i++) {
       var date = rawData[i].stck_bsop_date.replace(
         /(\d{4})(\d{2})(\d{2})/,
@@ -36,11 +36,18 @@ export default function SimpleCharts() {
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: data.categoryData,
+      data: data0.categoryData,
     },
     symbol: 'none',
     yAxis: {
       type: 'value',
+      splitNumber: 2,
+      axisLine: { lineStyle: { color: '#777' } },
+    },
+    grid: {
+      left: '12%',
+      right: '5%',
+      height: '55%',
     },
     dataZoom: {
       type: 'inside',
@@ -60,7 +67,7 @@ export default function SimpleCharts() {
 
     series: [
       {
-        data: data.values,
+        data: data0.values,
         type: 'line',
         showSymbol: false,
         // areaStyle: {
@@ -71,7 +78,7 @@ export default function SimpleCharts() {
   }
   return (
     <div>
-      <div className="mt-10  w-full text-white">
+      <div className="  w-full text-white">
         <ReactECharts option={option} />
       </div>
     </div>

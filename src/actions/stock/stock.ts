@@ -1,8 +1,18 @@
-import { GetAPI, PostAPI } from '../FetchAPI'
+import { GetAPI, PostAPI } from '../fetchAPI'
 import { TradeType } from '@/types/Stock'
+import { getAccessToken } from '../tokens'
 async function getStockName(stockCode: string) {
   const response = await GetAPI(`/stockitem/${stockCode}/name`)
 
+  return response.data
+}
+
+async function getStaticStockPrice(stockCode: string) {
+  const response = await GetAPI(`/stockitem/chart/${stockCode}/price`)
+  return response.data
+}
+async function getStaticStockAskPrice(stockCode: string) {
+  const response = await GetAPI(`/stockitem/${stockCode}/asking-price`)
   return response.data
 }
 async function getChartData({
@@ -22,8 +32,32 @@ async function getInvestors(stockCode: string) {
   return response.data
 }
 async function tradeStock(trade: string, tradeMoney: TradeType) {
-  const response = await PostAPI(`/trade/${trade}`, tradeMoney, 'token')
+  const token = await getAccessToken()
+  const response = await PostAPI(`/trade/${trade}`, tradeMoney, token)
+  return response
+}
+async function tradeReservation(trade: string, tradeMoney: TradeType) {
+  const token = await getAccessToken()
+  const response = await PostAPI(
+    `/trade/reservation/${trade}`,
+    tradeMoney,
+    token,
+  )
+  return response
+}
+
+async function getStockData(stockCode: string, when: string) {
+  const response = await GetAPI(`/stockitem/chart/${stockCode}/${when}`)
   return response.data
 }
 
-export { getStockName, getChartData, getInvestors, tradeStock }
+export {
+  getStockName,
+  getChartData,
+  getInvestors,
+  tradeStock,
+  tradeReservation,
+  getStockData,
+  getStaticStockPrice,
+  getStaticStockAskPrice,
+}

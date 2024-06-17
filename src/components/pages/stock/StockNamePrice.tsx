@@ -1,45 +1,43 @@
 'use client'
 import Image from 'next/image'
 import { getSocketData } from '@/actions/stock/getSocketData'
-import { useState } from 'react'
+import { use, useEffect, useState } from 'react'
+import { socketStockCode } from '@/utils/socketStockCode'
+import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
+import { SocketStockDataType, staticStockType } from '@/types/Stock'
+import timeCheck from '@/utils/timeCheck'
 
 export default function StockNamePrice({
   stockName,
   stockCode,
+  stockPrice,
 }: {
   stockName: string
   stockCode: string
+  stockPrice: staticStockType
 }) {
-  const data = getSocketData('005930')
-  const [socketFlag, setSocketFlag] = useState(false)
-  const socketStockCode = [
-    '005930',
-    '000660',
-    '373220',
-    '207940',
-    '005380',
-    '005935',
-    '000270',
-    '068270',
-    '005490',
-    '105560',
-    '035420',
-    '006400',
-    '051910',
-    '028260',
-    '055550',
-    '012330',
-    '003670',
-    '035720',
-    '247540',
-    '086790',
-  ]
-  if (stockCode in socketStockCode) {
-    setSocketFlag(true)
+  const check = timeCheck()
+  let data
+  if (socketStockCode.includes(stockCode) && check === true) {
+    data = getSocketData(stockCode)
   }
+  let color = ''
+
+  if (stockPrice?.prdy_vrss_sign == '2' || stockPrice?.prdy_vrss_sign == '1') {
+    color = '#ff0000'
+  } else if (
+    stockPrice?.prdy_vrss_sign == '4' ||
+    stockPrice?.prdy_vrss_sign == '5'
+  ) {
+    color = '#0000ff'
+  }
+
   return (
     <>
-      <div className="backGroundLinear">
+      <div
+        className="mx-3 mt-3 rounded-lg"
+        style={{ backgroundColor: '#ABABAB' }}
+      >
         <div className="w-full h-24 rounded-xl flex items-center relative">
           <div className="p-2 ">
             <Image
@@ -54,20 +52,62 @@ export default function StockNamePrice({
           <span className="text-3xl font-bold text-white ml-3 ">
             {stockName}
           </span>
-          <div className="flex flex-col items-end absolute mr-8 right-0">
-            <span className="text-xl text-white">{String(data.now_price)}</span>
-            <div className="flex">
-              <Image
-                src={data.symbol || ''}
-                alt="부호"
-                width={20}
-                height={10}
-              />
-              <span className="text-lg ml-1" style={{ color: data.color }}>
-                {String(data.prdy_ctrt)}%
+          {data != undefined ? (
+            <div className="flex flex-col items-end absolute mr-8 right-0">
+              <span className="text-xl text-white">
+                {formatNumberWithCommas(data?.now_price as any)}
               </span>
+              <div className="flex">
+                {data?.color === '#ff0000' ? (
+                  <Image
+                    src="/assets/images/upPrice.svg"
+                    alt="부호"
+                    width={20}
+                    height={10}
+                  />
+                ) : (
+                  <Image
+                    src="/assets/images/downPrice.svg"
+                    alt="부호"
+                    width={20}
+                    height={10}
+                  />
+                )}
+
+                <span className="text-lg ml-1" style={{ color: data?.color }}>
+                  {/* {String(data?.prdy_ctrt)}% */}
+                  {data?.prdy_ctrt != undefined ? String(data?.prdy_ctrt) : 0}%
+                </span>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="flex flex-col items-end absolute mr-8 right-0">
+              <span className="text-xl text-white">
+                {formatNumberWithCommas(stockPrice?.stck_prpr)}
+              </span>
+              <div className="flex">
+                {color === '#ff0000' ? (
+                  <Image
+                    src="/assets/images/upPrice.svg"
+                    alt="부호"
+                    width={20}
+                    height={10}
+                  />
+                ) : (
+                  <Image
+                    src="/assets/images/downPrice.svg"
+                    alt="부호"
+                    width={20}
+                    height={10}
+                  />
+                )}
+
+                <span className="text-lg ml-1" style={{ color: color }}>
+                  {String(stockPrice?.prdy_ctrt)}%
+                </span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
