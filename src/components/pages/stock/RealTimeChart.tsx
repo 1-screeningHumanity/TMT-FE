@@ -2,25 +2,19 @@
 import { StockYearData } from '@/lib/stock/StockYearData'
 import { StockChartDataType } from '@/types/Stock'
 import ReactECharts from 'echarts-for-react'
+import { getSocketData } from '@/actions/stock/getSocketData'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
-export default function DetailCharts({
-  chartData,
-  staticStockPrice,
-}: {
-  chartData: any
-  staticStockPrice: any
-}) {
-  console.log('data', chartData)
+export default function DetailCharts({ data }: { data: any }) {
+  console.log('data', data)
+
   const upColor = '#ff0000'
   const downColor = '#0000ff'
-  console.log('staticStockPrice', staticStockPrice.staticStockPrice)
-  chartData.reverse()
-  console.log(chartData)
-  const data0 = splitData(
-    chartData.reverse(),
-    staticStockPrice.staticStockPrice,
-  )
-  const volumes = splitVol(chartData)
+  const getTodayData = getSocketData('005930')
+  console.log(getTodayData)
+  const data0 = splitData(data, getTodayData)
+  const volumes = splitVol(data)
 
   const onClick = (params: any) => {
     console.log('params', params.data)
@@ -28,7 +22,7 @@ export default function DetailCharts({
   const onEvents = {
     click: onClick,
   }
-  function splitData(rawData: StockChartDataType[], staticStockPrice: any) {
+  function splitData(rawData: StockChartDataType[], socketData: any) {
     const categoryData = []
     const values = []
 
@@ -45,6 +39,25 @@ export default function DetailCharts({
         parseFloat(rawData[i].stck_hgpr),
       ])
     }
+    if (socketData.todayDate == categoryData[categoryData.length - 1]) {
+      categoryData.pop()
+      values.pop()
+      values.push([
+        parseFloat(socketData.stck_oprc),
+        parseFloat(socketData.now_price),
+        parseFloat(socketData.stck_lwpr),
+        parseFloat(socketData.stck_hgpr),
+      ])
+    } else {
+      categoryData.push(socketData.todayDate)
+      values.push([
+        parseFloat(socketData.stck_oprc),
+        parseFloat(socketData.now_price),
+        parseFloat(socketData.stck_lwpr),
+        parseFloat(socketData.stck_hgpr),
+      ])
+    }
+
     return {
       categoryData: categoryData,
       values: values,

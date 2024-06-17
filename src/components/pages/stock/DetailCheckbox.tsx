@@ -1,19 +1,26 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import DetailCharts from './DetailCharts'
 import SimpleCharts from './SimpleCharts'
+import RealTimeChart from './RealTimeChart'
 
-export default function DetalCheckbox({ data }: { data: any }) {
+export default function DetalCheckbox({
+  data,
+  stockCode,
+  link,
+  staticStockPrice,
+}: {
+  data: any
+  stockCode: string
+  link: string
+  staticStockPrice: any
+}) {
   const [detail, setDetail] = useState(false)
-  const handleChangeDetail = () => {
-    if (detail === false) {
-      setDetail(true)
-    }
 
-    if (detail === true) {
-      setDetail(false)
-    }
+  const handleChangeDetail = () => {
+    setDetail((prev) => !prev)
   }
+
   return (
     <>
       <label className="flex items-center my-3 mx-10">
@@ -31,7 +38,13 @@ export default function DetalCheckbox({ data }: { data: any }) {
         </div>
       </label>
 
-      {detail ? <DetailCharts data={data} /> : <SimpleCharts data={data} />}
+      {link === 'real-time' ? (
+        <RealTimeChart data={data} />
+      ) : detail ? (
+        <DetailCharts chartData={data} staticStockPrice={staticStockPrice} />
+      ) : (
+        <SimpleCharts data={data} />
+      )}
     </>
   )
 }
