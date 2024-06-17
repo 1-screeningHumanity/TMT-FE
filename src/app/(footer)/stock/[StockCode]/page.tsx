@@ -7,6 +7,7 @@ import Charts from '@/components/pages/stock/Charts'
 import CompanyInfo from '@/components/pages/stock/CompanyInfo'
 import Trade from '@/components/pages/stock/Trade'
 import { StockChartDataType } from '@/types/Stock'
+import timeCheck from '@/utils/timeCheck'
 
 export default async function Page(params: any) {
   console.log(params)
@@ -18,9 +19,16 @@ export default async function Page(params: any) {
     nowLink = 'day'
   }
   const staticStockPrice = await getStaticStockPrice(stockCode)
-  const stockData: StockChartDataType[] = await getStockData(stockCode, nowLink)
+  let stockData: StockChartDataType[] = []
+  if (nowLink !== 'real-time') {
+    stockData = await getStockData(stockCode, nowLink)
+  } else {
+    stockData = await getStockData(stockCode, 'day')
+  }
+  const time = timeCheck()
+  console.log(time)
 
-  console.log(params.StockCode)
+  // console.log
   return (
     <main>
       <Charts
@@ -28,6 +36,7 @@ export default async function Page(params: any) {
           stockCode: stockCode,
           stockData: stockData,
           nowLink: nowLink,
+          staticStockPrice: { staticStockPrice },
         }}
       />
       {/* <CompanyInfo /> */}
