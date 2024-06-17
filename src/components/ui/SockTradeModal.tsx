@@ -11,20 +11,25 @@ import { TradeModalProps } from '@/types/Trade'
 import { socketStockCode } from '@/utils/socketStockCode'
 import { getSocketData } from '@/actions/stock/getSocketData'
 
-export default function TradeModal({
+export default function SocketTradeModal({
   modalOpen,
   setModalOpen,
   stockCode,
   stockNameResult,
   staticStockPrice,
 }: TradeModalProps) {
-  const now_price = parseInt(staticStockPrice.stck_prpr)
+  console.log('sockEt@@@@@@@')
+  const sockData = getSocketData(stockCode)
+  const now_price = sockData.now_price as number
+  console.log('sockData', now_price)
   const [price, setPrice] = useState(now_price)
   const [amount, setAmount] = useState(1)
   const [totalPrice, setTotalPrice] = useState(now_price)
 
   const [myMoney, setMyMoney] = useState(0)
   console.log(stockCode)
+
+  console.log('socketPrice', now_price)
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(Number(e.target.value))
     setTotalPrice(Number(e.target.value) * amount)
@@ -112,7 +117,7 @@ export default function TradeModal({
               현재 보유 금액 : {formatNumberWithCommas(myMoney)}
             </span>
             <span className="text-center mt-10 text-xl font-bold">
-              예상 금액 : {totalPrice}
+              예상 금액 : {now_price}
             </span>
             <div className="items-center justify-center mt-5 h-screen">
               <div className="text-center">

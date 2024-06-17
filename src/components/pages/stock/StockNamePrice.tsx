@@ -29,8 +29,7 @@ export default function StockNamePrice({
   ) {
     color = '#0000ff'
   }
-  const date = new Date()
-  console.log(data)
+
   return (
     <>
       <div
