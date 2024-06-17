@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { postSignup } from '@/actions/signup/postSignup'
+import { useToast } from '@/components/ui/use-toast'
 
 export default function signup() {
   const [showPassword, setShowPassword] = useState<boolean>(true)
@@ -17,6 +18,8 @@ export default function signup() {
   const [randomNickname, setRandomNickname] = useState<string>('')
 
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
+
+  const { toast } = useToast()
 
   useEffect(() => {
     if (inputRefs.current[4]) {
@@ -46,18 +49,30 @@ export default function signup() {
     let nickName = inputRefs.current[4]?.value
 
     if (!name || !phoneNumber || !password || !nickName) {
-      alert('모든 값을 채워주세요')
+      toast({
+        title: '※ 빈칸을 모두 채워주세요',
+        variant : "destructive",
+        id: '1',
+      })
     } else {
       const res = await postSignup(name, phoneNumber, password, nickName)
       console.log('res :', res)
 
       if (!res.isSuccess) {
         if (res.code === 1005) {
-          alert('중복된 전화번호입니다.')
+          toast({
+            title: '※ 중복된 전화번호입니다.',
+            variant : "destructive",
+            id: '1',
+          })
           inputRefs.current[1]?.focus()
         }
         if (res.code === 1000) {
-          alert('중복된 닉네임입니다.')
+          toast({
+            title: '※ 중복된 닉네임입니다.',
+            variant : "destructive",
+            id: '1',
+          })
           inputRefs.current[4]?.focus()
         }
       } else {
