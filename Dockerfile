@@ -1,5 +1,10 @@
 FROM node:20.11.1-alpine
 
+# Install tzdata package for timezone configuration
+RUN apk add --no-cache tzdata
+# Set the timezone to Asia/Seoul
+ENV TZ=Asia/Seoul
+
 RUN mkdir -p /app
 WORKDIR /app
 ADD . /app
