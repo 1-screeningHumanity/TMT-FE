@@ -15,17 +15,13 @@ export default function AskPrice({
   stockCode: string
   staticAskPrice: FormatAskinDataTypes
 }) {
-  const socketData = getBidAskSocketData(stockCode)
+  let socketData
   // let data = formattingData(socketData as any)
   let data: any
 
   const check = timeCheck()
-  if (
-    socketStockCode.includes(stockCode) &&
-    socketData !== undefined &&
-    check === true
-  ) {
-    const socketData = getBidAskSocketData(stockCode)
+  if (socketStockCode.includes(stockCode) && check == true) {
+    socketData = getBidAskSocketData(stockCode)
     data = formattingData(socketData as any)
   }
   return (

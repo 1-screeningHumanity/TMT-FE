@@ -25,6 +25,8 @@ export default async function Page(params: any) {
   } else {
     stockData = await getStockData(stockCode, 'day')
   }
+  const time = timeCheck()
+  console.log(time)
 
   // console.log
   return (

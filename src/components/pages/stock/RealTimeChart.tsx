@@ -6,7 +6,7 @@ import { getSocketData } from '@/actions/stock/getSocketData'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-export default function DetailCharts({ data }: { data: any }) {
+export default function RealTimeChart({ data }: { data: any }) {
   console.log('data', data)
 
   const upColor = '#ff0000'
