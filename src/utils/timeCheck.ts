@@ -47,11 +47,11 @@ export default function timeCheck() {
   // 현재 시간이 유효한 범위에 있으면 기본 API 호출
   if (!isInValidTimeRange()) {
     // 정규 장 시간
-    console.log(`현재 시간은 ${currentTime}입니다. 기본 API를 호출합니다.`)
+    console.log('정규장 시간입니다.')
     return true
     // 여기에 기본 API 호출하는 코드를 추가
   } else {
-    console.log(`현재 시간은 ${currentTime}입니다. 대체 API를 호출합니다.`)
+    console.log('정규장 시간이 아닙니다.')
     return false
     // 여기에 대체 API 호출하는 코드를 추가
   }

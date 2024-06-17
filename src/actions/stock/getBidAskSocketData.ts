@@ -18,6 +18,8 @@ export const getBidAskSocketData = (stockCode: string) => {
       // `http://10.10.10.85:8080/api/stream/${stockCode}/asking-price`,
       `${process.env.SOCKET_URL}/stream/${stockCode}/asking-price`,
     )
+    console.log('eventSource', eventSource)
+    console.log(`${process.env.SOCKET_URL}`)
     // 연결되었을때
     eventSource.onopen = () => {
       console.log('connection opened')

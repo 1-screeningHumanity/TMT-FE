@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import DetailCharts from './DetailCharts'
 import SimpleCharts from './SimpleCharts'
 import RealTimeChart from './RealTimeChart'
+import timeCheck from '@/utils/timeCheck'
 
 export default function DetalCheckbox({
   data,
@@ -20,6 +21,7 @@ export default function DetalCheckbox({
   const handleChangeDetail = () => {
     setDetail((prev) => !prev)
   }
+  const check = timeCheck()
 
   return (
     <>
@@ -38,12 +40,12 @@ export default function DetalCheckbox({
         </div>
       </label>
 
-      {link === 'real-time' ? (
+      {link === 'real-time' && check == true ? (
         <RealTimeChart data={data} />
       ) : detail ? (
         <DetailCharts chartData={data} staticStockPrice={staticStockPrice} />
       ) : (
-        <SimpleCharts data={data} />
+        <SimpleCharts data={data} staticStockPrice={staticStockPrice} />
       )}
     </>
   )
