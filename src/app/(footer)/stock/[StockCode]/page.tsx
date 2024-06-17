@@ -7,6 +7,7 @@ import Charts from '@/components/pages/stock/Charts'
 import CompanyInfo from '@/components/pages/stock/CompanyInfo'
 import Trade from '@/components/pages/stock/Trade'
 import { StockChartDataType } from '@/types/Stock'
+import timeCheck from '@/utils/timeCheck'
 
 export default async function Page(params: any) {
   console.log(params)
@@ -25,6 +26,7 @@ export default async function Page(params: any) {
     stockData = await getStockData(stockCode, 'day')
   }
 
+  // console.log
   return (
     <main>
       <Charts

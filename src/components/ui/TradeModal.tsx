@@ -6,10 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { SocketStockDataType, TradeType, staticStockType } from '@/types/Stock'
 import { wonInfoAPI } from '@/actions/wallet'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
-import { set } from 'firebase/database'
+
 import { TradeModalProps } from '@/types/Trade'
-import { socketStockCode } from '@/utils/socketStockCode'
-import { getSocketData } from '@/actions/stock/getSocketData'
 
 export default function TradeModal({
   modalOpen,

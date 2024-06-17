@@ -4,6 +4,7 @@ import SocketTradeModal from '@/components/ui/SockTradeModal'
 import TradeModal from '@/components/ui/TradeModal'
 import { staticStockType } from '@/types/Stock'
 import { socketStockCode } from '@/utils/socketStockCode'
+import timeCheck from '@/utils/timeCheck'
 import React, { use, useEffect } from 'react'
 import { useState } from 'react'
 
@@ -18,8 +19,9 @@ export default function Trade({
 }) {
   const [modalOpen, setModalOpen] = useState(false)
   const [socketFlag, setSocketFlag] = useState(false)
+  const check = timeCheck()
   useEffect(() => {
-    if (socketStockCode.includes(stockCode)) {
+    if (socketStockCode.includes(stockCode) && check === true) {
       setSocketFlag(true)
     }
   }, [stockCode])

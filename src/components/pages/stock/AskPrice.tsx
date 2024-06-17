@@ -5,6 +5,7 @@ import { AskingPriceDataTypes, FormatAskinDataTypes } from '@/types/Stock'
 import formattingData from '@/utils/formatAskPrice'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
 import { socketStockCode } from '@/utils/socketStockCode'
+import timeCheck from '@/utils/timeCheck'
 import { useEffect, useState } from 'react'
 
 export default function AskPrice({
@@ -17,10 +18,13 @@ export default function AskPrice({
   const socketData = getBidAskSocketData(stockCode)
   // let data = formattingData(socketData as any)
   let data: any
-  console.log('socketData', socketData)
-  console.log('staticAskPrice', staticAskPrice)
 
-  if (socketStockCode.includes(stockCode) && socketData !== undefined) {
+  const check = timeCheck()
+  if (
+    socketStockCode.includes(stockCode) &&
+    socketData !== undefined &&
+    check === true
+  ) {
     const socketData = getBidAskSocketData(stockCode)
     data = formattingData(socketData as any)
   }

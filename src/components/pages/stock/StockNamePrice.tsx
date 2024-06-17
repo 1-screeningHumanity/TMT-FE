@@ -5,6 +5,7 @@ import { use, useEffect, useState } from 'react'
 import { socketStockCode } from '@/utils/socketStockCode'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
 import { SocketStockDataType, staticStockType } from '@/types/Stock'
+import timeCheck from '@/utils/timeCheck'
 
 export default function StockNamePrice({
   stockName,
@@ -15,8 +16,9 @@ export default function StockNamePrice({
   stockCode: string
   stockPrice: staticStockType
 }) {
+  const check = timeCheck()
   let data
-  if (socketStockCode.includes(stockCode)) {
+  if (socketStockCode.includes(stockCode) && check === true) {
     data = getSocketData(stockCode)
   }
   let color = ''

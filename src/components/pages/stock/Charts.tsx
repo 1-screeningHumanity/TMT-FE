@@ -6,6 +6,7 @@ import Link from 'next/link'
 import DetailCheckbox from './DetailCheckbox'
 import RealTimeChart from './RealTimeChart'
 import { getSocketData } from '@/actions/stock/getSocketData'
+import timeCheck from '@/utils/timeCheck'
 
 export default function Charts({
   params,
@@ -20,7 +21,8 @@ export default function Charts({
   const stockCode = params.stockCode
   const nowlink = params.nowLink
   let flag = false
-  if (socketStockCode.includes(params.stockCode)) {
+  const check = timeCheck()
+  if (socketStockCode.includes(params.stockCode) && check === true) {
     flag = true
   }
   console.log(flag)

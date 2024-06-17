@@ -2,9 +2,7 @@
 import { useEffect, useState } from 'react'
 import DetailCharts from './DetailCharts'
 import SimpleCharts from './SimpleCharts'
-import { socketStockCode } from '@/utils/socketStockCode'
 import RealTimeChart from './RealTimeChart'
-import { getSocketData } from '@/actions/stock/getSocketData'
 
 export default function DetalCheckbox({
   data,
@@ -18,15 +16,10 @@ export default function DetalCheckbox({
   staticStockPrice: any
 }) {
   const [detail, setDetail] = useState(false)
-  // const [realTimedata, setRealTimedata] = useState<any>()
 
   const handleChangeDetail = () => {
     setDetail((prev) => !prev)
   }
-  // let realTimedata
-  // if (link === 'real-time' && socketStockCode.includes(stockCode)) {
-  //   realTimedata = getSocketData(stockCode)
-  // }
 
   return (
     <>
