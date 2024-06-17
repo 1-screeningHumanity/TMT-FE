@@ -45,7 +45,7 @@ export default function DetalCheckbox({
       ) : detail ? (
         <DetailCharts chartData={data} staticStockPrice={staticStockPrice} />
       ) : (
-        <SimpleCharts data={data} />
+        <SimpleCharts data={data} staticStockPrice={staticStockPrice} />
       )}
     </>
   )

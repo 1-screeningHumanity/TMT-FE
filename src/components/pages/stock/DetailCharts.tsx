@@ -13,13 +13,8 @@ export default function DetailCharts({
   console.log('data', chartData)
   const upColor = '#ff0000'
   const downColor = '#0000ff'
-  console.log('staticStockPrice', staticStockPrice.staticStockPrice)
-  chartData.reverse()
   console.log(chartData)
-  const data0 = splitData(
-    chartData.reverse(),
-    staticStockPrice.staticStockPrice,
-  )
+  const data0 = splitData(chartData, staticStockPrice.staticStockPrice)
   const volumes = splitVol(chartData)
 
   const onClick = (params: any) => {
