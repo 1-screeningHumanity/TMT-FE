@@ -4,14 +4,26 @@ import { StockChartDataType } from '@/types/Stock'
 import ReactECharts from 'echarts-for-react'
 import { getSocketData } from '@/actions/stock/getSocketData'
 import { useState } from 'react'
+import { socketStockCode } from '@/utils/socketStockCode'
 
-export default function DetailCharts({ data }: { data: any }) {
-  console.log('data', data)
+export default function DetailCharts({
+  chartData,
+  stockCode,
+}: {
+  chartData: any
+  stockCode: string
+}) {
+  console.log('data', chartData)
   const upColor = '#ff0000'
   const downColor = '#0000ff'
-  const getTodayData = getSocketData('005930')
-  const data0 = splitData(data, getTodayData)
-  const volumes = splitVol(data)
+
+  let getTodayData
+  if (socketStockCode.includes(stockCode)) {
+    getTodayData = getSocketData(stockCode)
+  }
+  // const getTodayData = getSocketData('005930')
+  const data0 = splitData(chartData, getTodayData)
+  const volumes = splitVol(chartData)
 
   const onClick = (params: any) => {
     console.log('params', params.data)

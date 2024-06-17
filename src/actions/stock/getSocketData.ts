@@ -27,6 +27,8 @@ export const getSocketData = (stockCode: string) => {
     // 초기연결
     const eventSource = new EventSource(
       `http://10.10.10.85:8080/api/stream/${stockCode}`,
+
+      // `https://screeninghumanity.shop:9000/stream/${stockCode}`,
       // `http://43.200.120.99:9000/stream/${stockCode}`,
     )
     // 연결되었을때

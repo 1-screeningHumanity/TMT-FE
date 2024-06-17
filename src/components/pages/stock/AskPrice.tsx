@@ -1,6 +1,5 @@
 'use client'
 import { getBidAskSocketData } from '@/actions/stock/getBidAskSocketData'
-import { getStaticStockAskPrice } from '@/actions/stock/stock'
 import { AskingPriceData } from '@/lib/stock/AskingPriceData'
 import { AskingPriceDataTypes, FormatAskinDataTypes } from '@/types/Stock'
 import formattingData from '@/utils/formatAskPrice'
@@ -21,7 +20,7 @@ export default function AskPrice({
   console.log('socketData', socketData)
   console.log('staticAskPrice', staticAskPrice)
 
-  if (socketStockCode.hasOwnProperty(stockCode)) {
+  if (socketStockCode.includes(stockCode)) {
     const socketData = getBidAskSocketData(stockCode)
     data = formattingData(socketData as any)
   }
