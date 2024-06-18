@@ -22,27 +22,32 @@ export default async function Home() {
   const date = dateFormmating(kospiData.dateTime)
 
   return (
-    <div>
+    <main>
       <Headers title="홈" />
-      <SearchBarUI />
-      <span className="font-bold text-xl m-3 ">국내 시장 지표</span>
-      <div className="ml-3 my-1">{date} 기준</div>
-      <div className="flex">
-        <Kospi data={kospiData} />
-        <Kosdaq data={kosdaqData} />
+      <div className="mx-2">
+        <SearchBarUI />
+        <span className="font-bold text-xl m-5 ">국내 시장 지표</span>
+        <div className="ml-5 my-1 text-sm">{date} 기준</div>
+        <div className="flex">
+          <Kospi data={kospiData} />
+          <Kosdaq data={kosdaqData} />
+        </div>
+        <span className="font-bold text-xl m-5">오늘의 급등주 Top3</span>
+        <Link
+          href={{ pathname: '/stockRank', query: { sort: 'soaring-stocks' } }}
+        >
+          <Soaring data={top3soaring} color={'red'} />
+        </Link>
+        <Link
+          href={{
+            pathname: '/stockRank',
+            query: { sort: 'plummeting-stocks' },
+          }}
+        >
+          <Soaring data={top3plummeting} color={'blue'} />
+        </Link>
+        <Footer />
       </div>
-      <span className="font-bold text-xl m-3">오늘의 급등주 Top3</span>
-      <Link
-        href={{ pathname: '/stockRank', query: { sort: 'soaring-stocks' } }}
-      >
-        <Soaring data={top3soaring} color={'red'} />
-      </Link>
-      <Link
-        href={{ pathname: '/stockRank', query: { sort: 'plummeting-stocks' } }}
-      >
-        <Soaring data={top3plummeting} color={'blue'} />
-      </Link>
-      <Footer />
-    </div>
+    </main>
   )
 }

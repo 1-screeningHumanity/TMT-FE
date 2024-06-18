@@ -11,7 +11,7 @@ export default function Soaring({
   const SoaringData = data
   return (
     <section
-      className="m-3 bg-red-100 rounded-xl"
+      className="m-5 bg-red-100 rounded-xl"
       style={{
         background:
           color === 'red' ? ' rgba(255, 0, 0, 0.1)' : ' rgba(0, 0, 255, 0.1)',
