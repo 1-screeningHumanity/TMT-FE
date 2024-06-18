@@ -1,5 +1,5 @@
 'use server'
-import { sortAPI } from '@/actions/stock/sort'
+import { sortAPI } from '@/actions/stock/mainpage'
 import { dateFormmating } from '@/utils/time'
 import { StockSortType } from '@/types/StcokSortType'
 import SortButton from '@/components/pages/stock/SortButton'
