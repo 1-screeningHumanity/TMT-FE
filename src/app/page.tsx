@@ -10,7 +10,6 @@ import Kosdaq from '@/components/pages/mainpages/Kosdaq'
 export default async function Home() {
   const kospiData: kospiType = await KospiAPI()
   const kosdaqData: kospiType = await KosdaqAPI()
-  console.log(kospiData)
 
   return (
     <div>
