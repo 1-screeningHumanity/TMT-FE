@@ -1,12 +1,10 @@
 'use client'
 
-import { getRandomNickname } from "@/actions/signup/getRandomNickname";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
-import { postSignup } from "@/actions/signup/postSignup";
-import postNicknameChange from "@/actions/change/postNicknameChange";
 import { useRouter } from "next/navigation";
+import { postNicknameChange } from "@/actions/change";
 
 
 export default function changeNickname(){

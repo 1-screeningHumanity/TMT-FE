@@ -1,13 +1,15 @@
 'use client'
 
 import React, { useState } from 'react'
-import Card from './Card'
+import Card from './CashCardItem'
 import { useRouter } from 'next/navigation'
 import { CashCardData } from '@/lib/payments/CashCardData'
+import CashCardItem from './CashCardItem'
 
 function CashCard() {
 
   const [cash, setCash] = useState<number>(0)
+  const router = useRouter();
 
   function getCash(amount : number){
     setCash(amount)
@@ -16,9 +18,9 @@ function CashCard() {
 
 
   return (
-    <div className="grid grid-cols-2 mt-20 gap-4 w-5/6 mx-auto">
+    <div className="grid grid-cols-2 gap-4 w-5/6 mx-auto">
       {CashCardData.map((item) => (
-        <Card key={item.id} cash={item.cash} onClick={()=> getCash(item.cash)}/>
+        <CashCardItem key={item.id} cash={item.cash} onClick={()=> {getCash(item.cash); router.push(`/payments?price=${item.cash}`)}}/>
       ))}
     </div>
   )
