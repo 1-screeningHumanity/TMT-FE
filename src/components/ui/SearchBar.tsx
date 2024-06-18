@@ -57,7 +57,7 @@ export default function SearchBar() {
           <option value="stocks">주식</option>
           <option value="members">회원</option>
         </select>
-        <div className="m-3 w-full h-16 rounded-2xl border-blue-600 border-4 font-bold text-xl flex justify-between">
+        <div className="m-3 w-full h-16 rounded-2xl border-2 font-bold text-xl flex justify-between">
           <Image
             src="/assets/images/search.svg"
             alt="search--v1"

@@ -4,7 +4,7 @@ export default function SearchBarUI() {
   return (
     <Link href={'/search'}>
       <div className="flex">
-        <div className="m-3 w-full h-16 rounded-2xl border-black border-4 font-bold text-xl flex justify-between">
+        <div className="m-3 w-full h-16 rounded-2xl border-black border-2 font-bold text-xl flex justify-between">
           <Image
             src="/assets/images/search.svg"
             alt="search--v1"
