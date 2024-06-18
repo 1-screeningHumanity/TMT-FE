@@ -24,11 +24,11 @@ export default async function Home() {
   return (
     <main>
       <Headers title="홈" />
-      <div className="mx-2">
+      <div className="mx-2 mb-32">
         <SearchBarUI />
         <span className="font-bold text-xl m-5 ">국내 시장 지표</span>
         <div className="ml-5 my-1 text-sm">{date} 기준</div>
-        <div className="flex">
+        <div className="flex mb-3">
           <Kospi data={kospiData} />
           <Kosdaq data={kosdaqData} />
         </div>

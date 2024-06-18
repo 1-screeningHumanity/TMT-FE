@@ -11,7 +11,7 @@ export default function Soaring({
   const SoaringData = data
   return (
     <section
-      className="m-5 bg-red-100 rounded-xl"
+      className="mx-5 my-3 bg-red-100 rounded-xl"
       style={{
         background:
           color === 'red' ? ' rgba(255, 0, 0, 0.1)' : ' rgba(0, 0, 255, 0.1)',
@@ -31,7 +31,9 @@ export default function Soaring({
           <li className="w-1/12">{soar.data_rank}</li>
           <li className="w-5/12 break-words">{soar.hts_kor_isnm}</li>
           <li className="w-3/12">{formatNumberWithCommas(soar.stck_prpr)}</li>
-          <li className="w-3/12">{soar.prdy_ctrt}</li>
+          <li className="w-3/12" style={{ color: color }}>
+            {soar.prdy_ctrt}
+          </li>
         </ul>
       ))}
     </section>
