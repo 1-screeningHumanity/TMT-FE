@@ -59,12 +59,13 @@ export default function SearchBar() {
         </select>
         <div className="m-3 w-full h-16 rounded-2xl border-blue-600 border-4 font-bold text-xl flex justify-between">
           <Image
-            src="https://img.icons8.com/ios/48/search--v1.png"
+            src="/assets/images/search.svg"
             alt="search--v1"
-            className="p-"
-            width={40}
-            height={20}
+            className="m-1"
+            width={30}
+            height={30}
           />
+
           <input
             className="w-full focus:outline-none"
             value={text}
@@ -72,10 +73,11 @@ export default function SearchBar() {
           />
           <button onClick={toggleListening}>
             <Image
-              src="https://img.icons8.com/material-sharp/48/microphone--v1.png"
+              src="/assets/images/microphone.svg"
               alt="microphone--v1"
-              width={48}
-              height={48}
+              className="m-1"
+              width={35}
+              height={35}
             />
           </button>
         </div>
