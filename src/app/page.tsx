@@ -24,30 +24,36 @@ export default async function Home() {
   return (
     <main>
       <Headers title="홈" />
-      <div className="mx-2 mb-32">
+      <div className="mx-2 h-[80dvh] space-y-5">
         <SearchBarUI />
-        <span className="font-bold text-xl m-5 ">국내 시장 지표</span>
-        <div className="ml-5 my-1 text-sm">{date} 기준</div>
-        <div className="flex mb-3">
+        <section>
+          <span className="font-bold text-xl  ml-5 ">국내 시장 지표</span>
+          <div className="ml-5 my-1 text-sm">{date} 기준</div>
+        </section>
+        <section className="flex mb-3">
           <Kospi data={kospiData} />
           <Kosdaq data={kosdaqData} />
-        </div>
-        <span className="font-bold text-xl m-5">오늘의 급등주 Top3</span>
-        <Link
-          href={{ pathname: '/stockRank', query: { sort: 'soaring-stocks' } }}
-        >
-          <Soaring data={top3soaring} color={'red'} />
-        </Link>
-        <Link
-          href={{
-            pathname: '/stockRank',
-            query: { sort: 'plummeting-stocks' },
-          }}
-        >
-          <Soaring data={top3plummeting} color={'blue'} />
-        </Link>
-        <Footer />
+        </section>
+        <section>
+          <span className="font-bold text-xl m-5 ">오늘의 급등주 Top3</span>
+          <Link
+            href={{ pathname: '/stockRank', query: { sort: 'soaring-stocks' } }}
+          >
+            <Soaring data={top3soaring} color={'red'} />
+          </Link>
+        </section>
+        <section>
+          <Link
+            href={{
+              pathname: '/stockRank',
+              query: { sort: 'plummeting-stocks' },
+            }}
+          >
+            <Soaring data={top3plummeting} color={'blue'} />
+          </Link>
+        </section>
       </div>
+      <Footer />
     </main>
   )
 }
