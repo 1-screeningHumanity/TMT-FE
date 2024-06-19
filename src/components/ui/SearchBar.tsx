@@ -45,26 +45,27 @@ export default function SearchBar() {
       fetchData(text)
     }
   }, [text])
-
+  console.log(searchData)
   return (
     <>
       <div className="flex">
         <select
-          className="border-2 w-24 h-14 my-4 ml-4 text-center font-bold text-xl"
+          className="border-2  w-24 h-14 my-4 ml-4 text-center font-bold text-xl"
           value={selectValue}
           onChange={(e) => setSelectValue(e.target.value)}
         >
           <option value="stocks">주식</option>
           <option value="members">회원</option>
         </select>
-        <div className="m-3 w-full h-16 rounded-2xl border-black border-4 font-bold text-xl flex justify-between">
+        <div className="m-3 w-full h-16 rounded-2xl border-2 font-bold text-xl flex justify-between">
           <Image
-            src="https://img.icons8.com/ios/50/search--v1.png"
+            src="/assets/images/search.svg"
             alt="search--v1"
-            className="p-"
-            width={48}
-            height={40}
+            className="m-1"
+            width={30}
+            height={30}
           />
+
           <input
             className="w-full focus:outline-none"
             value={text}
@@ -72,10 +73,11 @@ export default function SearchBar() {
           />
           <button onClick={toggleListening}>
             <Image
-              src="https://img.icons8.com/material-sharp/48/microphone--v1.png"
+              src="/assets/images/microphone.svg"
               alt="microphone--v1"
-              width={48}
-              height={48}
+              className="m-1"
+              width={35}
+              height={35}
             />
           </button>
         </div>
@@ -83,10 +85,10 @@ export default function SearchBar() {
       <div>
         {searchData != null &&
           searchData.map((data) => (
-            <Link href={`/stock/${data.stockCode}`}>
+            <Link href={`/stock/${data.id}`}>
               <div
                 className="w-full h-20 text-2xl font-bold pl-10 flex items-center border"
-                key={data.stockCode}
+                key={data.id}
               >
                 {data.name}
               </div>

@@ -14,5 +14,5 @@ export default function ButtonOfResign(){
     await signOut();
   }
 
-  return <button className="bg-[#7d00d0] text-white text-sm font-semibold rounded-lg w-80 h-10 mx-auto block my-6" onClick={() => handleResign()}>회원탈퇴</button>
+  return <button className="bg-[#d9d9d9] text-white text-sm font-semibold rounded-lg w-80 h-10 mx-auto block my-6 hover:bg-[#9c9b9b]" onClick={() => handleResign()}>회원탈퇴</button>
 }

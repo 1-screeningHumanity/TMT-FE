@@ -3,10 +3,12 @@
 import PayPasswordCheck from "@/components/pages/password/PayPasswordCheck";
 import { useEffect, useState } from "react";
 import PayPasswordChange from "@/components/pages/password/PayPasswordChange";
-import patchPaypasswordChange from "@/actions/change/patchPaypasswordChange";
 import { Session } from "next-auth";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { patchPaypasswordChange } from "@/actions/change";
+import Headers from "@/components/ui/Headers";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function paypassword (){
   const [password, setPassword] = useState<string>("");
@@ -15,12 +17,16 @@ export default function paypassword (){
   const [session, setSession] = useState<Session | null>(null);
 
   const router = useRouter();
-
+  const { toast } = useToast();
+  
   function handleStep(){
     if(password.length === 4){
       setStep(!step);
     }else{
-      alert("비밀번호를 4자리 입력해주세요.");
+      toast({
+        title: '비밀번호를 4자리 입력해주세요.',
+        variant : "destructive",
+      })
     }
   }
     
@@ -28,16 +34,23 @@ export default function paypassword (){
     if(password === checkPassword && password.length === 4 && checkPassword.length === 4){
       const response = await patchPaypasswordChange(checkPassword)
       if(response.code == 200){
-        alert("비밀번호가 변경되었습니다.");
+        toast({
+          title: '비밀번호가 변경되었습니다.',
+          variant : "default",
+        })
         router.push("/change/paypassword/complete");
       }
     }else if (checkPassword.length !== 4){
-      alert("비밀번호를 4자리 입력해주세요.");
+      toast({
+        title: '비밀번호를 4자리 입력해주세요.',
+        variant : "destructive",
+      })
     }
   }
 
   return(
     <>
+      <Headers />
       { step ?
         <PayPasswordChange setPassword={setPassword}/> :
         <PayPasswordCheck setCheckPassword={setCheckPassword} />

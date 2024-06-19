@@ -1,15 +1,3 @@
-function getCurrentTime() {
-  let currentTime = new Date()
-
-  let hours = currentTime.getHours()
-  let minutes = currentTime.getMinutes()
-
-  // 현재 시간을 시:분 형태로 출력
-  let currentTimeString = `${hours}:${minutes < 10 ? '0' : ''}${minutes}`
-
-  return currentTimeString
-}
-
 function isInValidTimeRange() {
   // 현재 시간을 가져옴
   let currentTime = new Date()
@@ -19,10 +7,10 @@ function isInValidTimeRange() {
   let minutes = currentTime.getMinutes()
 
   // 시작 시간(9:00)과 종료 시간(15:30)을 설정
-  let startHour = 9
-  let startMinute = 0
-  let endHour = 15
-  let endMinute = 30
+  const startHour = 9
+  const startMinute = 0
+  const endHour = 15
+  const endMinute = 30
 
   // 현재 시간을 분 단위로 변환
   let currentTotalMinutes = hours * 60 + minutes
@@ -41,9 +29,6 @@ function isInValidTimeRange() {
 }
 
 export default function timeCheck() {
-  // 현재 시간을 가져옴
-  let currentTime = getCurrentTime()
-
   // 현재 시간이 유효한 범위에 있으면 기본 API 호출
   if (!isInValidTimeRange()) {
     // 정규 장 시간

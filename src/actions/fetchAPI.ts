@@ -1,3 +1,4 @@
+'use server'
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
 async function fetchAPI(
@@ -7,6 +8,7 @@ async function fetchAPI(
   token?: string,
   cache?: string,
 ) {
+
   try {
     let headers: { [key: string]: string } = {
       'Content-Type': 'application/json',

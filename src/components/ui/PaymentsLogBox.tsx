@@ -1,3 +1,4 @@
+import { PaymentsLogBoxProps } from "@/types/PaymentsLogBoxProps";
 import formatNumberWithCommas from "@/utils/formatNumberWithCommas";
 import { parseDateTime } from "@/utils/parseDate";
 

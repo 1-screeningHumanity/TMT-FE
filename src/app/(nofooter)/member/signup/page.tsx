@@ -1,10 +1,12 @@
 'use client'
 
-import { getRandomNickname } from '@/actions/signup/getRandomNickname'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { postSignup } from '@/actions/signup/postSignup'
+import { useToast } from '@/components/ui/use-toast'
+import { getRandomNickname, postSignup } from '@/actions/member'
+import { parsePhoneNumber } from '@/utils/parsePhoneNumber'
+import { useRouter } from 'next/navigation'
 
 export default function signup() {
   const [showPassword, setShowPassword] = useState<boolean>(true)
@@ -17,6 +19,9 @@ export default function signup() {
   const [randomNickname, setRandomNickname] = useState<string>('')
 
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
+
+  const { toast } = useToast()
+  const router = useRouter();
 
   useEffect(() => {
     if (inputRefs.current[4]) {
@@ -46,25 +51,34 @@ export default function signup() {
     let nickName = inputRefs.current[4]?.value
 
     if (!name || !phoneNumber || !password || !nickName) {
-      alert('모든 값을 채워주세요')
+      toast({
+        title: '※ 빈칸을 모두 채워주세요',
+        variant : "destructive",
+      })
     } else {
       const res = await postSignup(name, phoneNumber, password, nickName)
       console.log('res :', res)
 
       if (!res.isSuccess) {
         if (res.code === 1005) {
-          alert('중복된 전화번호입니다.')
+          toast({
+            title: '※ 중복된 전화번호입니다.',
+            variant : "destructive",
+          })
           inputRefs.current[1]?.focus()
         }
         if (res.code === 1000) {
-          alert('중복된 닉네임입니다.')
+          toast({
+            title: '※ 중복된 닉네임입니다.',
+            variant : "destructive",
+          })
           inputRefs.current[4]?.focus()
         }
       } else {
         if (typeof nickName !== 'undefined') {
           localStorage.setItem('nickName', nickName)
         }
-        location.href = '/member/signup/complete'
+        router.push('/member/signup/complete')
       }
     }
   }
@@ -86,13 +100,6 @@ export default function signup() {
     }
   }
 
-  const parsingPhoneNumber = (num: string) => {
-    return num
-      .replace(/[^0-9]/g, '')
-      .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
-      .replace(/(-{1,2})$/g, '')
-  }
-
   return (
     <>
       <div className="flex mx-10 justify-between mt-10 mb-16">
@@ -102,9 +109,9 @@ export default function signup() {
           href={'/member/signin'}
         >
           <Image
-            width="20"
-            height="20"
-            src="https://img.icons8.com/ios/20/000000/multiply.png"
+            width={20}
+            height={20}
+            src="/assets/images/multiply.svg"
             alt="cancel"
           />
         </Link>
@@ -136,7 +143,7 @@ export default function signup() {
             type="tel"
             maxLength={13}
             onChange={(e) =>
-              setPhoneNumberString(parsingPhoneNumber(e.target.value))
+              setPhoneNumberString(parsePhoneNumber(e.target.value))
             }
             value={phoneNumberString}
             required
@@ -169,7 +176,7 @@ export default function signup() {
               <Image
                 width="20"
                 height="20"
-                src="https://img.icons8.com/ios-glyphs/20/visible--v1.png"
+                src="/assets/images/visible.svg"
                 alt="visible--v1"
                 className="absolute right-5 top-2"
                 onClick={() => {
@@ -180,7 +187,7 @@ export default function signup() {
               <Image
                 width="20"
                 height="20"
-                src="https://img.icons8.com/material/20/closed-eye.png"
+                src="/assets/images/invisible.svg"
                 alt="closed-eye"
                 className="absolute right-5 top-2"
                 onClick={() => {
@@ -221,7 +228,7 @@ export default function signup() {
               <Image
                 width="20"
                 height="20"
-                src="https://img.icons8.com/ios-glyphs/20/visible--v1.png"
+                src="/assets/images/visible.svg"
                 alt="visible--v1"
                 className="absolute right-5 top-2"
                 onClick={() => {
@@ -232,7 +239,7 @@ export default function signup() {
               <Image
                 width="20"
                 height="20"
-                src="https://img.icons8.com/material/20/closed-eye.png"
+                src="/assets/images/invisible.svg"
                 alt="closed-eye"
                 className="absolute right-5 top-2"
                 onClick={() => {
