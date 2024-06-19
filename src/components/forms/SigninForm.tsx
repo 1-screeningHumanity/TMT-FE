@@ -22,9 +22,8 @@ export default function SigninForm() {
   })
 
   const [showPassword, setShowPassword] = useState(true)
-  const router = useRouter()
-
-  const { toast } = useToast()
+  const router = useRouter();
+  const { toast } = useToast();
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!payload.phoneNumber || !payload.name || !payload.password) {

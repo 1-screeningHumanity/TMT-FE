@@ -25,7 +25,7 @@ function removeHyphens(phoneNumber : string | undefined) {
 async function handleChangeNickname(event: React.FormEvent) {
   event.preventDefault();
 
-  let nickName = inputRefs.current[2]?.value;
+  let nickName = inputRefs.current[0]?.value;
 
   if(!nickName){
     toast({

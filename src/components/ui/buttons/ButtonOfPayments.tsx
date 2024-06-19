@@ -8,8 +8,8 @@ export default async function ButtonOfPayments({price} : {price: string}){
   async function handlePayment(){
     const res = await postKakaopayReady(`${price}캐시`, 1, Number(price));
     console.log("postKakaopayReady res :", res);
-    localStorage.setItem("tid", res.data.tid);
-    localStorage.setItem("partner_order_id", res.data.partner_order_id);
+    sessionStorage.setItem("tid", res?.data.tid);
+    sessionStorage.setItem("partner_order_id", res?.data.partner_order_id);
     if(checkMobileDevice()){
       window.open(res.data.next_redirect_mobile_url)
     }else{
@@ -18,7 +18,6 @@ export default async function ButtonOfPayments({price} : {price: string}){
   }
 
   return <button className="bg-yellow-400 w-full h-14 fixed bottom-0 right-0 left-0 mt-20 flex items-center justify-center" 
-  // href={"/payments/complete"}
   onClick={handlePayment}
   >결제하기</button>
 }
