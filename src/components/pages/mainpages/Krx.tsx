@@ -1,10 +1,13 @@
 import { kospiType } from '@/types/Mainpage'
 import Image from 'next/image'
-const red = '#ff0000'
-const blue = '#0000ff'
+
 export default function Krx(data: { data: kospiType }) {
+  
+  const red = '#ff0000'
+  const blue = '#0000ff'
   const kospiData = data.data
   let color = ''
+  
   if (kospiData.prdy_vrss_sign === '1' || kospiData.prdy_vrss_sign === '2') {
     color = red
   }
