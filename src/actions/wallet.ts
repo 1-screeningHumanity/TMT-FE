@@ -7,3 +7,11 @@ async function wonInfoAPI() {
   return res
 }
 export { wonInfoAPI }
+
+async function cashInfoAPI() {
+  const token = await getAccessToken()
+  const res = await GetAPI('/payment/cash', undefined, token)
+  return res
+}
+export { cashInfoAPI }
+

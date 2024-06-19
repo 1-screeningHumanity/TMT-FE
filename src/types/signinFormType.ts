@@ -1,5 +1,7 @@
-export interface signinFormType {
+interface signinFormType {
     name: string
     password : string
     phoneNumber : string
 }
+
+export type { signinFormType }

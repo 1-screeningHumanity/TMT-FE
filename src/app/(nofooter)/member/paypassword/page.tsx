@@ -3,8 +3,8 @@
 import PayPassword from "@/components/pages/password/PayPassword";
 import PayPasswordCheck from "@/components/pages/password/PayPasswordCheck";
 import { useEffect, useState } from "react";
-import postPayPassword from "@/actions/paypassword/postPayPassword";
 import { useRouter } from "next/navigation";
+import { postPayPassword } from "@/actions/member";
 
 export default function paypassword (){
   const [password, setPassword] = useState<string>("");

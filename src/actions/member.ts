@@ -1,45 +1,47 @@
 "use server"
 
+import { DeleteAPI, GetAPI, PostAPI } from "./fetchAPI";
 import { getAccessToken } from "./tokens";
 
-export async function postSignOut() {
+async function postSignOut() {
 
-  try {
-    const TOKEN = await getAccessToken();
-    const res = await fetch(`${process.env.API_BASE_URL}/member/signout`, {
-      cache: "no-store",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization" : TOKEN
-      },
-      },
-    )
-    const data = await res.json()
-    console.log("data in signOut :", data);
-    return data
-  } catch (error) {
-    return
-  }
+  const TOKEN = await getAccessToken();
+  const res = await PostAPI(`/member/signout`, undefined, TOKEN)
+  return res
 }
 
-export async function deleteMember() {
+async function deleteMember() {
 
-  try {
-    const TOKEN = await getAccessToken();
-    const res = await fetch(`${process.env.API_BASE_URL}/member/`, {
-      cache: "no-store",
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization" : TOKEN
-      },
-      },
-    )
-    const data = await res.json()
-    console.log("data in deleteMember :", data);
-    return data
-  } catch (error) {
-    return
-  }
+  const TOKEN = await getAccessToken();
+  const res = await DeleteAPI(`/member/`, undefined, TOKEN);
+  return res
 }
+
+async function getRandomNickname() {
+
+  const res = await GetAPI(`/member/random-nickname`)
+  return res
+}
+
+async function postSignup(
+  name: string | undefined,
+  phoneNumber: string | undefined,
+  password: string | undefined,
+  nickname: string | undefined,
+) {
+  const res = await PostAPI('/member/signup', {
+    name: name,
+    phoneNumber: phoneNumber,
+    password: password,
+    nickname: nickname,
+  })
+  return res
+}
+
+async function postPayPassword(nickname : string | null, password : string | undefined) {
+
+  const res = await PostAPI(`/member/pay-password`, { nickname, payingPassword : password });
+  return res;
+}
+
+export { postSignOut, deleteMember, getRandomNickname, postSignup, postPayPassword}

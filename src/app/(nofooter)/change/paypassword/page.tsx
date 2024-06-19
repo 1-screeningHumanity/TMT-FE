@@ -3,10 +3,10 @@
 import PayPasswordCheck from "@/components/pages/password/PayPasswordCheck";
 import { useEffect, useState } from "react";
 import PayPasswordChange from "@/components/pages/password/PayPasswordChange";
-import patchPaypasswordChange from "@/actions/change/patchPaypasswordChange";
 import { Session } from "next-auth";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { patchPaypasswordChange } from "@/actions/change";
 
 export default function paypassword (){
   const [password, setPassword] = useState<string>("");
