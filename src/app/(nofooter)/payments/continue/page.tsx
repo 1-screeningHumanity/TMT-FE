@@ -8,8 +8,8 @@ export default function paymentsContinue({searchParams} : {searchParams: {[key: 
 
   const pgToken = searchParams?.pg_token;
   console.log("pgToken : ", pgToken);
-  const tid = localStorage?.getItem("tid");
-  const partner_order_id = localStorage?.getItem("partner_order_id");
+  const tid = sessionStorage?.getItem("tid");
+  const partner_order_id = sessionStorage?.getItem("partner_order_id");
 
   const router = useRouter();
 

@@ -14,10 +14,9 @@ export default function ButtonOfCharge({price, cash} : {price: string, cash: num
       if(comparison === true){
         router.push("/payments")
         return
+      }else if( !comparison && res.isSuccess === true){
+        router.push("/charge/complete")
       }
-    }
-    if(res.isSuccess === true){
-    router.push("/charge/complete")
     }
   }
   return <button className="bg-[#7d00d0] text-white w-full h-14 fixed bottom-0 right-0 left-0 mt-20 flex items-center justify-center" 
