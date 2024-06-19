@@ -1,8 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getMessaging, getToken, onMessage } from 'firebase/messaging'
 import { fcmSendAPI } from './fcm'
-import { cookies } from 'next/headers'
-import { setCookie } from '@/utils/settingCookies'
 
 export const fcmIssued = async (accessToken: string) => {
   const firebaseConfig = {
