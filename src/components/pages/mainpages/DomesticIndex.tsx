@@ -4,7 +4,7 @@ import { dateFormmating } from '@/utils/time'
 import Kospi from './Kospi'
 import Kosdaq from './Kosdaq'
 
-export default async function SearchBar() {
+export default async function DomesticIndex() {
   const kospiData: kospiType = await KospiAPI()
   const kosdaqData: kospiType = await KosdaqAPI()
   const date = dateFormmating(kospiData.dateTime)

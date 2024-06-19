@@ -6,6 +6,7 @@ import { sortAPI } from '@/actions/stock/mainpage'
 import Soaring from '@/components/pages/mainpages/Soaring'
 import { StockSortType } from '@/types/StcokSortType'
 import Link from 'next/link'
+import DomesticIndex from '@/components/pages/mainpages/DomesticIndex'
 
 export default async function Home() {
   const soaringData = await sortAPI('soaring-stocks')
@@ -18,6 +19,7 @@ export default async function Home() {
       <Headers title="홈" />
       <div className="mx-2 h-[80dvh] space-y-5">
         <SearchBarUI />
+        <DomesticIndex />
         <section>
           <span className="font-bold text-xl m-5 ">오늘의 급등주 Top3</span>
           <Link
