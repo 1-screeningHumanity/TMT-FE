@@ -5,6 +5,7 @@ import PayPasswordCheck from "@/components/pages/password/PayPasswordCheck";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { postPayPassword } from "@/actions/member";
+import { toast } from "@/components/ui/use-toast";
 
 export default function paypassword (){
   const [password, setPassword] = useState<string>("");
@@ -23,7 +24,10 @@ export default function paypassword (){
     if(password.length === 4){
       setStep(!step);
     }else{
-      alert("비밀번호를 4자리 입력해주세요.");
+      toast({
+        title: '비밀번호를 4자리 입력해주세요.',
+        variant : "destructive",
+      })
     }
   }
     
@@ -31,7 +35,10 @@ export default function paypassword (){
     if(password === checkPassword && password.length === 4 && checkPassword.length === 4){
       await postPayPassword(nickName, checkPassword)
     }else if (checkPassword.length !== 4){
-      alert("비밀번호를 4자리 입력해주세요.");
+      toast({
+        title: '비밀번호를 4자리 입력해주세요.',
+        variant : "destructive",
+      })
     }
   }
 
