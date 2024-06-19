@@ -14,7 +14,7 @@ async function paymentsLog() {
     <section>
       <Headers title="충전 내역"/>
       <div className='mb-40'>
-        {PaymentsLogLists.map((log, index) => (
+        {paymentsLogLists.map((log : any, index : number) => (
           <PaymentsLogBox createdAt={log.createdAt} payName={log.payName} totalAmount={log.totalAmount} key={index}/>
         ))}
       </div>

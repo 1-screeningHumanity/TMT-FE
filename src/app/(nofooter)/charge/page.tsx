@@ -20,20 +20,12 @@ export default async function charge({searchParams} : {searchParams: {[key: stri
     <section>
       <Headers title="교환하기"/>
       <div className="w-60 mx-auto text-center">
-        <h3 className="mt-10 mb-8 text-sm flex items-end">보유 캐시 : <span className="text-2xl text-[#7d00d0]">{formatNumberWithCommas(cashInfo)} 캐시</span></h3>
+        <h3 className="mt-14 mb-10 text-sm flex items-end">보유 캐시 : <span className="text-2xl text-[#7d00d0]">{cashInfo > 0 ? formatNumberWithCommas(cashInfo) : 0} 캐시</span></h3>
       </div>
       <WonCard />
 
 
       <h3 className="mt-16 mb-14 text-sm flex items-end justify-center h-10 mx-auto">충전 후 금액 : <span className="text-2xl text-[#7d00d0]">{formatNumberWithCommas(wonInfo + (Number(price) * 100))} 원</span></h3>
-      <Link href={"/payments"}>
-        <div className="absolute right-6 flex flex-col items-center">
-          <div className="w-14 h-14 rounded-full bg-yellow-300 flex items-center justify-center ">
-            <Image src="/assets/images/nextPageIcon.svg" alt="nextPage" width={30} height={30}/>
-          </div>
-          <p className="text-xs mt-2 text-slate-400 animate-bounce">충전하기</p> 
-        </div>
-      </Link>
       <ButtonOfCharge price={price} cash={cashInfo}/>
     </section>
   )

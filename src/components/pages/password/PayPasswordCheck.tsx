@@ -20,13 +20,7 @@ export default function PayPasswordCheck ({setCheckPassword }: {setCheckPassword
   return(
     <>
       <div className="flex mx-10 justify-between my-10 items-center">
-        <div className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-4 h-4" >
-          <Image width="20" height="20" src="https://img.icons8.com/ios-glyphs/20/back.png" alt="back"/>
-        </div>
         <h1 className="text-lg text-[#7d00d0] font-extrabold">결제비밀번호 확인</h1>
-        <div className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5">
-            <Image width="20" height="20" src="https://img.icons8.com/ios/20/000000/multiply.png" alt="cancel"/>
-        </div>
       </div>
       <div className="text-center mt-24 mb-20">
         <p className="font-bold text-lg">결제 비밀번호를 한번 더<br/> 

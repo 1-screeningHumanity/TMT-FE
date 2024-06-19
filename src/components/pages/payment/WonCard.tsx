@@ -18,7 +18,7 @@ function WonCard() {
 
 
   return (
-    <div className="grid grid-cols-1 gap-4 w-5/6 mx-auto">
+    <div className="flex flex-col gap-4 w-5/6 mx-auto items-center">
       {WonCardData.map((item) => (
         <WonCardItem key={item.id} cash={item.cash} won={item.won} onClick={()=> {getCash(item.cash); router.push(`/charge?price=${item.cash}`)}}/>
       ))}
