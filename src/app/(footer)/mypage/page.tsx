@@ -8,19 +8,18 @@ import formatNumberWithCommas from "@/utils/formatNumberWithCommas";
 import Footer from "@/components/ui/Footer";
 import InformationOfMyPage from "@/components/pages/mypage/InformationOfMyPage";
 import ChartOfMyPage from "@/components/pages/mypage/ChartOfMyPage";
+import ButtonOfSignout from "@/components/ui/buttons/ButtonOfSignout";
 
 export default async function mypage(){
 
-
-
   return (
-    <div className="mb-40">
+    <div className="mb-20">
       <Headers title="마이페이지"/>
       <InformationOfMyPage />
       <ChartOfMyPage />
       <ContentsOfMyPage />
+      <ButtonOfSignout />
       <ButtonOfDeleteMember />
-      <Footer />
     </div>
   )
 }
