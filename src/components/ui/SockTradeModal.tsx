@@ -76,7 +76,6 @@ export default function SocketTradeModal({
     wonInfo()
   }, [])
 
-  console.log('내돈내놔 ! ', myMoney)
   const closeModal = () => {
     setModalOpen(false)
   }

@@ -74,7 +74,6 @@ export default function TradeModal({
     wonInfo()
   }, [])
 
-  console.log('내돈내놔 ! ', myMoney)
   const closeModal = () => {
     setModalOpen(false)
   }
