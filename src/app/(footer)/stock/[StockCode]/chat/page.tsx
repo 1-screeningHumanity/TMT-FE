@@ -1,3 +1,9 @@
+import ChatRoom from '@/components/pages/stock/ChatRoom'
+
 export default function Page() {
-  return <div>dlakf;dsj</div>
+  return (
+    <main className="m-3">
+      <ChatRoom />
+    </main>
+  )
 }
