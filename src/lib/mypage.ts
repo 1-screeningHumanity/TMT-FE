@@ -1,10 +1,10 @@
 const stockContents = [
-  {id : 1, name : "매수/매도 내역 조회", path : "/trade/tradelists"},
-  {id : 2, name : "예약 매수/매도 내역 조회", path : "/trade/reservation/tradelists"},
-  {id : 3, name : "구독자 조회", path : "/subscribe/following"},
-  {id : 4, name : "나를 구독한 사람 조회", path : "/subscribe/follower"},
-  {id : 5, name : "즐겨찾기 목록 조회", path : "/bookmark"},
-  {id : 6, name : "충전 내역 조회", path : "/payments/log"},
+  {id : 1, name : "매수/매도 내역 조회", path : "/mypage/trade/tradelists"},
+  {id : 2, name : "예약 매수/매도 내역 조회", path : "/mypage/trade/reservation/tradelists"},
+  {id : 3, name : "구독자 조회", path : "/mypage/subscribe/following"},
+  {id : 4, name : "나를 구독한 사람 조회", path : "/mypage/subscribe/follower"},
+  {id : 5, name : "즐겨찾기 목록 조회", path : "/mypage/bookmark"},
+  {id : 6, name : "충전 내역 조회", path : "/mypage/payments/log"},
 ]
 
 const settingContents = [
