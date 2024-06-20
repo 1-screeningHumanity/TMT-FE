@@ -15,7 +15,7 @@ export default async function RootLayout({
   const stockPrice = await getStaticStockPrice(params.StockCode)
   console.log(stockPrice)
   return (
-    <main>
+    <main className="overflow-hidden pb-16">
       <Headers />
       <StockNamePrice
         stockName={stockNameResult?.stockName}

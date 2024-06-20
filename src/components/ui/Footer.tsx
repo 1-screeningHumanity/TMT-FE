@@ -4,7 +4,7 @@ import { footer } from '@/lib/footer'
 
 export default function Footer() {
   return (
-    <div className="fixed bottom-0 w-full flex justify-around bg-white pt-2 z-10">
+    <div className="fixed bottom-0  w-full flex justify-around bg-white pt-2 z-10">
       {footer.map((data) => (
         <Link
           href={data.href}
