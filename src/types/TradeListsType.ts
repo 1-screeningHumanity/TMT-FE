@@ -1,10 +1,11 @@
 interface TradeListsType {
   time: string
   stockName: string
-  price: number
-  amount: number
-  totalPrice: number
+  price: string
+  amount: string
+  totalPrice: string
   status: string
+  id : number
 }[]
 
 export type { TradeListsType }
