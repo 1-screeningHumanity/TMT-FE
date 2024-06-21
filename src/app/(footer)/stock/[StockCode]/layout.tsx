@@ -13,9 +13,8 @@ export default async function RootLayout({
 }>) {
   const stockNameResult = await getStockName(params.StockCode)
   const stockPrice = await getStaticStockPrice(params.StockCode)
-  console.log(stockPrice)
   return (
-    <div>
+    <main className="overflow-hidden pb-16">
       <Headers />
       <StockNamePrice
         stockName={stockNameResult?.stockName}
@@ -24,7 +23,7 @@ export default async function RootLayout({
       />
       <div className="bg-slate-100 mx-3 h-12"> </div>
       <SelectedTap params={params} />
-      {children}
-    </div>
+      <div className="overflow-y-auto">{children}</div>
+    </main>
   )
 }
