@@ -25,13 +25,6 @@ export default function Charts({
   if (socketStockCode.includes(params.stockCode) && check === true) {
     flag = true
   }
-  console.log(flag)
-  // let realTimedata
-  // if (socketStockCode.includes(stockCode)) {
-  //   realTimedata = getSocketData(stockCode)
-  //   console.log(realTimedata)
-  // }
-  console.log('charts.ts in stockData', params.stockData)
   return (
     <>
       <DetailCheckbox

@@ -9,14 +9,13 @@ export default function AlarmCount() {
 
   const countAlarm = async () => {
     const res = await alarmCountAPI()
-    console.log('res in countAlarm:', res.data.notificationLogCount)
+
     setCount(res.data.notificationLogCount)
   }
 
   useEffect(() => {
     async function fetchSession() {
       const session = await getSession()
-      console.log('session:', session)
       if (session?.user.data.accessToken) {
         setAccessToken(session.user.data.accessToken)
       }

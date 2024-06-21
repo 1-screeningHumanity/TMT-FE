@@ -14,13 +14,11 @@ export const fcmIssued = async (accessToken: string) => {
   }
   Notification.requestPermission().then((permission) => {
     if (permission === 'granted') {
-      console.log('Notification permission granted.')
       if (
         typeof window !== 'undefined' &&
         typeof window.navigator !== 'undefined'
       ) {
         const messaging = getMessaging(app)
-        console.log(messaging)
         navigator.serviceWorker.register('/firebase-messaging-sw.js', {
           scope: '/firebase-cloud-messaging-push-scope',
         })
@@ -33,7 +31,6 @@ export const fcmIssued = async (accessToken: string) => {
                 currentToken,
                 `Bearer ${accessToken}`,
               )
-              console.log('res :', res)
               localStorage.setItem('fcmToken', currentToken)
             } else {
               console.log(

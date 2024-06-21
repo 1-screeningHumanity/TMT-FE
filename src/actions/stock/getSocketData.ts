@@ -26,8 +26,9 @@ export const getSocketData = (stockCode: string) => {
     }
     // 초기연결
     const eventSource = new EventSource(
-      // `${process.env.SOCKET_URL}/stream/${stockCode}`,
-      `http://43.200.120.99:9000/stream/${stockCode}`,
+      `${process.env.SOCKET_URL}/stream/${stockCode}`,
+      // `http://43.200.120.99:9000/stream/${stockCode}`,
+      // `http://10.10.10.85:8080/api/stream/${stockCode}`,
     )
     // 연결되었을때
     eventSource.onopen = () => {
@@ -54,7 +55,7 @@ export const getSocketData = (stockCode: string) => {
       console.error('EventSource failed:', error)
       eventSource.close()
     }
-  }, [parsedData])
+  }, [])
   return {
     color,
     symbol,

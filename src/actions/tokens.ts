@@ -5,7 +5,6 @@ import { getServerSession } from 'next-auth'
 
 const getAccessToken = async () => {
   const session = await getServerSession(options)
-  console.log('session in tokens.ts :', session)
   const accessToken = `Bearer ${session?.user.data.accessToken}`
   return accessToken
 }

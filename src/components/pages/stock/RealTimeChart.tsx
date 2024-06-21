@@ -7,12 +7,9 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function RealTimeChart({ data }: { data: any }) {
-  console.log('data', data)
-
   const upColor = '#ff0000'
   const downColor = '#0000ff'
   const getTodayData = getSocketData('005930')
-  console.log(getTodayData)
   const data0 = splitData(data, getTodayData)
   const volumes = splitVol(data)
 
