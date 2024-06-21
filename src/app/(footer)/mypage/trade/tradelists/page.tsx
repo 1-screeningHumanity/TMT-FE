@@ -1,6 +1,5 @@
 import { getTradeList } from "@/actions/tradeList";
 import Headers from "@/components/ui/Headers";
-import { TradeLists } from "@/lib/trade/TradeLists";
 import { TradeListsType } from "@/types/TradeListsType";
 import { parseDate } from "@/utils/parseDate";
 

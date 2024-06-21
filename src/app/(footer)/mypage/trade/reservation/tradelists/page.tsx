@@ -1,7 +1,6 @@
 import { getReservationTradeList } from "@/actions/tradeList";
 import Headers from "@/components/ui/Headers";
 import ButtonOfCancleTrade from "@/components/ui/buttons/ButtonOfCancleTrade";
-import { ReservationTradeLists } from "@/lib/trade/ReservationTradeLists";
 import { ReservationTradeListsType } from "@/types/ReservationTradeListsType";
 import { parseDate } from "@/utils/parseDate";
 
