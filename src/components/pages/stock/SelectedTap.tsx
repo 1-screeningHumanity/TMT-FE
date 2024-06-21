@@ -22,6 +22,11 @@ export default function SelectedTap({
       name: '투자자',
       link: `/stock/${params.StockCode}/investor`,
     },
+    {
+      id: 4,
+      name: '종목 토론방',
+      link: `/stock/${params.StockCode}/chat`,
+    },
   ]
 
   const pathrouter = usePathname()

@@ -9,6 +9,8 @@ import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
 import { set } from 'firebase/database'
 import { TradeModalProps } from '@/types/Trade'
 import { getSocketData } from '@/actions/stock/getSocketData'
+import { getSession, useSession } from 'next-auth/react'
+import { getAccessToken } from '@/actions/tokens'
 
 export default function SocketTradeModal({
   modalOpen,
@@ -69,14 +71,16 @@ export default function SocketTradeModal({
   }
 
   const wonInfo = async () => {
-    const res = await wonInfoAPI()
-    setMyMoney(res.data.won as number)
+    const token = await getAccessToken()
+    if (token != 'Bearer undefined') {
+      const res = await wonInfoAPI()
+      setMyMoney(res.data.won as number)
+    }
   }
   useEffect(() => {
     wonInfo()
   }, [])
 
-  console.log('내돈내놔 ! ', myMoney)
   const closeModal = () => {
     setModalOpen(false)
   }

@@ -57,34 +57,8 @@ export const options: NextAuthOptions = {
 
   callbacks: {
     async signIn({ user, profile }) {
-      console.log("signIn user :", user);
-      console.log("signIn profile :", profile);
-      // if(profile) {
-      //   console.log(profile)
-      //   // 회원인지 아닌지 확인
-      //   const res = await fetch(`${process.env.API_BASE_URL}/auth/oauth2`, {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json'
-      //     },
-      //     body: JSON.stringify({
-      //       oauthId: user.id,
-      //     })
-      //   })
-      //   console.log(res)
-      //   if (res.ok) {
-      //     const user = await res.json()
-      //     console.log('ssg user',user)
-      //     // this.session.update({user})
-      //     // 회원정보를 받아서 세션에 저장
-      //   }
-
-      //   console.log('not ssg user',user)
-      //   // 회원이 아니면 회원가입 페이지로 이동
-
-      // //
-      // }
-
+      console.log('signIn user :', user)
+      console.log('signIn profile :', profile)
       return true
     },
     async jwt({ token, user }) {
@@ -97,17 +71,13 @@ export const options: NextAuthOptions = {
     },
 
     async session({ session, token }) {
-      session.user = token as any;
-      if(session){
-        console.log("session in options.ts :", session);
-      }else{
-        console.log("session is null");
-      }
-      return session;
+      session.user = token as any
+
+      return session
     },
 
-    async redirect({url, baseUrl}) {
-      return url.startsWith(baseUrl) ? url : baseUrl;
+    async redirect({ url, baseUrl }) {
+      return url.startsWith(baseUrl) ? url : baseUrl
     },
   },
   pages: {
