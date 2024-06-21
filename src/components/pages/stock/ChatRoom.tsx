@@ -8,7 +8,7 @@ export default async function ChatRoom() {
   const myNickname = myNicknameData.data.nickname
 
   return (
-    <section className="chat-container">
+    <section className="flex flex-col mb-32">
       {message.map((msg) =>
         msg.sender == 'c583a6d3-bcc8-4e00-a0ca-466be206fffe' ? (
           <div key={msg.id} className="speech-bubble">
