@@ -20,7 +20,7 @@ export default function ChatSender({
     if (!res) {
       toast({
         title: '메시지를 전송실패하였습니다.',
-        variant: 'default',
+        variant: 'destructive',
       })
     }
     form.reset()
