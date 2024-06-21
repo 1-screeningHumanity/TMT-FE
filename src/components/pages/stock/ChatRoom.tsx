@@ -1,16 +1,50 @@
+'use client'
 import { userInformation } from '@/actions/myPage'
 import { chatMessage } from '@/lib/chatmessage'
 import { beforeMinute } from '@/utils/formattinfTime'
+import { useEffect, useState } from 'react'
 
-export default async function ChatRoom() {
+export default function ChatRoom(stockCode: { stockCode: string }) {
   const message = chatMessage
-  const myNicknameData = await userInformation()
-  const myNickname = myNicknameData.data.nickname
+  const StockCode = stockCode.stockCode
+
+  const [messageData, setMessageData] = useState<ChatMessageDataType[]>([])
+  useEffect(() => {
+    if (!window.EventSource) {
+      console.error('EventSource is not supported in this environment.')
+      return
+    }
+    const connetToSSE = () => {
+      const eventSource = new EventSource(
+        `${process.env.API_BASE_URL}/stockitem/chat/${StockCode}`,
+      )
+
+      eventSource.onmessage = (event) => {
+        const data = JSON.parse(event.data)
+        setMessageData((prevMessages) => {
+          const isDuplicate = prevMessages.some((msg) => msg.id == data.id)
+          if (!isDuplicate) {
+            return [...prevMessages, data]
+          }
+
+          return prevMessages
+        })
+      }
+      eventSource.onerror = (error) => {
+        console.log(error)
+      }
+      return eventSource
+    }
+    const eventSource = connetToSSE()
+    return () => {
+      eventSource.close()
+    }
+  }, [StockCode])
 
   return (
     <section className="flex flex-col mb-32">
-      {message.map((msg) =>
-        msg.sender != 'c583a6d3-bcc8-4e00-a0ca-466be206fffe' ? (
+      {messageData.map((msg) =>
+        msg.sender == 'c583a6d3-bcc8-4e00-a0ca-466be206fffe' ? (
           <div key={msg.id} className="speech-bubble">
             <div className="font-semibold">{msg.sender}</div>
             <div>{msg.message}</div>

@@ -29,7 +29,7 @@ export default function Page({ params }: { params: { StockCode: string } }) {
 
   return (
     <>
-      <ChatRoom />
+      <ChatRoom stockCode={stockCode} />
       <ChatSender newChat={newChat} />
     </>
   )
