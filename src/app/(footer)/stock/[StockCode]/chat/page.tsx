@@ -28,9 +28,9 @@ export default function Page({ params }: { params: { StockCode: string } }) {
   }
 
   return (
-    <main className="m-3">
+    <>
       <ChatRoom />
       <ChatSender newChat={newChat} />
-    </main>
+    </>
   )
 }
