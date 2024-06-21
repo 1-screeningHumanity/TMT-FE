@@ -44,7 +44,8 @@ export default function ChatRoom(stockCode: { stockCode: string }) {
   return (
     <section className="flex flex-col mb-32">
       {messageData.map((msg) =>
-        msg.sender == 'c583a6d3-bcc8-4e00-a0ca-466be206fffe' ? (
+        // 백엔드에서 현재 닉네임이 아닌 uuid 만 나옴 곧 닉네임 나오게 수정하신다고 합니다. 일단 uuid 랑 본인 같으면 오른쪽으로 나오게 수정했습니다.
+        msg.sender != 'c583a6d3-bcc8-4e00-a0ca-466be206fffe' ? (
           <div key={msg.id} className="speech-bubble">
             <div className="font-semibold">{msg.sender}</div>
             <div>{msg.message}</div>
