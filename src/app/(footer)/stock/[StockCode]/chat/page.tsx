@@ -1,20 +1,22 @@
 import { getAccessToken } from '@/actions/tokens'
 import ChatRoom from '@/components/pages/stock/ChatRoom'
 import ChatSender from '@/components/pages/stock/ChatSender'
+import { useToast } from '@/components/ui/use-toast'
 import { chatSender } from '@/types/Chat'
+import { error } from 'console'
 
 export default function Page({ params }: { params: { StockCode: string } }) {
   const stockCode = params.StockCode
-  async function newChat(formData: FormData) {
+
+  async function newChat(formData: FormData): Promise<boolean> {
     'use server'
     const rawFormData: chatSender = {
       stockCode: stockCode,
       message: formData.get('message') as string,
     }
-    console.log('raw@@@@@@@@@@@@@@@', rawFormData)
-    if (!rawFormData.message) return
+    if (!rawFormData.message) return false
     const token = await getAccessToken()
-    const response = await fetch(`${process.env.API_BASE_URL}/stocitem/chat`, {
+    const response = await fetch(`${process.env.API_BASE_URL}/stockitem/chat`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,9 +24,10 @@ export default function Page({ params }: { params: { StockCode: string } }) {
       },
       body: JSON.stringify(rawFormData),
     })
-
-    const data = await response.json()
-    return
+    if (!response.ok) {
+      return false
+    }
+    return true
   }
 
   return (

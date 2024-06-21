@@ -1,19 +1,28 @@
 'use client'
 
+import { useToast } from '@/components/ui/use-toast'
 import { useRef } from 'react'
 
 export default function ChatSender({
   newChat,
 }: {
-  newChat: (formData: FormData) => Promise<void>
+  newChat: (formData: FormData) => Promise<boolean>
 }) {
+  const { toast } = useToast()
   const formRef = useRef<HTMLFormElement>(null)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const form = formRef.current
     if (!form) return
     const formData = new FormData(form)
-    await newChat(formData)
+    const res = await newChat(formData)
+
+    if (!res) {
+      toast({
+        title: '메시지를 전송실패하였습니다.',
+        variant: 'default',
+      })
+    }
     form.reset()
   }
 
