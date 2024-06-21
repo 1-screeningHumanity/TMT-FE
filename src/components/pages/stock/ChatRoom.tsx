@@ -6,7 +6,6 @@ export default async function ChatRoom() {
   const message = chatMessage
   const myNicknameData = await userInformation()
   const myNickname = myNicknameData.data.nickname
-  console.log(myNickname)
 
   return (
     <section className="chat-container">

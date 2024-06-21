@@ -10,10 +10,9 @@ export default function DetailCharts({
   chartData: any
   staticStockPrice: any
 }) {
-  console.log('data', chartData)
   const upColor = '#ff0000'
   const downColor = '#0000ff'
-  console.log(chartData)
+
   const data0 = splitData(chartData, staticStockPrice.staticStockPrice)
   const volumes = splitVol(chartData)
 

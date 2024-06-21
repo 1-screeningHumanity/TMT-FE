@@ -19,7 +19,6 @@ export const options: NextAuthOptions = {
           !credentials?.name ||
           !credentials?.password
         ) {
-          console.log('credentials is null')
           return null
         }
 
@@ -57,8 +56,6 @@ export const options: NextAuthOptions = {
 
   callbacks: {
     async signIn({ user, profile }) {
-      console.log('signIn user :', user)
-      console.log('signIn profile :', profile)
       return true
     },
     async jwt({ token, user }) {

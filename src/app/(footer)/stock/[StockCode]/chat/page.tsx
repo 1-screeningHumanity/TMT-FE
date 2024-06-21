@@ -1,10 +1,7 @@
 import { getAccessToken } from '@/actions/tokens'
 import ChatRoom from '@/components/pages/stock/ChatRoom'
 import ChatSender from '@/components/pages/stock/ChatSender'
-import { useToast } from '@/components/ui/use-toast'
 import { chatSender } from '@/types/Chat'
-import { error } from 'console'
-
 export default function Page({ params }: { params: { StockCode: string } }) {
   const stockCode = params.StockCode
 

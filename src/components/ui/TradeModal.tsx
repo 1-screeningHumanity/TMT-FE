@@ -23,7 +23,7 @@ export default function TradeModal({
   const [totalPrice, setTotalPrice] = useState(now_price)
 
   const [myMoney, setMyMoney] = useState(0)
-  console.log(stockCode)
+
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(Number(e.target.value))
     setTotalPrice(Number(e.target.value) * amount)
@@ -69,7 +69,7 @@ export default function TradeModal({
 
   const wonInfo = async () => {
     const token = await getAccessToken()
-    console.log(token)
+
     if (token != 'Bearer undefined') {
       const res = await wonInfoAPI()
       setMyMoney(res.data.won as number)
