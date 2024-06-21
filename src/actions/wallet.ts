@@ -6,12 +6,11 @@ async function wonInfoAPI() {
   const res = await GetAPI('/payment/woninfo', undefined, token)
   return res
 }
-export { wonInfoAPI }
 
 async function cashInfoAPI() {
   const token = await getAccessToken()
   const res = await GetAPI('/payment/cash', undefined, token)
   return res
 }
-export { cashInfoAPI }
+export { wonInfoAPI, cashInfoAPI }
 
