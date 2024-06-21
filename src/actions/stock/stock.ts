@@ -1,4 +1,3 @@
-'use server'
 import { GetAPI, PostAPI } from '../fetchAPI'
 import { TradeType } from '@/types/Stock'
 import { getAccessToken } from '../tokens'
