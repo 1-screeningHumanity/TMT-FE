@@ -10,7 +10,6 @@ import { StockChartDataType } from '@/types/Stock'
 import timeCheck from '@/utils/timeCheck'
 
 export default async function Page(params: any) {
-  console.log(params)
   const stockCode = params.params.StockCode
   let nowLink = params.searchParams.when
 
@@ -26,7 +25,6 @@ export default async function Page(params: any) {
     stockData = await getStockData(stockCode, 'day')
   }
   const time = timeCheck()
-  console.log(time)
 
   // console.log
   return (
