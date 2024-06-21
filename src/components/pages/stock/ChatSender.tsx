@@ -29,7 +29,7 @@ export default function ChatSender({
   return (
     <div className="fixed bottom-16 w-full z-20 bg-slate-100">
       <form ref={formRef} onSubmit={handleSubmit}>
-        <div className="flex justify-between w-full h-12">
+        <div className="flex justify-between h-12">
           <input
             type="text"
             name="message"

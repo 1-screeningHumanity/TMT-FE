@@ -229,12 +229,6 @@
   margin-right: -20px;
 }
 
-/* Container styling */
-.chat-container {
-  display: flex;
-  flex-direction: column;
-  max-height: calc(100vh - 300px);
-}
 body {
   font-family: 'Pretendard';
 }
