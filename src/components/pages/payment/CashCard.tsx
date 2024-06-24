@@ -18,7 +18,7 @@ function CashCard() {
 
 
   return (
-    <div className="grid grid-cols-2 gap-4 w-5/6 mx-auto">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-5/6 mx-auto">
       {CashCardData.map((item) => (
         <CashCardItem key={item.id} cash={item.cash} onClick={()=> {getCash(item.cash); router.push(`/payments?price=${item.cash}`)}}/>
       ))}
