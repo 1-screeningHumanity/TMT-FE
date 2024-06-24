@@ -5,11 +5,9 @@ export default function Kosdaq(data: { data: kospiType }) {
   const kospiData: kospiType = data.data
 
   return (
-    <section className="bg-slate-100 rounded-xl w-full mx-5 h-28">
-      <div className=" flex justify-center items-center h-10 text-lg font-semibold ">
-        코스닥
-      </div>
+    <div className="bg-white rounded-xl py-[2rem] px-[1rem] w-full">
+      <h3 className="font-bold text-md">코스닥</h3>
       <Krx data={kospiData} />
-    </section>
+    </div>
   )
 }

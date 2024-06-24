@@ -1,51 +1,62 @@
 import { kospiType } from '@/types/Mainpage'
-import Image from 'next/image'
+import { ArrowUpIcon } from 'lucide-react'
+import CountUp from 'react-countup'
+
+import { useEffect, useState } from 'react'
 
 export default function Krx(data: { data: kospiType }) {
   
-  const red = '#ff0000'
-  const blue = '#0000ff'
-  const kospiData = data.data
-  let color = ''
-  
-  if (kospiData.prdy_vrss_sign === '1' || kospiData.prdy_vrss_sign === '2') {
-    color = red
-  }
-  if (kospiData.prdy_vrss_sign === '4' || kospiData.prdy_vrss_sign === '5') {
-    color = blue
-  }
+  const RED = '#ff0000'
+  const BLUE = '#0000ff'
+  const [color, setColor] = useState<string>('#000000')
+  const [kospiData, setKospiData] = useState<kospiType | null>(null)
+
+  useEffect(() => {
+
+    if (data) {
+      setKospiData(data.data)
+      const sign = data.data.prdy_vrss_sign
+      if (sign === '1' || sign === '2') {
+        setColor(RED)
+        return
+      }
+      if (sign === '4' || sign === '5') {
+        setColor(BLUE)
+        return
+      }
+    }
+
+  }, [data])
 
   return (
-    <div className="text-center">
-      <div className="text-3xl font-bold" style={{ color: color }}>
-        {kospiData.bstp_nmix_prpr}
+    <>
+      <div className="text-[8.5vw] font-extrabold tracking-tighter" style={{ color: color }}>
+        {kospiData && (
+          <CountUp
+            start={0}
+            end={Number(kospiData.bstp_nmix_prpr)}
+            duration={0.5}
+            separator=""
+            decimals={2} // Add this line to display decimal places
+          />
+        )}
       </div>
-
-      <div className="flex justify-center">
-        <span className="flex mr-2" style={{ color: color }}>
-          {color === '#ff0000' ? (
-            <Image
-              src="/assets/images/upPrice.svg"
-              alt="부호"
-              width={15}
-              height={10}
-            />
+      <div className="flex justify-between items-center">
+        <div className="flex gap-1 items-center" style={{ color: color }}>
+          {color === "#ff0000" ? (
+            <ArrowUpIcon size={15} />
           ) : (
-            <Image
-              src="/assets/images/downPrice.svg"
-              alt="부호"
-              width={15}
-              height={10}
-            />
+            <ArrowUpIcon size={15} style={{ transform: "rotate(180deg)" }} />
           )}
-          {kospiData.bstp_nmix_prdy_vrss}
-        </span>
-        <span className="ml-2" style={{ color: color }}>
-          {color === '#ff0000' && <span>+</span>}
-
-          {kospiData.bstp_nmix_prdy_ctrt}
-        </span>
+          <p style={{ color: color }}>
+            {kospiData && Number(kospiData.bstp_nmix_prdy_vrss)}
+          </p>
+        </div>
+        <p style={{ color: color }}>
+          {color === "#ff0000" && <span>+</span>}
+          {kospiData && Number(kospiData.bstp_nmix_prdy_ctrt)}
+        </p>
       </div>
-    </div>
+    </>
   )
 }

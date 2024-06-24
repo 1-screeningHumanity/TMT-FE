@@ -49,7 +49,7 @@ export default function SearchBar() {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex pt-[80px]">
         <select
           className="border-2  w-24 h-14 my-4 ml-4 text-center font-bold text-xl"
           value={selectValue}

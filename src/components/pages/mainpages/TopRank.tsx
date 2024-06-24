@@ -1,30 +1,32 @@
-import { sortAPI } from '@/actions/stock/mainpage'
+'use client'
 import Soaring from '@/components/pages/mainpages/Soaring'
 import { StockSortType } from '@/types/StcokSortType'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 
-export default async function TopRank() {
-  const soaringData = await sortAPI('soaring-stocks')
-  const plummetingData = await sortAPI('plummeting-stocks')
-  const top3soaring: StockSortType[] = soaringData.slice(0, 3)
-  const top3plummeting: StockSortType[] = plummetingData.slice(0, 3)
+export default function TopRank({data, delay }: { data: any, delay: number }) {
+
+  const [top3soaring, setTop3soaring] = useState<StockSortType[]>([])
+  const [top3plummeting, setTop3plummeting] = useState<StockSortType[]>([])
+  const [show, setShow] = useState(false)
+    
+  useEffect(() => {
+    const timer = setTimeout(() => setShow(true), delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  useEffect(() => {
+    if (data) {
+      setTop3soaring(data[0].slice(0, 3))
+      setTop3plummeting(data[1].slice(0, 3))
+    }
+  }, [data])
+  
+  if (!show) return null;
   return (
-    <section>
-      <span className="font-bold text-xl m-5 ">오늘의 급등주 Top3</span>
-      <Link
-        href={{ pathname: '/stockRank', query: { sort: 'soaring-stocks' } }}
-      >
-        <Soaring data={top3soaring} color={'red'} />
-      </Link>
-
-      <Link
-        href={{
-          pathname: '/stockRank',
-          query: { sort: 'plummeting-stocks' },
-        }}
-      >
-        <Soaring data={top3plummeting} color={'blue'} />
-      </Link>
-    </section>
+    <motion.div initial={{ opacity: 0, translateY: '-10px' }} animate={{ opacity: 1, translateY: '0px' }} transition={{ duration: 0.3 }} className='py-[1rem] px-[1rem] drop-shadow-sm'>
+      <h3 className="font-bold text-lg ">오늘의 급등주 Top3</h3>
+    </motion.div>
   )
 }
