@@ -25,7 +25,7 @@ export const footer = [
     src: 'https://img.icons8.com/ios/50/bar-chart--v1.png',
     alt: 'bar-chart--v1',
     name: '순위',
-    href: '/stockRank',
+    href: '/userRank',
   },
   {
     id: 5,

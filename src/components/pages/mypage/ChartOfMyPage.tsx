@@ -26,7 +26,7 @@ export default function ChartOfMyPage() {
   return (
     <EChartsReact
       option={options}
-      opts={{ renderer: 'svg', width: 'auto', height: 'auto' }}
+      opts={{ renderer: 'svg' }}
     />
   )
 }
