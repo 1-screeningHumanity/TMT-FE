@@ -56,6 +56,8 @@ export const options: NextAuthOptions = {
 
   callbacks: {
     async signIn({ user, profile }) {
+      console.log(user)
+      console.log(profile)
       return true
     },
     async jwt({ token, user }) {

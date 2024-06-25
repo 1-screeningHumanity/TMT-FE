@@ -6,6 +6,7 @@ import { socketStockCode } from '@/utils/socketStockCode'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
 import { SocketStockDataType, staticStockType } from '@/types/Stock'
 import timeCheck from '@/utils/timeCheck'
+import Bookmark from '@/components/ui/Bookmark'
 
 export default function StockNamePrice({
   stockName,
@@ -39,16 +40,7 @@ export default function StockNamePrice({
         style={{ backgroundColor: '#ABABAB' }}
       >
         <div className="w-full h-24 rounded-xl flex items-center relative">
-          <div className="p-2 ">
-            <Image
-              src="https://img.icons8.com/color/20/star--v1.png"
-              alt="bookmark"
-              width={48}
-              height={48}
-              objectFit="contain"
-              className="p-2"
-            />
-          </div>
+          <Bookmark stockCode={stockCode} stockName={stockName} />
           <span className="text-3xl font-bold text-white ml-3 ">
             {stockName}
           </span>
