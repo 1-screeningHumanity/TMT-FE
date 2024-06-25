@@ -12,8 +12,11 @@ export default async function Page(props: {
   const stockData = subCategoryData.stockData
   return (
     <main>
-      <div className="font-bold text-xl p-2 w-full h-16 fixed flex items-center"></div>
-      <ul>
+      <div className="font-bold text-xl p-2 w-full h-16 fixed flex items-center">
+        {subCategoryData.mainCategoryName} {' > '}{' '}
+        {subCategoryData.subCategoryName}
+      </div>
+      <ul className="top-16 relative">
         {stockData.map((stock: any) => (
           <Link href={`/stock/${stock.stockCode}`}>
             <li
