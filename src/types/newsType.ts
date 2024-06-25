@@ -5,7 +5,7 @@ interface newsType {
   originallink: string
   link: string
   pubDate: string
-  image: string
+  image: any
 }
 
 export type { newsType }
