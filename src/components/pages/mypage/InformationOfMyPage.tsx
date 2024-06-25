@@ -19,7 +19,7 @@ export default async function InformationOfMyPage(){
   const gradeInfo = resGrade?.data?.grade;
 
   return (
-      <div className="w-full flex justify-around text-white pt-4 pb-8 rounded-b-2xl bg-[#7d00d099]">
+      <div className="w-full flex justify-around pt-4 pb-8 rounded-b-2xl bg-white">
         <div className="flex flex-col gap-2">
           {wonInfo && <div className="text-2xl">{formatNumberWithCommas(wonInfo)}원</div>}
           {cashInfo && <div className="text-lg">{formatNumberWithCommas(cashInfo)}캐시</div>}
