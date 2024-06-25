@@ -32,7 +32,7 @@ export default function AlarmCount() {
   return (
     <>
       {count !== 0 && (
-        <span className="absolute top-0 right-2 bg-red-500 text-white rounded-full w-6  h-6  flex items-center justify-center text-xs">
+        <span className="absolute top-4 right-6 bg-red-500 text-white rounded-full w-4  h-4  flex items-center justify-center text-xs">
           {count > 99 ? '99+' : count}
         </span>
       )}
