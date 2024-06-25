@@ -8,6 +8,7 @@ import TopRank from '@/components/pages/mainpages/TopRank'
 import ButtonOfSignin from '@/components/ui/buttons/ButtonOfSignin'
 import ButtonToSignin from '@/components/ui/buttons/ButtonToSignin'
 import ButtonOfSignup from '@/components/ui/buttons/ButtonOfSignup'
+import News from '@/components/pages/mainpages/News'
 
 export default async function Home() {
   return (
@@ -18,11 +19,12 @@ export default async function Home() {
           <SearchBarUI />
           <DomesticIndex />
           <TopRank />
-          <ButtonOfSignin />
-          <ButtonOfSignup />
+          {/* <ButtonOfSignin /> */}
+          {/* {/* <ButtonOfSignup /> */}
+          <News />
         </div>
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }

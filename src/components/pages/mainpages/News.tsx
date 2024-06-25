@@ -1,6 +1,5 @@
 import { mainNewsAPI } from '@/actions/search'
 import { newsType } from '@/types/newsType'
-import Image from 'next/image'
 import NewsSection from './NewsSection'
 
 export default async function News() {
@@ -28,15 +27,11 @@ export default async function News() {
   ]
   const randomIndex = Math.floor(Math.random() * randomArr.length)
   const newsData: newsType[] = await mainNewsAPI(randomArr[randomIndex])
-  console.log(newsData)
-
   return (
     <>
-      <main className="flex flex-wrap justify-around">
-        {newsData.map((news: newsType) => (
-          <NewsSection newsData={news} />
-        ))}
-      </main>
+      <section className="flex  justify-around">
+        <NewsSection newsData={newsData} />
+      </section>
     </>
   )
 }
