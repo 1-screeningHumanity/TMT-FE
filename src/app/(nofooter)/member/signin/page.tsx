@@ -15,7 +15,7 @@ export default function signin(){
       <p className="text-xs mx-auto w-fit text-[#775da6]">비밀번호가 기억이 나지 않나요? <Link href={"#"} className="font-extrabold">비밀번호 찾기</Link></p>
       <div className="relative">
         <hr className="w-full my-6"/>
-        <p className="text-xs w-fit text-center bg-white px-4 py-2 mx-auto absolute top-[-15px] left-[50%] translate-x-[-50%]">간단 로그인</p>
+        <p className="text-xs w-fit text-center bg-slate-100 px-4 py-2 mx-auto absolute top-[-15px] left-[50%] translate-x-[-50%]">간단 로그인</p>
       </div>
       <div className="flex justify-between w-full">
         <ButtonOfSigninFromNaver />

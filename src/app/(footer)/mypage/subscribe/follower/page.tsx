@@ -3,6 +3,8 @@ import SubTitleOfSubScribe from "@/components/ui/SubTitleOfSubScribe";
 import SubscribeBox from "@/components/ui/SubscribeBox";
 
 export default function Follower(){
+
+  
   return (
     <section>
       <Headers title="구독자 목록"/>
