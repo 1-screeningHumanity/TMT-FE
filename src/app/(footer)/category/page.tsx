@@ -19,7 +19,7 @@ export default async function Page() {
             query: { name: `${category.categoryName}` },
           }}
         >
-          <div
+          <section
             key={category.categoryId}
             className="flex flex-col items-center justify-center w-[150px] h-[150px] m-4 text-center rounded-full bg-white "
           >
@@ -29,8 +29,8 @@ export default async function Page() {
               width={50}
               height={50}
             />
-            <div className="mt-2 ">{category.categoryName}</div>
-          </div>
+            <span className="mt-2 ">{category.categoryName}</span>
+          </section>
         </Link>
       ))}
     </main>
