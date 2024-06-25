@@ -1,11 +1,13 @@
 import { getMiddleCateogoryAPI } from '@/actions/category'
-import { categoryDataType } from '@/types/categoryDataType'
+import { categoryDataType, subCategoryDataType } from '@/types/categoryDataType'
 import Link from 'next/link'
 
 export default async function Page(props: { params: { categoryId: number } }) {
   const mainCategoryId = props.params.categoryId
-  const middleCateogory: categoryDataType[] =
+  const middleCateogoryData: subCategoryDataType =
     await getMiddleCateogoryAPI(mainCategoryId)
+  const middleCateogory: categoryDataType[] = middleCateogoryData.categoryData
+  console.log(middleCateogory)
 
   return (
     <main>
