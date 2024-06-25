@@ -13,12 +13,7 @@ export default async function Page() {
     <main className="flex flex-wrap justify-around">
       <Headers title="카테고리" />
       {data.map((category: categoryDataType) => (
-        <Link
-          href={{
-            pathname: `/category/${category.categoryId}`,
-            query: { name: `${category.categoryName}` },
-          }}
-        >
+        <Link href={`/category/${category.categoryId}`}>
           <section
             key={category.categoryId}
             className="flex flex-col items-center justify-center w-[150px] h-[150px] m-4 text-center rounded-full bg-white "

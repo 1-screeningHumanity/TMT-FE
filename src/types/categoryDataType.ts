@@ -4,4 +4,8 @@ interface categoryDataType {
   img_url: string
 }
 
-export type { categoryDataType }
+interface subCategoryDataType {
+  mainCategoryName: string
+  categoryData: categoryDataType[]
+}
+export type { categoryDataType, subCategoryDataType }
