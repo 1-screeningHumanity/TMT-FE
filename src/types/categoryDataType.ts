@@ -11,6 +11,16 @@ interface subCategoryDataType {
 interface subItemCategoryDataType {
   mainCategoryName: string
   subCategoryName: string
-  stockData: categoryDataType[]
+  stockData: any[]
 }
-export type { categoryDataType, subCategoryDataType, subItemCategoryDataType }
+interface stockDataType {
+  id: number
+  stockCode: string
+  stockName: string
+}
+export type {
+  categoryDataType,
+  subCategoryDataType,
+  subItemCategoryDataType,
+  stockDataType,
+}
