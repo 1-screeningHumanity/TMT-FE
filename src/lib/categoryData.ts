@@ -7,8 +7,9 @@ const CategoryData = [
   {
     id: 2,
     name: '도매 및 소매업',
-    icon: 'https://img.icons8.com/external-flaticons-flat-flat-icons/50/external-wholesale-office-and-office-supplies-flaticons-flat-flat-icons.png',
+    icon: 'https://img.icons8.com/ios/50/shop--v1.png',
   },
+
   {
     id: 3,
     name: '서비스업',
