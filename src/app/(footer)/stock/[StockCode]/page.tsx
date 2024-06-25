@@ -40,7 +40,7 @@ export default async function Page(params: any) {
       {/* <CompanyInfo /> */}
       <Trade
         stockCode={stockCode}
-        stockName={stockNameResult.stockName}
+        stockName={stockNameResult?.stockName}
         staticStockPrice={staticStockPrice}
       />
     </main>
