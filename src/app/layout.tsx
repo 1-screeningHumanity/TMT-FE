@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import AuthProvider from '../components/provider/AuthProvider'
 import { Toaster } from '@/components/ui/toaster'
+import MainHeader from '@/components/layouts/MainHeader'
 
 export const metadata: Metadata = {
   title: '티끌 모의 태산',
@@ -21,8 +22,11 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <AuthProvider>
-          {children}
-          <Toaster />
+          <MainHeader />
+          <main className='py-20'>
+              {children}
+              <Toaster />
+          </main>
         </AuthProvider>
       </body>
     </html>

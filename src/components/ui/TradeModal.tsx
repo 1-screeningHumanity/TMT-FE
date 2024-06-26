@@ -17,7 +17,7 @@ export default function TradeModal({
   stockNameResult,
   staticStockPrice,
 }: TradeModalProps) {
-  const now_price = parseInt(staticStockPrice.stck_prpr)
+  const now_price = parseInt(staticStockPrice?.stck_prpr)
   const [price, setPrice] = useState(now_price)
   const [amount, setAmount] = useState(1)
   const [totalPrice, setTotalPrice] = useState(now_price)

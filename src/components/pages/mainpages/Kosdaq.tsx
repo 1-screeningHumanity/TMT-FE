@@ -1,15 +1,15 @@
 import { kospiType } from '@/types/Mainpage'
 import Krx from './Krx'
 
-export default function Kosdaq(data: { data: kospiType }) {
-  const kospiData: kospiType = data.data
+export default function Kosdaq({data, title}: { data: kospiType, title : string }) {
+  // const kospiData: kospiType = data.data
 
   return (
-    <section className="bg-slate-100 rounded-xl w-full mx-5 h-28">
-      <div className=" flex justify-center items-center h-10 text-lg font-semibold ">
-        코스닥
-      </div>
-      <Krx data={kospiData} />
+    <section className="bg-white rounded-xl py-8 px-4 w-[48%] leading-tight">
+      <h3 className="text-md font-bold">
+        {title}
+      </h3>
+      <Krx data={data} />
     </section>
   )
 }

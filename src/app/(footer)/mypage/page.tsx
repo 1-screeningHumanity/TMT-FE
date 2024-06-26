@@ -8,8 +8,8 @@ import ButtonOfSignout from "@/components/ui/buttons/ButtonOfSignout";
 export default async function mypage(){
 
   return (
-    <div className="mb-20">
-      <Headers title="마이페이지"/>
+    <div >
+      {/* <Headers title="마이페이지"/> */}
       <InformationOfMyPage />
       <ChartOfMyPage />
       <ContentsOfMyPage />
