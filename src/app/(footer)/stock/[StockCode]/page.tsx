@@ -5,6 +5,7 @@ import {
 } from '@/actions/stock/stock'
 import Charts from '@/components/pages/stock/Charts'
 import CompanyInfo from '@/components/pages/stock/CompanyInfo'
+import StockNews from '@/components/pages/stock/StockNews'
 import Trade from '@/components/pages/stock/Trade'
 import { StockChartDataType } from '@/types/Stock'
 import timeCheck from '@/utils/timeCheck'
@@ -43,6 +44,7 @@ export default async function Page(params: any) {
         stockName={stockNameResult.stockName}
         staticStockPrice={staticStockPrice}
       />
+      <StockNews stockName={stockNameResult?.stockName} />
     </main>
   )
 }
