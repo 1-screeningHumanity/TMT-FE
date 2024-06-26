@@ -8,6 +8,7 @@ export default async function tradeLists(){
 
   const data = await getTradeList();
   const tradeLists = data?.data;
+  console.log("tradeLists : ", tradeLists);
 
   return (
     <section>
@@ -22,7 +23,7 @@ export default async function tradeLists(){
         <span className="w-3/12 shrink-0">사기 / 팔기</span> 
       </section>
       <div className="overflow-x-scroll mb-20">
-      {tradeLists.map((trade : TradeListsType, ) => (
+      {tradeLists.map((trade : TradeListsType) => (
         <div key={trade.id} className="flex gap-2 text-lg text-center mt-2 py-4 font-[Pretendard-Regular] pl-4 leading-8">
           <span className="w-3/12 shrink-0">{parseDate(trade.time)}</span>
           <span className="w-4/12 shrink-0">{trade.stockName}</span>
