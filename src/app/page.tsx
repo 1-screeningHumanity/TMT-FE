@@ -2,6 +2,7 @@ import 'regenerator-runtime/runtime'
 import Footer from '@/components/ui/Footer'
 import DomesticIndex from '@/components/pages/mainpages/DomesticIndex'
 import TopRank from '@/components/pages/mainpages/TopRank'
+import News from '@/components/pages/mainpages/News'
 import MainHeader from '@/components/layouts/MainHeader'
 import dynamic from 'next/dynamic'
 import { KosdaqAPI, KospiAPI, sortAPI } from '@/actions/stock/mainpage'
@@ -20,7 +21,6 @@ const getData = async () => {
   ]);
   return data;
 }
-
 export default async function Home() {
 
   const data = await getData();
@@ -68,6 +68,7 @@ export default async function Home() {
               </section>
             </Suspense>
           ))}
+          <News />
           <SkeletonCard />
           <SkeletonCard />
           <SkeletonCard />

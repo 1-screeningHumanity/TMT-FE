@@ -4,5 +4,8 @@ async function searchNameAPI(searchName: string, searchType: string) {
   const res = await GetAPI(`/search/${searchType}?searchName=${searchName}`)
   return res
 }
-
-export { searchNameAPI }
+async function mainNewsAPI(keyword: string) {
+  const res = await GetAPI(`/search/news?keyword=${keyword}`)
+  return res.data
+}
+export { searchNameAPI, mainNewsAPI }
