@@ -13,8 +13,8 @@ export default async function Page({
   const getOldChat = await getOldChatDAtaAPI(stockCode, undefined)
   const nickNameRes = await userInformation()
   let nickName = ''
-  if (nickNameRes.data.isSuccess == true) {
-    nickName = nickNameRes.data.nickName
+  if (nickNameRes.isSuccess == true) {
+    nickName = nickNameRes.data.nickanme
   }
 
   async function newChat(formData: FormData): Promise<boolean> {
@@ -24,7 +24,7 @@ export default async function Page({
       message: formData.get('message') as string,
       nickName: nickName,
     }
-    if (!rawFormData.message) return false
+    if (!rawFormData.message || !rawFormData.nickName) return false
     const token = await getAccessToken()
     const response = await fetch(`${process.env.API_BASE_URL}/stockitem/chat`, {
       method: 'POST',
@@ -39,9 +39,10 @@ export default async function Page({
     }
     return true
   }
+
   return (
     <>
-      {/* <ChatRoom oldData={getOldChat.reverse()} nickName={nickName}/> */}
+      <ChatRoom stockCode={stockCode} nickName={nickName} />
       <ChatSender newChat={newChat} />
     </>
   )

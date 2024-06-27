@@ -51,15 +51,10 @@ async function getStockData(stockCode: string, when: string) {
   return response.data
 }
 async function getOldChatDAtaAPI(stockCode: string, lastId?: string) {
-  if (lastId != null) {
-    const url = `/stockitem/chat/${stockCode}/20/?lastId=${lastId}`
-    const response = await GetAPI(url)
-    return response
-  } else {
-    const url = `/stockitem/chat/${stockCode}/20`
-    const response = await GetAPI(url)
-    return response
-  }
+  const url = `/stockitem/chat/${stockCode}/5?lastId=${lastId}`
+  const response = await GetAPI(url)
+  console.log('에러???????', url)
+  return response
 }
 export {
   getStockName,
