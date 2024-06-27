@@ -13,7 +13,7 @@ async function patchPasswordChange(password : string | undefined) {
 async function patchPaypasswordChange(payingPassword : string | undefined) {
 
   const TOKEN = await getAccessToken();
-  const res = await PatchAPI("/member/password", {payingPassword}, TOKEN)
+  const res = await PatchAPI("/member/pay-password", {payingPassword}, TOKEN)
   return res
 }
 
