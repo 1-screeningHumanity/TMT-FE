@@ -53,7 +53,6 @@ async function handleChangeNickname(event: React.FormEvent) {
 
   return(
     <>
-      <Headers />
       <div className="flex mx-10 justify-between mt-10 mb-16">
         <h1 className="text-lg text-[#7d00d0] font-extrabold">닉네임 변경</h1>
       </div>

@@ -50,7 +50,6 @@ export default function paypassword (){
 
   return(
     <>
-      <Headers />
       { step ?
         <PayPasswordChange setPassword={setPassword}/> :
         <PayPasswordCheck setCheckPassword={setCheckPassword} />

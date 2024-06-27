@@ -68,7 +68,6 @@ const passwordConfirm = (event: React.ChangeEvent<HTMLInputElement>) => {
 
   return(
     <>
-    <Headers/>
       <div className="flex mx-10 justify-between mt-10">
         <h1 className="text-lg text-[#7d00d0] font-extrabold">비밀번호 재설정</h1>
       </div>

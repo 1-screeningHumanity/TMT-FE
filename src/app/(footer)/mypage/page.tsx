@@ -1,5 +1,4 @@
 import ContentsOfMyPage from "@/components/pages/mypage/ContentsOfMyPage";
-import Headers from "@/components/ui/Headers";
 import ButtonOfDeleteMember from "@/components/ui/buttons/ButtonOfDeleteMember";
 import InformationOfMyPage from "@/components/pages/mypage/InformationOfMyPage";
 import ChartOfMyPage from "@/components/pages/mypage/ChartOfMyPage";
@@ -9,7 +8,6 @@ export default async function mypage(){
 
   return (
     <div >
-      {/* <Headers title="마이페이지"/> */}
       <InformationOfMyPage />
       <ChartOfMyPage />
       <ContentsOfMyPage />
