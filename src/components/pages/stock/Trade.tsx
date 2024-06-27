@@ -27,7 +27,7 @@ export default function Trade({
   }, [stockCode])
   return (
     <>
-      <div className="mt-5 bottom-0 left-0 right-0 flex justify-between mx-5 mb-20">
+      <div className="mt-5 bottom-0 left-0 right-0 flex justify-between mx-5">
         <button
           className="w-5/12 h-14 font-bold text-white rounded-2xl"
           style={{ backgroundColor: '#0B0B0B' }}
