@@ -4,6 +4,8 @@ import { ChatMessageDataType } from '@/types/chatMessageDataType'
 import { beforeMinute } from '@/utils/formattinfTime'
 import { useEffect, useRef, useState, useCallback } from 'react'
 import useObserver from '@/utils/useObserver'
+import FromChat from './FromChat'
+import ToChat from './ToChat'
 
 export default function ChatRoom({
   stockCode,
@@ -16,112 +18,93 @@ export default function ChatRoom({
   const [messageData, setMessageData] = useState<ChatMessageDataType[]>([])
   const [lastId, setLastId] = useState<string>('')
   const chatRoomRef = useRef<HTMLDivElement>(null)
-  const [scrollHeight, setScrollHeight] = useState<number>(0)
-  useEffect(() => {
-    console.log('fdmkslfnkldsnfjks')
-    const loadMoreChats = async () => {
-      const res = await getOldChatDAtaAPI(StockCode, lastId)
+  const observerRef = useRef<HTMLDivElement>(null)
+  const lastMessageRef = useRef<HTMLDivElement>(null)
+  const loadMoreChats = async () => {
+    const res = await getOldChatDAtaAPI(StockCode, lastId)
 
-      setMessageData((prevMessages) => {
-        const newMessages = res.filter((msg: any) => {
-          return !prevMessages.some((prevMsg) => prevMsg.id == msg.id)
-        })
-        return [...newMessages.reverse(), ...prevMessages]
+    setMessageData((prevMessages) => {
+      const newMessages = res.filter((msg: ChatMessageDataType) => {
+        return !prevMessages.some((prevMsg) => prevMsg.id == msg.id)
       })
-    }
+      return [...newMessages.reverse(), ...prevMessages]
+    })
+  }
+  useEffect(() => {
     loadMoreChats()
   }, [lastId])
+
   const moreData = () => {
     if (messageData.length === 0) return
     setLastId(messageData[0].id)
   }
-  console.log('messageData', messageData)
   useEffect(() => {
-    console.log('어디서 걸리노 씨빠ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ')
-    if (chatRoomRef.current) {
-      // lastMessageRef.current.scrollIntoView({ behavior: 'smooth' })
-      chatRoomRef.current.scrollTop = chatRoomRef.current.scrollHeight
+    console.log(messageData)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          moreData()
+        }
+      },
+      { threshold: 1 },
+    )
+    if (observerRef.current) {
+      observer.observe(observerRef.current)
     }
-  }, [])
+  }, [moreData])
 
-  // useEffect(() => {
-  //   console.log('계사아아아아아아안')
+  useEffect(() => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView()
+    }
+  }, [messageData[messageData.length - 1]])
 
-  //   if (!chatRoomRef) return
-  //   if (chatRoomRef.current) {
-  //     const scrollTop = chatRoomRef.current.scrollHeight - scrollHeight
-  //     chatRoomRef.current.scrollTop = scrollTop
-  //     setScrollHeight(chatRoomRef.current.scrollHeight)
-  //   }
-  // }, [messageData])
+  useEffect(() => {
+    if (!window.EventSource) {
+      console.error('EventSource is not supported in this environment.')
+      return
+    }
 
-  // console.log('messageData', messageData)
-  // useEffect(() => {
-  //   if (!window.EventSource) {
-  //     console.error('EventSource is not supported in this environment.')
-  //     return
-  //   }
+    const connectToSSE = () => {
+      const eventSource = new EventSource(
+        `${process.env.API_BASE_URL}/stockitem/chat/reactive/${StockCode}`,
+      )
 
-  //   const connectToSSE = () => {
-  //     const eventSource = new EventSource(
-  //       `${process.env.API_BASE_URL}/stockitem/chat/reactive/${StockCode}`,
-  //     )
+      eventSource.onmessage = (event) => {
+        const data = JSON.parse(event.data)
+        setMessageData((prevMessages) => [...prevMessages, data])
+      }
 
-  //     eventSource.onmessage = (event) => {
-  //       const data = JSON.parse(event.data)
-  //       setMessageData((prevMessages) => {
-  //         const isDuplicate = prevMessages.some((msg) => msg.id === data.id)
-  //         if (!isDuplicate) {
-  //           return [...prevMessages, data]
-  //         }
-  //         return prevMessages
-  //       })
-  //     }
+      eventSource.onerror = (error) => {
+        console.error('EventSource failed:', error)
+        eventSource.close()
+      }
 
-  //     eventSource.onerror = (error) => {
-  //       console.error('EventSource failed:', error)
-  //       eventSource.close()
-  //     }
+      return eventSource
+    }
 
-  //     return eventSource
-  //   }
-
-  //   const eventSource = connectToSSE()
-  //   return () => {
-  //     eventSource.close()
-  //   }
-  // }, [StockCode]) // Exclude lastId from dependency array to avoid unnecessary reconnects
-  // const observerRef = useObserver({
-  //   onIntersect: loadMoreChats,
-  //   enabled: true,
-  // })
+    const eventSource = connectToSSE()
+    return () => {
+      eventSource.close()
+    }
+  }, [StockCode]) // Exclude lastId from dependency array to avoid unnecessary reconnects
 
   return (
-    <section className="flex flex-col mb-32" ref={chatRoomRef}>
-      <button onClick={() => moreData()}>더 부르기</button>
-      {messageData.map((msg) => {
-        return msg.nickName !== nickName ? (
-          <div key={msg.id} className="speech-bubble">
-            <div className="font-semibold">{msg.nickName}</div>
-            <div>{msg.message}</div>
-            <div className="relative p-2">
-              <span className="text-xs absolute right-0 bottom-0 pb-2 mr-2">
-                {beforeMinute(msg.createAt)}
-              </span>
-            </div>
-          </div>
-        ) : (
-          <div key={msg.id} className="tospeech-bubble">
-            <div className="font-semibold">{msg.nickName}</div>
-            <div>{msg.message}</div>
-            <div className="relative p-2">
-              <span className="text-xs absolute right-0 bottom-0 pb-2 mr-2">
-                {beforeMinute(msg.createAt)}
-              </span>
-            </div>
-          </div>
-        )
-      })}
+    <section className=" mb-32" ref={chatRoomRef}>
+      <div ref={observerRef} />
+      {messageData.map((msg: ChatMessageDataType, index: number) => (
+        <div
+          className="flex flex-col"
+          key={index}
+          ref={index === messageData.length - 1 ? lastMessageRef : null}
+        >
+          {msg.nickName === nickName ? (
+            <ToChat msg={msg} />
+          ) : (
+            <FromChat msg={msg} />
+          )}
+        </div>
+      ))}
     </section>
   )
 }
