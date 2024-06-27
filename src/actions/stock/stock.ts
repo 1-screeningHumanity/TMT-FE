@@ -51,9 +51,8 @@ async function getStockData(stockCode: string, when: string) {
   return response.data
 }
 async function getOldChatDAtaAPI(stockCode: string, lastId?: string) {
-  const url = `/stockitem/chat/${stockCode}/5?lastId=${lastId}`
+  const url = `/stockitem/chat/${stockCode}/50?lastId=${lastId}`
   const response = await GetAPI(url)
-  console.log('에러???????', url)
   return response
 }
 export {
