@@ -30,13 +30,14 @@ export default async function TopRank({data, delay}: { data: any[], delay: numbe
   if (!show) return null;
   return (
     <motion.div initial={{ opacity :0, translateY: "-10px"}} animate={{ opacity:1, translateY : "0px"}} transition={{ duration : 0.3}} className='py-4 drop-shadow-sm'>
-      <h3 className="font-bold text-lg px-4">오늘의 급등주 Top3</h3> 
+      <h3 className="font-bold text-lg px-4 tracking-tighter">오늘의 급등주 Top3</h3> 
       <Link
         href={{ pathname: '/stockRank', query: { sort: 'soaring-stocks' } }}
       >
         <Soaring data={top3soaring} color={'RED'} />
       </Link>
 
+      <h3 className="font-bold text-lg px-4 tracking-tighter">오늘의 급락주 Top3</h3>
       <Link
         href={{
           pathname: '/stockRank',
