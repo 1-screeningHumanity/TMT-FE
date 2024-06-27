@@ -1,9 +1,7 @@
 'use client'
 import { getOldChatDAtaAPI } from '@/actions/stock/stock'
 import { ChatMessageDataType } from '@/types/chatMessageDataType'
-import { beforeMinute } from '@/utils/formattinfTime'
-import { useEffect, useRef, useState, useCallback } from 'react'
-import useObserver from '@/utils/useObserver'
+import { useEffect, useRef, useState } from 'react'
 import FromChat from './FromChat'
 import ToChat from './ToChat'
 
