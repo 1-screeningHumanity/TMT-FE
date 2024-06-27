@@ -27,21 +27,19 @@ export default function ChatSender({
   }
 
   return (
-    <div className="fixed bottom-16 w-full z-20 bg-slate-100">
+    <div className="fixed bottom-16 w-full z-20 bg-slate-100 mr-4">
       <form ref={formRef} onSubmit={handleSubmit}>
-        <div className="flex justify-between h-12">
+        <div className="flex justify-between h-12 rounded-lg">
           <input
             type="text"
             name="message"
             placeholder="메시지를 입력하세요."
-            // value={message}
-            // onChange={(e) => setMessage(e.target.value)}
-            className="w-11/12 h-full bg-transparent focus:outline-none"
+            className="w-full h-full bg-transparent focus:outline-none"
             aria-label="Message input"
           />
           <button
             type="submit"
-            className="w-1/12 h-full bg-blue-500 text-white"
+            className="w-[40px] h-full bg-blue-500 text-white"
             aria-label="Send message"
           >
             전송
