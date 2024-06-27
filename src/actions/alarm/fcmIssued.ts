@@ -24,13 +24,11 @@ export const fcmIssued = async (accessToken: string) => {
           vapidKey: `${process.env.NEXT_PUBLIC_VAPID_KEY}`,
         })
           .then(async (currentToken) => {
-            console.log(currentToken)
             if (currentToken) {
               const res = await fcmSendAPI(
                 currentToken,
                 `Bearer ${accessToken}`,
               )
-              console.log(res)
               localStorage.setItem('fcmToken', currentToken)
             } else {
               console.log(
