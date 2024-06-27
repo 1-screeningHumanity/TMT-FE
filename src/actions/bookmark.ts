@@ -26,4 +26,10 @@ async function DeleteBookMarkAPI(stockCode: string) {
   return res
 }
 
-export { GetBookMarkAPI, PostBookMarkAPI, DeleteBookMarkAPI }
+async function GetBookMartListAPI() {
+  const token = await getAccessToken();
+  const res = await GetAPI('/member-mypage/bookmark/list', undefined, token);
+  return res;
+}
+
+export { GetBookMarkAPI, PostBookMarkAPI, DeleteBookMarkAPI, GetBookMartListAPI }

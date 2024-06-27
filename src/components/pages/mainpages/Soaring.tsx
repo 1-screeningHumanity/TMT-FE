@@ -1,5 +1,6 @@
 import { StockSortType } from '@/types/StcokSortType'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
+import { ArrowDownIcon, ArrowUpIcon } from 'lucide-react'
 
 export default function Soaring({
   data,
@@ -10,7 +11,7 @@ export default function Soaring({
 }) {
   const SoaringData = data
   return (
-    <section className= {`my-5 rounded-md ${color === 'RED' ? 'bg-red-100' : 'bg-blue-100'}`}>
+    <section className= {`my-5 rounded-md bg-white border-[0.5px]`}>
       <div className="w-full h-10 flex justify-center items-center text-center border-b-2 border-white font-semibold px-2">
         <span className="w-1/12"></span>
         <span className="w-5/12">종목명</span>
@@ -25,8 +26,8 @@ export default function Soaring({
           <li className="w-1/12">{soar.data_rank}</li>
           <li className="w-5/12 break-words">{soar.hts_kor_isnm}</li>
           <li className="w-3/12">{formatNumberWithCommas(soar.stck_prpr)}</li>
-          <li className="w-3/12" style={{ color: color }}>
-            {soar.prdy_ctrt}
+          <li className="w-3/12 flex gap-2 items-center" style={{ color: color }}>
+            {color === "RED" ? <ArrowUpIcon size={10}/> : <ArrowDownIcon size={10} />}{soar.prdy_ctrt}
           </li>
         </ul>
       ))}

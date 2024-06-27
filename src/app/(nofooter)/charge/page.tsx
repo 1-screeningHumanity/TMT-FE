@@ -20,7 +20,6 @@ export default async function charge({searchParams} : {searchParams: {[key: stri
 
   return (
     <section>
-      <Headers title="교환하기"/>
       <div className="w-60 mx-auto text-center">
         <h3 className="mt-14 mb-10 text-sm flex items-end">보유 캐시 : <span className="text-2xl text-[#7d00d0]">{cashInfo > 0 ? formatNumberWithCommas(cashInfo) : 0} 캐시</span></h3>
       </div>

@@ -2,7 +2,7 @@ import { isSubscribed } from "@/actions/subscribe";
 import ButtonOfSubscribe from "@/components/pages/profile/ButtonOfSubscribe";
 import ChartOfProfile from "@/components/pages/profile/ChartOfProfile";
 import ContentsOfProfile from "@/components/pages/profile/ContentsOfProfile";
-import Headers from "@/components/ui/Headers";
+import TitleOfPages from "@/components/ui/TitleOfPages";
 import formatNumberWithCommas from "@/utils/formatNumberWithCommas";
 import Image from "next/image";
 
@@ -14,7 +14,7 @@ export default async function Profile({params} : {params :{nickname: string}}){
 
   return (
     <div>
-      <Headers title={nick}/>
+      <TitleOfPages title={nick}/>
       <main className="mx-8">
         <ButtonOfSubscribe isSubscribe={isSubscribe} nick={nick}/>
           <div className="flex justify-between items-center">

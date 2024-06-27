@@ -16,7 +16,6 @@ export default function Footer() {
 
   const [footer, setFooter] = useState<footerType[]>();
   const session = useSession()
-  console.log("session : ", session?.data?.user?.isSuccess);
   const isSignIn = session?.data?.user?.isSuccess
 
   useEffect(() => {

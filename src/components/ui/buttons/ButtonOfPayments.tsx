@@ -2,8 +2,11 @@
 
 import { postKakaopayReady } from "@/actions/payments";
 import checkMobileDevice from "@/utils/checkMobileDevice";
+import { useRouter } from "next/navigation";
 
 export default async function ButtonOfPayments({price} : {price: string}){
+
+  const router = useRouter();
 
   async function handlePayment(){
     const res = await postKakaopayReady(`${price}캐시`, 1, Number(price));
@@ -17,7 +20,10 @@ export default async function ButtonOfPayments({price} : {price: string}){
     }
   }
 
-  return <button className="bg-yellow-400 w-full h-14 fixed bottom-0 right-0 left-0 mt-20 flex items-center justify-center" 
-  onClick={handlePayment}
-  >결제하기</button>
+  return (
+    <button className="bg-yellow-400 w-full h-14 fixed right-0 bottom-0 mt-20 flex items-center justify-center rounded-xl" 
+      onClick={handlePayment}
+      >결제하기
+    </button>
+  )
 }

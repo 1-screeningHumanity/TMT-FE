@@ -35,10 +35,10 @@ export default function ButtonOfSubscribePayments({nickname, myNick} : { nicknam
   }
 
   return (
-    <div className="absolute bottom-[62px] left-0 right-0">
-      <button className="w-full h-10 bg-[#7d00d0] text-white" onClick={handleSubscribe}>구독하기</button>
+    <div className="w-full my-20 fixed bottom-[0px]">
+      <button className="w-full h-10 bg-[#7d12ff] text-white" onClick={handleSubscribe}>구독하기</button>
 
-      <button className="w-full h-10 bg-[#7d00d0] text-white" onClick={() => router.push("/payments")}>충전하러 가기</button>
+      <button className="w-full h-10 bg-[#7d12ff] text-white" onClick={() => router.push("/payments")}>충전하러 가기</button>
     </div>
   )
 }
