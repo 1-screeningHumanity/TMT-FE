@@ -1,72 +1,108 @@
 'use client'
-import { userInformation } from '@/actions/myPage'
-import { chatMessage } from '@/lib/chatmessage'
-import { beforeMinute } from '@/utils/formattinfTime'
-import { useEffect, useState } from 'react'
+import { getOldChatDAtaAPI } from '@/actions/stock/stock'
+import { ChatMessageDataType } from '@/types/chatMessageDataType'
+import { useEffect, useRef, useState } from 'react'
+import FromChat from './FromChat'
+import ToChat from './ToChat'
 
-export default function ChatRoom(stockCode: { stockCode: string }) {
-  const message = chatMessage
-  const StockCode = stockCode.stockCode
-
+export default function ChatRoom({
+  stockCode,
+  nickName,
+}: {
+  stockCode: string
+  nickName: string
+}) {
+  const StockCode = stockCode
   const [messageData, setMessageData] = useState<ChatMessageDataType[]>([])
+  const [lastId, setLastId] = useState<string>('')
+  const chatRoomRef = useRef<HTMLDivElement>(null)
+  const observerRef = useRef<HTMLDivElement>(null)
+  const lastMessageRef = useRef<HTMLDivElement>(null)
+  const loadMoreChats = async () => {
+    const res = await getOldChatDAtaAPI(StockCode, lastId)
+
+    setMessageData((prevMessages) => {
+      const newMessages = res.filter((msg: ChatMessageDataType) => {
+        return !prevMessages.some((prevMsg) => prevMsg.id == msg.id)
+      })
+      return [...newMessages.reverse(), ...prevMessages]
+    })
+  }
+  useEffect(() => {
+    loadMoreChats()
+  }, [lastId])
+
+  const moreData = () => {
+    if (messageData.length === 0) return
+    setLastId(messageData[0].id)
+  }
+  useEffect(() => {
+    console.log(messageData)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          moreData()
+        }
+      },
+      { threshold: 1 },
+    )
+    if (observerRef.current) {
+      observer.observe(observerRef.current)
+    }
+  }, [moreData])
+
+  useEffect(() => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView()
+    }
+  }, [messageData[messageData.length - 1]])
+
   useEffect(() => {
     if (!window.EventSource) {
       console.error('EventSource is not supported in this environment.')
       return
     }
-    const connetToSSE = () => {
+
+    const connectToSSE = () => {
       const eventSource = new EventSource(
-        `${process.env.API_BASE_URL}/stockitem/chat/${StockCode}`,
+        `${process.env.API_BASE_URL}/stockitem/chat/reactive/${StockCode}`,
       )
 
       eventSource.onmessage = (event) => {
         const data = JSON.parse(event.data)
-        setMessageData((prevMessages) => {
-          const isDuplicate = prevMessages.some((msg) => msg.id == data.id)
-          if (!isDuplicate) {
-            return [...prevMessages, data]
-          }
+        setMessageData((prevMessages) => [...prevMessages, data])
+      }
 
-          return prevMessages
-        })
-      }
       eventSource.onerror = (error) => {
-        console.log(error)
+        console.error('EventSource failed:', error)
+        eventSource.close()
       }
+
       return eventSource
     }
-    const eventSource = connetToSSE()
+
+    const eventSource = connectToSSE()
     return () => {
       eventSource.close()
     }
-  }, [StockCode])
+  }, [StockCode]) // Exclude lastId from dependency array to avoid unnecessary reconnects
 
   return (
-    <section className="flex flex-col mb-32">
-      {messageData.map((msg) =>
-        // 백엔드에서 현재 닉네임이 아닌 uuid 만 나옴 곧 닉네임 나오게 수정하신다고 합니다. 일단 uuid 랑 본인 같으면 오른쪽으로 나오게 수정했습니다.
-        msg.sender != 'c583a6d3-bcc8-4e00-a0ca-466be206fffe' ? (
-          <div key={msg.id} className="speech-bubble">
-            <div className="font-semibold">{msg.sender}</div>
-            <div>{msg.message}</div>
-            <div className="relative p-2">
-              <span className="text-xs absolute right-0 bottom-0 pb-2 mr-2">
-                {beforeMinute(msg.createAt)}
-              </span>
-            </div>
-          </div>
-        ) : (
-          <div key={msg.id} className="tospeech-bubble">
-            <div className="font-semibold">{msg.sender}</div>
-            <div>{msg.message}</div>
-            <div className="relative p-2">
-              <span className="text-xs absolute right-0 bottom-0 pb-2 mr-2">
-                {beforeMinute(msg.createAt)}
-              </span>
-            </div>
-          </div>
-        ),
-      )}
+    <section className=" mb-32" ref={chatRoomRef}>
+      <div ref={observerRef} />
+      {messageData.map((msg: ChatMessageDataType, index: number) => (
+        <div
+          className="flex flex-col"
+          key={index}
+          ref={index === messageData.length - 1 ? lastMessageRef : null}
+        >
+          {msg.nickName === nickName ? (
+            <ToChat msg={msg} />
+          ) : (
+            <FromChat msg={msg} />
+          )}
+        </div>
+      ))}
     </section>
   )
 }

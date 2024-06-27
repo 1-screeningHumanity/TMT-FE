@@ -3,5 +3,8 @@ interface ChatMessageDataType {
   stockCode: string
   message: string
   sender: string
+  nickName: string
   createAt: string
 }
+
+export type { ChatMessageDataType }

@@ -50,7 +50,11 @@ async function getStockData(stockCode: string, when: string) {
   const response = await GetAPI(`/stockitem/chart/${stockCode}/${when}`)
   return response.data
 }
-
+async function getOldChatDAtaAPI(stockCode: string, lastId?: string) {
+  const url = `/stockitem/chat/${stockCode}/50?lastId=${lastId}`
+  const response = await GetAPI(url)
+  return response
+}
 export {
   getStockName,
   getChartData,
@@ -60,4 +64,5 @@ export {
   getStockData,
   getStaticStockPrice,
   getStaticStockAskPrice,
+  getOldChatDAtaAPI,
 }
