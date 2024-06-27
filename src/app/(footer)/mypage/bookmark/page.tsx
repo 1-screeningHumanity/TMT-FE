@@ -1,17 +1,21 @@
-import Headers from "@/components/ui/Headers"
-import Image from "next/image"
+import { GetBookMartListAPI } from "@/actions/bookmark";
+import BookMarkBox from "@/components/ui/BookMarkBox"
+import TitleOfPages from "@/components/ui/TitleOfPages"
+import { bookmarkDataType } from "@/types/bookmarkDataType";
 
-export default function bookmark(){
+export default async function bookmark(){
+
+  const res = await GetBookMartListAPI();
+  const bookmarkList = res?.data;
+
   return (
     <div>
-      <Headers title="즐겨찾기"/>
-      <div className="w-5/6 bg-slate-200 mx-auto mt-5 h-20 rounded-md flex items-center shadow-md">
-        <div className="ml-10 text-center">
-          <div className="flex relative items-center justify-between">
-            <span>삼성전자</span>
-          </div>
-        </div>
-      </div>
+      <TitleOfPages title="즐겨찾기"/>
+      { bookmarkList?.length === 0 ? <p className="text-center my-10 text-slate-500">즐겨찾기한 종목이 없습니다.</p> :
+        bookmarkList?.map((item : bookmarkDataType) => 
+          <BookMarkBox key={item.id} stockName={item.stockName} stockCode={item.stockCode} price={item.price} prdy_ctrt={item.prdy_ctrt}/>
+        )
+      }
     </div>
   )
 }
