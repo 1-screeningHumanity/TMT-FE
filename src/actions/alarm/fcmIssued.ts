@@ -19,13 +19,14 @@ export const fcmIssued = async (accessToken: string) => {
         typeof window.navigator !== 'undefined'
       ) {
         const messaging = getMessaging(app)
-        // navigator.serviceWorker.register('/firebase-messaging-sw.js', {
-        //   scope: '/firebase-cloud-messaging-push-scope',
-        // })
+        navigator.serviceWorker.register('/firebase-messaging-sw.js', {
+          scope: '/firebase-cloud-messaging-push-scope',
+        })
         getToken(messaging, {
           vapidKey: `${process.env.NEXT_PUBLIC_VAPID_KEY}`,
         })
           .then(async (currentToken) => {
+            console.log(currentToken)
             if (currentToken) {
               const res = await fcmSendAPI(
                 currentToken,
