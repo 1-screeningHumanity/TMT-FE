@@ -8,6 +8,7 @@ import SpeechRecognition, {
 } from 'react-speech-recognition'
 import { SearchDataType } from '@/types/Search'
 import Link from 'next/link'
+import { useToast } from './use-toast'
 
 export default function SearchBar() {
   const { transcript, listening, browserSupportsSpeechRecognition } =
@@ -15,6 +16,7 @@ export default function SearchBar() {
   const [text, setText] = useState('')
   const [searchData, setSearchData] = useState<SearchDataType[]>([])
   const [selectValue, setSelectValue] = useState('stocks')
+  const { toast } = useToast()
 
   const toggleListening = () => {
     if (listening) {
@@ -25,7 +27,6 @@ export default function SearchBar() {
   }
 
   if (!browserSupportsSpeechRecognition) {
-    console.log('Browser does not support speech recognition.')
   }
 
   const fetchData = async (query: string) => {
@@ -45,7 +46,7 @@ export default function SearchBar() {
       fetchData(text)
     }
   }, [text])
-  console.log(searchData)
+
   return (
     <>
       <div className="flex">

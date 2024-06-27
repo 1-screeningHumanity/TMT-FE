@@ -13,18 +13,19 @@ export default async function RootLayout({
 }>) {
   const stockNameResult = await getStockName(params.StockCode)
   const stockPrice = await getStaticStockPrice(params.StockCode)
-  console.log(stockPrice)
   return (
-    <div>
-      <Headers />
-      <StockNamePrice
-        stockName={stockNameResult?.stockName}
-        stockCode={params.StockCode}
-        stockPrice={stockPrice}
-      />
-      <div className="bg-slate-100 mx-3 h-12"> </div>
-      <SelectedTap params={params} />
-      {children}
-    </div>
+    <>
+      <div className="fixed top-0 w-full bg-white z-[20]">
+        <Headers />
+        <StockNamePrice
+          stockName={stockNameResult?.stockName}
+          stockCode={params.StockCode}
+          stockPrice={stockPrice}
+        />
+        <div className="bg-slate-100 mx-3 h-12"> </div>
+        <SelectedTap params={params} />
+      </div>
+      <main className=" relative top-[250px] overflow-y-auto">{children}</main>
+    </>
   )
 }

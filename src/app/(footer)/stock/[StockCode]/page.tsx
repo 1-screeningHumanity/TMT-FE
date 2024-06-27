@@ -5,12 +5,12 @@ import {
 } from '@/actions/stock/stock'
 import Charts from '@/components/pages/stock/Charts'
 import CompanyInfo from '@/components/pages/stock/CompanyInfo'
+import StockNews from '@/components/pages/stock/StockNews'
 import Trade from '@/components/pages/stock/Trade'
 import { StockChartDataType } from '@/types/Stock'
 import timeCheck from '@/utils/timeCheck'
 
 export default async function Page(params: any) {
-  console.log(params)
   const stockCode = params.params.StockCode
   let nowLink = params.searchParams.when
 
@@ -26,7 +26,6 @@ export default async function Page(params: any) {
     stockData = await getStockData(stockCode, 'day')
   }
   const time = timeCheck()
-  console.log(time)
 
   // console.log
   return (
@@ -42,9 +41,10 @@ export default async function Page(params: any) {
       {/* <CompanyInfo /> */}
       <Trade
         stockCode={stockCode}
-        stockName={stockNameResult.stockName}
+        stockName={stockNameResult?.stockName}
         staticStockPrice={staticStockPrice}
       />
+      <StockNews stockName={stockNameResult?.stockName} />
     </main>
   )
 }

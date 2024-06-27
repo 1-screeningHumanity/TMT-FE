@@ -28,7 +28,7 @@ export default function SigninForm() {
     e.preventDefault()
     if (!payload.phoneNumber || !payload.name || !payload.password) {
           toast({
-            title: '※ 빈칸을 모두 채워주세요',
+            title: '빈칸을 모두 채워주세요',
             variant : "destructive",
           })
       return
@@ -41,7 +41,7 @@ export default function SigninForm() {
     })
     if (res?.status == 401) {
       toast({
-        title: '※ 전화번호 또는 이름 또는 비밀번호를 다시 확인해주세요',
+        title: '전화번호 또는 이름 또는 비밀번호를 다시 확인해주세요',
         variant : "destructive",
       })
       router.refresh()

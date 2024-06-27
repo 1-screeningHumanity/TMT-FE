@@ -16,16 +16,17 @@ export default async function charge({searchParams} : {searchParams: {[key: stri
   const resCash = await cashInfoAPI();
   const cashInfo = resCash?.data.cash;
 
+  console.log("wonInfo :", wonInfo, "cashInfo :", cashInfo)
+
   return (
     <section>
-      <Headers title="교환하기"/>
       <div className="w-60 mx-auto text-center">
         <h3 className="mt-14 mb-10 text-sm flex items-end">보유 캐시 : <span className="text-2xl text-[#7d00d0]">{cashInfo > 0 ? formatNumberWithCommas(cashInfo) : 0} 캐시</span></h3>
       </div>
       <WonCard />
 
 
-      <h3 className="mt-16 mb-14 text-sm flex items-end justify-center h-10 mx-auto">충전 후 금액 : <span className="text-2xl text-[#7d00d0]">{formatNumberWithCommas(wonInfo + (Number(price) * 100))} 원</span></h3>
+      <h3 className="mt-16 mb-14 text-sm flex items-end justify-center h-10 mx-auto">충전 후 금액 : <span className="text-2xl text-[#7d00d0]">{price ? formatNumberWithCommas(wonInfo + (Number(price) * 100)) : formatNumberWithCommas(wonInfo)} 원</span></h3>
       <ButtonOfCharge price={price} cash={cashInfo}/>
     </section>
   )

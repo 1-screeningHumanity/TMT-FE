@@ -18,12 +18,8 @@ export default function IsReadCheck() {
   }
 
   const getData = async () => {
-    try {
-      const res = await alarmListAPI()
-      setAlarmList(res.data)
-    } catch (err) {
-      console.log('err in IsReadCheck : ', err)
-    }
+    const res = await alarmListAPI()
+    setAlarmList(res.data)
   }
 
   useEffect(() => {

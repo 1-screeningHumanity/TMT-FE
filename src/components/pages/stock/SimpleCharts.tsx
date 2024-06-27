@@ -11,7 +11,6 @@ export default function SimpleCharts({
   data: any
   staticStockPrice: any
 }) {
-  console.log(staticStockPrice?.staticStockPrice)
   const data0 = splitData(data, staticStockPrice?.staticStockPrice)
   // console.log('data0', data0)
   function splitData(rawData: StockChartDataType[], socketData: any) {

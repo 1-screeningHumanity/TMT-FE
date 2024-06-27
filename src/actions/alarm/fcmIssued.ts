@@ -14,16 +14,14 @@ export const fcmIssued = async (accessToken: string) => {
   }
   Notification.requestPermission().then((permission) => {
     if (permission === 'granted') {
-      console.log('Notification permission granted.')
       if (
         typeof window !== 'undefined' &&
         typeof window.navigator !== 'undefined'
       ) {
         const messaging = getMessaging(app)
-        console.log(messaging)
-        navigator.serviceWorker.register('/firebase-messaging-sw.js', {
-          scope: '/firebase-cloud-messaging-push-scope',
-        })
+        // navigator.serviceWorker.register('/firebase-messaging-sw.js', {
+        //   scope: '/firebase-cloud-messaging-push-scope',
+        // })
         getToken(messaging, {
           vapidKey: `${process.env.NEXT_PUBLIC_VAPID_KEY}`,
         })
@@ -33,7 +31,7 @@ export const fcmIssued = async (accessToken: string) => {
                 currentToken,
                 `Bearer ${accessToken}`,
               )
-              console.log('res :', res)
+              console.log(res)
               localStorage.setItem('fcmToken', currentToken)
             } else {
               console.log(

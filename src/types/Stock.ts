@@ -92,6 +92,10 @@ interface staticStockType {
 //   hts_kor_isnm: '삼성전자',
 //   stck_prpr: '79900'
 // }
+interface bookmarkDataType {
+  stockCode: string
+  stockName: string
+}
 export type {
   AskingPriceDataTypes,
   InvestorsDataType,
@@ -101,4 +105,5 @@ export type {
   TradeType,
   staticStockType,
   FormatAskinDataTypes,
+  bookmarkDataType,
 }

@@ -12,10 +12,10 @@ export default function SortRank({
   return (
     <>
       <hr />
-      <div className="flex h-16 justify-center items-center font-bold text-2xl text-center ">
-        <div className="w-6/12 font-bold ">종목명</div>
-        <div className="w-3/12 font-bold ">현재가 </div>
-        <div className="w-3/12 font-bold">등락률</div>
+      <div className="flex h-14 justify-center items-center font-bold text-lg text-center ">
+        <div className="w-6/12 ">종목명</div>
+        <div className="w-3/12 ">현재가 </div>
+        <div className="w-3/12 ">등락률</div>
       </div>
       <hr />
       {sortResult.map((item: any) => (

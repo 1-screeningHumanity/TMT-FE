@@ -8,6 +8,7 @@ import { wonInfoAPI } from '@/actions/wallet'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
 
 import { TradeModalProps } from '@/types/Trade'
+import { getAccessToken } from '@/actions/tokens'
 
 export default function TradeModal({
   modalOpen,
@@ -16,13 +17,13 @@ export default function TradeModal({
   stockNameResult,
   staticStockPrice,
 }: TradeModalProps) {
-  const now_price = parseInt(staticStockPrice.stck_prpr)
+  const now_price = parseInt(staticStockPrice?.stck_prpr)
   const [price, setPrice] = useState(now_price)
   const [amount, setAmount] = useState(1)
   const [totalPrice, setTotalPrice] = useState(now_price)
 
   const [myMoney, setMyMoney] = useState(0)
-  console.log(stockCode)
+
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(Number(e.target.value))
     setTotalPrice(Number(e.target.value) * amount)
@@ -67,14 +68,17 @@ export default function TradeModal({
   }
 
   const wonInfo = async () => {
-    const res = await wonInfoAPI()
-    setMyMoney(res.data.won as number)
+    const token = await getAccessToken()
+
+    if (token != 'Bearer undefined') {
+      const res = await wonInfoAPI()
+      setMyMoney(res.data.won as number)
+    }
   }
   useEffect(() => {
     wonInfo()
   }, [])
 
-  console.log('내돈내놔 ! ', myMoney)
   const closeModal = () => {
     setModalOpen(false)
   }
