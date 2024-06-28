@@ -55,6 +55,9 @@ export const getSocketData = (stockCode: string) => {
       console.error('EventSource failed:', error)
       eventSource.close()
     }
+    return () => {
+      eventSource.close()
+    }
   }, [])
   return {
     color,
