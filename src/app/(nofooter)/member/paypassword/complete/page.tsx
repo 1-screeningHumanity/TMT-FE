@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function complete (){
   return(
     <section>
-      <Image src={"/assets/images/logo3.svg"} alt="logo3" width={300} height={200} className="mx-auto pr-20 mt-60 mb-6"/>
+      <Image src={"/assets/images/logo3.svg"} alt="logo3" width={300} height={200} className="mx-auto pr-20 mt-40 mb-6"/>
       <div className="text-lg font-bold w-80 mx-auto">
         가입을 축하드립니다 ~<br/>
         투자금 1,000,000원을<br/>
