@@ -7,7 +7,7 @@ export default async function Following(){
 
   const userInfo = await userInformation();
   const myNick = userInfo?.data?.nickanme;
-  const EncodedNickName = encodeURI(myNick);
+  const EncodedNickName = encodeURIComponent(myNick);
   console.log("myNick :", myNick);
   console.log("EncodedNickName :", EncodedNickName);
   const res = await getFollowingList(EncodedNickName);
@@ -19,9 +19,9 @@ export default async function Following(){
     <section>
       <SubTitleOfSubScribe title="내가 구독한 사람 목록"/>
       { followingList?.length === 0 ? <p className="text-center my-10 text-slate-500">내가 구독한 사람이 없습니다.</p> :
-        followingList?.map((item : {nickName : string, id : number, rank?: number}) => {
+        followingList?.map((item : {nickName : string, id : number, ranking?: number}) => {
           return (
-            <SubscribeBox nickName={item?.nickName} rank={item?.rank} key={item?.id}/>
+            <SubscribeBox nickName={item?.nickName} ranking={item?.ranking} key={item?.id}/>
           )
         })
       }
