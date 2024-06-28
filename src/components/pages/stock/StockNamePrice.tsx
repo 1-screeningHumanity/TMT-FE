@@ -34,19 +34,17 @@ export default function StockNamePrice({
   }
 
   return (
-    <>
+    <section className="bg-slate-100">
       <div
         className="mx-3 mt-3 rounded-lg"
         style={{ backgroundColor: '#ABABAB' }}
       >
         <div className="w-full h-24 rounded-xl flex items-center relative">
           <Bookmark stockCode={stockCode} stockName={stockName} />
-          <span className="text-3xl font-bold text-white ml-3 ">
-            {stockName}
-          </span>
+          <span className="text-xl font-bold text-white  ">{stockName}</span>
           {data != undefined ? (
-            <div className="flex flex-col items-end absolute mr-8 right-0">
-              <span className="text-xl text-white">
+            <div className="flex flex-col items-end absolute mr-2 right-0">
+              <span className="text-lg text-white">
                 {formatNumberWithCommas(data?.now_price as any)}
               </span>
               <div className="flex">
@@ -54,27 +52,27 @@ export default function StockNamePrice({
                   <Image
                     src="/assets/images/upPrice.svg"
                     alt="부호"
-                    width={20}
+                    width={15}
                     height={10}
                   />
                 ) : (
                   <Image
                     src="/assets/images/downPrice.svg"
                     alt="부호"
-                    width={20}
+                    width={15}
                     height={10}
                   />
                 )}
 
-                <span className="text-lg ml-1" style={{ color: data?.color }}>
+                <span className="text-sm ml-1" style={{ color: data?.color }}>
                   {/* {String(data?.prdy_ctrt)}% */}
                   {data?.prdy_ctrt != undefined ? String(data?.prdy_ctrt) : 0}%
                 </span>
               </div>
             </div>
           ) : (
-            <div className="flex flex-col items-end absolute mr-8 right-0">
-              <span className="text-xl text-white">
+            <div className="flex flex-col items-end absolute mr-2 right-0">
+              <span className="text-lg text-white">
                 {formatNumberWithCommas(stockPrice?.stck_prpr)}
               </span>
               <div className="flex">
@@ -82,14 +80,14 @@ export default function StockNamePrice({
                   <Image
                     src="/assets/images/upPrice.svg"
                     alt="부호"
-                    width={20}
+                    width={18}
                     height={10}
                   />
                 ) : (
                   <Image
                     src="/assets/images/downPrice.svg"
                     alt="부호"
-                    width={20}
+                    width={18}
                     height={10}
                   />
                 )}
@@ -102,6 +100,6 @@ export default function StockNamePrice({
           )}
         </div>
       </div>
-    </>
+    </section>
   )
 }

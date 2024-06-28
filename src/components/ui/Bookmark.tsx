@@ -61,7 +61,7 @@ export default function Bookmark(stockCode: {
   }
 
   return (
-    <div className="p-2 " onClick={handleBookmark}>
+    <div className=" " onClick={handleBookmark}>
       {IsBookmark ? (
         <Image
           src="/assets/images/bookmark.svg"

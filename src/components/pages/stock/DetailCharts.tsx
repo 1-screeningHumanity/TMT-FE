@@ -70,8 +70,6 @@ export default function DetailCharts({
   }
 
   var option = {
-    notMerge: false,
-
     title: {
       text: '',
       left: 0,
@@ -81,7 +79,6 @@ export default function DetailCharts({
       axisPointer: {
         type: 'cross',
       },
-      hideDelay: 0,
       label: {
         color: 'red',
       },

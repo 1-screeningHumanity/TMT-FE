@@ -36,6 +36,9 @@ export const getBidAskSocketData = (stockCode: string) => {
       console.error('EventSource failed:', error)
       eventSource.close()
     }
+    return () => {
+      eventSource.close()
+    }
   }, [])
 
   return {

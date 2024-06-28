@@ -48,10 +48,6 @@ export default function Charts({
           >
             <span>실시간</span>
           </Link>
-          // <RealTimeChart
-          //   chartData={params.stockData}
-          //   realTimedata={realTimedata}
-          // />
         )}
         {CallStockPrice.map((item) => (
           <Link
