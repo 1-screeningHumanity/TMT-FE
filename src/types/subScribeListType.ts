@@ -1,6 +1,6 @@
 interface subScribeListType {
   nickName: string
-  rank?: number
+  ranking?: number
 }
 
 export type { subScribeListType }
