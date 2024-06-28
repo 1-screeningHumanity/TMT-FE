@@ -20,14 +20,10 @@ export default function AskPrice({
   let data: any
 
   const check = timeCheck()
-
-  useEffect(() => {
-    if (socketStockCode.includes(stockCode)) {
-      socketData = getBidAskSocketData(stockCode)
-      data = formattingData(socketData as any)
-    }
-  }, [stockCode, check])
-
+  if (socketStockCode.includes(stockCode) && check == true) {
+    socketData = getBidAskSocketData(stockCode)
+    data = formattingData(socketData as any)
+  }
   return (
     <>
       {data !== undefined ? (
