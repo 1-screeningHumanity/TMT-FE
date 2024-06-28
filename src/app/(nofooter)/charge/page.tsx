@@ -20,6 +20,19 @@ export default async function charge({searchParams} : {searchParams: {[key: stri
 
   return (
     <section>
+      <div className="flex justify-end mx-10">
+        <Link
+          className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5"
+          href={'/mypage'}
+          >
+          <Image
+            width={20}
+            height={20}
+            src="/assets/images/multiply.svg"
+            alt="cancel"
+          />
+        </Link>
+      </div>
       <div className="w-60 mx-auto text-center">
         <h3 className="mt-14 mb-10 text-sm flex items-end">보유 캐시 : <span className="text-2xl text-[#7d00d0]">{cashInfo > 0 ? formatNumberWithCommas(cashInfo) : 0} 캐시</span></h3>
       </div>

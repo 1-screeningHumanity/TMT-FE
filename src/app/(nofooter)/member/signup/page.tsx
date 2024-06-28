@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useToast } from '@/components/ui/use-toast'
 import { getRandomNickname, postSignup } from '@/actions/member'
-import { parsePhoneNumber } from '@/utils/parsePhoneNumber'
+import { parsePhoneNumber, removeHyphens } from '@/utils/parsePhoneNumber'
 import { useRouter } from 'next/navigation'
 
 export default function signup() {
@@ -37,10 +37,7 @@ export default function signup() {
       console.error('Failed to fetch random nickname:', error)
     }
   }
-  // 하이픈 제거
-  function removeHyphens(phoneNumber: string | undefined) {
-    return phoneNumber?.replace(/-/g, '')
-  }
+
   // 회원가입 api
   async function handleSignup(event: React.FormEvent) {
     event.preventDefault()
@@ -142,6 +139,7 @@ export default function signup() {
             id="phone"
             type="tel"
             maxLength={13}
+            minLength={13}
             onChange={(e) =>
               setPhoneNumberString(parsePhoneNumber(e.target.value))
             }
@@ -288,7 +286,7 @@ export default function signup() {
           type="submit"
           value={'가입하기'}
           onClick={handleSignup}
-          className="bg-[#7d00d0] text-white text-sm font-semibold rounded-lg w-80 h-10 mx-auto block my-6 absolute bottom-4 left-0 right-0"
+          className="bg-[#7d00d0] text-white text-sm font-semibold rounded-lg w-80 h-10 mx-auto block mt-20 "
         />
       </form>
     </>

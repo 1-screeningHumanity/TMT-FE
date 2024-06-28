@@ -9,14 +9,15 @@ export default async function ButtonOfPayments({price} : {price: string}){
   const router = useRouter();
 
   async function handlePayment(){
+
+    localStorage.setItem("price", price);
     const res = await postKakaopayReady(`${price}캐시`, 1, Number(price));
-    console.log("postKakaopayReady res :", res);
-    sessionStorage.setItem("tid", res?.data.tid);
-    sessionStorage.setItem("partner_order_id", res?.data.partner_order_id);
+    localStorage.setItem("tid", res?.data?.tid);
+    localStorage.setItem("partner_order_id", res?.data?.partner_order_id);
     if(checkMobileDevice()){
-      window.open(res.data.next_redirect_mobile_url)
+      window.open(res?.data?.next_redirect_mobile_url)
     }else{
-      window.open(res.data.next_redirect_pc_url)
+      window.open(res?.data?.next_redirect_pc_url)
     }
   }
 

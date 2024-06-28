@@ -1,6 +1,6 @@
 "use server"
 
-import { DeleteAPI, GetAPI, PostAPI } from "./fetchAPI";
+import { DeleteAPI, GetAPI, PatchAPI, PostAPI } from "./fetchAPI";
 import { getAccessToken } from "./tokens";
 
 async function postSignOut() {
@@ -44,4 +44,10 @@ async function postPayPassword(nickname : string | null, password : string | und
   return res;
 }
 
-export { postSignOut, deleteMember, getRandomNickname, postSignup, postPayPassword}
+async function patchResetPassword(name : string | undefined, phoneNumber : string | undefined, password : string | undefined) {
+
+  const res = await PatchAPI(`/member/reset/password`, { name, phoneNumber, password });
+  return res;
+}
+
+export { postSignOut, deleteMember, getRandomNickname, postSignup, postPayPassword, patchResetPassword}

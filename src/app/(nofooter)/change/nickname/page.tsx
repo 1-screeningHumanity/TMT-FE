@@ -55,6 +55,17 @@ async function handleChangeNickname(event: React.FormEvent) {
     <>
       <div className="flex mx-10 justify-between mt-10 mb-16">
         <h1 className="text-lg text-[#7d00d0] font-extrabold">닉네임 변경</h1>
+        <Link
+          className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5"
+          href={'/mypage'}
+        >
+          <Image
+            width={20}
+            height={20}
+            src="/assets/images/multiply.svg"
+            alt="cancel"
+          />
+        </Link>
       </div>
       <form>
         <div className="w-80 mx-auto my-6">
