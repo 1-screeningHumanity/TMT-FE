@@ -19,9 +19,7 @@ export const fcmIssued = async (accessToken: string) => {
         typeof window.navigator !== 'undefined'
       ) {
         const messaging = getMessaging(app)
-        // navigator.serviceWorker.register('/firebase-messaging-sw.js', {
-        //   scope: '/firebase-cloud-messaging-push-scope',
-        // })
+
         getToken(messaging, {
           vapidKey: `${process.env.NEXT_PUBLIC_VAPID_KEY}`,
         })
@@ -31,7 +29,6 @@ export const fcmIssued = async (accessToken: string) => {
                 currentToken,
                 `Bearer ${accessToken}`,
               )
-              console.log(res)
               localStorage.setItem('fcmToken', currentToken)
             } else {
               console.log(

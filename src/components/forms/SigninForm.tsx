@@ -13,7 +13,6 @@ import { getMessaging, getToken, onMessage } from 'firebase/messaging'
 import { fcmIssued } from '@/actions/alarm/fcmIssued'
 import { useToast } from '../ui/use-toast'
 
-
 export default function SigninForm() {
   const [payload, setPayload] = useState<signinFormType>({
     phoneNumber: '',
@@ -22,17 +21,17 @@ export default function SigninForm() {
   })
 
   const [showPassword, setShowPassword] = useState(true)
-  const router = useRouter();
-  const { toast } = useToast();
+  const router = useRouter()
+  const { toast } = useToast()
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!payload.phoneNumber || !payload.name || !payload.password) {
-          toast({
-            title: '빈칸을 모두 채워주세요',
-            variant : "destructive",
-          })
+      toast({
+        title: '빈칸을 모두 채워주세요',
+        variant: 'destructive',
+      })
       return
-      }
+    }
     const res = await signIn('credentials', {
       phoneNumber: payload.phoneNumber,
       name: payload.name,
@@ -42,22 +41,20 @@ export default function SigninForm() {
     if (res?.status == 401) {
       toast({
         title: '전화번호 또는 이름 또는 비밀번호를 다시 확인해주세요',
-        variant : "destructive",
+        variant: 'destructive',
       })
       router.refresh()
-    }else{
+    } else {
       const session = await getSession(options as any)
       fcmIssued(session?.user.data.accessToken)
       router.push('/')
     }
-    
+
     // if (session?.user.isSuccess == true) {
     //   router.push('/')
     // } else {
     //   alert('아이디, 비밀번호, 이름을 다시 확인해주세요')
     // }
-
-
   }
 
   const onChangePayload = (e: React.ChangeEvent<HTMLInputElement>) => {

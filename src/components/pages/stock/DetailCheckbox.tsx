@@ -25,8 +25,8 @@ export default function DetalCheckbox({
 
   return (
     <>
-      <label className="flex items-center my-3 mx-10">
-        <span className="text-xl">자세히 보기</span>
+      <label className="flex items-center my-3 mx-2">
+        <span className="text-lg">간단히 보기</span>
         <div className="relative flex items-center ml-2">
           <input
             className="mt-0"
@@ -43,9 +43,9 @@ export default function DetalCheckbox({
       {link === 'real-time' && check == true ? (
         <RealTimeChart data={data} />
       ) : detail ? (
-        <DetailCharts chartData={data} staticStockPrice={staticStockPrice} />
-      ) : (
         <SimpleCharts data={data} staticStockPrice={staticStockPrice} />
+      ) : (
+        <DetailCharts chartData={data} staticStockPrice={staticStockPrice} />
       )}
     </>
   )

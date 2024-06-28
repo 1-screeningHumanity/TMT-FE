@@ -89,10 +89,11 @@ export default function SocketTradeModal({
     <AnimatePresence>
       {modalOpen && (
         <motion.div
-          className="bg-black/60 absolute inset-0 z-50 flex items-end"
+          className="bg-black/60 fixed inset-0 z-[100] flex items-end"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          onClick={closeModal}
         >
           <motion.div
             className="fixed inset-x-0 top-1/2 bottom-0 flex flex-col border rounded-t-3xl bg-white"
