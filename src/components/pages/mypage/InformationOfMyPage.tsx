@@ -21,8 +21,8 @@ export default async function InformationOfMyPage(){
   return (
       <div className="w-full flex justify-around pt-4 pb-8 rounded-2xl bg-white">
         <div className="flex flex-col gap-2">
-          {wonInfo && <div className="text-2xl">{formatNumberWithCommas(wonInfo)}원</div>}
-          {cashInfo && <div className="text-lg">{formatNumberWithCommas(cashInfo)}캐시</div>}
+          <div className="text-2xl">{wonInfo &&  formatNumberWithCommas(wonInfo)} 원</div>
+          <div className="text-lg">{cashInfo && formatNumberWithCommas(cashInfo)} 캐시</div>
         </div>
         <div className="flex items-center">
           {userInfo && <div className="text-2xl mr-2">{userInfo}</div>}
