@@ -91,6 +91,7 @@ export default function TradeModal({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          onClick={closeModal}
         >
           <motion.div
             className="fixed inset-x-0 top-1/2 bottom-0 flex flex-col border rounded-t-3xl bg-white"

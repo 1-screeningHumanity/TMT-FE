@@ -15,7 +15,7 @@ export default async function RootLayout({
 }>) {
   const stockNameResult = await getStockName(params.StockCode)
   const stockPrice = await getStaticStockPrice(params.StockCode)
-  console.log(stockNameResult, stockPrice)
+
   if (stockNameResult === null || stockPrice === null) {
     return <NotFound />
   }
