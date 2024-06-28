@@ -1,6 +1,7 @@
 'use client'
 
 import Image from "next/image";
+import Link from "next/link";
 import { Dispatch, SetStateAction, useRef } from "react";
 
 export default function PayPasswordCheck ({setCheckPassword }: {setCheckPassword : Dispatch<SetStateAction<string>> }){
@@ -21,6 +22,17 @@ export default function PayPasswordCheck ({setCheckPassword }: {setCheckPassword
     <>
       <div className="flex mx-10 justify-between my-10 items-center">
         <h1 className="text-lg text-[#7d00d0] font-extrabold">결제비밀번호 확인</h1>
+        <Link
+          className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5"
+          href={'/mypage'}
+        >
+          {/* <Image
+            width={20}
+            height={20}
+            src="/assets/images/multiply.svg"
+            alt="cancel"
+          /> */}
+        </Link>
       </div>
       <div className="text-center mt-24 mb-20">
         <p className="font-bold text-lg">결제 비밀번호를 한번 더<br/> 

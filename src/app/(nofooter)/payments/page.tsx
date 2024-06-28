@@ -7,6 +7,8 @@ import TitleOfPages from "@/components/ui/TitleOfPages";
 import ButtonOfPayments from "@/components/ui/buttons/ButtonOfPayments";
 import ButtonToMyPage from "@/components/ui/buttons/ButtonToMyPage";
 import formatNumberWithCommas from "@/utils/formatNumberWithCommas";
+import Image from "next/image";
+import Link from "next/link";
 
 
 export default async function payments({searchParams} : {searchParams: {[key: string]: string}}){
@@ -18,6 +20,19 @@ export default async function payments({searchParams} : {searchParams: {[key: st
   return(
     
     <section>
+      <div className="flex justify-end mx-10">
+        <Link
+          className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5"
+          href={'/mypage'}
+          >
+          <Image
+            width={20}
+            height={20}
+            src="/assets/images/multiply.svg"
+            alt="cancel"
+          />
+        </Link>
+      </div>
       <h1 className="text-center my-10 text-xl font-medium">현재 보유 캐시 : {currentCash > 0 ? formatNumberWithCommas(currentCash) : 0} 캐시(￦)</h1>
       <CashCard />
       <PayMethod/>
