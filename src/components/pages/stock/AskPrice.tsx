@@ -25,7 +25,7 @@ export default function AskPrice({
     data = formattingData(socketData as any)
   }
   return (
-    <>
+    <section className="mt-5">
       {data !== undefined ? (
         <>
           {data.askp_arr.map((askp: any, index: number) => {
@@ -34,9 +34,8 @@ export default function AskPrice({
             return (
               <div className="flex my-3" key={index}>
                 <div
-                  className="h-16 mx-3 relative flex items-center rounded-2xl text-center"
+                  className="h-16 mx-3 bg-white relative flex items-center rounded-2xl text-center"
                   style={{
-                    backgroundColor: '#F2F2F2',
                     width: 'calc(66.6667% - 12px)',
                   }}
                 >
@@ -68,9 +67,8 @@ export default function AskPrice({
             return (
               <div className="flex my-3 justify-end" key={index}>
                 <div
-                  className="h-16 mx-3 relative flex items-center rounded-2xl"
+                  className="h-16 mx-3  bg-white relative flex items-center rounded-2xl"
                   style={{
-                    backgroundColor: '#F2F2F2',
                     width: 'calc(66.6667% - 12px)',
                   }}
                 >
@@ -105,9 +103,8 @@ export default function AskPrice({
             return (
               <div className="flex my-3" key={index}>
                 <div
-                  className="h-16 mx-3 relative flex items-center rounded-2xl text-center"
+                  className="h-16  bg-white mx-3 relative flex items-center rounded-2xl text-center"
                   style={{
-                    backgroundColor: '#F2F2F2',
                     width: 'calc(66.6667% - 12px)',
                   }}
                 >
@@ -140,9 +137,8 @@ export default function AskPrice({
             return (
               <div className="flex my-3 justify-end" key={index}>
                 <div
-                  className="h-16 mx-3 relative flex items-center rounded-2xl"
+                  className="h-16 mx-3 bg-white relative flex items-center rounded-2xl"
                   style={{
-                    backgroundColor: '#F2F2F2',
                     width: 'calc(66.6667% - 12px)',
                   }}
                 >
@@ -169,6 +165,6 @@ export default function AskPrice({
           })}
         </>
       )}
-    </>
+    </section>
   )
 }
