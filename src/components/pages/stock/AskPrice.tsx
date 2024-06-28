@@ -27,8 +27,8 @@ export default function AskPrice({
     if (socketStockCode.includes(stockCode) && check == true) {
       // socketData = getBidAskSocketData(stockCode)
       const eventSource = new EventSource(
-        `http://10.10.10.85:8080/api/stream/${stockCode}/asking-price`,
-        // `${process.env.SOCKET_URL}/stream/${stockCode}/asking-price`,
+        // `http://10.10.10.85:8080/api/stream/${stockCode}/asking-price`,
+        `${process.env.SOCKET_URL}/stream/${stockCode}/asking-price`,
       )
       // 연결되었을때
       eventSource.onopen = () => {
