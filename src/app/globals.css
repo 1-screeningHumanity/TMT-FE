@@ -208,6 +208,8 @@
   padding: 10px;
   margin: 20px;
   align-self: flex-end; /* Align to the right */
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .tospeech-bubble:after {
