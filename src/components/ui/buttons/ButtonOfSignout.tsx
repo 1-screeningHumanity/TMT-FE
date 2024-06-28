@@ -14,8 +14,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import { useRouter } from 'next/navigation';
 
 export default function ButtonOfSignout() {
+
+  const router = useRouter();
+
   const signOutButton = async () => {
     const fcmToken = localStorage.getItem('fcmToken')
     console.log(fcmToken)
@@ -23,7 +27,8 @@ export default function ButtonOfSignout() {
       await deleteTokenAPI(fcmToken as string)
     }
     const res = await postSignOut();
-    const resSignOut = await signOut({ redirect: true, callbackUrl: '/'})
+    const resSignOut = await signOut({ redirect: false, callbackUrl: '/'})
+    router.push('/')
   }
 
   return (

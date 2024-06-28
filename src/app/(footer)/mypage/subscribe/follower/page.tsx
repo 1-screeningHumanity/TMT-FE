@@ -9,7 +9,7 @@ export default async function Follower(){
 
   const userInfo = await userInformation();
   const myNick = userInfo?.data?.nickanme;
-  const EncodedNickName = encodeURI(myNick);
+  const EncodedNickName = encodeURIComponent(myNick);
   console.log("myNick :", myNick);
   console.log("EncodedNickName :", EncodedNickName);
   const res = await getFollowerList(EncodedNickName);
@@ -21,9 +21,9 @@ export default async function Follower(){
     <section>
       <SubTitleOfSubScribe title="나를 구독한 사람 목록"/>
       { followerList?.length === 0 ? <p className="text-center my-10 text-slate-500">나를 구독한 사람이 없습니다.</p> :
-        followerList?.map((item : {nickName : string, id : number, rank?: number }) => {
+        followerList?.map((item : {nickName : string, id : number, ranking?: number }) => {
           return (
-            <SubscribeBox nickName={item?.nickName} key={item?.id} rank={item?.rank}/>
+            <SubscribeBox nickName={item?.nickName} key={item?.id} ranking={item?.ranking}/>
           )
         })
       }

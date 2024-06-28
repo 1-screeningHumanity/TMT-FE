@@ -5,4 +5,8 @@ const parsePhoneNumber = (num: string) => {
     .replace(/(-{1,2})$/g, '')
 }
 
-export { parsePhoneNumber }
+const removeHyphens = (phoneNumber: string | undefined) => {
+  return phoneNumber?.replace(/-/g, '')
+}
+
+export { parsePhoneNumber, removeHyphens }

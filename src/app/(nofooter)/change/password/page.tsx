@@ -70,6 +70,17 @@ const passwordConfirm = (event: React.ChangeEvent<HTMLInputElement>) => {
     <>
       <div className="flex mx-10 justify-between mt-10">
         <h1 className="text-lg text-[#7d00d0] font-extrabold">비밀번호 재설정</h1>
+        <Link
+          className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5"
+          href={'/mypage'}
+        >
+          <Image
+            width={20}
+            height={20}
+            src="/assets/images/multiply.svg"
+            alt="cancel"
+          />
+        </Link>
       </div>
       <p className=" mb-16 mt-3 mx-10 text-sm text-slate-400">입력해주시길 바랍니다.</p>
       <form>

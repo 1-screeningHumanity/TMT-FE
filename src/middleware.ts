@@ -1,7 +1,7 @@
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 import { URL } from "url";
-
+export { default } from "next-auth/middleware"
 // export async function middleware(req : NextRequest){
   
 //   const session = await getToken({req, secret: process.env.NEXTAUTH_SECRET});
@@ -23,5 +23,5 @@ import { URL } from "url";
 
   //middleware 설정 진행중
 export const config = {
-  matcher: [],
+  matcher: ["/mypage", "/userRank", "/alarm"],
 }
