@@ -113,31 +113,31 @@ export default function IsReadCheck() {
       {checked && (
         <div className="flex justify-between mt-3">
           <button
-            className="bg-red-200 w-20 h-10 p-2 rounded-lg mx-2"
+            className="bg-red-200 w-20 h-auto p-2 rounded-lg mx-2"
             onClick={() => handleAllChecked}
           >
             전체 선택
           </button>
           <button
-            className="bg-red-200 w-20 h-10 p-2 rounded-lg mx-2"
+            className="bg-red-200 w-20 h-auto p-2 rounded-lg mx-2"
             onClick={handleDeleteAlarm}
           >
             삭제
           </button>
           <button
-            className="bg-red-200 w-20 h-10  p-2 rounded-lg mx-2"
+            className="bg-red-200 w-20 h-auto  p-2 rounded-lg mx-2"
             onClick={handleAllDeleteAlarm}
           >
             전체 삭제
           </button>
           <button
-            className="bg-red-200 w-20 h-10  p-2 rounded-lg mx-2"
+            className="bg-red-200 w-20 h-auto  p-2 rounded-lg mx-2"
             onClick={handleCheckReadAlarm}
           >
             읽기
           </button>
           <button
-            className="bg-red-200 w-20 h-10  p-2 rounded-lg mx-2"
+            className="bg-red-200 w-20 h-auto  p-2 rounded-lg mx-2"
             onClick={handleAllReadAlarm}
           >
             전체 읽기
