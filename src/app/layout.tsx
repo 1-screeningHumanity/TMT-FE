@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <AuthProvider>
-          <MainHeader />
+          <MainHeader/>
           <main className='py-20'>
               {children}
               <Toaster />

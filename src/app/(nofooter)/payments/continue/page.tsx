@@ -3,13 +3,24 @@
 import { postKakaopayApprove } from "@/actions/payments";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function paymentsContinue({searchParams} : {searchParams: {[key: string]: string}}){
 
   const pgToken = searchParams?.pg_token;
   console.log("pgToken : ", pgToken);
-  const tid = sessionStorage?.getItem("tid");
-  const partner_order_id = sessionStorage?.getItem("partner_order_id");
+
+  const [tid, setTid] = useState<string | null>(null);
+  const [partner_order_id, setPartner_order_id] = useState<string | null>(null);
+
+  useEffect(() => {
+    const storedTid = localStorage.getItem("tid");
+    const storedPartnerOrderId = localStorage.getItem("partner_order_id");
+    setTid(storedTid);
+    setPartner_order_id(storedPartnerOrderId);
+    console.log("tid : ", storedTid);
+    console.log("partner_order_id : ", storedPartnerOrderId);
+  },[])
 
   const router = useRouter();
 

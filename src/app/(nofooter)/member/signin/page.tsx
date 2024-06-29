@@ -12,7 +12,7 @@ export default function signin(){
     <section className="w-full mx-auto px-10">
       <Image src={"/assets/images/logo2.svg"} alt="logo2" width={100} height={100} className="mx-auto mt-20 mb-16"/>
       <SigninForm />
-      <p className="text-xs mx-auto w-fit text-[#775da6]">비밀번호가 기억이 나지 않나요? <Link href={"#"} className="font-extrabold">비밀번호 찾기</Link></p>
+      <p className="text-xs mx-auto w-fit text-[#775da6]">비밀번호가 기억이 나지 않나요? <Link href={"/member/reset/password"} className="font-extrabold">비밀번호 찾기</Link></p>
       <div className="relative">
         <hr className="w-full my-6"/>
         <p className="text-xs w-fit text-center bg-slate-100 px-4 py-2 mx-auto absolute top-[-15px] left-[50%] translate-x-[-50%]">간단 로그인</p>

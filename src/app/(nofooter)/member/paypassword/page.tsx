@@ -32,8 +32,28 @@ export default function paypassword (){
   }
     
   async function handleSetPayPassword(){
-    if(password === checkPassword && password.length === 4 && checkPassword.length === 4){
-      await postPayPassword(nickName, checkPassword)
+    if(password.length === 4 && checkPassword.length === 4){
+      if (password !== checkPassword){
+        toast({
+          title: '비밀번호가 일치하지 않습니다.',
+          variant : "destructive",
+        })
+        return
+      }
+      const res = await postPayPassword(nickName, checkPassword)
+      console.log(res)
+      if(res.code == 200){
+        toast({
+          title: '비밀번호가 변경되었습니다.',
+          variant : "default",
+        })
+        router.push("/member/paypassword/complete")
+      }else{
+        toast({
+          title: '비밀번호 변경에 실패했습니다.',
+          variant : "destructive",
+        })
+      }
     }else if (checkPassword.length !== 4){
       toast({
         title: '비밀번호를 4자리 입력해주세요.',
@@ -55,7 +75,7 @@ export default function paypassword (){
         </div>) :
         (<div className="w-fit mx-auto absolute bottom-6 left-0 right-0">
           <input type="button" className="rounded-lg w-40 h-14 font-bold text-center mx-2 text-white bg-black" value={"이전으로"} onClick={() => onbeforeunload}/>
-          <input type="button" className="rounded-lg w-40 h-14 font-bold text-center mx-2 text-white bg-[#7d00d0]" value={"완료"} onClick={() => {handleSetPayPassword(); router.push("/change/paypassword/complete")}}/>
+          <input type="button" className="rounded-lg w-40 h-14 font-bold text-center mx-2 text-white bg-[#7d00d0]" value={"완료"} onClick={() => {handleSetPayPassword();}}/>
         </div>)
       }
     </>
