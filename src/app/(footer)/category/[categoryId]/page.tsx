@@ -7,12 +7,13 @@ export default async function Page(props: { params: { categoryId: number } }) {
   const middleCateogoryData: subCategoryDataType =
     await getMiddleCateogoryAPI(mainCategoryId)
   const middleCateogory: categoryDataType[] = middleCateogoryData.categoryData
+  console.log(middleCateogoryData)
 
   return (
     <main>
-      <div className="font-bold text-xl p-2 w-full h-16 fixed flex items-center">
+      <span className="font-bold pl-3 text-xl w-full fixed flex items-center ">
         {middleCateogoryData.mainCategoryName}
-      </div>
+      </span>
       <ul className="top-16 relative">
         {middleCateogory.map((mid: categoryDataType) => (
           <Link href={`/category/${mainCategoryId}/${mid.categoryId}`}>

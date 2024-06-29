@@ -10,6 +10,7 @@ import 'swiper/css/pagination'
 
 export default function NewsSection(newsData: { newsData: newsType[] }) {
   const data = newsData.newsData
+  const bgWhite = '/assets/images/bgWhite.svg'
 
   return (
     <Swiper
@@ -26,15 +27,21 @@ export default function NewsSection(newsData: { newsData: newsType[] }) {
     >
       {data.map((news) => (
         <SwiperSlide key={news.id}>
-          <a href={news.originallink} className="m-4">
-            <section className="relative flex flex-col  bg-slate-50 overflow-hidden w-[250px] h-[250px] ">
+          <a
+            href={news.originallink}
+            className="m-4 overflow-hidden 1/3 h-auto"
+          >
+            <section className=" flex flex-col  bg-slate-50  ">
               <img
-                src={news.image} //  null 이 올수도 있음
+                src={news.image || bgWhite} //  null 이 올수도 있음
                 alt={news.description}
-                className="object-cover "
+                className="object-cover justify-center items-center"
               />
               <div className="absolute bottom-0 bg-black bg-opacity-50 text-white p-2 w-full text-center">
-                <div dangerouslySetInnerHTML={{ __html: news.title }}></div>
+                <span
+                  dangerouslySetInnerHTML={{ __html: news.title }}
+                  className="line-clamp-2"
+                ></span>
               </div>
             </section>
           </a>
