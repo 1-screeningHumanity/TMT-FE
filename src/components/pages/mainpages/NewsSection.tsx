@@ -31,11 +31,11 @@ export default function NewsSection(newsData: { newsData: newsType[] }) {
             href={news.originallink}
             className="m-4 overflow-hidden 1/3 h-auto"
           >
-            <section className=" flex flex-col  bg-slate-50 justify-center items-center ">
+            <section className=" flex flex-col  bg-slate-50  ">
               <img
                 src={news.image || bgWhite} //  null 이 올수도 있음
                 alt={news.description}
-                className="object-cover"
+                className="object-cover justify-center items-center"
               />
               <div className="absolute bottom-0 bg-black bg-opacity-50 text-white p-2 w-full text-center">
                 <span
