@@ -113,31 +113,31 @@ export default function IsReadCheck() {
       {checked && (
         <div className="flex justify-between mt-3">
           <button
-            className="bg-red-200 w-20 h-10 p-2 rounded-lg mx-2"
+            className="bg-red-200 w-20 h-auto p-2 rounded-lg mx-2"
             onClick={() => handleAllChecked}
           >
             전체 선택
           </button>
           <button
-            className="bg-red-200 w-20 h-10 p-2 rounded-lg mx-2"
+            className="bg-red-200 w-20 h-auto p-2 rounded-lg mx-2"
             onClick={handleDeleteAlarm}
           >
             삭제
           </button>
           <button
-            className="bg-red-200 w-20 h-10  p-2 rounded-lg mx-2"
+            className="bg-red-200 w-20 h-auto  p-2 rounded-lg mx-2"
             onClick={handleAllDeleteAlarm}
           >
             전체 삭제
           </button>
           <button
-            className="bg-red-200 w-20 h-10  p-2 rounded-lg mx-2"
+            className="bg-red-200 w-20 h-auto  p-2 rounded-lg mx-2"
             onClick={handleCheckReadAlarm}
           >
             읽기
           </button>
           <button
-            className="bg-red-200 w-20 h-10  p-2 rounded-lg mx-2"
+            className="bg-red-200 w-20 h-auto  p-2 rounded-lg mx-2"
             onClick={handleAllReadAlarm}
           >
             전체 읽기
@@ -161,22 +161,22 @@ export default function IsReadCheck() {
               />
             )}
             <div
-              className="flex-grow flex h-36 p-5 border-b rounded-2xl"
+              className="flex-grow flex h-auto p-5 border-b rounded-2xl"
               style={{
                 backgroundColor: checkedItems.includes(item.notificationLogId)
                   ? '#c3dadb'
                   : '#e6f4f5',
               }}
             >
-              <div className="relative w-full">
+              <div className="w-full h-auto relative">
                 <div className="flex justify-between">
-                  <div className="text-2xl font-bold">{item.title}</div>
+                  <span className="text-2xl font-bold">{item.title}</span>
                   {item.readStatus === 44 && (
                     <span className="h-4 w-4 bg-sky-600 rounded-full"></span>
                   )}
                 </div>
-                <div className="text-xl mt-2">{item.content}</div>
-                <div className="absolute right-0 ">
+                <span className="text-xl mt-2">{item.content}</span>
+                <div className="absolute right-0">
                   {beforeMinute(item.notificationLogCreateAt)}
                 </div>
               </div>
