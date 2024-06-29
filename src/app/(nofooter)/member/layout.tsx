@@ -8,7 +8,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <section className="fixed z-[1030] w-full h-[100vh] overflow-y-scroll">
+    <section className="fixed z-[30] w-full h-[100vh] overflow-y-scroll">
       <nav className="w-full fixed top-0 z-50">
         <ul
           className="p-6 flex justify-between items-center bg-slate-100"

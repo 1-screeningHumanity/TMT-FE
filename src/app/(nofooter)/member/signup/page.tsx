@@ -21,7 +21,7 @@ export default function signup() {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
 
   const { toast } = useToast()
-  const router = useRouter();
+  const router = useRouter()
 
   useEffect(() => {
     if (inputRefs.current[4]) {
@@ -50,7 +50,7 @@ export default function signup() {
     if (!name || !phoneNumber || !password || !nickName) {
       toast({
         title: '※ 빈칸을 모두 채워주세요',
-        variant : "destructive",
+        variant: 'destructive',
       })
     } else {
       const res = await postSignup(name, phoneNumber, password, nickName)
@@ -60,14 +60,14 @@ export default function signup() {
         if (res.code === 1005) {
           toast({
             title: '※ 중복된 전화번호입니다.',
-            variant : "destructive",
+            variant: 'destructive',
           })
           inputRefs.current[1]?.focus()
         }
         if (res.code === 1000) {
           toast({
             title: '※ 중복된 닉네임입니다.',
-            variant : "destructive",
+            variant: 'destructive',
           })
           inputRefs.current[4]?.focus()
         }
@@ -99,20 +99,6 @@ export default function signup() {
 
   return (
     <>
-      <div className="flex mx-10 justify-between mt-10 mb-16">
-        <h1 className="text-lg text-[#7d00d0] font-extrabold">회원가입</h1>
-        <Link
-          className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5"
-          href={'/member/signin'}
-        >
-          <Image
-            width={20}
-            height={20}
-            src="/assets/images/multiply.svg"
-            alt="cancel"
-          />
-        </Link>
-      </div>
       <form>
         <div className="w-80 mx-auto my-6">
           <label htmlFor="name" className="text-sm my-1 block">
