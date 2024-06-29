@@ -1,9 +1,8 @@
 'use client'
 import { newsType } from '@/types/newsType'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Scrollbar, Autoplay } from 'swiper/modules'
-import SwiperCore from 'swiper'
-import { useEffect, useState } from 'react'
+import { Navigation, Autoplay } from 'swiper/modules'
+import { useState, useEffect } from 'react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -21,18 +20,20 @@ export default function NewsSection(newsData: { newsData: newsType[] }) {
       modules={[Navigation, Autoplay]}
       autoplay={{
         delay: 2000,
-        disableOnInteraction: false, // 사용자 상호작용시 슬라이더 일시 정지 비활성
+        disableOnInteraction: false,
       }}
     >
       {data.map((news) => (
         <SwiperSlide key={news.id}>
           <a href={news.originallink} className="m-4">
-            <section className="relative flex flex-col  bg-slate-50 overflow-hidden w-[250px] h-[250px] ">
-              <img
-                src={news.image} //  null 이 올수도 있음
-                alt={news.description}
-                className="object-cover "
-              />
+            <section className="relative flex flex-col bg-slate-50 overflow-hidden w-1/3 h-auto">
+              <div className="w-full aspect-w-1 aspect-h-1">
+                <img
+                  src={news.image}
+                  alt={news.description}
+                  className="object-cover w-full h-full"
+                />
+              </div>
               <div className="absolute bottom-0 bg-black bg-opacity-50 text-white p-2 w-full text-center">
                 <div dangerouslySetInnerHTML={{ __html: news.title }}></div>
               </div>
