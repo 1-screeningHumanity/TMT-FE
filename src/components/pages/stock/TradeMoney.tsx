@@ -44,7 +44,7 @@ export default function TradeMoney({
       amount: amount,
       stockName: stockNameResult,
     }
-    if (now_price != price) {
+    if (now_price != price || check === false) {
       // console.log(socketPrsice)
       const response = await tradeReservation(trade, data)
       const howToTrade = trade == 'buy' ? '사기' : '팔기'
