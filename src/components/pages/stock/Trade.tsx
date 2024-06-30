@@ -1,5 +1,7 @@
 'use client'
 import { getInvestors, getStockName } from '@/actions/stock/stock'
+import { getAccessToken } from '@/actions/tokens'
+import { wonInfoAPI } from '@/actions/wallet'
 import SocketTradeModal from '@/components/ui/SockTradeModal'
 import TradeModal from '@/components/ui/TradeModal'
 import { staticStockType } from '@/types/Stock'
@@ -17,14 +19,24 @@ export default function Trade({
   stockName: string
   staticStockPrice: staticStockType
 }) {
-  const [modalOpen, setModalOpen] = useState(false)
-  const [socketFlag, setSocketFlag] = useState(false)
+  const [modalOpen, setModalOpen] = useState<boolean>(false)
+  const [socketFlag, setSocketFlag] = useState<boolean>(false)
+  const [myMoney, setMyMoney] = useState<number>(0)
   const check = timeCheck()
   useEffect(() => {
     if (socketStockCode.includes(stockCode) && check === true) {
       setSocketFlag(true)
     }
-  }, [stockCode])
+    wonInfo()
+  }, [])
+  const wonInfo = async () => {
+    const token = await getAccessToken()
+
+    if (token != 'Bearer undefined') {
+      const res = await wonInfoAPI()
+      setMyMoney(res.data.won as number)
+    }
+  }
   return (
     <>
       <div className="mt-5 bottom-0 left-0 right-0 flex justify-between mx-5">
@@ -50,6 +62,7 @@ export default function Trade({
           stockCode={stockCode}
           stockNameResult={stockName}
           staticStockPrice={staticStockPrice}
+          myMoney={myMoney}
         />
       ) : (
         <TradeModal
@@ -58,6 +71,7 @@ export default function Trade({
           stockCode={stockCode}
           stockNameResult={stockName}
           staticStockPrice={staticStockPrice}
+          myMoney={myMoney}
         />
       )}
     </>

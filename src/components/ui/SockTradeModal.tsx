@@ -18,6 +18,7 @@ export default function SocketTradeModal({
   stockCode,
   stockNameResult,
   staticStockPrice,
+  myMoney,
 }: TradeModalProps) {
   const sockData = getSocketData(stockCode)
   const now_price = sockData.now_price as number
@@ -25,8 +26,6 @@ export default function SocketTradeModal({
   const [price, setPrice] = useState(now_price)
   const [amount, setAmount] = useState(1)
   const [totalPrice, setTotalPrice] = useState(now_price)
-  const [myMoney, setMyMoney] = useState(0)
-
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(Number(e.target.value))
     setTotalPrice(Number(e.target.value) * amount)
@@ -69,17 +68,6 @@ export default function SocketTradeModal({
 
     setModalOpen(false)
   }
-
-  const wonInfo = async () => {
-    const token = await getAccessToken()
-    if (token != 'Bearer undefined') {
-      const res = await wonInfoAPI()
-      setMyMoney(res.data.won as number)
-    }
-  }
-  useEffect(() => {
-    wonInfo()
-  }, [])
 
   const closeModal = () => {
     setModalOpen(false)

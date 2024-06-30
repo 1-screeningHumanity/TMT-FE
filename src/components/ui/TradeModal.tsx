@@ -16,13 +16,12 @@ export default function TradeModal({
   stockCode,
   stockNameResult,
   staticStockPrice,
+  myMoney,
 }: TradeModalProps) {
   const now_price = parseInt(staticStockPrice?.stck_prpr)
   const [price, setPrice] = useState(now_price)
   const [amount, setAmount] = useState(1)
   const [totalPrice, setTotalPrice] = useState(now_price)
-
-  const [myMoney, setMyMoney] = useState(0)
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(Number(e.target.value))
@@ -67,20 +66,11 @@ export default function TradeModal({
     setModalOpen(false)
   }
 
-  const wonInfo = async () => {
-    const token = await getAccessToken()
-
-    if (token != 'Bearer undefined') {
-      const res = await wonInfoAPI()
-      setMyMoney(res.data.won as number)
-    }
-  }
-  useEffect(() => {
-    wonInfo()
-  }, [])
-
   const closeModal = () => {
     setModalOpen(false)
+  }
+  const handleModalClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
   }
 
   return (
@@ -99,16 +89,17 @@ export default function TradeModal({
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            onClick={handleModalClick}
           >
             <div
               className="right-0 top-0 absolute m-5 cursor-pointer"
               onClick={closeModal}
             >
               <Image
-                src="https://img.icons8.com/sf-black-filled/64/x.png"
+                src="/assets/images/close.svg"
                 alt="close"
-                width={50}
-                height={50}
+                width={25}
+                height={25}
               />
             </div>
             <span className="text-center mt-10 text-xl font-bold">
