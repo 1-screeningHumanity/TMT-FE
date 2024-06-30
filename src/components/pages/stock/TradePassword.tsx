@@ -45,7 +45,7 @@ export default function TradePassword({
         <span className="font-bold text-2xl text-center mt-20">
           결제 비밀번호를 입력해주세요
         </span>
-        <div className="flex justify-center items-center space-x-3 mt-4">
+        <form className="flex justify-center items-center space-x-3 mt-4">
           <input
             className="w-14 h-14 border-[2px] text-center text-xl"
             maxLength={1}
@@ -94,7 +94,7 @@ export default function TradePassword({
             }}
             onKeyUp={(e) => handleKeyUp(e, 3)}
           />
-        </div>
+        </form>
         <button
           className="w-5/12 h-14 font-bold text-white rounded-2xl absolute bottom-4"
           style={{ backgroundColor: '#7D12FF' }}
