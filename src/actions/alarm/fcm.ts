@@ -18,7 +18,6 @@ async function alarmListAPI() {
 async function alarmReadAPI(notificationIds: number[]) {
   const token = await getAccessToken()
   const res = await PostAPI('/notification', { notificationIds }, token)
-  console.log('res in ala rmReadAPI : ', token)
   return res
 }
 async function alarmDeleteAPI(notificationIds: number[]) {
