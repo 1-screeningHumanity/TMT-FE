@@ -1,8 +1,6 @@
 'use client'
-import { getInvestors, getStockName } from '@/actions/stock/stock'
 import { getAccessToken } from '@/actions/tokens'
 import { wonInfoAPI } from '@/actions/wallet'
-import SocketTradeModal from '@/components/pages/stock/SockTradeModal'
 import TradeModal from '@/components/pages/stock/TradeModal'
 import { toast } from '@/components/ui/use-toast'
 import { staticStockType } from '@/types/Stock'
@@ -68,25 +66,15 @@ export default function Trade({
           사기
         </button>
       </div>
-      {socketFlag ? (
-        <SocketTradeModal
-          modalOpen={modalOpen}
-          setModalOpen={setModalOpen}
-          stockCode={stockCode}
-          stockNameResult={stockName}
-          staticStockPrice={staticStockPrice}
-          myMoney={myMoney}
-        />
-      ) : (
-        <TradeModal
-          modalOpen={modalOpen}
-          setModalOpen={setModalOpen}
-          stockCode={stockCode}
-          stockNameResult={stockName}
-          staticStockPrice={staticStockPrice}
-          myMoney={myMoney}
-        />
-      )}
+
+      <TradeModal
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        stockCode={stockCode}
+        stockNameResult={stockName}
+        staticStockPrice={staticStockPrice}
+        myMoney={myMoney}
+      />
     </>
   )
 }

@@ -43,7 +43,7 @@ export default async function Page(params: any) {
         stockName={stockNameResult?.stockName}
         staticStockPrice={staticStockPrice}
       />
-      <StockNews stockName={stockNameResult?.stockName} />
+      {/* <StockNews stockName={stockNameResult?.stockName} /> */}
     </main>
   )
 }

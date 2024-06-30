@@ -1,24 +1,28 @@
 'use client'
 
+import { getSocketData } from '@/actions/stock/getSocketData'
 import { tradeReservation, tradeStock } from '@/actions/trade'
 import { TradeType, staticStockType } from '@/types/Stock'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
+import { socketStockCode } from '@/utils/socketStockCode'
+import timeCheck from '@/utils/timeCheck'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-
+import { TradeMoneyProps } from '@/types/Trade'
 export default function TradeMoney({
   stockCode,
   stockNameResult,
   staticStockPrice,
   myMoney,
-}: {
-  stockCode: string
-  stockNameResult: string
-  staticStockPrice: staticStockType
-  myMoney: number
-}) {
-  const now_price = parseInt(staticStockPrice?.stck_prpr)
-
+}: TradeMoneyProps) {
+  const check = timeCheck()
+  let now_price = 0
+  if (socketStockCode.includes(stockCode) && check === true) {
+    const sockData = getSocketData(stockCode)
+    now_price = sockData.now_price as number
+  } else {
+    now_price = parseInt(staticStockPrice?.stck_prpr)
+  }
   const [price, setPrice] = useState(now_price)
   const [amount, setAmount] = useState(1)
   const [totalPrice, setTotalPrice] = useState(now_price)
@@ -67,7 +71,7 @@ export default function TradeMoney({
   return (
     <section>
       <motion.div
-        className=" flex flex-col p-5 mt-3 "
+        className=" flex flex-col p-3 overflow-auto h-screen"
         initial={{ x: '100%' }}
         animate={{ x: 0 }}
         exit={{ x: '100%' }}
@@ -79,7 +83,7 @@ export default function TradeMoney({
             {formatNumberWithCommas(myMoney)} 원
           </span>
         </span>
-        <span className="p-3 ">
+        <span className="pl-3">
           예상금액
           <span className="block text-2xl font-bold text-purple-600">
             {formatNumberWithCommas(totalPrice)} 원
