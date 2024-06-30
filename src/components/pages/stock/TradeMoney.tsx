@@ -3,6 +3,7 @@
 import { tradeReservation, tradeStock } from '@/actions/trade'
 import { TradeType, staticStockType } from '@/types/Stock'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
+import { motion } from 'framer-motion'
 import { useState } from 'react'
 
 export default function TradeMoney({
@@ -65,54 +66,58 @@ export default function TradeMoney({
 
   return (
     <section>
-      <span className="text-center mt-10 text-xl font-bold">
-        현재 보유 금액 : {formatNumberWithCommas(myMoney)}
-      </span>
-      <span className="text-center mt-10 text-xl font-bold">
-        예상 금액 : {totalPrice}
-      </span>
-      <div className="items-center justify-center mt-5 h-screen">
-        <div className="text-center">
-          <div className="flex justify-between w-3/5 m-auto ">
-            <span className="text-3xl font-bold mx-3 whitespace-nowrap">
-              단가
-            </span>
+      <motion.div
+        className=" flex flex-col p-5 mt-3 "
+        initial={{ x: '100%' }}
+        animate={{ x: 0 }}
+        exit={{ x: '100%' }}
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      >
+        <span className="p-3 ">
+          현재 보유 금액
+          <span className="block text-2xl font-bold">
+            {formatNumberWithCommas(myMoney)} 원
+          </span>
+        </span>
+        <span className="p-3 ">
+          예상금액
+          <span className="block text-2xl font-bold text-purple-600">
+            {formatNumberWithCommas(totalPrice)} 원
+          </span>
+        </span>
+        <div className="items-center justify-center mt-2 h-screen">
+          <div className="text-center">
             <input
               type="number"
-              className="border w-4/5"
+              className="border rounded-xl w-full h-12 p-2 m-2"
               onChange={handlePriceChange}
               defaultValue={now_price}
             />
-          </div>
-          <div className="flex justify-between w-3/5 m-auto my-10">
-            <span className="text-3xl font-bold mx-3 whitespace-nowrap">
-              수량
-            </span>
             <input
               type="number"
-              className="border w-4/5"
+              className="border rounded-xl w-full h-12 p-2 m-2"
               onChange={handleAmountChange}
               defaultValue={1}
             />
           </div>
+          <div className="flex m-5 mt-2 justify-between ">
+            <button
+              className="w-5/12 h-14 font-bold text-white rounded-2xl"
+              style={{ backgroundColor: '#0B0B0B' }}
+              onClick={() => handleBuyButtonClick('sale')}
+            >
+              팔기
+            </button>
+            <button
+              className="w-5/12 h-14 font-bold text-white rounded-2xl"
+              style={{ backgroundColor: '#7D12FF' }}
+              onClick={() => handleBuyButtonClick('buy')}
+            >
+              사기
+            </button>
+          </div>
         </div>
-        <div className="flex m-5 mt-2 justify-between absolute bottom-0 inset-x-0">
-          <button
-            className="w-5/12 h-14 font-bold text-white rounded-2xl"
-            style={{ backgroundColor: '#0B0B0B' }}
-            onClick={() => handleBuyButtonClick('sale')}
-          >
-            팔기
-          </button>
-          <button
-            className="w-5/12 h-14 font-bold text-white rounded-2xl"
-            style={{ backgroundColor: '#7D12FF' }}
-            onClick={() => handleBuyButtonClick('buy')}
-          >
-            사기
-          </button>
-        </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

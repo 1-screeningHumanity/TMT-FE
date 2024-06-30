@@ -1,8 +1,15 @@
 'use client'
 import { checkTradePassword } from '@/actions/trade'
+import { toast } from '@/components/ui/use-toast'
 import { useRef, useState } from 'react'
 
-export default function TradePassword() {
+export default function TradePassword({
+  step,
+  setStep,
+}: {
+  step: number
+  setStep: (value: number) => void
+}) {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
   const [password, setPassword] = useState<string>('')
 
@@ -23,12 +30,19 @@ export default function TradePassword() {
   const handleCheckPassword = async () => {
     const payingPassword = password
     const res = await checkTradePassword(payingPassword)
-    console.log(res)
+    if (res.isSuccess === false) {
+      toast({
+        title: '결제 비밀번호가 일치하지 않습니다.',
+        variant: 'destructive',
+      })
+      return
+    }
+    setStep(2)
   }
   return (
     <section className="h-screen">
       <div className="flex flex-col items-center justify-center">
-        <span className="font-bold text-2xl text-center mt-10">
+        <span className="font-bold text-2xl text-center mt-20">
           결제 비밀번호를 입력해주세요
         </span>
         <div className="flex justify-center items-center space-x-3 mt-4">

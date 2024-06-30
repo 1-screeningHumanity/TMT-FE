@@ -1,5 +1,4 @@
 'use client'
-import { tradeReservation, tradeStock } from '@/actions/stock/stock'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -11,6 +10,7 @@ import { TradeModalProps } from '@/types/Trade'
 import { getSocketData } from '@/actions/stock/getSocketData'
 import { getSession, useSession } from 'next-auth/react'
 import { getAccessToken } from '@/actions/tokens'
+import { tradeReservation, tradeStock } from '@/actions/trade'
 
 export default function SocketTradeModal({
   modalOpen,

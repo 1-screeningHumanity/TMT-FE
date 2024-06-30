@@ -25,6 +25,7 @@ export default function TradeModal({
   const handleModalClick = (e: React.MouseEvent) => {
     e.stopPropagation()
   }
+  const [step, setStep] = useState<number>(1)
 
   return (
     <AnimatePresence>
@@ -55,13 +56,15 @@ export default function TradeModal({
                 height={25}
               />
             </div>
-            <TradePassword />
-            {/* <TradeMoney
-              stockCode={stockCode}
-              stockNameResult={stockNameResult}
-              staticStockPrice={staticStockPrice}
-              myMoney={myMoney}
-            /> */}
+            {step == 1 && <TradePassword step={step} setStep={setStep} />}
+            {step == 2 && (
+              <TradeMoney
+                stockCode={stockCode}
+                stockNameResult={stockNameResult}
+                staticStockPrice={staticStockPrice}
+                myMoney={myMoney}
+              />
+            )}
           </motion.div>
         </motion.div>
       )}
