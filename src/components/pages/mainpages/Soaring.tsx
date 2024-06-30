@@ -1,4 +1,5 @@
 import { StockSortType } from '@/types/StcokSortType'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
 import { ArrowDownIcon, ArrowUpIcon } from 'lucide-react'
 
@@ -11,26 +12,27 @@ export default function Soaring({
 }) {
   const SoaringData = data
   return (
-    <section className= {`my-5 rounded-md bg-white border-[0.5px]`}>
-      <div className="w-full h-10 flex justify-center items-center text-center border-b-2 border-white font-semibold px-2">
-        <span className="w-1/12"></span>
-        <span className="w-5/12">종목명</span>
-        <span className="w-3/12">현재가</span>
-        <span className="w-3/12">등락률</span>
-      </div>
-      {SoaringData?.map((soar) => (
-        <ul
-          className="w-full h-auto min-h-8 flex justify-center items-center text-center px-2"
-          key={soar.id}
-        >
-          <li className="w-1/12">{soar.data_rank}</li>
-          <li className="w-5/12 break-words">{soar.hts_kor_isnm}</li>
-          <li className="w-3/12">{formatNumberWithCommas(soar.stck_prpr)}</li>
-          <li className="w-3/12 flex gap-2 items-center" style={{ color: color }}>
-            {color === "RED" ? <ArrowUpIcon size={10}/> : <ArrowDownIcon size={10} />}{soar.prdy_ctrt}
-          </li>
-        </ul>
-      ))}
-    </section>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>순위</TableHead>
+          <TableHead>종목명</TableHead>
+          <TableHead>현재가</TableHead>
+          <TableHead>전일비</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {SoaringData && SoaringData.map((data, index) => (
+          <TableRow key={data.id}>
+            <TableCell className="text-center">{index + 1}</TableCell>
+            <TableCell className="break-words">{data.hts_kor_isnm}</TableCell>
+            <TableCell className="text-right">{formatNumberWithCommas(data.stck_prpr)}</TableCell>
+            <TableCell className={`flex items-center justify-end ${color === 'RED' ? 'text-red-600' : 'text-blue-600'}`}>
+              {color === "RED" ? <ArrowUpIcon size={10}/> : <ArrowDownIcon size={10} />}{data.prdy_ctrt}
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
   )
 }

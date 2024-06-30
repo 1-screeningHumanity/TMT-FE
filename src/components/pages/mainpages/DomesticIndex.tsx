@@ -34,7 +34,7 @@ export default function DomesticIndex({data, delay} : {data : kospiType[], delay
     <motion.div initial={{ opacity : 0, translateY : "-10px" }} animate={{ opacity:1, translateY : "0px" }} transition={{ duration : 0.3 }} className='py-4 drop-shadow-sm '>
       <h3 className="font-bold text-lg px-4 tracking-tighter">국내 시장 지표</h3>
       <p className="px-4 text-xs">{date} 기준</p>
-      <div className="flex flex-wrap gap-2 justify-between items-center mt-5">
+      <div className="flex flex-wrap justify-between items-center mt-5">
         {
           kospiData && kosdaqData && (
             <>

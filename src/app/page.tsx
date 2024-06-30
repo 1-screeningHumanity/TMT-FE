@@ -56,7 +56,7 @@ export default async function Home() {
   return (
     <>
       {/* <MainHeader /> */}
-      <main className="space-y-5 min-h-[100vh] container bg-slate-100">
+      <main className="space-y-3 min-h-[100vh] container bg-slate-100">
           {/* <SearchBarUI /> */}
           {homeSections.map((section) => (
             <Suspense key={section.id} fallback={<SkeletonCard />}>
@@ -68,11 +68,11 @@ export default async function Home() {
               </section>
             </Suspense>
           ))}
-          <News />
+          {/* <News />
           <SkeletonCard />
           <SkeletonCard />
           <SkeletonCard />
-          <SkeletonCard />
+          <SkeletonCard /> */}
       </main>
       <Footer />
     </>
