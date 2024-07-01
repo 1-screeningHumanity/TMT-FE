@@ -43,6 +43,9 @@ export default function PageGuideUI({
     if (styleCode === 1) {
       return 'polygon(0% 0%, 0% 100%, 3% 100%, 3% 9%, 40% 9%, 40% 30%, 0 30%, 3% 100%, 100% 100%, 100% 0%)'
     } else if (styleCode === 2) {
+      return 'polygon(0% 0%, 0% 100%, 70% 100%, 70% 9%, 99% 9%, 99% 30%, 0 30%, 3% 100%, 100% 100%, 100% 0%)'
+    }
+    if (styleCode === 3) {
       return 'polygon(0% 0%, 0% 100%, 3% 100%, 3% 9%, 40% 9%, 40% 30%, 0 30%, 3% 100%, 100% 100%, 100% 0%)'
     }
   }
