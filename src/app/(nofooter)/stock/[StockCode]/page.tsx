@@ -30,7 +30,7 @@ export default async function Page(params: any) {
 
   // console.log
   return (
-    <main>
+    <main className="pb-16">
       <GuideOpen />
       <Charts
         params={{
