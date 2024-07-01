@@ -22,7 +22,7 @@ export default async function ButtonOfPayments({price} : {price: string}){
   }
 
   return (
-    <button className="bg-yellow-400 w-full h-14 fixed right-0 bottom-0 mt-20 flex items-center justify-center rounded-xl" 
+    <button className="bg-yellow-400 w-full h-14 fixed right-0 bottom-2 mt-20 flex items-center justify-center rounded-xl" 
       onClick={handlePayment}
       >결제하기
     </button>
