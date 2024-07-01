@@ -9,7 +9,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 export default function NewsSection(newsData: { newsData: newsType[] }) {
-  const data = newsData.newsData
+  const data = newsData?.newsData
   const bgWhite = '/assets/images/bgWhite.svg'
 
   return (
@@ -25,7 +25,7 @@ export default function NewsSection(newsData: { newsData: newsType[] }) {
         disableOnInteraction: false, // 사용자 상호작용시 슬라이더 일시 정지 비활성
       }}
     >
-      {data.map((news) => (
+      {data?.map((news) => (
         <SwiperSlide key={news.id}>
           <a
             href={news.originallink}
