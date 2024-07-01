@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Guide1 from './Guide1'
 import Guide2 from './Guide2'
@@ -23,11 +23,22 @@ export default function PageGuideUI({
   if (1 > step || step > 10) {
     setIsOpen(false)
   }
+  useEffect(() => {
+    const mainElement = document.querySelector('body')
+    if (isOpen) {
+      mainElement?.classList.add('overflow-hidden')
+    } else {
+      mainElement?.classList.remove('overflow-hidden')
+    }
+    return () => {
+      mainElement?.classList.remove('overflow-hidden')
+    }
+  }, [isOpen])
 
   return (
     <section className="fixed top-0 right-0 bottom-0 left-0 z-[1000] bg-black/50">
       <div
-        className="right-0 top-0 absolute m-5 "
+        className="right-0 top-0 absolute m-5 overflow-y-hidden"
         onClick={() => setIsOpen(false)}
       >
         <Image
