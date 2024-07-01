@@ -74,7 +74,6 @@ export default function AssetRank() {
               nickname={myRankInfo?.nickname}
               profit={myRankInfo?.won}
               isAsseted
-              ranking={0}
             />
           )}
           {

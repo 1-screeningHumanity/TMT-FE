@@ -1,5 +1,5 @@
 interface rankBoxType {
-  ranking: number
+  ranking?: number
   rank: number
   changingRank: number
   nickname: string
