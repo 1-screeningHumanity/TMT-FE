@@ -61,20 +61,20 @@ export default async function Home() {
       data: [data[2], data[3]],
       component: TopRank,
     },
+
+    { id: 6, title: '뉴스', data: [], component: News },
     {
-      id: 5,
+      id: 7,
       title: '퀴즈',
       data: [],
       component: Quiz,
     },
-    { id: 6, title: '뉴스', data: [], component: News },
   ]
-
   const filteredSections =
     token == 'undefined'
       ? homeSections.filter((section) => section.id > 2)
       : homeSections
-  console.log(filteredSections, token)
+
   return (
     <>
       {/* <MainHeader /> */}

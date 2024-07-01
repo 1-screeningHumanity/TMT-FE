@@ -25,7 +25,6 @@ function MyStatus({ data, delay }: { data: any; delay: number }) {
   }, [delay])
 
   if (!show) return null
-  console.log(rank)
 
   return (
     <motion.div
