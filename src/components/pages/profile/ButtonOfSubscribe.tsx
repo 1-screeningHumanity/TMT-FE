@@ -45,7 +45,7 @@ export default function ButtonOfSubscribe({isSubscribe, nick} : {isSubscribe: bo
     <>
       { isSubscribe == false || isSubscribe == undefined ?
           <div className="flex items-center mx-8">
-            <button className="w-16 h-8 border-[1px] bg-[#7d00d0] rounded-full text-white mt-4" onClick={() => router.push(`/profile/${nick}/payments`)}>구독</button> 
+            <button className="w-16 h-8 border-[1px] bg-[#7d12ff] rounded-full text-white mt-4" onClick={() => router.push(`/profile/${nick}/payments`)}>구독</button> 
           </div> 
           :
           <div className="flex items-center mx-8">

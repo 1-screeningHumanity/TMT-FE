@@ -23,7 +23,7 @@ export default function PayPasswordChange ({setPassword} : {setPassword : Dispat
   return(
     <>
       <div className="flex mx-10 justify-between my-10 items-center">
-        <h1 className="text-lg text-[#7d00d0] font-extrabold">결제비밀번호 변경</h1>
+        <h1 className="text-lg text-[#7d12ff] font-extrabold">결제비밀번호 변경</h1>
         <Link
           className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5"
           href={'/mypage'}

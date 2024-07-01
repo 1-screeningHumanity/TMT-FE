@@ -69,7 +69,7 @@ export default async function Home() {
     }
   ]
   const filteredSections =
-    token == undefined
+    token !== undefined
       ? homeSections
       : homeSections.filter((section) => section.id > 2)
 
