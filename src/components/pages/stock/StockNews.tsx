@@ -6,9 +6,11 @@ export default async function StockNews(stockName: { stockName: string }) {
 
   const newsData: newsType[] = await mainNewsAPI(StockName)
   return (
-    <section className="stockNews">
+    <section>
       <div className="flex flex-wrap justify-center p-2 mt-2">
-        <span className="font-bold text-2xl text-center">관련뉴스</span>
+        <div className="stockNews">
+          <span className="font-bold text-2xl text-center">관련뉴스</span>
+        </div>
         {newsData.map((news) => (
           <a href={news.originallink} className="m-4 flex w-full items-start">
             <div className="w-28 h-28 flex-shrink-0">

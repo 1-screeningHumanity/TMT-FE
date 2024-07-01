@@ -27,7 +27,11 @@ export default function PageGuideUI({
     const mainElement = document.querySelector('body')
     if (isOpen) {
       if (step == 4) {
-        const ref = document.querySelector('.Trade')
+        const ref = document.querySelector('.selected-Tap')
+        ref?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+      if (step == 6) {
+        const ref = document.querySelector('.stockNews')
         ref?.scrollIntoView({ behavior: 'smooth', block: 'center' })
       }
       mainElement?.classList.add('overflow-hidden')
@@ -49,7 +53,13 @@ export default function PageGuideUI({
       return 'polygon(0% 0%, 0% 100%, 3% 100%, 3% 20%, 50% 20%, 50% 50%, 0 50%, 3% 100%, 100% 100%, 100% 0%)'
     }
     if (styleCode === 4) {
-      return 'polygon(0% 0%, 0% 100%, 3% 100%, 3% 40%, 99% 40%, 99% 70%, 0 70%, 3% 100%, 100% 100%, 100% 0%)'
+      return 'polygon(0% 0%, 0% 100%, 3% 100%, 3% 40%, 97% 40%, 97% 60%, 0 60%, 3% 100%, 100% 100%, 100% 0%)'
+    }
+    if (styleCode === 5) {
+      return 'polygon(0% 0%, 0% 100%, 3% 100%, 3% 85%, 97% 85%, 97% 100%, 0 100%, 3% 100%, 100% 100%, 100% 0%)'
+    }
+    if (styleCode === 6) {
+      return 'polygon(0% 0%, 0% 100%, 3% 100%, 3% 40%, 97% 40%, 97% 60%, 0 60%, 3% 100%, 100% 100%, 100% 0%)'
     }
   }
 
