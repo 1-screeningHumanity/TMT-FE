@@ -15,6 +15,7 @@ import { getSession } from 'next-auth/react'
 import { getAccessToken } from '@/actions/tokens'
 import Quiz from '@/components/pages/mainpages/Quiz'
 import { title } from 'process'
+import RecomStock from '@/components/pages/mainpages/RecomStock'
 
 const SkeletonCard = dynamic(
   () => import('@/components/skeletons/SkeletonCard'),
@@ -61,13 +62,18 @@ export default async function Home() {
       data: [data[2], data[3]],
       component: TopRank,
     },
-
-    { id: 6, title: '뉴스', data: [], component: News },
     {
-      id: 7,
+      id: 5,
       title: '퀴즈',
       data: [],
       component: Quiz,
+    },
+    { id: 6, title: '뉴스', data: [], component: News },
+    {
+      id: 7,
+      title: '키워드',
+      data: [],
+      component: RecomStock,
     },
   ]
   const filteredSections =
