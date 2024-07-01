@@ -3,6 +3,7 @@ import mainpageData from '@/lib/mainpageData'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
+import { stockDataType } from '@/types/categoryDataType'
 
 export default function RecomStock() {
   return (
@@ -21,9 +22,14 @@ export default function RecomStock() {
         />
       </div>
       <section className="flex flex-wrap justify-around">
-        {mainpageData.map((stock) => (
+        {mainpageData.map((stock: stockDataType, index: number) => (
           <Link href={`/stock/${stock.stockCode}`} key={stock.id}>
-            <div className="flex items-center justify-between p-4 border-b bg-white rounded-lg ">
+            <div
+              className="flex items-center justify-between p-4 border-b bg-white rounded-lg "
+              style={{
+                backgroundColor: index % 2 == 0 ? '#e4f3f7' : '#c2f1ff',
+              }}
+            >
               <div className="flex items-center">
                 <p className=" font-bold">{stock.stockName}</p>
               </div>
