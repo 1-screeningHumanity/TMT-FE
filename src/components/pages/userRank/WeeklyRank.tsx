@@ -5,23 +5,29 @@ import MyRankBox from "./MyRankBox";
 import { weeklyRankDataType } from "@/types/rankBoxType";
 import RankBox from "./RankBox";
 import { isWithinFridayWindow } from "@/utils/aggregateTimeCheck";
-import ToolTipBox from "@/components/ui/ToolTipBox";
+import PopOverBox from "@/components/ui/PopOverBox";
 
 export default async function WeeklyRank() {
 
   const date = getLastFriday4PM();
   const isValid = isWithinFridayWindow();
 
-  const myRankResponse = await getMyWeeklyRevenueRank();
-  const myRankInfo = myRankResponse?.data;
+  let myRankInfo = null;
+  let WeeklyRank = [];
 
-  const res = await getWeeklyRevenueRank();
-  const WeeklyRank = res?.data;
+  if(!isValid){
+    const myRankResponse = await getMyWeeklyRevenueRank();
+    myRankInfo = myRankResponse?.data;
+  
+    const res = await getWeeklyRevenueRank();
+    WeeklyRank = res?.data.content;
+  }
+
 
   return(
     <>
       <p className="text-[#7d12ff] text-center leading-10 mt-4">{date} 기준입니다.</p>
-      <ToolTipBox text="매주 금요일 16시 ~ 17시 30분은 집계시간입니다."/>
+      <PopOverBox text="매주 금요일 15시 40분 ~ 16시 40분은 주간순위 집계시간입니다."/>
       <RankHeader columns={['순위','변동','닉네임','수익률']} /> 
       { isValid ? <div className="text-center my-20">현재는 순위 집계 시간입니다.</div> :
         <>
