@@ -12,6 +12,14 @@ interface TradeModalProps {
   stockCode: string
   stockNameResult: string
   staticStockPrice: staticStockType
+  myMoney: number
 }
 
-export type { TradeType, TradeModalProps }
+interface TradeMoneyProps {
+  stockCode: string
+  stockNameResult: string
+  staticStockPrice: staticStockType
+  myMoney: number
+}
+
+export type { TradeType, TradeModalProps, TradeMoneyProps }
