@@ -1,35 +1,59 @@
 'use client'
 
+import { profilePortfolio } from "@/actions/profile"
+import { portfolioType } from "@/types/portfolioType"
 import EChartsReact from "echarts-for-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-export default function ChartOfProfile() {
+export default function ChartOfProfile({ nick }: { nick: string}) {
+  const [portfolio, setPortfolio] = useState<portfolioType[]>([])
   const [options, setOptions] = useState({
     tooltip: {
       trigger: 'item'
     },
-    legend: {
-    },
     series: [
       {
-        data: [
-          { value: 1048, name: '삼성전자' },
-          { value: 735, name: 'DB손해보험' },
-          { value: 580, name: '노브랜드' },
-          { value: 484, name: '동양생명' },
-          { value: 300, name: '대동전자' }
-        ],
+        data: [] as { value: number, name: string }[], // Initialize with correct type
         type: 'pie',
-        radius: ['40%', '60%'],
-        center : ['50%', '65%'],
+        radius: ['50%', '70%']
       },
     ],
   })
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await profilePortfolio(nick);
+      setPortfolio(res?.data || [])
+    }
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    console.log("data", portfolio)
+    if (portfolio.length > 0) {
+      const chartData = portfolio
+        .filter(item => item.stockPrice !== null && item.stockName !== null && item.totalAmount !== null) // Filter out null values
+        .map((item) => ({
+          value: (item.stockPrice as number) * (item.totalAmount as number), // Multiply stockPrice and totalAmount
+          name: item.stockName as string // Assert non-null type
+        }))
+
+      setOptions((prevOptions) => ({
+        ...prevOptions,
+        series: [
+          {
+            ...prevOptions.series[0],
+            data: chartData,
+          },
+        ],
+      }))
+    }
+  }, [portfolio]) // Add portfolio as a dependency to update options when portfolio changes
+
   return (
     <EChartsReact
       option={options}
-      opts={{ renderer: 'svg', width: 'auto', height: 'auto' }}
+      opts={{ renderer: 'svg' }}
     />
   )
 }
