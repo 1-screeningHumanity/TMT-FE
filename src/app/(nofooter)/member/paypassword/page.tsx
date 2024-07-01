@@ -74,7 +74,7 @@ export default function paypassword() {
           {/* <input type="button" className="rounded-lg w-40 h-14 font-bold text-center mx-2 text-white bg-black" value={"이전으로"} onClick={() => location.href="/member/signup"}/> */}
           <input
             type="button"
-            className="rounded-lg w-80 h-14 font-bold text-center mx-2 text-white bg-[#7d00d0]"
+            className="rounded-lg w-80 h-14 font-bold text-center mx-2 text-white bg-[#7d12ff]"
             value={'다음으로'}
             onClick={() => handleStep()}
           />
@@ -89,7 +89,7 @@ export default function paypassword() {
           />
           <input
             type="button"
-            className="rounded-lg w-40 h-14 font-bold text-center mx-2 text-white bg-[#7d00d0]"
+            className="rounded-lg w-40 h-14 font-bold text-center mx-2 text-white bg-[#7d12ff]"
             value={'완료'}
             onClick={() => {
               handleSetPayPassword()

@@ -264,7 +264,7 @@ export default function signup() {
             type="button"
             value={'자동생성'}
             onClick={handleRandomNickname}
-            className="w-20 bg-[#7d00d0] font-bold text-white rounded-md ml-4 h-10 inline text-sm border-[1px] px-2"
+            className="w-20 bg-[#7d12ff] font-bold text-white rounded-md ml-4 h-10 inline text-sm border-[1px] px-2"
           />
         </div>
 
@@ -272,7 +272,7 @@ export default function signup() {
           type="submit"
           value={'가입하기'}
           onClick={handleSignup}
-          className="bg-[#7d00d0] text-white text-sm font-semibold rounded-lg w-80 h-10 mx-auto block mt-20 "
+          className="bg-[#7d12ff] text-white text-sm font-semibold rounded-lg w-80 h-10 mx-auto block mt-20 "
         />
       </form>
     </>

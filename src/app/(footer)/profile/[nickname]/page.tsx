@@ -48,7 +48,7 @@ export default async function Profile({params} : {params :{nickname: string}}){
           <div className="flex justify-between items-center my-5 mx-8">
             <h3 className="text-md text-[#a8a8a8]">
               총 자산 <br/>
-              <span className="text-3xl font-semibold text-[#7d00d0]">￦ {formatNumberWithCommas(rank?.won)}원</span>
+              <span className="text-3xl font-semibold text-[#7d12ff]">￦ {formatNumberWithCommas(rank?.won)}원</span>
             </h3>
             {
               rank?.profit > 0 ?
