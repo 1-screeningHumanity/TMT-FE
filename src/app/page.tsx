@@ -62,17 +62,19 @@ export default async function Home() {
       component: TopRank,
     },
     {
-      id : 5,
-      title : '퀴즈',
-      data : [],
-      component : Quiz
-    }
+      id: 5,
+      title: '퀴즈',
+      data: [],
+      component: Quiz,
+    },
+    { id: 6, title: '뉴스', data: [], component: News },
   ]
-  const filteredSections =
-    token !== undefined
-      ? homeSections
-      : homeSections.filter((section) => section.id > 2)
 
+  const filteredSections =
+    token == 'undefined'
+      ? homeSections.filter((section) => section.id > 2)
+      : homeSections
+  console.log(filteredSections, token)
   return (
     <>
       {/* <MainHeader /> */}
@@ -88,7 +90,6 @@ export default async function Home() {
             </section>
           </Suspense>
         ))}
-        <News />
         <SkeletonCard />
       </main>
       <Footer />
