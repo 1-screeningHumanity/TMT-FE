@@ -20,7 +20,6 @@ export default function Footer() {
   const path = usePathname()
   const parts = path.split('/') // Split the path by /
   const nowPath = parts[1] || '/'
-  console.log(nowPath)
 
   useEffect(() => {
     if (isSignIn) {

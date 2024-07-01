@@ -7,8 +7,6 @@ export default async function Page(props: { params: { categoryId: number } }) {
   const middleCateogoryData: subCategoryDataType =
     await getMiddleCateogoryAPI(mainCategoryId)
   const middleCateogory: categoryDataType[] = middleCateogoryData.categoryData
-  console.log(middleCateogoryData)
-
   return (
     <main>
       <span className="font-bold pl-3 text-xl w-full fixed flex items-center ">

@@ -61,15 +61,15 @@ export default function Bookmark(stockCode: {
   }
 
   return (
-    <div className=" " onClick={handleBookmark}>
+    <div className="w-12 h-12 " onClick={handleBookmark}>
       {IsBookmark ? (
         <Image
           src="/assets/images/bookmark.svg"
           alt="bookmark"
           width={48}
           height={48}
-          objectFit="contain"
-          className="p-2"
+          className="object-contain p-2"
+          style={{ width: '48px', height: '48px' }}
         />
       ) : (
         <Image
@@ -77,8 +77,8 @@ export default function Bookmark(stockCode: {
           alt="bookmark"
           width={48}
           height={48}
-          objectFit="contain"
-          className="p-2"
+          className="object-contain p-2"
+          style={{ width: '48px', height: '48px' }}
         />
       )}
     </div>
