@@ -1,8 +1,8 @@
 import { GetAPI } from "./fetchAPI";
 import { getAccessToken } from "./tokens";
 
-async function getAssetRank(){
-  const res = await GetAPI("/rank/asset");
+async function getAssetRank(page : number){
+  const res = await GetAPI(`/rank/asset?page=${page}&size=20`);
   return res
 }
 

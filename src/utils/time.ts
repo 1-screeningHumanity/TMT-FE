@@ -35,7 +35,7 @@ function getPreviousDay4PM() {
 
   // 전날의 날짜와 시간 계산
   now.setDate(now.getDate() - 1);
-  now.setHours(16, 0, 0, 0); // 오후 4시로 설정
+  now.setHours(16, 40, 0, 0); // 오후 4시로 설정
 
   // 전날이 주말 또는 공휴일인 경우, 이전 평일로 설정
   while (isWeekend(now)) {
@@ -66,7 +66,7 @@ function getLastFriday4PM() {
 
   // 지난 금요일 날짜 계산
   now.setDate(now.getDate() - daysSinceLastFriday);
-  now.setHours(16, 0, 0, 0); // 오후 4시로 설정
+  now.setHours(16, 40, 0, 0); // 오후 4시로 설정
 
   // 원하는 형식으로 날짜와 시간 변환
   let year = now.getFullYear();
@@ -78,7 +78,7 @@ function getLastFriday4PM() {
   return `${year}년 ${month}월 ${day}일 ${hours}시 ${minutes}분`;
 }
 
-function getLastFridayOfLastMonth4PM() {
+function getLastDayOfLastMonth440PM() {
   // 현재 날짜와 시간 가져오기
   let now = new Date();
 
@@ -89,15 +89,8 @@ function getLastFridayOfLastMonth4PM() {
   now.setMonth(now.getMonth() - 1);
   now.setDate(new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate());
 
-  // 지난달 마지막 날의 요일 가져오기 (0: 일요일, 1: 월요일, ..., 6: 토요일)
-  let lastDayOfWeek = now.getDay();
-
-  // 지난달 마지막 금요일로 이동
-  let daysToLastFriday = (lastDayOfWeek + 2) % 7; // 금요일은 5, 0: 일요일, ... -> 5, 6, 0, 1, 2, 3, 4
-  now.setDate(now.getDate() - daysToLastFriday);
-
-  // 오후 4시로 설정
-  now.setHours(16, 0, 0, 0);
+  // 오후 4시 40분으로 설정
+  now.setHours(16, 40, 0, 0);
 
   // 원하는 형식으로 날짜와 시간 변환
   let year = now.getFullYear();
@@ -109,4 +102,4 @@ function getLastFridayOfLastMonth4PM() {
   return `${year}년 ${month}월 ${day}일 ${hours}시 ${minutes}분`;
 }
 
-export { dateFormmating, getCurruntDate, getPreviousDay4PM, getLastFriday4PM, getLastFridayOfLastMonth4PM }
+export { dateFormmating, getCurruntDate, getPreviousDay4PM, getLastFriday4PM, getLastDayOfLastMonth440PM }

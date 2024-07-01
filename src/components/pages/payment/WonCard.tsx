@@ -22,6 +22,7 @@ function WonCard() {
       {WonCardData.map((item) => (
         <WonCardItem key={item.id} cash={item.cash} won={item.won} onClick={()=> {getCash(item.cash); router.push(`/charge?price=${item.cash}`)}}/>
       ))}
+      <button className='w-40 h-10 border-2 rounded-lg bg-stone-50' onClick={() => router.push("/charge")}>초기화</button>
     </div>
   )
 }

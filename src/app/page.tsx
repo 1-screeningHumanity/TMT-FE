@@ -13,6 +13,8 @@ import { getServerSession } from 'next-auth'
 import options from './api/auth/[...nextauth]/options'
 import { getSession } from 'next-auth/react'
 import { getAccessToken } from '@/actions/tokens'
+import Quiz from '@/components/pages/mainpages/Quiz'
+import { title } from 'process'
 
 const SkeletonCard = dynamic(
   () => import('@/components/skeletons/SkeletonCard'),
@@ -59,6 +61,12 @@ export default async function Home() {
       data: [data[2], data[3]],
       component: TopRank,
     },
+    {
+      id : 5,
+      title : '퀴즈',
+      data : [],
+      component : Quiz
+    }
   ]
   const filteredSections =
     token == undefined
@@ -81,9 +89,6 @@ export default async function Home() {
           </Suspense>
         ))}
         <News />
-        <SkeletonCard />
-        <SkeletonCard />
-        <SkeletonCard />
         <SkeletonCard />
       </main>
       <Footer />
