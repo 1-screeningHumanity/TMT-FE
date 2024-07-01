@@ -5,6 +5,7 @@ import {
 } from '@/actions/stock/stock'
 import Charts from '@/components/pages/stock/Charts'
 import CompanyInfo from '@/components/pages/stock/CompanyInfo'
+import PageGuideUI from '@/components/pages/stock/PageGuide/PageGuideUI'
 import StockNews from '@/components/pages/stock/StockNews'
 import Trade from '@/components/pages/stock/Trade'
 import { StockChartDataType } from '@/types/Stock'
@@ -29,6 +30,7 @@ export default async function Page(params: any) {
   // console.log
   return (
     <main>
+      <PageGuideUI />
       <Charts
         params={{
           stockCode: stockCode,
