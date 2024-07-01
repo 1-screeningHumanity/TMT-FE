@@ -10,6 +10,7 @@ import Guide6 from './Guide6'
 import Guide7 from './Guide7'
 import Guide8 from './Guide8'
 import Guide9 from './Guide9'
+import Guide10 from './Guide10'
 
 export default function PageGuideUI({
   isOpen,
@@ -19,6 +20,9 @@ export default function PageGuideUI({
   setIsOpen: (value: boolean) => void
 }) {
   const [step, setStep] = useState(1)
+  if (1 > step || step > 10) {
+    setIsOpen(false)
+  }
 
   return (
     <section className="fixed top-0 right-0 bottom-0 left-0 z-[1000] bg-black/50">
@@ -43,6 +47,8 @@ export default function PageGuideUI({
       {step === 7 && <Guide7 />}
       {step === 8 && <Guide8 />}
       {step === 9 && <Guide9 />}
+      {step === 10 && <Guide10 />}
+
       <div className="flex absolute right-0 bottom-0 m-5 bg-white">
         <div onClick={() => setStep((prev) => prev - 1)}>
           <Image

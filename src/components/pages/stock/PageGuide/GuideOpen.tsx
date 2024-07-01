@@ -6,13 +6,6 @@ import { InfoIcon } from 'lucide-react'
 
 export default function GuideOpen() {
   const [isOpen, setIsOpen] = useState(true)
-  const height = window.innerHeight
-  useEffect(() => {
-    if (height < 668 && isOpen) {
-      alert('화면이 너무 작아요')
-      setIsOpen(false)
-    }
-  }, [])
 
   return (
     <section>
