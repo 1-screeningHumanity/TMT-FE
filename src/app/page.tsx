@@ -21,7 +21,7 @@ const SkeletonCard = dynamic(
   { ssr: false },
 )
 
-const getData = async () => {
+async function getData() {
   const data = await Promise.all([
     KospiAPI(),
     KosdaqAPI(),
