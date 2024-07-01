@@ -13,7 +13,6 @@ export default async function Page() {
   return (
     <>
       <main>
-        <TitleOfPages title='카테고리' />
         <div className="flex flex-wrap justify-around">
           {data.map((category: categoryDataType) => (
             <Link href={`/category/${category.categoryId}`}>

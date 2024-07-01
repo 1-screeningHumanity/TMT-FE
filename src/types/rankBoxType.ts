@@ -7,6 +7,7 @@ interface rankBoxType {
 }
 
 interface assetRankDataType {
+  id : number
   nickname : string
   ranking : number
   won : number

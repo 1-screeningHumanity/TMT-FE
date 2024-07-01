@@ -11,26 +11,28 @@ import Navi05 from './icons/Navi05'
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import { footerType } from '@/types/footerType'
+import { usePathname } from 'next/navigation'
 
 export default function Footer() {
-
-  const [footer, setFooter] = useState<footerType[]>();
+  const [footer, setFooter] = useState<footerType[]>()
   const session = useSession()
   const isSignIn = session?.data?.user?.isSuccess
+  const path = usePathname()
+  const parts = path.split('/') // Split the path by /
+  const nowPath = parts[1] || '/'
 
   useEffect(() => {
     if (isSignIn) {
-      setFooter(footerSignedIn);
+      setFooter(footerSignedIn)
     } else {
-      setFooter(footerSignedOut);
+      setFooter(footerSignedOut)
     }
   }, [isSignIn])
 
-
   return (
     <footer className="fixed bottom-0  w-full bg-white p-4 z-10">
-      <ul className='flex justify-between items-center'>
-        {footer?.map((data : footerType) => (
+      <ul className="flex justify-between items-center">
+        {footer?.map((data: footerType) => (
           <li key={data.id}>
             <Link
               href={data.href}
@@ -42,6 +44,9 @@ export default function Footer() {
               {data.id === 4 && <Navi04 />}
               {data.id === 5 && <Navi05 />}
               {data.name}
+              {nowPath === (data.href.split('/')[1] || '/') && (
+                <div className="w-1 h-1 bg-black rounded-full" />
+              )}
             </Link>
           </li>
         ))}
