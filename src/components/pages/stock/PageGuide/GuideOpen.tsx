@@ -10,7 +10,9 @@ export default function GuideOpen() {
   return (
     <section>
       <div className="absolute right-3" onClick={() => setIsOpen(true)}>
-        <InfoIcon />
+        <div className="GuideIcon">
+          <InfoIcon />
+        </div>
       </div>
       {isOpen && <PageGuideUI isOpen={isOpen} setIsOpen={setIsOpen} />}
     </section>

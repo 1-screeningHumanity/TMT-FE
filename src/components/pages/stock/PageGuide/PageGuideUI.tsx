@@ -34,6 +34,10 @@ export default function PageGuideUI({
         const ref = document.querySelector('.stockNews')
         ref?.scrollIntoView({ behavior: 'smooth', block: 'center' })
       }
+      if (step == 10) {
+        const ref = document.querySelector('.GuideIcon')
+        ref?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
       mainElement?.classList.add('overflow-hidden')
     } else {
       mainElement?.classList.remove('overflow-hidden')
