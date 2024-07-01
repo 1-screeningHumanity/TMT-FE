@@ -16,14 +16,14 @@ export default async function Page(params: any) {
 
   const stockNameResult = await getStockName(stockCode)
   if (nowLink === undefined) {
-    nowLink = 'day'
+    nowLink = 'year'
   }
   const staticStockPrice = await getStaticStockPrice(stockCode)
   let stockData: StockChartDataType[] = []
   if (nowLink !== 'real-time') {
     stockData = await getStockData(stockCode, nowLink)
   } else {
-    stockData = await getStockData(stockCode, 'day')
+    stockData = await getStockData(stockCode, 'year')
   }
 
   // console.log
@@ -43,7 +43,7 @@ export default async function Page(params: any) {
         stockName={stockNameResult?.stockName}
         staticStockPrice={staticStockPrice}
       />
-      {/* <StockNews stockName={stockNameResult?.stockName} /> */}
+      <StockNews stockName={stockNameResult?.stockName} />
     </main>
   )
 }
