@@ -5,6 +5,8 @@ import {
 } from '@/actions/stock/stock'
 import Charts from '@/components/pages/stock/Charts'
 import CompanyInfo from '@/components/pages/stock/CompanyInfo'
+import GuideOpen from '@/components/pages/stock/PageGuide/GuideOpen'
+import PageGuideUI from '@/components/pages/stock/PageGuide/PageGuideUI'
 import StockNews from '@/components/pages/stock/StockNews'
 import Trade from '@/components/pages/stock/Trade'
 import { StockChartDataType } from '@/types/Stock'
@@ -16,19 +18,20 @@ export default async function Page(params: any) {
 
   const stockNameResult = await getStockName(stockCode)
   if (nowLink === undefined) {
-    nowLink = 'day'
+    nowLink = 'year'
   }
   const staticStockPrice = await getStaticStockPrice(stockCode)
   let stockData: StockChartDataType[] = []
   if (nowLink !== 'real-time') {
     stockData = await getStockData(stockCode, nowLink)
   } else {
-    stockData = await getStockData(stockCode, 'day')
+    stockData = await getStockData(stockCode, 'year')
   }
 
   // console.log
   return (
-    <main>
+    <main className="pb-16">
+      <GuideOpen />
       <Charts
         params={{
           stockCode: stockCode,
@@ -43,7 +46,7 @@ export default async function Page(params: any) {
         stockName={stockNameResult?.stockName}
         staticStockPrice={staticStockPrice}
       />
-      {/* <StockNews stockName={stockNameResult?.stockName} /> */}
+      <StockNews stockName={stockNameResult?.stockName} />
     </main>
   )
 }
