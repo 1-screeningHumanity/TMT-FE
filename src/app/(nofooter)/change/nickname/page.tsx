@@ -54,7 +54,7 @@ async function handleChangeNickname(event: React.FormEvent) {
   return(
     <>
       <div className="flex mx-10 justify-between mt-10 mb-16">
-        <h1 className="text-lg text-[#7d00d0] font-extrabold">닉네임 변경</h1>
+        <h1 className="text-lg text-[#7d12ff] font-extrabold">닉네임 변경</h1>
         <Link
           className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5"
           href={'/mypage'}
@@ -72,7 +72,7 @@ async function handleChangeNickname(event: React.FormEvent) {
           <label htmlFor="nickName" className="text-sm my-1 block">닉네임 <span className="text-red-500">*</span></label>
           <input name="nickName" id="nickName" type="text" required ref={(el) => {inputRefs.current[0] = el}} placeholder="변경할 닉네임을 입력해주세요" className="border-[2px] rounded-lg w-80 h-10 mx-auto px-4 text-sm placeholder-[#aea0e5] inline"/>
         </div>
-        <input type="submit" value={"변경하기"} onClick={handleChangeNickname} className="bg-[#7d00d0] text-white text-sm font-semibold rounded-lg w-80 h-10 mx-auto block my-6 absolute bottom-4 left-0 right-0"/>
+        <input type="submit" value={"변경하기"} onClick={handleChangeNickname} className="bg-[#7d12ff] text-white text-sm font-semibold rounded-lg w-80 h-10 mx-auto block my-6 absolute bottom-4 left-0 right-0"/>
       </form>
     </>
   )

@@ -18,7 +18,7 @@ export default function signin() {
       <SigninForm />
       <p className="text-xs mx-auto w-fit text-[#775da6]">
         비밀번호가 기억이 나지 않나요?{' '}
-        <Link href={'#'} className="font-extrabold">
+        <Link href={'/reset/password'} className="font-extrabold">
           비밀번호 찾기
         </Link>
       </p>
@@ -34,7 +34,7 @@ export default function signin() {
       </div>
       <Link
         href={'/member/signup'}
-        className="border-[1px] w-full h-10 mx-auto my-6 block rounded-lg text-[#7d00d0] border-[#7d00d0] font-extrabold text-sm text-center leading-10"
+        className="border-[1px] w-full h-10 mx-auto my-6 block rounded-lg text-[#7d12ff] border-[#7d12ff] font-extrabold text-sm text-center leading-10"
       >
         계정만들기
       </Link>

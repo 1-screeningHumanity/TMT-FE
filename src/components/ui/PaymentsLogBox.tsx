@@ -18,7 +18,7 @@ export default function PaymentsLogBox({createdAt, payName, totalAmount}: Paymen
           <span className="text-xs text-[#775da6]">{ `${payName}` == `KakaoPay` ? " 카카오 페이" : " 카드 결제"}</span>
         </div>
       </div>
-      <div className="mx-7 text-[#7d00d0] font-bold">
+      <div className="mx-7 text-[#7d12ff] font-bold">
         ￦{formatNumberWithCommas(totalAmount)}
       </div>
     </div>

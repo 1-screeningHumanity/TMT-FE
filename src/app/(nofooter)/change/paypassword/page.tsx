@@ -56,11 +56,11 @@ export default function paypassword (){
       }
       { step ?
         (<div className="w-fit mx-auto absolute bottom-6 left-0 right-0">
-          <input type="button" className="rounded-lg w-80 h-14 font-bold text-center mx-2 text-white bg-[#7d00d0]" value={"다음으로"} onClick={() => handleStep()}/>
+          <input type="button" className="rounded-lg w-80 h-14 font-bold text-center mx-2 text-white bg-[#7d12ff]" value={"다음으로"} onClick={() => handleStep()}/>
         </div>) :
         (<div className="w-fit mx-auto absolute bottom-6 left-0 right-0">
           <input type="button" className="rounded-lg w-40 h-14 font-bold text-center mx-2 text-white bg-black" value={"이전으로"} onClick={() => router.back()}/>
-          <input type="button" className="rounded-lg w-40 h-14 font-bold text-center mx-2 text-white bg-[#7d00d0]" value={"완료"} onClick={() => {handleSetPayPassword() }}/>
+          <input type="button" className="rounded-lg w-40 h-14 font-bold text-center mx-2 text-white bg-[#7d12ff]" value={"완료"} onClick={() => {handleSetPayPassword() }}/>
         </div>)
       }
     </>

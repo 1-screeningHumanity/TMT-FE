@@ -12,7 +12,7 @@ export default async function tradeLists(){
 
   return (
     <section>
-      <div className="w-80 bg-[#7d00d0] text-white h-10 mx-auto flex items-center justify-center rounded-md mt-5">최근 거래</div>
+      <div className="w-80 bg-[#7d12ff] text-white h-10 mx-auto flex items-center justify-center rounded-md mt-5">최근 거래</div>
       <section className="flex gap-2 text-md overflow-x-scroll text-center mt-5 border-b-2 py-2 font-[Pretendard-Regular] pl-4 w-full">
         <span className="w-3/12 shrink-0">체결시각</span> 
         <span className="w-4/12 shrink-0">종목명</span> 

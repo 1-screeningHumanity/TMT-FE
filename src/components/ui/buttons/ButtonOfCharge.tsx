@@ -22,7 +22,7 @@ export default function ButtonOfCharge({price, cash} : {price: string, cash: num
     }
   }}
 
-  return <button className="bg-[#7d00d0] text-white w-11/12 mx-auto rounded-lg h-14 fixed bottom-2 right-0 left-0 mt-20 flex items-center justify-center" 
+  return <button className="bg-[#7d12ff] text-white w-11/12 mx-auto rounded-lg h-14 fixed bottom-2 right-0 left-0 mt-20 flex items-center justify-center" 
   onClick={handleCharge}
   >
     교환하기</button>

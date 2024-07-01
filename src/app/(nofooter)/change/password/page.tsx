@@ -69,7 +69,7 @@ const passwordConfirm = (event: React.ChangeEvent<HTMLInputElement>) => {
   return(
     <>
       <div className="flex mx-10 justify-between mt-10">
-        <h1 className="text-lg text-[#7d00d0] font-extrabold">비밀번호 재설정</h1>
+        <h1 className="text-lg text-[#7d12ff] font-extrabold">비밀번호 재설정</h1>
         <Link
           className="rounded-full bg-[#f6f7f9] flex justify-center items-center w-5 h-5"
           href={'/mypage'}
@@ -109,7 +109,7 @@ const passwordConfirm = (event: React.ChangeEvent<HTMLInputElement>) => {
           </div>
         </div>
 
-        <button type="submit" onClick={handleSubmit} className="bg-[#7d00d0] text-white text-sm font-semibold rounded-lg w-80 h-10 mx-auto block my-6 absolute bottom-4 left-0 right-0">
+        <button type="submit" onClick={handleSubmit} className="bg-[#7d12ff] text-white text-sm font-semibold rounded-lg w-80 h-10 mx-auto block my-6 absolute bottom-4 left-0 right-0">
           변경하기
           </button>
       </form>
