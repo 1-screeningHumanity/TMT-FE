@@ -3,6 +3,8 @@ import ButtonOfDeleteMember from "@/components/ui/buttons/ButtonOfDeleteMember";
 import InformationOfMyPage from "@/components/pages/mypage/InformationOfMyPage";
 import ChartOfMyPage from "@/components/pages/mypage/ChartOfMyPage";
 import ButtonOfSignout from "@/components/ui/buttons/ButtonOfSignout";
+import { myPortfolio } from "@/actions/myPage";
+import AssetListOfMyPage from "@/components/pages/mypage/AssetListOfMyPage";
 
 export default async function mypage(){
 
@@ -10,6 +12,7 @@ export default async function mypage(){
     <div >
       <InformationOfMyPage />
       <ChartOfMyPage />
+      <AssetListOfMyPage />
       <ContentsOfMyPage />
       <ButtonOfSignout />
       <ButtonOfDeleteMember />
