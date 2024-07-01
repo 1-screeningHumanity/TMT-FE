@@ -26,7 +26,7 @@ export default function PageGuideUI({
   useEffect(() => {
     const mainElement = document.querySelector('body')
     if (isOpen) {
-      if (step === 6) {
+      if (step == 4) {
         const ref = document.querySelector('.Trade')
         ref?.scrollIntoView({ behavior: 'smooth', block: 'center' })
       }
@@ -47,6 +47,9 @@ export default function PageGuideUI({
     }
     if (styleCode === 3) {
       return 'polygon(0% 0%, 0% 100%, 3% 100%, 3% 20%, 50% 20%, 50% 50%, 0 50%, 3% 100%, 100% 100%, 100% 0%)'
+    }
+    if (styleCode === 4) {
+      return 'polygon(0% 0%, 0% 100%, 3% 100%, 3% 40%, 99% 40%, 99% 70%, 0 70%, 3% 100%, 100% 100%, 100% 0%)'
     }
   }
 
