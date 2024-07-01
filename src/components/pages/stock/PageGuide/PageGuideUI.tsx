@@ -26,6 +26,10 @@ export default function PageGuideUI({
   useEffect(() => {
     const mainElement = document.querySelector('body')
     if (isOpen) {
+      if (step === 6) {
+        const ref = document.querySelector('.Trade')
+        ref?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
       mainElement?.classList.add('overflow-hidden')
     } else {
       mainElement?.classList.remove('overflow-hidden')
@@ -33,10 +37,24 @@ export default function PageGuideUI({
     return () => {
       mainElement?.classList.remove('overflow-hidden')
     }
-  }, [isOpen])
+  }, [isOpen, step])
+
+  const styleClipPath = (styleCode: number) => {
+    if (styleCode === 1) {
+      return 'polygon(0% 0%, 0% 100%, 3% 100%, 3% 9%, 40% 9%, 40% 30%, 0 30%, 3% 100%, 100% 100%, 100% 0%)'
+    } else if (styleCode === 2) {
+      return 'polygon(0% 0%, 0% 100%, 3% 100%, 3% 9%, 40% 9%, 40% 30%, 0 30%, 3% 100%, 100% 100%, 100% 0%)'
+    }
+  }
 
   return (
-    <section className="fixed top-0 right-0 bottom-0 left-0 z-[1000] bg-black/50">
+    <section
+      className="fixed top-0 right-0 bottom-0 left-0 z-[1000] bg-black/50"
+      style={{
+        // clipPath: styleClipPath(step),
+        clipPath: styleClipPath(step),
+      }}
+    >
       <div
         className="right-0 top-0 absolute m-5 overflow-y-hidden"
         onClick={() => setIsOpen(false)}
@@ -60,7 +78,7 @@ export default function PageGuideUI({
       {step === 9 && <Guide9 />}
       {step === 10 && <Guide10 />}
 
-      <div className="flex absolute right-0 bottom-0 m-5 bg-white">
+      <div className="flex absolute left-0 top-0 m-5 bg-white">
         <div onClick={() => setStep((prev) => prev - 1)}>
           <Image
             src="/assets/images/ArrowLeft.svg"
@@ -69,7 +87,7 @@ export default function PageGuideUI({
             height={25}
           />
         </div>
-        <span className="mx-4">{step}</span>
+        <span className="mx-2">{step} / 10</span>
         <div onClick={() => setStep((prev) => prev + 1)}>
           <Image
             src="/assets/images/ArrowRight.svg"

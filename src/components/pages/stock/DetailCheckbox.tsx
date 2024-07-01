@@ -25,7 +25,7 @@ export default function DetalCheckbox({
 
   return (
     <>
-      <label className="flex items-center my-3 mx-2 w-1/3">
+      <label className="flex items-center my-3 mx-2 w-2/3">
         <span className="text-lg">간단히 보기</span>
         <div className="relative flex items-center ml-2">
           <input
