@@ -12,12 +12,12 @@ import { use, useEffect, useRef, useState } from 'react'
 import { set } from 'firebase/database'
 
 export default function AssetRank() {
-  const [date, setDate] = useState<string>()
-  const [isValid, setIsValid] = useState<boolean>(false)
   const [myRankInfo, setMyRankInfo] = useState<assetRankDataType | null>(null)
   const [assetRank, setAssetRank] = useState<assetRankDataType[]>([])
   const [page, setPage] = useState<number>(0)
   const observerRef = useRef<HTMLDivElement>(null)
+  const date = getPreviousDay4PM()
+  const isValid = dailyAggregateTimeRange()
 
   const fetchRankData = async () => {
     if (!isValid) {
@@ -40,8 +40,6 @@ export default function AssetRank() {
   }
   const moreData = () => setPage((prev) => prev + 1)
   useEffect(() => {
-    setDate(getPreviousDay4PM())
-    setIsValid(dailyAggregateTimeRange())
     fetchMyRank()
     fetchRankData()
   }, [])
