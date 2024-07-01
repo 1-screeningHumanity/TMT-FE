@@ -44,13 +44,13 @@ export default function paypassword() {
       console.log(res)
       if (res.code == 200) {
         toast({
-          title: '비밀번호가 변경되었습니다.',
+          title: '비밀번호가 설정 되었습니다.',
           variant: 'default',
         })
         router.push('/member/paypassword/complete')
       } else {
         toast({
-          title: '비밀번호 변경에 실패했습니다.',
+          title: '비밀번호 설정 실패했습니다.',
           variant: 'destructive',
         })
       }

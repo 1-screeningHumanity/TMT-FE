@@ -170,12 +170,12 @@ export default function IsReadCheck() {
             >
               <div className="w-full h-auto relative">
                 <div className="flex justify-between">
-                  <span className="text-2xl font-bold">{item.title}</span>
+                  <span className="text-lg font-bold">{item.title}</span>
                   {item.readStatus === 44 && (
                     <span className="h-4 w-4 bg-sky-600 rounded-full"></span>
                   )}
                 </div>
-                <span className="text-xl mt-2">{item.content}</span>
+                <span className="text-lg mt-2">{item.content}</span>
                 <div className="absolute right-0">
                   {beforeMinute(item.notificationLogCreateAt)}
                 </div>
