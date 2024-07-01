@@ -61,6 +61,9 @@ export default function PageGuideUI({
     if (styleCode === 6) {
       return 'polygon(0% 0%, 0% 100%, 3% 100%, 3% 40%, 97% 40%, 97% 60%, 0 60%, 3% 100%, 100% 100%, 100% 0%)'
     }
+    if (styleCode === 7 || styleCode === 8 || styleCode === 9) {
+      return 'polygon(0% 0%, 0% 100%, 3% 100%, 3% 15%, 97% 15%, 97% 40%, 0 40%, 3% 100%, 100% 100%, 100% 0%)'
+    }
   }
 
   return (
