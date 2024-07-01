@@ -16,6 +16,7 @@ import { getAccessToken } from '@/actions/tokens'
 import Quiz from '@/components/pages/mainpages/Quiz'
 import { title } from 'process'
 import RecomStock from '@/components/pages/mainpages/RecomStock'
+import Following from '@/components/pages/mainpages/Following'
 
 const SkeletonCard = dynamic(
   () => import('@/components/skeletons/SkeletonCard'),
@@ -71,6 +72,12 @@ export default async function Home() {
     { id: 6, title: '뉴스', data: [], component: News },
     {
       id: 7,
+      title: '구독하는 사람들',
+      data: [],
+      component: Following,
+    },
+    {
+      id: 8,
       title: '키워드',
       data: [],
       component: RecomStock,
