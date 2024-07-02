@@ -366,19 +366,19 @@ body {
 
 .correct-animation {
   animation: correct 1s ease-in-out;
-  color: green;
+  color: #ffffffbb;
 }
 
 .wrong-animation {
   animation: wrong 1s ease-in-out;
-  color: red;
+  color: #ffffffbb;
 }
 
 .answer-display {
   position: absolute;
   top: 20%;
   left: 40%;
-  /* transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%);
   font-size: 6rem;
   font-weight: 800;
   z-index: 10; /* Ensure it is on top of other elements */

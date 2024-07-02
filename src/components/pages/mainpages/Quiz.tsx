@@ -1,9 +1,8 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { quiz } from '@/actions/quiz'
-import { quizDataType } from '@/types/quizType'
-import { motion } from 'framer-motion'
+import React, { useState, useEffect } from 'react';
+import { quiz } from "@/actions/quiz";
+import { quizDataType } from '@/types/quizType';
 
 export default function Quiz() {
   const [questions, setQuestions] = useState<quizDataType[]>([]);
@@ -16,23 +15,23 @@ export default function Quiz() {
 
   useEffect(() => {
     if (isQuizStarted) {
-      fetchQuiz()
+      fetchQuiz();
     }
-  }, [isQuizStarted])
+  }, [isQuizStarted]);
 
   const fetchQuiz = async () => {
-    const res = await quiz()
+    const res = await quiz();
     if (res?.isSuccess && res?.data?.length > 0) {
-      setQuestions(shuffleArray(res?.data))
-      setScore(0)
-      setCurrentQuestionIndex(0)
-      setShowScore(false)
+      setQuestions(shuffleArray(res?.data));
+      setScore(0);
+      setCurrentQuestionIndex(0);
+      setShowScore(false);
     }
-  }
+  };
 
   const shuffleArray = (array: quizDataType[]): quizDataType[] => {
-    return array.sort(() => Math.random() - 0.5)
-  }
+    return array.sort(() => Math.random() - 0.5);
+  };
 
   const handleAnswer = (answer: string) => {
     const isCorrect = answer === questions[currentQuestionIndex].answer;
@@ -47,31 +46,26 @@ export default function Quiz() {
       setLastAnswer(null);
       const nextQuestionIndex = currentQuestionIndex + 1;
       if (nextQuestionIndex < questions?.length) {
-        setCurrentQuestionIndex(nextQuestionIndex)
+        setCurrentQuestionIndex(nextQuestionIndex);
       } else {
-        setShowScore(true)
+        setShowScore(true);
       }
-    }, 3000) // 3초 후에 다음 질문으로 이동
-  }
+    }, 3000); // 3초 후에 다음 질문으로 이동
+  };
 
   const startQuiz = () => {
-    setIsQuizStarted(true)
-  }
+    setIsQuizStarted(true);
+  };
 
   const restartQuiz = () => {
-    setIsQuizStarted(false)
+    setIsQuizStarted(false);
     setTimeout(() => {
-      setIsQuizStarted(true)
-    }, 100) // 약간의 지연 후 퀴즈 다시 시작
-  }
+      setIsQuizStarted(true);
+    }, 100); // 약간의 지연 후 퀴즈 다시 시작
+  };
 
   return (
     <div className="relative w-11/12 mx-auto h-52 bg-gradient-to-br from-[#42C0F8] to-[#B081F4] rounded-md my-8">
-      {lastAnswer && (
-        <div className={`answer-display ${lastAnswer.isCorrect ? 'correct-animation' : 'wrong-animation'}`}>
-          {lastAnswer.answer}
-        </div>
-      )}
       {!isQuizStarted ? (
         <div className="text-white text-xl font-bold text-center pt-10">
           <p>주식 O/X 퀴즈</p>
@@ -96,6 +90,11 @@ export default function Quiz() {
         </div>
       ) : questions?.length > 0 ? (
         <div className="text-white text-lg font-bold text-center pt-10 px-4">
+          {lastAnswer && (
+            <div className={`absolute top-[20%] left-[35%]  text-9xl font-extrabold ${lastAnswer.isCorrect ? 'correct-animation' : 'wrong-animation'}`}>
+              {lastAnswer.answer}
+            </div>
+          )}
           <p>{questions[currentQuestionIndex]?.question}</p>
           {showComment ? (
             <div className="mt-3 text-center text-md px-4">
