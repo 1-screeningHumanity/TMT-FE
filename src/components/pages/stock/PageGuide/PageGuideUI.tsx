@@ -20,9 +20,14 @@ export default function PageGuideUI({
   setIsOpen: (value: boolean) => void
 }) {
   const [step, setStep] = useState(1)
-  if (1 > step || step > 10) {
-    setIsOpen(false)
-  }
+  useEffect(() => {
+    if (step > 10 || step < 1) {
+      const newOpen = !isOpen
+      setIsOpen(!isOpen)
+      localStorage.setItem('guide', newOpen ? 'true' : 'false')
+    }
+  })
+
   useEffect(() => {
     const mainElement = document.querySelector('body')
     if (isOpen) {
@@ -80,7 +85,9 @@ export default function PageGuideUI({
     >
       <div
         className="right-0 top-0 absolute m-5 overflow-y-hidden"
-        onClick={() => setIsOpen(false)}
+        onClick={() => {
+          setIsOpen(false), localStorage.setItem('guide', 'false')
+        }}
       >
         <Image
           src="/assets/images/close.svg"
