@@ -63,29 +63,31 @@ export default async function Home() {
       data: [data[2], data[3]],
       component: TopRank,
     },
+    { id: 5, title: '뉴스', data: [], component: News },
     {
-      id: 5,
-      title: '퀴즈',
-      data: [],
-      component: Quiz,
-    },
-    { id: 6, title: '뉴스', data: [], component: News },
-    {
-      id: 7,
-      title: '구독하는 사람들',
-      data: [],
-      component: Following,
-    },
-    {
-      id: 8,
+      id: 6,
       title: '키워드',
       data: [],
       component: RecomStock,
     },
+
+    {
+      id: 7,
+      title: '퀴즈',
+      data: [],
+      component: Quiz,
+    },
+
+    {
+      id: 8,
+      title: '구독하는 사람들',
+      data: [],
+      component: Following,
+    },
   ]
   const filteredSections =
     token == 'undefined'
-      ? homeSections.filter((section) => section.id > 2)
+      ? homeSections.filter((section) => section.id > 2 && section.id < 7)
       : homeSections
 
   return (
