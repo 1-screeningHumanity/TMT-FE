@@ -2,8 +2,7 @@
 import { mainNewsAPI } from '@/actions/search'
 import { newsType } from '@/types/newsType'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Scrollbar, Autoplay } from 'swiper/modules'
-import SwiperCore from 'swiper'
+import { Navigation, Autoplay } from 'swiper/modules'
 import { useEffect, useState } from 'react'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -44,7 +43,7 @@ export default function News() {
   const bgWhite = '/assets/images/bgWhite.svg'
   return (
     <>
-      <section className="flex  justify-around">
+      <section className="flex justify-around">
         <Swiper
           className="w-full h-auto"
           loop={true}
@@ -63,12 +62,14 @@ export default function News() {
                 href={news.originallink}
                 className="m-4 overflow-hidden w-1/3 h-auto"
               >
-                <section className=" flex flex-col  bg-slate-50">
-                  <img
-                    src={news.image == null ? bgWhite : news.image}
-                    alt={news.description}
-                    className="object-fill justify-center items-center"
-                  />
+                <section className="flex flex-col bg-slate-50 relative">
+                  <div className="flex justify-center items-center h-48 overflow-hidden">
+                    <img
+                      src={news.image == null ? bgWhite : news.image}
+                      alt={news.description}
+                      className="object-cover h-full w-full"
+                    />
+                  </div>
                   <div className="absolute bottom-0 bg-black bg-opacity-50 text-white p-2 w-full text-center">
                     <span
                       dangerouslySetInnerHTML={{ __html: news.title }}
