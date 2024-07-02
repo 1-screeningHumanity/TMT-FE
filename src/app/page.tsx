@@ -15,13 +15,15 @@ import { getSession } from 'next-auth/react'
 import { getAccessToken } from '@/actions/tokens'
 import Quiz from '@/components/pages/mainpages/Quiz'
 import { title } from 'process'
+import RecomStock from '@/components/pages/mainpages/RecomStock'
+import Following from '@/components/pages/mainpages/Following'
 
 const SkeletonCard = dynamic(
   () => import('@/components/skeletons/SkeletonCard'),
   { ssr: false },
 )
 
-const getData = async () => {
+async function getData() {
   const data = await Promise.all([
     KospiAPI(),
     KosdaqAPI(),
@@ -68,13 +70,24 @@ export default async function Home() {
       component: Quiz,
     },
     { id: 6, title: '뉴스', data: [], component: News },
+    {
+      id: 7,
+      title: '구독하는 사람들',
+      data: [],
+      component: Following,
+    },
+    {
+      id: 8,
+      title: '키워드',
+      data: [],
+      component: RecomStock,
+    },
   ]
-
   const filteredSections =
     token == 'undefined'
       ? homeSections.filter((section) => section.id > 2)
       : homeSections
-  console.log(filteredSections, token)
+
   return (
     <>
       {/* <MainHeader /> */}

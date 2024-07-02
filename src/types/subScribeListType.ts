@@ -3,4 +3,9 @@ interface subScribeListType {
   ranking?: number
 }
 
-export type { subScribeListType }
+interface FollowingListType {
+  id: number
+  nickName: string
+  ranking: number
+}
+export type { subScribeListType, FollowingListType }

@@ -62,7 +62,6 @@ export default function SigninForm() {
       ...payload,
       [e.target.name]: e.target.value,
     })
-    console.log(payload)
   }
 
   return (

@@ -1,8 +1,9 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
-import { quiz } from "@/actions/quiz";
-import { quizDataType } from '@/types/quizType';
+import React, { useState, useEffect } from 'react'
+import { quiz } from '@/actions/quiz'
+import { quizDataType } from '@/types/quizType'
+import { motion } from 'framer-motion'
 
 export default function Quiz() {
   const [questions, setQuestions] = useState<quizDataType[]>([]);
@@ -15,23 +16,23 @@ export default function Quiz() {
 
   useEffect(() => {
     if (isQuizStarted) {
-      fetchQuiz();
+      fetchQuiz()
     }
-  }, [isQuizStarted]);
+  }, [isQuizStarted])
 
   const fetchQuiz = async () => {
-    const res = await quiz();
+    const res = await quiz()
     if (res?.isSuccess && res?.data?.length > 0) {
-      setQuestions(shuffleArray(res?.data));
-      setScore(0);
-      setCurrentQuestionIndex(0);
-      setShowScore(false);
+      setQuestions(shuffleArray(res?.data))
+      setScore(0)
+      setCurrentQuestionIndex(0)
+      setShowScore(false)
     }
-  };
+  }
 
   const shuffleArray = (array: quizDataType[]): quizDataType[] => {
-    return array.sort(() => Math.random() - 0.5);
-  };
+    return array.sort(() => Math.random() - 0.5)
+  }
 
   const handleAnswer = (answer: string) => {
     const isCorrect = answer === questions[currentQuestionIndex].answer;
@@ -46,23 +47,23 @@ export default function Quiz() {
       setLastAnswer(null);
       const nextQuestionIndex = currentQuestionIndex + 1;
       if (nextQuestionIndex < questions?.length) {
-        setCurrentQuestionIndex(nextQuestionIndex);
+        setCurrentQuestionIndex(nextQuestionIndex)
       } else {
-        setShowScore(true);
+        setShowScore(true)
       }
-    }, 3000); // 3초 후에 다음 질문으로 이동
-  };
+    }, 3000) // 3초 후에 다음 질문으로 이동
+  }
 
   const startQuiz = () => {
-    setIsQuizStarted(true);
-  };
+    setIsQuizStarted(true)
+  }
 
   const restartQuiz = () => {
-    setIsQuizStarted(false);
+    setIsQuizStarted(false)
     setTimeout(() => {
-      setIsQuizStarted(true);
-    }, 100); // 약간의 지연 후 퀴즈 다시 시작
-  };
+      setIsQuizStarted(true)
+    }, 100) // 약간의 지연 후 퀴즈 다시 시작
+  }
 
   return (
     <div className="relative w-11/12 mx-auto h-52 bg-gradient-to-br from-[#42C0F8] to-[#B081F4] rounded-md my-8">
