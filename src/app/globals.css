@@ -351,3 +351,35 @@ body {
       format('truetype');
   font-display: swap;
 }
+
+@keyframes correct {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes wrong {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.correct-animation {
+  animation: correct 1s ease-in-out;
+  color: green;
+}
+
+.wrong-animation {
+  animation: wrong 1s ease-in-out;
+  color: red;
+}
+
+.answer-display {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  /* transform: translate(-50%, -50%); */
+  font-size: 6rem;
+  font-weight: 800;
+  z-index: 10; /* Ensure it is on top of other elements */
+}

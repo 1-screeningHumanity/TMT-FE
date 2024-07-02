@@ -22,8 +22,8 @@ export default async function TopRank({data, delay}: { data: any[], delay: numbe
 
   useEffect(() => {
     if(data){
-      setTop3soaring(data[0].slice(0,3))
-      setTop3plummeting(data[1].slice(0,3))
+      setTop3soaring(data[0]?.slice(0,3))
+      setTop3plummeting(data[1]?.slice(0,3))
     }
   }, [data])
 

@@ -11,6 +11,7 @@ export default function Quiz() {
   const [showScore, setShowScore] = useState<boolean>(false);
   const [isQuizStarted, setIsQuizStarted] = useState<boolean>(false);
   const [showComment, setShowComment] = useState<boolean>(false);
+  const [lastAnswer, setLastAnswer] = useState<{ answer: string, isCorrect: boolean } | null>(null);
 
   useEffect(() => {
     if (isQuizStarted) {
@@ -33,13 +34,16 @@ export default function Quiz() {
   };
 
   const handleAnswer = (answer: string) => {
+    const isCorrect = answer === questions[currentQuestionIndex].answer;
     setShowComment(true);
-    if (answer === questions[currentQuestionIndex].answer) {
+    setLastAnswer({ answer, isCorrect });
+    if (isCorrect) {
       setScore(score + 1);
     }
 
     setTimeout(() => {
       setShowComment(false);
+      setLastAnswer(null);
       const nextQuestionIndex = currentQuestionIndex + 1;
       if (nextQuestionIndex < questions?.length) {
         setCurrentQuestionIndex(nextQuestionIndex);
@@ -61,7 +65,12 @@ export default function Quiz() {
   };
 
   return (
-    <div className="w-11/12 mx-auto h-52 bg-gradient-to-br from-[#42C0F8] to-[#B081F4] rounded-md my-8">
+    <div className="relative w-11/12 mx-auto h-52 bg-gradient-to-br from-[#42C0F8] to-[#B081F4] rounded-md my-8">
+      {lastAnswer && (
+        <div className={`answer-display ${lastAnswer.isCorrect ? 'correct-animation' : 'wrong-animation'}`}>
+          {lastAnswer.answer}
+        </div>
+      )}
       {!isQuizStarted ? (
         <div className="text-white text-xl font-bold text-center pt-10">
           <p>주식 O/X 퀴즈</p>

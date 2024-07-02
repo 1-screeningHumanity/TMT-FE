@@ -24,7 +24,7 @@ export default function DomesticIndex({data, delay} : {data : kospiType[], delay
     if(data){
       setKospiData(data[0])
       setKosdaqData(data[1])
-      setDate(dateFormmating(data[0].dateTime))
+      setDate(dateFormmating(data[0]?.dateTime))
     }
   }, [data])
 
