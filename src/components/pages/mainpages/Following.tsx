@@ -10,16 +10,11 @@ export default function Following() {
 
   useEffect(() => {
     async function fetchData() {
-      try {
-        const Info = await userInformation()
-        const EncodeNickName = Info?.data?.nickanme
-        if (EncodeNickName) {
-          const res = await getFollowingList(EncodeNickName)
-          console.log('res :', res)
-          setsubScribe(res?.data)
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error)
+      const Info = await userInformation()
+      const EncodeNickName = Info?.data?.nickanme
+      if (EncodeNickName) {
+        const res = await getFollowingList(EncodeNickName)
+        setsubScribe(res?.data)
       }
     }
     fetchData()

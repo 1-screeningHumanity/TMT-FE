@@ -8,11 +8,11 @@ const stockContents = [
 ]
 
 const settingContents = [
-  {id : 1, name : "비밀번호 변경", path : "/change/password"},
-  {id : 2, name : "결제 비밀번호 변경", path : "/change/paypassword"},
-  {id : 3, name : "닉네임 변경", path : "/change/nickname"},
-  {id : 4, name : "결제하기", path : "/payments"},
-  {id : 5, name : "금액(원)충전하기", path : "/charge"},
+  { id: 1, name: '비밀번호 변경', path: '/change/password' },
+  { id: 2, name: '결제 비밀번호 변경', path: '/change/paypassword' },
+  { id: 3, name: '닉네임 변경', path: '/change/nickname' },
+  { id: 4, name: '결제하기', path: '/payments' },
+  { id: 5, name: '금액(원)충전하기', path: '/charge' },
 ]
 
 export { stockContents, settingContents }
