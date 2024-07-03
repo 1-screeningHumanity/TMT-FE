@@ -5,8 +5,8 @@ import Link from 'next/link'
 
 export default async function AssetListOfMyPage() {
   const res = await myPortfolio()
-  const portfolio = res?.data
-  console.log('res', res.data)
+  const portfolio: portfolioType[] = res?.data
+
   return (
     <div className="w-11/12 mx-auto my-4">
       <div className="flex justify-between h-8 border-b-2">
@@ -20,8 +20,9 @@ export default async function AssetListOfMyPage() {
         <ul className="flex justify-between text-md h-10 text-center border-b-2 items-center font-medium">
           <li className="w-2/6">종목명</li>
           <li className="w-1/6">수량</li>
-          <li className="w-1/6">현재가</li>
-          <li className="w-2/6">총액</li>
+          <li className="w-2/6">평단가</li>
+          <li className="w-2/6">현재가</li>
+          <li className="w-2/6">수익률</li>
         </ul>
       </div>
       {!portfolio ? (
@@ -32,14 +33,24 @@ export default async function AssetListOfMyPage() {
             <ul className="flex justify-between text-md h-12 text-center border-b-2 items-center">
               <li className="w-2/6">{portfolio.stockName}</li>
               <li className="w-1/6">{portfolio.totalAmount}</li>
-              <li className="w-1/6">
-                {formatNumberWithCommas(portfolio.stockPrice)}
+              <li className="w-2/6">
+                {formatNumberWithCommas(Math.round(portfolio.averagePrice))}
               </li>
               <li className="w-2/6">
-                {formatNumberWithCommas(
-                  (portfolio.stockPrice as number) *
-                    (portfolio.totalAmount as number),
-                )}
+                {formatNumberWithCommas(portfolio.stockPrice)}{' '}
+              </li>
+              <li
+                className={`w-2/6 ${
+                  (portfolio.stockPrice / portfolio.averagePrice) * 100 - 100 >
+                  0
+                    ? 'text-red-500'
+                    : 'text-blue-500'
+                } `}
+              >
+                {(
+                  (portfolio.stockPrice / portfolio.averagePrice) * 100 -
+                  100
+                ).toFixed(2)}
               </li>
             </ul>
           )
