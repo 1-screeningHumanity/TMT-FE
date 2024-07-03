@@ -82,7 +82,7 @@ export default function signup() {
 
   const passwordValidation = (event: React.ChangeEvent<HTMLInputElement>) => {
     let newPassword = event.target.value
-    var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,20}$/
+    var regExp = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
     setPassword1(newPassword)
     setPasswordValue(regExp.test(newPassword))
   }
@@ -191,7 +191,7 @@ export default function signup() {
             )
           ) : password1 ? (
             <p className="text-xs text-red-500">
-              비밀번호는 영어 숫자 8~20자로 조합 되어야합니다.
+              영어, 숫자, 특수문자 포함하여 8~20자로 조합 되어야합니다.
             </p>
           ) : (
             ''
