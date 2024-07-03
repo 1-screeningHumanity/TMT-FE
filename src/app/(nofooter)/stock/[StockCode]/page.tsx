@@ -46,8 +46,6 @@ export default async function Page(params: any) {
   const stockDatas = await getStockData(stockCode, nowLink)
 
   const stockData = stockDatas.data
-
-  // console.log
   return (
     <main className="pb-16">
       <GuideOpen />
