@@ -5,7 +5,7 @@ import { profilePortfolio } from '@/actions/profile'
 import { unsubscribe } from '@/actions/subscribe'
 import { toast, useToast } from '@/components/ui/use-toast'
 import { useRouter } from 'next/navigation'
-import { use, useEffect } from 'react'
+import { use, useEffect, useState } from 'react'
 
 export default function ButtonOfSubscribe({
   isSubscribe,
@@ -16,6 +16,7 @@ export default function ButtonOfSubscribe({
 }) {
   const router = useRouter()
   const { toast } = useToast()
+  const [userInfo, setUserInfo] = useState<string>()
 
   useEffect(() => {
     async function fetchData() {
@@ -23,7 +24,7 @@ export default function ButtonOfSubscribe({
       const portfolio = portfolioRes?.data?.[0]?.nickname
 
       const userInfoRes = await userInformation()
-      const userInfo = userInfoRes?.data?.nickanme
+      setUserInfo(userInfoRes?.data?.nickanme)
 
       if (userInfo == nick) {
         router.push('/mypage')
@@ -60,7 +61,11 @@ export default function ButtonOfSubscribe({
         <div className="flex items-center mx-8">
           <button
             className="w-16 h-8 border-[1px] bg-[#7d12ff] rounded-full text-white mt-4"
-            onClick={() => router.push(`/profile/${nick}/payments`)}
+            onClick={() => {
+              userInfo == nick
+                ? () => router.push(`/profile/${nick}/payments`)
+                : router.push('/mypage')
+            }}
           >
             구독
           </button>
