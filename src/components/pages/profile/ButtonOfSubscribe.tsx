@@ -16,7 +16,10 @@ export default function ButtonOfSubscribe({isSubscribe, nick} : {isSubscribe: bo
     
     async function fetchData(){
       const portfolioRes = await profilePortfolio(nick);
-      const portfolio = portfolioRes?.data?.[0]?.nickname;
+      const portfolio = Array.isArray(portfolioRes?.data) && portfolioRes.data.length > 0
+      ? portfolioRes.data[0]?.nickname || ''
+      : '';
+      
 
       const userInfoRes = await userInformation();
       const userInfo = userInfoRes?.data?.nickanme;
