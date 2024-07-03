@@ -12,23 +12,21 @@ import { useRouter } from "next/navigation";
 
 export default async function Profile({params} : {params :{nickname: string}}){
 
-
-
   const nick = decodeURIComponent(params.nickname);
+  const noneDecodedNick = params.nickname;
   const res = await isSubscribed(nick);
   const isSubscribe = res?.data?.isSubscribe;
 
-  const rankRes = await profileRank(nick);
+  const rankRes = await profileRank(noneDecodedNick);
   const rank = rankRes?.data;
 
-  const portfolioRes = await profilePortfolio(nick);
+  const portfolioRes = await profilePortfolio(noneDecodedNick);
   let portfolio = null;
 
   if(portfolioRes.isSuccess){
     portfolio = portfolioRes?.data;
   }
 
-  console.log("portfolio", portfolioRes);
   return (
     <div>
       <div className="flex justify-center items-center gap-3 ml-4">
@@ -45,7 +43,7 @@ export default async function Profile({params} : {params :{nickname: string}}){
         <p>{rank?.todayRanking} 위</p>
       </div>
       <main className="">
-        <ButtonOfSubscribe isSubscribe={isSubscribe} nick={nick}/>
+        <ButtonOfSubscribe isSubscribe={isSubscribe} nick={params.nickname}/>
           <div className="flex justify-between items-center my-5 mx-8">
             <h3 className="text-md text-[#a8a8a8]">
               총 자산 <br/>
