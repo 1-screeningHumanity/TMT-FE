@@ -29,8 +29,8 @@ export default function signin() {
         </p>
       </div>
       <div className="flex justify-between w-full">
-        <ButtonOfSigninFromNaver />
-        <ButtonOfSigninFromKakao />
+        {/* <ButtonOfSigninFromNaver />
+        <ButtonOfSigninFromKakao /> */}
       </div>
       <Link
         href={'/member/signup'}
