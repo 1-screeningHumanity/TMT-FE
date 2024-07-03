@@ -150,6 +150,7 @@ export default function signup() {
               type={showPassword ? 'password' : 'text'}
               name="password"
               maxLength={20}
+              minLength={8}
               required
               ref={(el) => {
                 inputRefs.current[2] = el
@@ -200,6 +201,7 @@ export default function signup() {
               placeholder={'비밀번호를 다시 입력해주세요'}
               onChange={passwordConfirm}
               maxLength={20}
+              minLength={8}
               type={showPasswordCheck ? 'password' : 'text'}
               name="passwordCheck"
               required
