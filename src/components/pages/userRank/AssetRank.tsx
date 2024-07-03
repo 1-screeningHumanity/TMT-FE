@@ -22,11 +22,11 @@ export default function AssetRank() {
   const fetchRankData = async () => {
     if (!isValid) {
       const res = await getAssetRank(page)
-      const resData = res?.data.content
+      const resData = res?.data?.content
 
       setAssetRank((prev) => {
         const newRank = resData.filter((rank: assetRankDataType) => {
-          return !prev.some((prevRank) => prevRank.ranking == rank.ranking)
+          return !prev.some((prevRank) => prevRank?.ranking == rank?.ranking)
         })
         return [...prev, ...newRank]
       })
@@ -47,12 +47,12 @@ export default function AssetRank() {
   useEffect(() => {
     fetchRankData()
     const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
+      if (entries[0]?.isIntersecting) {
         moreData()
       }
     })
-    if (observerRef.current) {
-      observer.observe(observerRef.current)
+    if (observerRef?.current) {
+      observer?.observe(observerRef?.current)
     }
   }, [page])
 
