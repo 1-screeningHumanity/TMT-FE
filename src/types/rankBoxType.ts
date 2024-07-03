@@ -15,7 +15,9 @@ interface assetRankDataType {
   changeRanking: number
 }
 
-interface dailyRankDataType {
+interface dailyRankDataType 
+{
+  id : number
   profit: number
   nickname: string
   todayRanking: number
