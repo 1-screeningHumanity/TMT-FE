@@ -58,10 +58,6 @@ export default function Quiz() {
       setShowScore(false)
     }
   }
-  console.log(lastAnswer)
-
-  console.log(questions)
-
   const handleAnswer = (answer: string) => {
     const isCorrect = answer === questions[currentQuestionIndex].answer
     setShowComment(true)
@@ -69,7 +65,6 @@ export default function Quiz() {
     if (isCorrect) {
       setScore(score + 1)
     }
-    console.log('isCorrect', isCorrect)
 
     setTimeout(() => {
       setShowComment(false)
