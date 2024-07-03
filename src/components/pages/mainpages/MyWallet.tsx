@@ -5,17 +5,26 @@ import { motion } from 'framer-motion'
 import CountUp from 'react-countup'
 import { wonInfoAPI } from '@/actions/wallet'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
+import { getMyAssetRank } from '@/actions/userRank'
 
 function MyWallet({ data, delay }: { data: any; delay: number }) {
   const [show, setShow] = useState<boolean>(false)
   const [won, setWon] = useState<number>(0)
+  const [profit, setProfit] = useState<number>(0)
 
   useEffect(() => {
     async function getWon() {
       const res = await wonInfoAPI()
       setWon(res?.data?.won)
     }
+
+    async function getProfit() {
+      const res = await getMyAssetRank();
+      console.log('getMyAssetRank :', res);
+      setProfit(res?.data?.profit)
+    }
     getWon()
+    getProfit()
 
     const timer = setTimeout(() => setShow(true), delay)
     return () => clearTimeout(timer)
@@ -35,14 +44,14 @@ function MyWallet({ data, delay }: { data: any; delay: number }) {
           <CountUp start={0} end={won} duration={2.5} separator="," />
         </p>
         <div className="flex justify-between items-center mt-3">
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             <p className="text-xs">총평가금액</p>
             <p className="text-xs ml-2">{formatNumberWithCommas(won)}</p>
-          </div>
-          <div className="flex items-center">
+          </div> */}
+          {/* <div className="flex items-center">
             <p className="text-xs">총수익률</p>
-            <p className="text-xs ml-2">+1.2%</p>
-          </div>
+            <p className="text-xs ml-2">{profit}%</p>
+          </div> */}
         </div>
       </div>
     </motion.div>
