@@ -1,5 +1,6 @@
 'use client'
 
+import { userInformation } from "@/actions/myPage"
 import { profilePortfolio } from "@/actions/profile"
 import { unsubscribe } from "@/actions/subscribe"
 import { toast, useToast } from "@/components/ui/use-toast"
@@ -16,6 +17,13 @@ export default function ButtonOfSubscribe({isSubscribe, nick} : {isSubscribe: bo
     async function fetchData(){
       const portfolioRes = await profilePortfolio(nick);
       const portfolio = portfolioRes?.data;
+
+      const userInfoRes = await userInformation();
+      const userInfo = userInfoRes?.data?.nickanme;
+
+      if(userInfo == nick){
+        router.push("/mypage");
+      }
     
       if(portfolio == null){
         router.push("/404");
