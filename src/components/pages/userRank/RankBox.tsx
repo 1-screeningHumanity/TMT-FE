@@ -13,7 +13,7 @@ export default function RankBox({
 }: rankBoxType) {
   return (
     <Link
-      href={`/profile/${nickname}`}
+      href={`/profile/${encodeURIComponent(nickname)}`}
       className="flex justify-around border-[1px] text-lg h-14 bg-slate-50 items-center mt-2"
     >
       <div className="w-1/4 text-center">{rank}위</div>
