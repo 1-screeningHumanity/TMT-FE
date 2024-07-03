@@ -12,8 +12,8 @@ async function getMyAssetRank() {
   return res
 }
 
-async function getDailyRevenueRank() {
-  const res = await GetAPI('/rank/revenue')
+async function getDailyRevenueRank(page: number) {
+  const res = await GetAPI(`/rank/revenue?page=${page}&size=20`)
   return res
 }
 
@@ -23,8 +23,8 @@ async function getMyDailyRevenueRank() {
   return res
 }
 
-async function getWeeklyRevenueRank() {
-  const res = await GetAPI('/rank/weekly/revenue')
+async function getWeeklyRevenueRank(page: number) {
+  const res = await GetAPI(`/rank/weekly/revenue?page=${page}&size=20`)
   return res
 }
 
@@ -34,8 +34,8 @@ async function getMyWeeklyRevenueRank() {
   return res
 }
 
-async function getMonthlyRevenueRank() {
-  const res = await GetAPI('/rank/monthly/revenue')
+async function getMonthlyRevenueRank(page: number) {
+  const res = await GetAPI(`/rank/monthly/revenue?page=${page}&size=20`)
   return res
 }
 
