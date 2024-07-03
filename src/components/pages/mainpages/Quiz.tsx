@@ -23,19 +23,44 @@ export default function Quiz() {
     }
   }, [isQuizStarted])
 
+  //     {
+  //         "question": "주식 시장은 항상 상승한다.",
+  //         "answer": "X",
+  //         "comment": "주식 시장은 상승과 하락을 반복합니다."
+  //     },
+  //     {
+  //         "question": "정부 채권은 회사 채권보다 안전하다.",
+  //         "answer": "O",
+  //         "comment": "일반적으로 정부 채권은 회사 채권보다 안전합니다."
+  //     },
+  //     {
+  //         "question": "ETF는 주식처럼 거래되는 투자 펀드이다.",
+  //         "answer": "O",
+  //         "comment": "ETF는 거래소에서 주식처럼 거래됩니다."
+  //     },
+  //     {
+  //         "question": "뮤추얼 펀드는 항상 높은 수익을 낸다.",
+  //         "answer": "X",
+  //         "comment": "뮤추얼 펀드도 시장 상황에 따라 수익이 변동될 수 있습니다."
+  //     },
+  //     {
+  //         "question": "기본적 분석은 회사의 재무제표와 경제 상황을 분석하여 주식의 가치를 평가하는 방법이다.",
+  //         "answer": "O",
+  //         "comment": "기본적 분석은 회사의 재무제표와 경제 상황을 분석합니다."
+  //     }
+
   const fetchQuiz = async () => {
     const res = await quiz()
     if (res?.isSuccess && res?.data?.length > 0) {
-      setQuestions(shuffleArray(res?.data))
+      setQuestions(res?.data)
       setScore(0)
       setCurrentQuestionIndex(0)
       setShowScore(false)
     }
   }
+  console.log(lastAnswer)
 
-  const shuffleArray = (array: quizDataType[]): quizDataType[] => {
-    return array.sort(() => Math.random() - 0.5)
-  }
+  console.log(questions)
 
   const handleAnswer = (answer: string) => {
     const isCorrect = answer === questions[currentQuestionIndex].answer
@@ -44,6 +69,7 @@ export default function Quiz() {
     if (isCorrect) {
       setScore(score + 1)
     }
+    console.log('isCorrect', isCorrect)
 
     setTimeout(() => {
       setShowComment(false)
@@ -74,7 +100,7 @@ export default function Quiz() {
       animate={{ opacity: 1, translateY: '0px' }}
       transition={{ duration: 0.3 }}
     >
-      <div className="relative w-11/12 mx-auto h-52 bg-gradient-to-br from-[#42C0F8] to-[#B081F4] rounded-md my-8">
+      <div className="relative w-11/12 mx-auto min-h-52 h-auto bg-gradient-to-br from-[#42C0F8] to-[#B081F4] rounded-md my-8">
         {!isQuizStarted ? (
           <div className="text-white text-xl font-bold text-center pt-10">
             <p>주식 O/X 퀴즈</p>
@@ -105,12 +131,13 @@ export default function Quiz() {
               <div
                 className={`absolute top-[20%] left-[35%]  text-9xl font-extrabold ${lastAnswer.isCorrect ? 'correct-animation' : 'wrong-animation'}`}
               >
-                {lastAnswer.answer}
+                {lastAnswer.isCorrect ? 'O' : 'X'}
               </div>
             )}
             <p>{questions[currentQuestionIndex]?.question}</p>
             {showComment ? (
               <div className="mt-3 text-center text-md px-4">
+                <p> {questions[currentQuestionIndex]?.answer}</p>
                 <p>해설 : {questions[currentQuestionIndex]?.comment}</p>
               </div>
             ) : (
