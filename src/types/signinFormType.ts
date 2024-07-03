@@ -1,6 +1,6 @@
 interface signinFormType {
     name: string
-    password : string
+    password : string | undefined
     phoneNumber : string
 }
 
