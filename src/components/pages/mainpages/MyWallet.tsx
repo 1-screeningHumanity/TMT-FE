@@ -19,8 +19,7 @@ function MyWallet({ data, delay }: { data: any; delay: number }) {
     }
 
     async function getProfit() {
-      const res = await getMyAssetRank();
-      console.log('getMyAssetRank :', res);
+      const res = await getMyAssetRank()
       setProfit(res?.data?.profit)
     }
     getWon()
