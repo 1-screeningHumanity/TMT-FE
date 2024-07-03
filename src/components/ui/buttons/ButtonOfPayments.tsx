@@ -3,12 +3,22 @@
 import { postKakaopayReady } from "@/actions/payments";
 import checkMobileDevice from "@/utils/checkMobileDevice";
 import { useRouter } from "next/navigation";
+import { useToast } from "../use-toast";
 
-export default async function ButtonOfPayments({price} : {price: string}){
+export default function ButtonOfPayments({price} : {price: string}){
 
   const router = useRouter();
+  const { toast } = useToast()
 
   async function handlePayment(){
+
+    if(!price){
+      toast({
+        title: '금액을 선택해 주세요',
+        variant: 'destructive',
+      })
+      return;
+    }
 
     localStorage.setItem("price", price);
     const res = await postKakaopayReady(`${price}캐시`, 1, Number(price));
