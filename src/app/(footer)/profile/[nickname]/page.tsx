@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 export default async function Profile({params} : {params :{nickname: string}}){
 
 
+
   const nick = decodeURIComponent(params.nickname);
   const res = await isSubscribed(nick);
   const isSubscribe = res?.data?.isSubscribe;
