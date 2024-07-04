@@ -1,16 +1,18 @@
-import { userInformation } from "@/actions/myPage";
-import { cashInfoAPI } from "@/actions/wallet";
-import ButtonOfSubscribePayments from "@/components/pages/profile/ButtonOfSubscribePayments";
-import Headers from "@/components/ui/Headers";
+import { userInformation } from '@/actions/myPage'
+import { cashInfoAPI } from '@/actions/wallet'
+import ButtonOfSubscribePayments from '@/components/pages/profile/ButtonOfSubscribePayments'
+import Headers from '@/components/ui/Headers'
 
-export default async function SubscribePayments({ params }: { params: { nickname: string } }) {
+export default async function SubscribePayments({
+  params,
+}: {
+  params: { nickname: string }
+}) {
+  const nick = decodeURI(params.nickname)
+  const cashInfo = await cashInfoAPI()
+  const cash = cashInfo?.data?.cash
 
-  const nick = decodeURI(params.nickname);
-  const cashInfo = await cashInfoAPI();
-  const cash = cashInfo?.data?.cash;
-
-  const userInfo = await userInformation();
-  const myNick = userInfo?.data?.nickanme;
+  const userInfo = await userInformation()
 
   return (
     <section className="h-[82vh] bg-gradient-to-br from-blue-100 to-purple-200 p-8 rounded-lg shadow-lg w-full">
@@ -19,11 +21,19 @@ export default async function SubscribePayments({ params }: { params: { nickname
           <span className="text-purple-500">{nick}</span> 님을 구독하시겠습니까?
         </h1>
         <div className="text-lg text-gray-700 mb-52 mt-20">
-          <p className="mb-2">보유 캐시: <span className="font-semibold text-indigo-600">{cash} 캐시</span></p>
-          <p className="mb-2">결제 할 금액: <span className="font-semibold text-red-600">1000 캐시</span></p>
-          <p className="text-sm text-gray-500">기존에 구독한 회원인 경우 과금되지 않습니다.</p>
+          <p className="mb-2">
+            보유 캐시:{' '}
+            <span className="font-semibold text-indigo-600">{cash} 캐시</span>
+          </p>
+          <p className="mb-2">
+            결제 할 금액:{' '}
+            <span className="font-semibold text-red-600">1000 캐시</span>
+          </p>
+          <p className="text-sm text-gray-500">
+            기존에 구독한 회원인 경우 과금되지 않습니다.
+          </p>
         </div>
-        <ButtonOfSubscribePayments nickname={nick} myNick={myNick} />
+        <ButtonOfSubscribePayments nickname={nick} myNick={userInfo} />
       </div>
     </section>
   )
