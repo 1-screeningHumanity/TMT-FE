@@ -107,7 +107,6 @@ export default async function Home() {
             </section>
           </Suspense>
         ))}
-        <SkeletonCard />
       </main>
 
       <Footer />
