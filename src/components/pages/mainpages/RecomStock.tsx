@@ -19,6 +19,7 @@ export default function RecomStock() {
           alt="작은 주식"
           width={25}
           height={25}
+          className="w-6 h-6"
         />
       </div>
       <section className="flex flex-wrap justify-around">
