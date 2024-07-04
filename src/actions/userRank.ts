@@ -9,7 +9,7 @@ async function getAssetRank(page: number) {
 async function getMyAssetRank() {
   const token = await getAccessToken()
   const res = await GetAPI('/rank/my-asset', undefined, token)
-  return res.data?.ranking
+  return res
 }
 
 async function getDailyRevenueRank(page: number) {

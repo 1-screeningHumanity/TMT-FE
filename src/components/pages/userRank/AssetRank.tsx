@@ -35,7 +35,7 @@ export default function AssetRank() {
   const fetchMyRank = async () => {
     if (!isValid) {
       const myRankResponse = await getMyAssetRank()
-      setMyRankInfo(myRankResponse)
+      setMyRankInfo(myRankResponse?.data ?? null)
     }
   }
   const moreData = () => setPage((prev) => prev + 1)

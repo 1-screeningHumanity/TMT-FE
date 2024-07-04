@@ -10,6 +10,7 @@ export default function MyRankBox({
   profit,
   isAsseted,
 }: rankBoxType) {
+  console.log(rank)
   return (
     <Link
       href={'/mypage'}
