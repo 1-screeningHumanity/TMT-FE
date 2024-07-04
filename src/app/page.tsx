@@ -44,7 +44,7 @@ export default async function Home() {
     {
       id: 1,
       title: '나의 순위',
-      data: [data[0], data[1].data.rank],
+      data: [data[0], data[1]?.data?.rank],
       component: MyStatus,
     },
     {
