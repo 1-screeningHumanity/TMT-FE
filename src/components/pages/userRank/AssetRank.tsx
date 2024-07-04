@@ -19,9 +19,9 @@ export default function AssetRank() {
   const date = getPreviousDay4PM()
   const isValid = dailyAggregateTimeRange()
 
-  const fetchRankData = async () => {
+  const fetchRankData = async (currentPage: number) => {
     if (!isValid) {
-      const res = await getAssetRank(page)
+      const res = await getAssetRank(currentPage)
       const resData = res?.data?.content
 
       setAssetRank((prev) => {
@@ -41,20 +41,30 @@ export default function AssetRank() {
   const moreData = () => setPage((prev) => prev + 1)
   useEffect(() => {
     fetchMyRank()
-    fetchRankData()
+    fetchRankData(page)
   }, [])
 
   useEffect(() => {
-    fetchRankData()
+    fetchRankData(page)
+  }, [page])
+
+  useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if (entries[0]?.isIntersecting) {
         moreData()
       }
     })
+
     if (observerRef?.current) {
       observer?.observe(observerRef?.current)
     }
-  }, [page])
+
+    return () => {
+      if (observerRef?.current) {
+        observer?.unobserve(observerRef?.current)
+      }
+    }
+  }, [])
 
   return (
     <>
@@ -85,6 +95,7 @@ export default function AssetRank() {
                   changingRank={data?.changeRanking}
                   nickname={data?.nickname}
                   profit={data?.won}
+                  key={data?.nickname}
                   isAsseted
                 />
               ))}

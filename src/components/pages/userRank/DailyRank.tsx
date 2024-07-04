@@ -20,11 +20,9 @@ export default function DailyRank() {
   const date = getPreviousDay4PM();
   const isValid = dailyAggregateTimeRange();
 
-  const fetchRankData = async () => {
+  const fetchRankData = async (currentPage : number) => {
     if(!isValid){
-      const res = await getDailyRevenueRank(page);
-      console.log('res :', res)
-      console.log('page',page)
+      const res = await getDailyRevenueRank(currentPage);
       const resData = res?.data?.content;
 
       setDailyRank((prev) => {
@@ -44,16 +42,18 @@ export default function DailyRank() {
     }
   }
 
-  const moreData = () =>{ 
-    console.log("데이터 호출")
-    setPage((prev) => prev + 1)};
+  const moreData = () => setPage((prev) => prev + 1);
+
   useEffect(() => {
     fetchMyRankData();
-    fetchRankData();
+    fetchRankData(page);
+  }, []);
+
+  useEffect(() => {
+    fetchRankData(page);
   }, [page]);
 
   useEffect(() => {
-    fetchRankData();
     const observer = new IntersectionObserver((entries) => {
       if(entries[0]?.isIntersecting){
         moreData();
@@ -62,7 +62,13 @@ export default function DailyRank() {
     if(observerRef?.current){
       observer?.observe(observerRef?.current);
     }
-  }, [page]);
+
+    return () => {
+      if(observerRef.current){
+        observer?.unobserve(observerRef?.current);
+      }
+    }
+  }, []);
   
   return(
     <>
@@ -87,10 +93,11 @@ export default function DailyRank() {
                     changingRank={data?.changeRanking} 
                     nickname={data?.nickname} 
                     profit={data?.profit} 
+                    key={data?.nickname}
                     isAsseted={false}
                     />
                 ))}
-            <div ref={observerRef}/>
+            <div ref={observerRef} className="h-40"/>
             {/* <button  onClick={moreData}>더부르기</button> */}
           </section>
         } 

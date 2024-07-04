@@ -19,9 +19,9 @@ export default function WeeklyRank() {
   const date = getLastFriday4PM();
   const isValid = isWithinFridayWindow();
 
-  const fetchRankData = async () => {
+  const fetchRankData = async (currentPage : number) => {
     if(!isValid){
-      const res = await getWeeklyRevenueRank(page);
+      const res = await getWeeklyRevenueRank(currentPage);
       const resData = res?.data?.content;
 
       setWeeklyRank((prev) => {
@@ -41,16 +41,18 @@ export default function WeeklyRank() {
   }
 
   const moreData = () => {
-    console.log("데이터 호출")
     setPage((prev) => prev + 1)
   };
   useEffect(() => {
     fetchMyRankData();
-    fetchRankData();
-  }, [page]);
+    fetchRankData(page);
+  }, []);
 
   useEffect(() => {
-    fetchRankData();
+    fetchRankData(page);
+  },[page])
+
+  useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       if(entries[0]?.isIntersecting){
         moreData();
@@ -59,7 +61,13 @@ export default function WeeklyRank() {
     if(observerRef?.current){
       observer?.observe(observerRef?.current);
     }
-  }, [page]);
+
+    return () => {
+      if(observerRef?.current){
+        observer.unobserve(observerRef?.current);
+      }
+    }
+  }, []);
 
   return(
     <>
@@ -75,7 +83,7 @@ export default function WeeklyRank() {
             <section>
               {
                 WeeklyRank.map((data : weeklyRankDataType) =>
-                  <RankBox rank={data?.ranking} changingRank={data?.changeRanking} nickname={data?.nickname} profit={data?.profit} isAsseted={false}/>
+                  <RankBox rank={data?.ranking} changingRank={data?.changeRanking} nickname={data?.nickname} profit={data?.profit} key={data?.nickname} isAsseted={false}/>
                 )
               }
               <div ref={observerRef} />
