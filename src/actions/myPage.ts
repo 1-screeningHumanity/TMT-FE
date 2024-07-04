@@ -4,7 +4,7 @@ import { getAccessToken } from './tokens'
 async function userInformation() {
   const token = await getAccessToken()
   const res = await GetAPI('/member/mypage/information', undefined, token)
-  return res.data.nickanme
+  return res?.data?.nickanme
 }
 
 async function userGrade() {
