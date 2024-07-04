@@ -50,7 +50,8 @@ export default async function AssetListOfMyPage() {
                 {(
                   (portfolio.stockPrice / portfolio.averagePrice) * 100 -
                   100
-                ).toFixed(2)}
+                ).toFixed(2)}{' '}
+                %
               </li>
             </ul>
           )

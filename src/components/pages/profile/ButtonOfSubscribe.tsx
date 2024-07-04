@@ -19,13 +19,12 @@ export default function ButtonOfSubscribe({
   const [userInfo, setUserInfo] = useState<string>()
 
   useEffect(() => {
-    
-    async function fetchData(){
-      const portfolioRes = await profilePortfolio(nick);
-      const portfolio = Array.isArray(portfolioRes?.data) && portfolioRes.data.length > 0
-      ? portfolioRes.data[0]?.nickname || ''
-      : '';
-      
+    async function fetchData() {
+      const portfolioRes = await profilePortfolio(nick)
+      const portfolio =
+        Array.isArray(portfolioRes?.data) && portfolioRes.data.length > 0
+          ? portfolioRes.data[0]?.nickname || ''
+          : ''
 
       const userInfoRes = await userInformation()
       setUserInfo(userInfoRes?.data?.nickanme)
@@ -63,11 +62,7 @@ export default function ButtonOfSubscribe({
         <div className="flex items-center mx-8">
           <button
             className="w-16 h-8 border-[1px] bg-[#7d12ff] rounded-full text-white mt-4"
-            onClick={() => {
-              userInfo == nick
-                ? () => router.push(`/profile/${nick}/payments`)
-                : router.push('/mypage')
-            }}
+            onClick={() => router.push(`/profile/${nick}/payments`)}
           >
             구독
           </button>
