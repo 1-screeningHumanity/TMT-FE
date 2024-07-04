@@ -36,7 +36,6 @@ async function handleSubmit(event: React.FormEvent) {
     })
   }else{
     const res = await patchPasswordChange(passwordCheck);
-    console.log(res);
     if(!res.isSuccess){
       toast({
         title: '비밀번호 변경에 실패하였습니다.',

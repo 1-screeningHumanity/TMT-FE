@@ -15,7 +15,7 @@ export default function RealTimeChart({ data }: { data: any }) {
   const volumes = splitVol(data)
 
   const onClick = (params: any) => {
-    console.log('params', params.data)
+    // console.log('params', params.data)
   }
   const onEvents = {
     click: onClick,

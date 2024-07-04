@@ -21,7 +21,7 @@ export default function ButtonOfSignout() {
 
   const signOutButton = async () => {
     const fcmToken = localStorage.getItem('fcmToken')
-    console.log(fcmToken)
+    // console.log(fcmToken)
     if (fcmToken !== null) {
       await deleteTokenAPI(fcmToken as string)
       localStorage.removeItem('fcmToken')

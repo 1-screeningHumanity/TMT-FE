@@ -39,7 +39,6 @@ export default function IsReadCheck() {
         ? prev.filter((id) => id !== alarmId)
         : [...prev, alarmId],
     )
-    console.log('checkedItems : ', checkedItems)
   }
   const handleAllChecked = (checked: boolean) => {
     if (checked) {
@@ -49,7 +48,6 @@ export default function IsReadCheck() {
     }
   }
   const handleDeleteAlarm = async () => {
-    console.log('checkedItems : ', checkedItems)
     const res = await alarmDeleteAPI(checkedItems)
     setAction(!action)
   }
@@ -65,7 +63,6 @@ export default function IsReadCheck() {
   }
   const handleReadAlarm = async (alarmId: number) => {
     setAction(!action)
-    console.log('send alarmId : ', alarmId)
     if (checked === false) {
       await alarmReadAPI([alarmId])
     }

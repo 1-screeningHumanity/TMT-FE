@@ -17,7 +17,7 @@ export default function DetailCharts({
   const volumes = splitVol(chartData)
 
   const onClick = (params: any) => {
-    console.log('params', params.data)
+    // console.log('params', params.data)
   }
   const onEvents = {
     click: onClick,

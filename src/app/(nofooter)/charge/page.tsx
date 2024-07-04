@@ -16,7 +16,6 @@ export default async function charge({searchParams} : {searchParams: {[key: stri
   const resCash = await cashInfoAPI();
   const cashInfo = resCash?.data.cash;
 
-  console.log("wonInfo :", wonInfo, "cashInfo :", cashInfo)
 
   return (
     <section>

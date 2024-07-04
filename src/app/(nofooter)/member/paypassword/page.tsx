@@ -41,7 +41,6 @@ export default function paypassword() {
         return
       }
       const res = await postPayPassword(nickName, checkPassword)
-      console.log(res)
       if (res.code == 200) {
         toast({
           title: '비밀번호가 설정 되었습니다.',

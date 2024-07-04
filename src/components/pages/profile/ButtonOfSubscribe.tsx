@@ -43,7 +43,6 @@ export default function ButtonOfSubscribe({
 
   const handleUnsubscribe = async () => {
     const res = await unsubscribe(nick)
-    console.log('handleUnsubscribe :', res)
     if (res.isSuccess) {
       toast({
         title: '구독이 취소되었습니다',
@@ -58,7 +57,6 @@ export default function ButtonOfSubscribe({
     }
   }
 
-  console.log('isSubscribe :', isSubscribe)
   return (
     <>
       {isSubscribe == false || isSubscribe == undefined ? (

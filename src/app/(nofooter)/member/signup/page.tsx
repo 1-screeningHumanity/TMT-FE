@@ -54,7 +54,6 @@ export default function signup() {
       })
     } else {
       const res = await postSignup(name, phoneNumber, password, nickName)
-      console.log('res :', res)
 
       if (!res.isSuccess) {
         if (res.code === 1005) {

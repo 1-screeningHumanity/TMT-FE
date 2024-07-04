@@ -36,7 +36,6 @@ export const options: NextAuthOptions = {
 
         if (res.ok) {
           const user = await res.json()
-          console.log('user : ', user)
 
           return user
         }
@@ -56,8 +55,6 @@ export const options: NextAuthOptions = {
 
   callbacks: {
     async signIn({ user, profile }) {
-      console.log(user)
-      console.log(profile)
       return true
     },
     async jwt({ token, user }) {

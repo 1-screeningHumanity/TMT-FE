@@ -10,12 +10,10 @@ export default async function Follower(){
   const userInfo = await userInformation();
   const myNick = userInfo?.data?.nickanme;
   const EncodedNickName = encodeURIComponent(myNick);
-  console.log("myNick :", myNick);
-  console.log("EncodedNickName :", EncodedNickName);
+
   const res = await getFollowerList(EncodedNickName);
   const followerList = res?.data;
 
-  console.log("followerList :", followerList);
   
   return (
     <section>
