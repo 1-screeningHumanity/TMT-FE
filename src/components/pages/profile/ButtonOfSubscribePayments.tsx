@@ -15,8 +15,7 @@ export default function ButtonOfSubscribePayments({
   const { toast } = useToast()
 
   const handleSubscribe = async () => {
-    const res = await subscribe(myNick, nickname, 1000)
-    console.log(myNick, nickname, 1000)
+    const res = await subscribe(myNick, decodeURIComponent(nickname), 1000)
     if (res.code == 200) {
       toast({
         title: '구독이 완료되었습니다',

@@ -26,9 +26,8 @@ export default function ButtonOfSubscribe({
           ? portfolioRes.data[0]?.nickname || ''
           : ''
 
-      const userInfo = await userInformation()
-
-      setUserInfo(userInfo)
+      const userInfoRes = await userInformation()
+      setUserInfo(userInfoRes)
 
       if (userInfo == nick) {
         router.push('/mypage')
@@ -63,7 +62,11 @@ export default function ButtonOfSubscribe({
         <div className="flex items-center mx-8">
           <button
             className="w-16 h-8 border-[1px] bg-[#7d12ff] rounded-full text-white mt-4"
-            onClick={() => router.push(`/profile/${nick}/payments`)}
+            onClick={() => {
+              userInfo == nick
+                ? router.push('/mypage')
+                : router.push(`/profile/${encodeURIComponent(nick)}/payments`)
+            }}
           >
             구독
           </button>
