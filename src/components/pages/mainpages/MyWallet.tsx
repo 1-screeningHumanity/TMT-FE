@@ -9,22 +9,9 @@ import { getMyAssetRank } from '@/actions/userRank'
 
 function MyWallet({ data, delay }: { data: any; delay: number }) {
   const [show, setShow] = useState<boolean>(false)
-  const [won, setWon] = useState<number>(0)
-  const [profit, setProfit] = useState<number>(0)
+  const won = data
 
   useEffect(() => {
-    async function getWon() {
-      const res = await wonInfoAPI()
-      setWon(res?.data?.won)
-    }
-
-    async function getProfit() {
-      const res = await getMyAssetRank()
-      setProfit(res?.data?.profit)
-    }
-    getWon()
-    getProfit()
-
     const timer = setTimeout(() => setShow(true), delay)
     return () => clearTimeout(timer)
   }, [delay])
@@ -42,16 +29,7 @@ function MyWallet({ data, delay }: { data: any; delay: number }) {
         <p className="text-[2.5rem] tracking-tighter font-extrabold leading-tight">
           <CountUp start={0} end={won} duration={2.5} separator="," />
         </p>
-        <div className="flex justify-between items-center mt-3">
-          {/* <div className="flex items-center">
-            <p className="text-xs">총평가금액</p>
-            <p className="text-xs ml-2">{formatNumberWithCommas(won)}</p>
-          </div> */}
-          {/* <div className="flex items-center">
-            <p className="text-xs">총수익률</p>
-            <p className="text-xs ml-2">{profit}%</p>
-          </div> */}
-        </div>
+        <div className="flex justify-between items-center mt-3"></div>
       </div>
     </motion.div>
   )
