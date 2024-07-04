@@ -3,9 +3,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import CountUp from 'react-countup'
-import { userInformation } from '@/actions/myPage'
-import { set } from 'firebase/database'
-import { getMyAssetRank } from '@/actions/userRank'
 
 function MyStatus({ data, delay }: { data: any; delay: number }) {
   const [show, setShow] = useState<boolean>(false)

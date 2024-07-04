@@ -26,8 +26,9 @@ export default function ButtonOfSubscribe({
           ? portfolioRes.data[0]?.nickname || ''
           : ''
 
-      const userInfoRes = await userInformation()
-      setUserInfo(userInfoRes?.data?.nickanme)
+      const userInfo = await userInformation()
+
+      setUserInfo(userInfo)
 
       if (userInfo == nick) {
         router.push('/mypage')

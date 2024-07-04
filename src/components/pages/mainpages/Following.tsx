@@ -11,9 +11,8 @@ export default function Following() {
   useEffect(() => {
     async function fetchData() {
       const Info = await userInformation()
-      const EncodeNickName = Info?.data?.nickanme
-      if (EncodeNickName) {
-        const res = await getFollowingList(EncodeNickName)
+      if (Info) {
+        const res = await getFollowingList(Info)
         setsubScribe(res?.data)
       }
     }

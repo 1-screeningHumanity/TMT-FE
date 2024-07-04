@@ -1,5 +1,3 @@
-import { userInformation } from '@/actions/myPage'
-import { getMyAssetRank } from '@/actions/userRank'
 import { rankBoxType } from '@/types/rankBoxType'
 import formatNumberWithCommas from '@/utils/formatNumberWithCommas'
 import { ArrowDownIcon, ArrowUpIcon, MinusIcon } from 'lucide-react'
