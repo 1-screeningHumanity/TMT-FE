@@ -6,13 +6,13 @@ import Image from 'next/image'
 
 export default async function InformationOfMyPage() {
   const resWon = await wonInfoAPI()
-  const wonInfo = resWon?.data?.won
+  const wonInfo = resWon
 
   const resCash = await cashInfoAPI()
   const cashInfo = resCash?.data?.cash
 
   const resUser = await userInformation()
-  const userInfo = resUser?.data?.nickanme
+  const userInfo = resUser
 
   const resGrade = await userGrade()
   const gradeInfo = resGrade?.data?.grade
