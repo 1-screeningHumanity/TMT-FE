@@ -10,7 +10,8 @@ export default function RealTimeChart({ data }: { data: any }) {
   const upColor = '#ff0000'
   const downColor = '#0000ff'
   const getTodayData = getSocketData('005930')
-  const data0 = splitData(data, getTodayData)
+  const datas = data.slice(data.length - 8, data.length)
+  const data0 = splitData(datas, getTodayData)
   const volumes = splitVol(data)
 
   const onClick = (params: any) => {
