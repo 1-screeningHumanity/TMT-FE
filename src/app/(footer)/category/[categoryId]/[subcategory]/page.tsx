@@ -1,7 +1,6 @@
 import { getSubCategoryAPI } from '@/actions/category'
 import { subItemCategoryDataType } from '@/types/categoryDataType'
 import Link from 'next/link'
-
 export default async function Page(props: {
   params: { categoryId: number; subcategory: number }
 }) {
@@ -12,18 +11,19 @@ export default async function Page(props: {
   const stockData = subCategoryData.stockData
   return (
     <main>
-      <div className="font-bold text-xl p-2 w-full h-16 fixed flex items-center">
+      <span className="font-bold pl-3 text-xl w-full fixed flex items-center bg-slate-100 z-10">
         {subCategoryData.mainCategoryName} {' > '}{' '}
         {subCategoryData.subCategoryName}
-      </div>
-      <ul className="top-16 relative">
+      </span>
+      <ul className="top-8 relative">
         {stockData.map((stock: any) => (
           <Link href={`/stock/${stock.stockCode}`}>
             <li
               key={stock.id}
-              className="w-full h-12 flex p-10 items-center border-b-2 border-gray-200"
+              className="w-full h-12 flex p-8 items-center border-b-2 border-gray-200"
             >
-              {stock.stockName}
+              <span className="font-bold mr-3">{stock.stockCode}</span>
+              <span>{stock.stockName}</span>
             </li>
           </Link>
         ))}

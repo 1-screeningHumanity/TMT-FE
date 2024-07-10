@@ -18,7 +18,7 @@ export default function signin() {
       <SigninForm />
       <p className="text-xs mx-auto w-fit text-[#775da6]">
         비밀번호가 기억이 나지 않나요?{' '}
-        <Link href={'/reset/password'} className="font-extrabold">
+        <Link href={'/member/reset/password'} className="font-extrabold">
           비밀번호 찾기
         </Link>
       </p>
@@ -29,8 +29,8 @@ export default function signin() {
         </p>
       </div>
       <div className="flex justify-between w-full">
-        <ButtonOfSigninFromNaver />
-        <ButtonOfSigninFromKakao />
+        {/* <ButtonOfSigninFromNaver />
+        <ButtonOfSigninFromKakao /> */}
       </div>
       <Link
         href={'/member/signup'}

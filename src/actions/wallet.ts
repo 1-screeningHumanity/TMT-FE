@@ -4,7 +4,7 @@ import { getAccessToken } from './tokens'
 async function wonInfoAPI() {
   const token = await getAccessToken()
   const res = await GetAPI('/payment/woninfo', undefined, token)
-  return res
+  return res?.data?.won
 }
 
 async function cashInfoAPI() {
@@ -13,4 +13,3 @@ async function cashInfoAPI() {
   return res
 }
 export { wonInfoAPI, cashInfoAPI }
-

@@ -37,7 +37,6 @@ export default function ChatRoom({
     setLastId(messageData[0].id)
   }
   useEffect(() => {
-    console.log(messageData)
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {

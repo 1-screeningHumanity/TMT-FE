@@ -50,7 +50,7 @@ export default function ChatSender({
     }
   }, [])
   return (
-    <div className="fixed bottom-[76px] w-full z-20 px-2">
+    <div className="fixed bottom-5 w-full z-20 px-2">
       <form ref={formRef} onSubmit={handleSubmit}>
         <div className="flex justify-between h-auto rounded-3xl bg-white w-full relative">
           <textarea

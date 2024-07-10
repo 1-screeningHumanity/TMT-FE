@@ -13,7 +13,6 @@ function WonCard() {
 
   function getCash(amount : number){
     setCash(amount)
-    console.log(amount)
   }
 
 

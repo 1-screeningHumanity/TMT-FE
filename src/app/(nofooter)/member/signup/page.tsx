@@ -54,7 +54,6 @@ export default function signup() {
       })
     } else {
       const res = await postSignup(name, phoneNumber, password, nickName)
-      console.log('res :', res)
 
       if (!res.isSuccess) {
         if (res.code === 1005) {
@@ -82,7 +81,7 @@ export default function signup() {
 
   const passwordValidation = (event: React.ChangeEvent<HTMLInputElement>) => {
     let newPassword = event.target.value
-    var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,20}$/
+    var regExp = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
     setPassword1(newPassword)
     setPasswordValue(regExp.test(newPassword))
   }
@@ -150,6 +149,7 @@ export default function signup() {
               type={showPassword ? 'password' : 'text'}
               name="password"
               maxLength={20}
+              minLength={8}
               required
               ref={(el) => {
                 inputRefs.current[2] = el
@@ -190,7 +190,7 @@ export default function signup() {
             )
           ) : password1 ? (
             <p className="text-xs text-red-500">
-              비밀번호는 영어 숫자 8~20자로 조합 되어야합니다.
+              영어, 숫자, 특수문자 포함하여 8~20자로 조합 되어야합니다.
             </p>
           ) : (
             ''
@@ -200,6 +200,7 @@ export default function signup() {
               placeholder={'비밀번호를 다시 입력해주세요'}
               onChange={passwordConfirm}
               maxLength={20}
+              minLength={8}
               type={showPasswordCheck ? 'password' : 'text'}
               name="passwordCheck"
               required

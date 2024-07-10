@@ -10,19 +10,14 @@ export default async function Page({
   params: { StockCode: string }
 }) {
   const stockCode = params.StockCode
-  const getOldChat = await getOldChatDAtaAPI(stockCode, undefined)
   const nickNameRes = await userInformation()
-  let nickName = ''
-  if (nickNameRes.isSuccess == true) {
-    nickName = nickNameRes.data.nickanme
-  }
 
   async function newChat(formData: FormData): Promise<boolean> {
     'use server'
     const rawFormData: chatSender = {
       stockCode: stockCode,
       message: formData.get('message') as string,
-      nickName: nickName,
+      nickName: nickNameRes,
     }
     if (!rawFormData.message || !rawFormData.nickName) return false
     const token = await getAccessToken()
@@ -42,7 +37,7 @@ export default async function Page({
 
   return (
     <>
-      <ChatRoom stockCode={stockCode} nickName={nickName} />
+      <ChatRoom stockCode={stockCode} nickName={nickNameRes} />
       <ChatSender newChat={newChat} />
     </>
   )

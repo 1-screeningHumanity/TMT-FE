@@ -27,7 +27,7 @@ export default function page() {
       router.push(`/stock/${data.id}`)
     }
     if(selectValue === 'members'){
-      router.push(`/profile/${data.name}`)
+      router.push(`/profile/${encodeURIComponent(data.name)}`)
     }
   }
 

@@ -22,9 +22,10 @@ export default async function Page({
 
   return (
     <main>
-      <TitleOfPages title="급등 / 급락주" />
+      <span className="text-center block text-indigo-600 my-4">
+        {date} 기준입니다.
+      </span>
       <SortButton />
-      <span className="text-center block text-indigo-600 my-4">{date} 기준입니다.</span>
       <SortRank sortResult={sortResult} />
     </main>
   )

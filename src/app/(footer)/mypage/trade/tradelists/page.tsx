@@ -8,7 +8,6 @@ export default async function tradeLists(){
 
   const data = await getTradeList();
   const tradeLists = data?.data;
-  console.log("tradeLists : ", tradeLists);
 
   return (
     <section>

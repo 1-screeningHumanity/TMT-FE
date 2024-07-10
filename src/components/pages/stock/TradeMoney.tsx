@@ -8,13 +8,16 @@ import { socketStockCode } from '@/utils/socketStockCode'
 import timeCheck from '@/utils/timeCheck'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { TradeMoneyProps } from '@/types/Trade'
+import { TradeModalProps, TradeMoneyProps } from '@/types/Trade'
+import { toast } from '@/components/ui/use-toast'
 export default function TradeMoney({
+  modalOpen,
+  setModalOpen,
   stockCode,
   stockNameResult,
   staticStockPrice,
   myMoney,
-}: TradeMoneyProps) {
+}: TradeModalProps) {
   const check = timeCheck()
   let now_price = 0
   if (socketStockCode.includes(stockCode) && check === true) {
@@ -49,23 +52,32 @@ export default function TradeMoney({
       const response = await tradeReservation(trade, data)
       const howToTrade = trade == 'buy' ? '사기' : '팔기'
       if (response.isSuccess == true) {
-        alert(
-          `${stockNameResult} ${[price]}원에 ${amount}주 예약 ${howToTrade} 성공`,
-        )
+        toast({
+          title: `${stockNameResult} ${[price]}원에 ${amount}주 ${howToTrade} 예약 성공`,
+          variant: 'success',
+        })
       } else {
-        alert(response.message)
+        toast({
+          title: response.message,
+          variant: 'destructive',
+        })
       }
     } else {
       const response = await tradeStock(trade, data)
       const howToTrade = trade == 'buy' ? '사기' : '팔기'
       if (response.isSuccess == true) {
-        alert(
-          `${stockNameResult} ${[price]}원에 ${amount}주 ${howToTrade} 성공`,
-        )
+        toast({
+          title: `${stockNameResult} ${[price]}원에 ${amount}주 ${howToTrade} 성공`,
+          variant: 'success',
+        })
       } else {
-        alert(response.message)
+        toast({
+          title: response.message,
+          variant: 'destructive',
+        })
       }
     }
+    setModalOpen(false)
   }
 
   return (

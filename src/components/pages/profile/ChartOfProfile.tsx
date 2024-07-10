@@ -29,7 +29,6 @@ export default function ChartOfProfile({ nick }: { nick: string}) {
   }, [])
 
   useEffect(() => {
-    console.log("data", portfolio)
     if (portfolio.length > 0) {
       const chartData = portfolio
         .filter(item => item.stockPrice !== null && item.stockName !== null && item.totalAmount !== null) // Filter out null values

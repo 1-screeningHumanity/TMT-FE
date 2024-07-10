@@ -20,9 +20,9 @@ export default function SortRank({
       <hr />
       {sortResult.map((item: any) => (
         <Link href={`/stock/${item.stockCode}`}>
-          <div className="flex h-16  items-center ">
-            <span className="w-1/12 p-2 text-xl">{item.data_rank}</span>
-            <div className="w-5/12 ml-2 text-xl justify-center ">
+          <div className="flex h-auto  items-center py-3">
+            <span className="w-1/12 p-2 ">{item.data_rank}</span>
+            <div className="w-5/12 ml-2  justify-center ">
               <span>{item.hts_kor_isnm} </span>
             </div>
 

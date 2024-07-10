@@ -12,7 +12,6 @@ export default function ButtonOfCancleTrade( {id, status} : {id : number, status
   async function handleCancleTrade(tradeId: number) {
     if (status == "매수") {
       const res = await cancleReservationBuy(tradeId)
-      console.log("res :", res);
       if(res.isSuccess) {
         toast({
           title: "취소되었습니다.",

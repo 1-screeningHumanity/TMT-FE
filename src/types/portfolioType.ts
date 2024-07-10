@@ -1,7 +1,8 @@
-interface portfolioType{
-  stockName : string | null
-  totalAmount : number | null
-  stockPrice : number | null
+interface portfolioType {
+  stockName: string
+  totalAmount: number
+  stockPrice: number
+  averagePrice: number
 }
 
 export type { portfolioType }

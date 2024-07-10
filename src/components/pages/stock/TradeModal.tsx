@@ -74,6 +74,8 @@ export default function TradeModal({
             {step === 1 && <TradePassword step={step} setStep={setStep} />}
             {step === 2 && (
               <TradeMoney
+                modalOpen={modalOpen}
+                setModalOpen={setModalOpen}
                 stockCode={stockCode}
                 stockNameResult={stockNameResult}
                 staticStockPrice={staticStockPrice}

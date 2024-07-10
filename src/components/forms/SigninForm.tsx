@@ -12,6 +12,7 @@ import { initializeApp } from 'firebase/app'
 import { getMessaging, getToken, onMessage } from 'firebase/messaging'
 import { fcmIssued } from '@/actions/alarm/fcmIssued'
 import { useToast } from '../ui/use-toast'
+import { parsePhoneNumber, removeHyphens } from '@/utils/parsePhoneNumber'
 
 export default function SigninForm() {
   const [payload, setPayload] = useState<signinFormType>({
@@ -21,6 +22,7 @@ export default function SigninForm() {
   })
 
   const [showPassword, setShowPassword] = useState(true)
+  const [phoneNumberString, setPhoneNumberString] = useState<string>('')
   const router = useRouter()
   const { toast } = useToast()
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -62,7 +64,15 @@ export default function SigninForm() {
       ...payload,
       [e.target.name]: e.target.value,
     })
-    console.log(payload)
+  }
+
+  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const parsedPhoneNumber = parsePhoneNumber(e.target.value)
+    setPhoneNumberString(parsedPhoneNumber)
+    setPayload({
+      ...payload,
+      phoneNumber: removeHyphens(parsedPhoneNumber) || '',
+    })
   }
 
   return (
@@ -73,7 +83,8 @@ export default function SigninForm() {
           type="tel"
           name="phoneNumber"
           className="border-[2px] rounded-lg w-full h-10 block my-4 px-4 text-sm placeholder-[#aea0e5]"
-          onChange={onChangePayload}
+          onChange={handlePhoneNumberChange}
+          value={phoneNumberString}
         />
         <input
           placeholder="이름"

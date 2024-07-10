@@ -2,7 +2,7 @@
 
 import { deleteTokenAPI } from '@/actions/alarm/fcm'
 import { signOut } from 'next-auth/react'
-import { postSignOut } from "@/actions/member";
+import { postSignOut } from '@/actions/member'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,21 +13,22 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import { useRouter } from 'next/navigation';
+} from '@/components/ui/alert-dialog'
+import { useRouter } from 'next/navigation'
 
 export default function ButtonOfSignout() {
-
-  const router = useRouter();
+  const router = useRouter()
 
   const signOutButton = async () => {
     const fcmToken = localStorage.getItem('fcmToken')
-    console.log(fcmToken)
+    // console.log(fcmToken)
     if (fcmToken !== null) {
       await deleteTokenAPI(fcmToken as string)
+      localStorage.removeItem('fcmToken')
     }
-    const res = await postSignOut();
-    const resSignOut = await signOut({ redirect: false, callbackUrl: '/'})
+    const res = await postSignOut()
+
+    const resSignOut = await signOut({ redirect: false, callbackUrl: '/' })
     router.push('/')
   }
 

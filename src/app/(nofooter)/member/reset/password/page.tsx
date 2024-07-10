@@ -266,7 +266,7 @@ export default function resetPassword(){
           )}
         </div>
       </div>
-      <input type="submit" value={"변경하기"} onClick={(e) => handleChangePassword(e)} className="bg-[#7d12ff] text-white text-sm font-semibold rounded-lg w-80 h-10 mx-auto block my-6 absolute bottom-4 left-0 right-0"/>
+      <input type="submit" value={"변경하기"} onClick={(e) => handleChangePassword(e)} className="bg-[#7d12ff] text-white text-sm font-semibold rounded-lg w-80 h-10 mx-auto block my-6 absolute bottom-20 left-0 right-0"/>
     </form>
     </>
   )
